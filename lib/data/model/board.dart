@@ -1,0 +1,1 @@
+// rule (copyWith, fromJson, toJson)
