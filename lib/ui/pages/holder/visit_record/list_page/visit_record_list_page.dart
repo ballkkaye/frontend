@@ -1,4 +1,6 @@
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -15,29 +17,43 @@ class VisitRecordListPage extends StatelessWidget {
         child: Column(
           children: [
             TableCalendar(
+              rowHeight: 60,
+              daysOfWeekHeight: 60,
               locale: 'ko_KR',
               focusedDay: DateTime.now(),
               firstDay: DateTime(2020, 3, 1),
               lastDay: DateTime(DateTime.now().year + 1, 12, 31),
               headerStyle: HeaderStyle(
                 titleCentered: true,
+                titleTextStyle: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
                 formatButtonVisible: false,
                 leftChevronIcon: Icon(CupertinoIcons.chevron_back),
                 rightChevronIcon: Icon(CupertinoIcons.chevron_forward),
               ),
               calendarStyle: CalendarStyle(
                 outsideDaysVisible: false,
-                defaultTextStyle: TextStyle(fontSize: 14, color: Colors.grey), // 평일 날짜 숫자
-                weekendTextStyle: TextStyle(fontSize: 14, color: Colors.grey), // 주말 날짜 숫자
+                defaultTextStyle: TextStyle(fontSize: 16, color: MColor.kLabel.disable),
+                weekendTextStyle: TextStyle(fontSize: 16, color: MColor.kLabel.disable),
                 todayTextStyle: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 14,
-                  color: Colors.white,
+                  fontSize: 16,
+                  color: MColor.kLabel.white,
                 ), // 오늘 날짜
+                todayDecoration: BoxDecoration(
+                  color: MColor.kPrimary.strong,
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                selectedDecoration: BoxDecoration(
+                  color: MColor.kPrimary.strong,
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                selectedTextStyle: TextStyle(fontSize: 16, color: MColor.kLabel.white),
               ),
               daysOfWeekStyle: DaysOfWeekStyle(
-                weekdayStyle: TextStyle(fontSize: 12), // 요일 스타일 조정
-                weekendStyle: TextStyle(fontSize: 12), // 주말 요일도 동일하게
+                weekdayStyle: TextStyle(fontSize: 16, color: MColor.kLabel.neutral),
+                weekendStyle: TextStyle(fontSize: 16, color: MColor.kLabel.neutral),
               ),
             ),
             Expanded(
@@ -46,7 +62,7 @@ class VisitRecordListPage extends StatelessWidget {
                 itemCount: 5,
                 itemBuilder: (context, index) {
                   return Card(
-                    elevation: 4,
+                    elevation: 6,
                     shadowColor: Colors.black26,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                     child: Padding(
@@ -54,36 +70,24 @@ class VisitRecordListPage extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Text("0", style: TextStyle(color: Colors.grey, fontSize: 64)),
+                          Text("0", style: TextStyle(color: Colors.grey, fontSize: 64, fontWeight: FontWeight.w700)),
                           Column(
                             children: [
                               Row(
                                 children: [
-                                  Text(
-                                    "한화",
-                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-                                  ),
+                                  MText.h1("한화", color: MColor.kLabel.normal),
                                   SizedBox(width: 16),
-                                  Text("vs", style: TextStyle(fontSize: 12)),
+                                  MText.label2_5("vs", color: MColor.kLabel.normal),
                                   SizedBox(width: 16),
-                                  Text(
-                                    "키움",
-                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-                                  ),
+                                  MText.h1("키움", color: MColor.kLabel.normal),
                                 ],
                               ),
                               SizedBox(height: 8),
-                              Text(
-                                "2025.06.22",
-                                style: TextStyle(color: Colors.grey, fontSize: 11),
-                              ),
-                              Text(
-                                "대전한화생명이글스파크",
-                                style: TextStyle(color: Colors.grey, fontSize: 11),
-                              ),
+                              MText.label3("2025.06.22",color: MColor.kLabel.alternative),
+                              MText.label3("대전한화생명이글스파크",color: MColor.kLabel.alternative),
                             ],
                           ),
-                          Text("5", style: TextStyle(fontSize: 64)),
+                          Text("5", style: TextStyle(color: Colors.black, fontSize: 64, fontWeight: FontWeight.w700)),
                         ],
                       ),
                     ),
@@ -94,12 +98,16 @@ class VisitRecordListPage extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        Navigator.pushNamed(context, "/visitrecord/write");
+      }),
     );
   }
 
   AppBar _appbar() {
     return AppBar(
-      title: Text("직관 기록"), // TODO : 텍스트 스타일 수정
+      actionsPadding: EdgeInsets.symmetric(horizontal: 10),
+      title: MText.h1("직관 기록"),
       centerTitle: true,
       actions: [
         IconButton(
