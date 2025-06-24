@@ -33,6 +33,7 @@ class _Page {
   final record = _Record();
   final mypage = _Mypage();
   final community = _Community();
+  final login = _Login();
 }
 
 class _PredictionList {
@@ -91,4 +92,8 @@ class _Community {
   final Widget likeRed = SvgPicture.asset('assets/icons/page_community_like_red.svg');
   final Widget likedRed = SvgPicture.asset('assets/icons/page_community_liked_red.svg');
   final Widget write = SvgPicture.asset('assets/icons/page_community_write.svg');
+}
+
+class _Login {
+  final Widget kakaoLogo = SvgPicture.asset('assets/icons/page_login_kakao_logo.svg');
 }
