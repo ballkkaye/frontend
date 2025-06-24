@@ -1,4 +1,3 @@
-
 // 예시
 // import 'package:flutter/material.dart';
 //
@@ -8,6 +7,18 @@
 //     useMaterial3: true,
 //   );
 // }
+import 'package:flutter/material.dart';
+
+ThemeData mTheme() {
+  return ThemeData(
+      useMaterial3: true,
+      appBarTheme: AppBarTheme(backgroundColor: Colors.white),
+      scaffoldBackgroundColor: Colors.white,
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: Colors.white,
+      ),
+      cardTheme: CardThemeData(color: Colors.white));
+}
 //
 // AppBarTheme appBarTheme() {
 //   return const AppBarTheme(
