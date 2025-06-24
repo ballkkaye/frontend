@@ -1,6 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/ui/pages/auth/login_page/widget/m_login_btn.dart';
+import 'package:ballkkaye_frontend/ui/pages/auth/login_page/widget/login_btn.dart';
 import 'package:flutter/material.dart';
 
 class LoginBody extends StatelessWidget {
@@ -42,7 +42,7 @@ class LoginBody extends StatelessWidget {
                   ),
                 ),
               ),
-              mLoginBtn()
+              LoginBtn()
             ],
           )
         ],

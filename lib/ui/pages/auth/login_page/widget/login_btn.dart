@@ -3,8 +3,8 @@ import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
-class mLoginBtn extends StatelessWidget {
-  const mLoginBtn({
+class LoginBtn extends StatelessWidget {
+  const LoginBtn({
     super.key,
   });
 
