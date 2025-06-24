@@ -13,7 +13,7 @@ class _Nav {
 }
 
 class _Top {
-  final Widget plus = SvgPicture.asset('assets/icons/nav_top_plus_fix.svg');
+  final Widget plus = SvgPicture.asset('assets/icons/nav_top_plus.svg');
   final Widget write = SvgPicture.asset('assets/icons/nav_top_write.svg');
 }
 
