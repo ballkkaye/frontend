@@ -41,7 +41,8 @@ class _PredictionList {
   final Widget rain = SvgPicture.asset('assets/icons/page_prediction_list_rain.svg');
   final Widget ranking = SvgPicture.asset('assets/icons/page_prediction_list_ranking.svg');
   final Widget todayGame = SvgPicture.asset('assets/icons/page_prediction_list_today_game.svg');
-  final Widget userPrediction = SvgPicture.asset('assets/icons/page_prediction_list_user_prediction.svg');
+  final Widget userPrediction =
+      SvgPicture.asset('assets/icons/page_prediction_list_user_prediction.svg');
 }
 
 class _Rainout {

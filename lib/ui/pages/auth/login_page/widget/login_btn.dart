@@ -30,7 +30,7 @@ class LoginBtn extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               Center(
-                child: MText.button4_700('카카오톡 로그인', color: MColor.kLabel.normal),
+                child: MText.button4_7('카카오톡 로그인', color: MColor.kLabel.normal),
               ),
               Positioned(
                 left: 16,

@@ -18,12 +18,12 @@ class MText {
         style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: color),
       );
 
-  static Text h3_700(String text, {Color? color}) => Text(
+  static Text h3_7(String text, {Color? color}) => Text(
         text,
         style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: color),
       );
 
-  static Text h3_600(String text, {Color? color}) => Text(
+  static Text h3_6(String text, {Color? color}) => Text(
         text,
         style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: color),
       );
@@ -33,37 +33,27 @@ class MText {
         style: TextStyle(fontSize: 11, fontWeight: FontWeight.w500, color: color),
       );
 
-  static Text input500(String text, {Color? color}) => Text(
-        text,
-        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: color),
-      );
-
-  static Text input400(String text, {Color? color}) => Text(
-        text,
-        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: color),
-      );
-
   static Text valid(String text, {Color? color}) => Text(
         text,
         style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: color),
       );
 
-  static Text label1_600(String text, {Color? color}) => Text(
+  static Text label1_6(String text, {Color? color}) => Text(
         text,
         style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: color),
       );
 
-  static Text label1_500(String text, {Color? color}) => Text(
+  static Text label1_5(String text, {Color? color}) => Text(
         text,
         style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: color),
       );
 
-  static Text label2_700(String text, {Color? color}) => Text(
+  static Text label2_7(String text, {Color? color}) => Text(
         text,
         style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: color),
       );
 
-  static Text label2_500(String text, {Color? color}) => Text(
+  static Text label2_5(String text, {Color? color}) => Text(
         text,
         style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: color),
       );
@@ -88,27 +78,27 @@ class MText {
         style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: color),
       );
 
-  static Text button4_700(String text, {Color? color}) => Text(
+  static Text button4_7(String text, {Color? color}) => Text(
         text,
         style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: color),
       );
 
-  static Text button4_500(String text, {Color? color}) => Text(
+  static Text button4_5(String text, {Color? color}) => Text(
         text,
         style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: color),
       );
 
-  static Text button4_400(String text, {Color? color}) => Text(
+  static Text button4_4(String text, {Color? color}) => Text(
         text,
         style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: color),
       );
 
-  static Text button5_700(String text, {Color? color}) => Text(
+  static Text button5_7(String text, {Color? color}) => Text(
         text,
         style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: color),
       );
 
-  static Text button5_600(String text, {Color? color}) => Text(
+  static Text button5_6(String text, {Color? color}) => Text(
         text,
         style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: color),
       );
@@ -118,28 +108,31 @@ class MText {
         style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: color),
       );
 
-  static Text modal2_500(String text, {Color? color}) => Text(
+  static Text modal2_5(String text, {Color? color}) => Text(
         text,
         style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: color),
       );
 
-  static Text modal2_400(String text, {Color? color}) => Text(
+  static Text modal2_4(String text, {Color? color}) => Text(
         text,
         style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: color),
       );
 
-  static Text modal3_700(String text, {Color? color}) => Text(
+  static Text modal3_7(String text, {Color? color}) => Text(
         text,
         style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: color),
       );
 
-  static Text modal3_500(String text, {Color? color}) => Text(
+  static Text modal3_5(String text, {Color? color}) => Text(
         text,
         style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: color),
       );
 
-  static Text modal3_400(String text, {Color? color}) => Text(
+  static Text modal3_4(String text, {Color? color}) => Text(
         text,
         style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: color),
       );
+
+  static TextStyle modal5({Color? color}) =>
+      TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: color);
 }
