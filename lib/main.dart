@@ -3,6 +3,7 @@ import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/login_page/login_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/home/home_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/main_holder.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/detail_page/visit_record_detail_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/visit_record_write_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         "/home": (context) => const HomePage(),
         "/mainholder": (context) => MainHolder(),
         "/visitrecord/write": (context) => const VisitRecordWritePage(),
+        "/visitrecord/detail": (context) => const VisitRecordDetailPage(),
       },
     );
   }
