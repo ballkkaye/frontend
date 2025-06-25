@@ -12,7 +12,7 @@ class VisitRecordListPage extends StatelessWidget {
     final cellSize = screenWidth * (47 / 360); // 디자인 비율 반영
 
     return Scaffold(
-      appBar: _appbar(),
+      appBar: _appbar(context),
       body: VisitRecordListBody(cellSize: cellSize),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -22,14 +22,28 @@ class VisitRecordListPage extends StatelessWidget {
     );
   }
 
-  AppBar _appbar() {
+  AppBar _appbar(BuildContext context) {
     return AppBar(
       actionsPadding: EdgeInsets.symmetric(horizontal: 10),
       title: MText.h1("직관 기록"),
       centerTitle: true,
       actions: [
         IconButton(
-          onPressed: () {}, // TODO : 버튼 이동 수정
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              backgroundColor: Colors.transparent,
+              builder: (context) {
+                return Container(
+                  height: 800,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
+                  ),
+                );
+              },
+            );
+          }, // TODO : 버튼 이동 수정
           icon: MIcon.nav.top.plus,
         ),
       ],
