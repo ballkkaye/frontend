@@ -1,3 +1,5 @@
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/widget/game_center_body.dart';
 import 'package:flutter/material.dart';
 
 class GameCenterPage extends StatelessWidget {
@@ -5,9 +7,18 @@ class GameCenterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        child: Text("예측(게임센터) 페이지"),
+    return Scaffold(
+      appBar: _appbar(),
+      body: GameCenterBody(),
+    );
+  }
+
+  AppBar _appbar() {
+    return AppBar(
+      automaticallyImplyLeading: false,
+      title: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4),
+        child: MText.h1('예측'),
       ),
     );
   }
