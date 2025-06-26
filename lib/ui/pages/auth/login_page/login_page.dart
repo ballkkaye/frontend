@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/ui/pages/auth/login_page/widget/login_body.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -6,13 +7,9 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          child: Text("로그인 페이지"),
-        ),
-      ),
+      body: LoginBody(),
       floatingActionButton: FloatingActionButton(onPressed: () {
-        Navigator.pushNamed(context, "/main-holder");
+        Navigator.pushNamed(context, "/mainholder");
       }),
     );
   }

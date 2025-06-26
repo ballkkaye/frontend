@@ -15,6 +15,7 @@ class _Nav {
 class _Top {
   final Widget plus = SvgPicture.asset('assets/icons/nav_top_plus.svg');
   final Widget write = SvgPicture.asset('assets/icons/nav_top_write.svg');
+  final Widget dotHorizontal = SvgPicture.asset('assets/icons/page_user_match_dot_horizontal.svg');
 }
 
 class _Bottom {
@@ -33,6 +34,7 @@ class _Page {
   final record = _Record();
   final mypage = _Mypage();
   final community = _Community();
+  final login = _Login();
 }
 
 class _PredictionList {
@@ -40,7 +42,8 @@ class _PredictionList {
   final Widget rain = SvgPicture.asset('assets/icons/page_prediction_list_rain.svg');
   final Widget ranking = SvgPicture.asset('assets/icons/page_prediction_list_ranking.svg');
   final Widget todayGame = SvgPicture.asset('assets/icons/page_prediction_list_today_game.svg');
-  final Widget userPrediction = SvgPicture.asset('assets/icons/page_prediction_list_user_prediction.svg');
+  final Widget userPrediction =
+      SvgPicture.asset('assets/icons/page_prediction_list_user_prediction.svg');
 }
 
 class _Rainout {
@@ -91,4 +94,8 @@ class _Community {
   final Widget likeRed = SvgPicture.asset('assets/icons/page_community_like_red.svg');
   final Widget likedRed = SvgPicture.asset('assets/icons/page_community_liked_red.svg');
   final Widget write = SvgPicture.asset('assets/icons/page_community_write.svg');
+}
+
+class _Login {
+  final Widget kakaoLogo = SvgPicture.asset('assets/icons/page_login_kakao_logo.svg');
 }

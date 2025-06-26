@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/detail_page/user_match_detail_page.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +31,7 @@ class UserMatchListPage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(right: 16),
           child: IconButton(
-            icon: Icon(Icons.edit_square),
+            icon: MIcon.nav.top.write,
             onPressed: () {
               Navigator.push(
                 context,

@@ -47,7 +47,7 @@ class UserMatchListCard extends StatelessWidget {
               SizedBox(height: 6),
 
               // 제목
-              MText.input500("직관같이갑시다", color: MColor.kLabel.strong),
+              MText.modal2_5("직관같이갑시다", color: MColor.kLabel.strong),
               SizedBox(height: 6),
 
               // 태그들
@@ -70,11 +70,11 @@ class UserMatchListCard extends StatelessWidget {
                           children: [
                             Icon(Icons.check_box, size: 16, color: MColor.kPrimary.alternative),
                             SizedBox(width: 4),
-                            MText.label2_700("같은 팀이면 좋겠어요", color: MColor.kPrimary.alternative),
+                            MText.label2_7("같은 팀이면 좋겠어요", color: MColor.kPrimary.alternative),
                           ],
                         )
                       : SizedBox.shrink(),
-                  MText.label2_500("2/6 명 참여", color: MColor.kLabel.strong),
+                  MText.label2_5("2/6 명 참여", color: MColor.kLabel.strong),
                 ],
               ),
             ],
