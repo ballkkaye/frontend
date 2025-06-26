@@ -33,7 +33,7 @@ class GameCenterBody extends StatelessWidget {
                     description: '볼까예의 예측을\n확인해 보세요',
                     icon: MIcon.page.predictionList.prediction,
                     onTap: () {
-                      Navigator.pushNamed(context, '/game_center/today_game');
+                      Navigator.pushNamed(context, '/game_center/prediction');
                     }),
               ),
               SizedBox(width: 10),
