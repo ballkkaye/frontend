@@ -10,7 +10,7 @@ class UserMatchListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF5F5F5),
+      backgroundColor: Colors.white,
       appBar: _appbar(context),
       body: UserMatchListBody(),
       floatingActionButton: FloatingActionButton(onPressed: () {
