@@ -1,12 +1,12 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:flutter/material.dart';
 
-class FilterDropdown extends StatefulWidget {
+class UserMatchListFilterDropdown extends StatefulWidget {
   @override
-  State<FilterDropdown> createState() => _FilterDropdownState();
+  State<UserMatchListFilterDropdown> createState() => _UserMatchListFilterDropdownState();
 }
 
-class _FilterDropdownState extends State<FilterDropdown> {
+class _UserMatchListFilterDropdownState extends State<UserMatchListFilterDropdown> {
   String selectedGender = '성별';
   String selectedAge = '연령대';
   String selectedTeam = '응원팀';

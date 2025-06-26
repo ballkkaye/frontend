@@ -1,7 +1,7 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/detail_page/user_match_detail_page.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/widgets/text_pill.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/widgets/user_match_list_tag.dart';
 import 'package:flutter/material.dart';
 
 class UserMatchListCard extends StatelessWidget {
@@ -54,9 +54,9 @@ class UserMatchListCard extends StatelessWidget {
               Wrap(
                 spacing: 8,
                 children: [
-                  TextPill(label: "여성"),
-                  TextPill(label: "20대 이상"),
-                  TextPill(label: "롯데 자이언츠"),
+                  UserMatchListTag(label: "여성"),
+                  UserMatchListTag(label: "20대 이상"),
+                  UserMatchListTag(label: "롯데 자이언츠"),
                 ],
               ),
               SizedBox(height: 10),

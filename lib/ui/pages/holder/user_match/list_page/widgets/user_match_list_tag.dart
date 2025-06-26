@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TextPill extends StatelessWidget {
+class UserMatchListTag extends StatelessWidget {
 // 텍스트 기반 말풍선 위젯 (동행 태그, 채팅 말풍선 등 재사용 목적)
   final String label;
   final Color backgroundColor;
@@ -8,7 +8,7 @@ class TextPill extends StatelessWidget {
   final double fontSize;
   final EdgeInsetsGeometry padding;
 
-  const TextPill({
+  const UserMatchListTag({
     super.key,
     required this.label,
     this.backgroundColor = const Color(0xFFF0F0F0),
