@@ -12,6 +12,7 @@ class MSelectButton extends StatefulWidget {
   final Color? selectedTextColor;
   final Color? hintTextColor;
   final void Function(String?)? onChanged;
+  final String? initialValue;
 
   const MSelectButton({
     super.key,
@@ -24,6 +25,7 @@ class MSelectButton extends StatefulWidget {
     this.selectedTextColor,
     this.hintTextColor,
     this.onChanged,
+    this.initialValue,
   });
 
   @override
