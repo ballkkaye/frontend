@@ -1,6 +1,12 @@
 import 'package:ballkkaye_frontend/_core/style/m_theme.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/login_page/login_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/matchup_page/matchup_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/prediction_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/rainout_prediction_page/rainout_prediction_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/ranking_page/ranking_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/today_game_page/today_game_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/user_prediction_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/home/home_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/main_holder.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/detail_page/visit_record_detail_page.dart';
@@ -35,6 +41,12 @@ class MyApp extends StatelessWidget {
         "/mainholder": (context) => MainHolder(),
         "/visitrecord/write": (context) => const VisitRecordWritePage(),
         "/visitrecord/detail": (context) => const VisitRecordDetailPage(),
+        "/game_center/matchup": (context) => const MatchupPage(),
+        "/game_center/prediction": (context) => const PredictionPage(),
+        "/game_center/rainout_prediction": (context) => const RainoutPredictionPage(),
+        "/game_center/ranking": (context) => const RankingPage(),
+        "/game_center/today_game": (context) => const TodayGamePage(),
+        "/game_center/user_prediction": (context) => const UserPredictionPage(),
       },
     );
   }
