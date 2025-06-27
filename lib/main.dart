@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         "/main-holder": (context) => MainHolder(),
         "/visit-record/write": (context) => const VisitRecordWritePage(),
         "/visit-record/detail": (context) => const VisitRecordDetailPage(),
-        "/visit-record/select": (context) => const VisitRecordSelectPage(),
+        "/visit-record/select": (context) => VisitRecordSelectPage(),
         "/game-center/matchup": (context) => const MatchupPage(),
         "/game-center/prediction": (context) => const PredictionPage(),
         "/game-center/rainout-prediction": (context) => const RainoutPredictionPage(),

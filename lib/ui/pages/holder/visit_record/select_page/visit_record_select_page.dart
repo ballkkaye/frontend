@@ -5,7 +5,15 @@ import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/widgets/visit_re
 import 'package:flutter/material.dart';
 
 class VisitRecordSelectPage extends StatelessWidget {
-  const VisitRecordSelectPage({super.key});
+  VisitRecordSelectPage({super.key});
+  String selectedGame = '두산 베어스 vs 롯데 자이언츠(사직)';
+  final List<String> games = const [
+    '두산 베어스 vs 롯데 자이언츠(사직)',
+    'SSG 랜더스 vs LG 트윈스 (잠실)',
+    '삼성 라이온즈 vs 기아 타이거즈 (광주)',
+    'KT 위즈 vs 한화 이글스 (대전)',
+    'NC 다이노스 vs 키움 히어로즈 (고척)'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +39,34 @@ class VisitRecordSelectPage extends StatelessWidget {
             MText.h3_6("경기 선택"),
             SizedBox(height: 10),
             // 경기 선택 버튼
+            DropdownButtonFormField<String>(
+              value: selectedGame,
+              hint: const Text('경기'),
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+              ),
+              isExpanded: true,
+              onChanged: null, // 아직은 상태 관리 안 함
+              items: games.map((game) {
+                return DropdownMenuItem(
+                  value: game,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          game,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(fontSize: 14),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }).toList(),
+            ),
           ],
         ),
       ),
