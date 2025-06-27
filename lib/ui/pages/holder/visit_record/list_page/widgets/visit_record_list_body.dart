@@ -3,11 +3,12 @@ import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/widget
 import 'package:flutter/material.dart';
 
 class VisitRecordListBody extends StatelessWidget {
-  const VisitRecordListBody({super.key, required this.cellSize});
-  final double cellSize;
+  const VisitRecordListBody({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final cellSize = screenWidth * (47 / 360); // 디자인 비율 반영
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: CustomScrollView(

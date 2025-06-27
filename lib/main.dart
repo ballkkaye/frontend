@@ -10,6 +10,7 @@ import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_p
 import 'package:ballkkaye_frontend/ui/pages/holder/home/home_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/main_holder.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/detail_page/visit_record_detail_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/select_page/visit_record_select_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/visit_record_write_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
@@ -38,15 +39,16 @@ class MyApp extends StatelessWidget {
         "/join": (context) => const JoinPage(),
         "/login": (context) => const LoginPage(),
         "/home": (context) => const HomePage(),
-        "/mainholder": (context) => MainHolder(),
-        "/visitrecord/write": (context) => const VisitRecordWritePage(),
-        "/visitrecord/detail": (context) => const VisitRecordDetailPage(),
-        "/game_center/matchup": (context) => const MatchupPage(),
-        "/game_center/prediction": (context) => const PredictionPage(),
-        "/game_center/rainout_prediction": (context) => const RainoutPredictionPage(),
-        "/game_center/ranking": (context) => const RankingPage(),
-        "/game_center/today_game": (context) => const TodayGamePage(),
-        "/game_center/user_prediction": (context) => const UserPredictionPage(),
+        "/main-holder": (context) => MainHolder(),
+        "/visit-record/write": (context) => const VisitRecordWritePage(),
+        "/visit-record/detail": (context) => const VisitRecordDetailPage(),
+        "/visit-record/select": (context) => const VisitRecordSelectPage(),
+        "/game-center/matchup": (context) => const MatchupPage(),
+        "/game-center/prediction": (context) => const PredictionPage(),
+        "/game-center/rainout-prediction": (context) => const RainoutPredictionPage(),
+        "/game-center/ranking": (context) => const RankingPage(),
+        "/game-center/today-game": (context) => const TodayGamePage(),
+        "/game-center/user-prediction": (context) => const UserPredictionPage(),
       },
     );
   }

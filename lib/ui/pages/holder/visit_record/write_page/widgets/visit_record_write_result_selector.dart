@@ -7,7 +7,7 @@ class VisitRecordWriteResultSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String selected = 'win';
+    String selected = 'lose';
 
     return SizedBox(
       width: double.infinity,
