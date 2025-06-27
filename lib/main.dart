@@ -41,12 +41,12 @@ class MyApp extends StatelessWidget {
         "/mainholder": (context) => MainHolder(),
         "/visitrecord/write": (context) => const VisitRecordWritePage(),
         "/visitrecord/detail": (context) => const VisitRecordDetailPage(),
-        "/game_center/matchup": (context) => const MatchupPage(),
-        "/game_center/prediction": (context) => const PredictionPage(),
-        "/game_center/rainout_prediction": (context) => const RainoutPredictionPage(),
-        "/game_center/ranking": (context) => const RankingPage(),
-        "/game_center/today_game": (context) => const TodayGamePage(),
-        "/game_center/user_prediction": (context) => const UserPredictionPage(),
+        "/game-center/matchup": (context) => const MatchupPage(),
+        "/game-center/prediction": (context) => const PredictionPage(),
+        "/game-center/rainout-prediction": (context) => const RainoutPredictionPage(),
+        "/game-center/ranking": (context) => const RankingPage(),
+        "/game-center/today-game": (context) => const TodayGamePage(),
+        "/game-center/user-prediction": (context) => const UserPredictionPage(),
       },
     );
   }
