@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class GenderToggle extends StatefulWidget {
-  const GenderToggle({super.key});
+class UserMatchUpdateGenderToggle extends StatefulWidget {
+  const UserMatchUpdateGenderToggle({super.key});
 
   @override
-  State<GenderToggle> createState() => _GenderToggleState();
+  State<UserMatchUpdateGenderToggle> createState() => _UserMatchUpdateGenderToggleState();
 }
 
-class _GenderToggleState extends State<GenderToggle> {
+class _UserMatchUpdateGenderToggleState extends State<UserMatchUpdateGenderToggle> {
   List<bool> isSelected = [false, false, false];
   final List<String> genderOptions = ['남성', '여성', '무관'];
 

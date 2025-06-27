@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class OutlinedInputField extends StatefulWidget {
+class UserMatchUpdateOutlinedInputField extends StatefulWidget {
   final String hintText;
   final TextEditingController? controller;
   final int maxLines;
   final TextInputType keyboardType;
   final int? maxLength;
 
-  const OutlinedInputField({
+  const UserMatchUpdateOutlinedInputField({
     super.key,
     required this.hintText,
     this.controller,
@@ -17,10 +17,10 @@ class OutlinedInputField extends StatefulWidget {
   });
 
   @override
-  State<OutlinedInputField> createState() => _OutlinedInputFieldState();
+  State<UserMatchUpdateOutlinedInputField> createState() => _UserMatchUpdateOutlinedInputFieldState();
 }
 
-class _OutlinedInputFieldState extends State<OutlinedInputField> {
+class _UserMatchUpdateOutlinedInputFieldState extends State<UserMatchUpdateOutlinedInputField> {
   late FocusNode _focusNode;
   bool _isFocused = false;
 

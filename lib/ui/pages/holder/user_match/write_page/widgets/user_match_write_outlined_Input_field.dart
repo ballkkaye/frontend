@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:flutter/material.dart';
 
 class OutlinedInputField extends StatefulWidget {
@@ -43,7 +44,7 @@ class _OutlinedInputFieldState extends State<OutlinedInputField> {
 
   @override
   Widget build(BuildContext context) {
-    final borderColor = _isFocused ? Colors.teal : Colors.grey.shade400;
+    final borderColor = _isFocused ? MColor.kPrimary.strong : MColor.kLabel.alternative;
 
     return TextField(
       focusNode: _focusNode,
@@ -59,7 +60,7 @@ class _OutlinedInputFieldState extends State<OutlinedInputField> {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
-          borderSide: const BorderSide(color: Colors.teal, width: 2),
+          borderSide: BorderSide(color: MColor.kPrimary.strong, width: 2),
         ),
       ),
     );
