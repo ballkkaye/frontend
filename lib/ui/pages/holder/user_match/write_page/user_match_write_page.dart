@@ -1,0 +1,32 @@
+import 'package:flutter/material.dart';
+
+import 'widgets/user_match_write_body.dart';
+
+class UserMatchWritePage extends StatefulWidget {
+  const UserMatchWritePage({super.key});
+
+  @override
+  State<UserMatchWritePage> createState() => _UserMatchWritePageState();
+}
+
+class _UserMatchWritePageState extends State<UserMatchWritePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('동행 작성'),
+        centerTitle: true,
+      ),
+      body: UserMatchWriteBody(),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 50),
+        child: FloatingActionButton(onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => UserMatchWritePage()),
+          );
+        }),
+      ),
+    );
+  }
+}
