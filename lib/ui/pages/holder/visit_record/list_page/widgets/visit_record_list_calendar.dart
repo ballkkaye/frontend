@@ -4,6 +4,7 @@ import 'package:table_calendar/table_calendar.dart';
 
 class VisitRecordListCalendar extends StatefulWidget {
   const VisitRecordListCalendar({super.key, required this.cellSize});
+
   final double cellSize;
 
   @override
@@ -17,8 +18,10 @@ class _VisitRecordListCalendarState extends State<VisitRecordListCalendar> {
   @override
   Widget build(BuildContext context) {
     return TableCalendar(
-      rowHeight: widget.cellSize, // 각 날짜 셀의 높이
-      daysOfWeekHeight: widget.cellSize * (2 / 3), // 요일(일~토) 셀의 높이
+      rowHeight: widget.cellSize,
+      // 각 날짜 셀의 높이
+      daysOfWeekHeight: widget.cellSize * (2 / 3),
+      // 요일(일~토) 셀의 높이
       locale: 'ko_KR',
       focusedDay: _focusedDay,
       firstDay: DateTime(2020, 3, 1),
