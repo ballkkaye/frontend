@@ -21,7 +21,7 @@ class GameCenterBody extends StatelessWidget {
               description: '오늘의 경기를 확인해보세요',
               icon: MIcon.page.predictionList.todayGame,
               onTap: () {
-                Navigator.pushNamed(context, '/game_center/today_game');
+                Navigator.pushNamed(context, '/game-center/today-game');
               }),
           SizedBox(height: 10),
           Row(
@@ -33,7 +33,7 @@ class GameCenterBody extends StatelessWidget {
                     description: '볼까예의 예측을\n확인해 보세요',
                     icon: MIcon.page.predictionList.prediction,
                     onTap: () {
-                      Navigator.pushNamed(context, '/game_center/prediction');
+                      Navigator.pushNamed(context, '/game-center/prediction');
                     }),
               ),
               SizedBox(width: 10),
@@ -44,7 +44,7 @@ class GameCenterBody extends StatelessWidget {
                     description: '',
                     icon: MIcon.page.predictionList.rain,
                     onTap: () {
-                      Navigator.pushNamed(context, '/game_center/rainout_prediction');
+                      Navigator.pushNamed(context, '/game-center/rainout-prediction');
                     }),
               ),
             ],
@@ -59,7 +59,7 @@ class GameCenterBody extends StatelessWidget {
                     description: '오늘 경기의 승리를\n예측해 보세요',
                     icon: MIcon.page.predictionList.userPrediction,
                     onTap: () {
-                      Navigator.pushNamed(context, '/game_center/user_prediction');
+                      Navigator.pushNamed(context, '/game-center/user-prediction');
                     }),
               ),
               SizedBox(width: 10),
@@ -70,7 +70,7 @@ class GameCenterBody extends StatelessWidget {
                     description: '실시간 팀 순위를\n확인해 보세요',
                     icon: MIcon.page.predictionList.ranking,
                     onTap: () {
-                      Navigator.pushNamed(context, '/game_center/ranking');
+                      Navigator.pushNamed(context, '/game-center/ranking');
                     }),
               ),
             ],

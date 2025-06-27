@@ -1,3 +1,5 @@
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/widget/prediction_body.dart';
 import 'package:flutter/material.dart';
 
 class PredictionPage extends StatelessWidget {
@@ -5,9 +7,18 @@ class PredictionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('승리예측'),
+    return Scaffold(
+      appBar: _appbar(),
+      body: PredictionBody(),
+    );
+  }
+
+  AppBar _appbar() {
+    return AppBar(
+      centerTitle: true,
+      title: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4),
+        child: MText.h1('승리예측'),
       ),
     );
   }
