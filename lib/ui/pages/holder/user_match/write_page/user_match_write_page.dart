@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/update_page/user_match_update_page.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/user_match_write_body.dart';
@@ -23,7 +24,7 @@ class _UserMatchWritePageState extends State<UserMatchWritePage> {
         child: FloatingActionButton(onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (_) => UserMatchWritePage()),
+            MaterialPageRoute(builder: (_) => UserMatchUpdatePage()),
           );
         }),
       ),
