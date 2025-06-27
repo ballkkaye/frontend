@@ -1,7 +1,8 @@
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/user_match_list_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'widgets/user_match_detail_action_sheet.dart';
 import 'widgets/user_match_detail_body.dart';
 
 class UserMatchDetailPage extends StatelessWidget {
@@ -13,7 +14,7 @@ class UserMatchDetailPage extends StatelessWidget {
       appBar: _appbar(context),
       body: UserMatchDetailBody(),
       floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 40),
+        padding: const EdgeInsets.only(bottom: 210),
         child: FloatingActionButton(onPressed: () {
           Navigator.push(
             context,
@@ -26,7 +27,7 @@ class UserMatchDetailPage extends StatelessWidget {
 
   PreferredSizeWidget _appbar(BuildContext context) {
     return AppBar(
-      title: Text('동행'),
+      title: MText.h1("동행"),
       centerTitle: true,
       leading: IconButton(
         icon: Icon(Icons.arrow_back),
@@ -35,40 +36,7 @@ class UserMatchDetailPage extends StatelessWidget {
         },
       ),
       actions: [
-        IconButton(
-          icon: Icon(Icons.more_horiz),
-          onPressed: () {
-            showCupertinoModalPopup(
-              context: context,
-              builder: (BuildContext context) => CupertinoActionSheet(
-                actions: [
-                  CupertinoActionSheetAction(
-                    child: Text('수정하기', style: TextStyle(color: Colors.teal)),
-                    onPressed: () {
-                      Navigator.pop(context);
-                      // 수정 로직
-                    },
-                  ),
-                  CupertinoActionSheetAction(
-                    child: Text('삭제하기'),
-                    isDestructiveAction: true,
-                    onPressed: () {
-                      Navigator.pop(context);
-                      // 삭제 로직
-                    },
-                  ),
-                ],
-                cancelButton: CupertinoActionSheetAction(
-                  child: Text('취소', style: TextStyle(color: Colors.grey)),
-                  isDefaultAction: true,
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-              ),
-            );
-          },
-        ),
+        UserMatchDetailActionSheet(),
         SizedBox(width: 16),
       ],
       elevation: 0,
