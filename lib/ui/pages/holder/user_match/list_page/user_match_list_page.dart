@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/detail_page/user_match_detail_page.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,7 @@ class UserMatchListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF5F5F5),
+      backgroundColor: Colors.white,
       appBar: _appbar(context),
       body: UserMatchListBody(),
       floatingActionButton: FloatingActionButton(onPressed: () {
@@ -30,12 +31,11 @@ class UserMatchListPage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(right: 16),
           child: IconButton(
-            icon: Icon(Icons.edit_square),
+            icon: MIcon.nav.top.write,
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) => UserMatchDetailPage()),
-                // 글쓰기 버튼 글쓰기페이지에 내용이 없어서 일단 임시로 상세보기 페이지로 이동하게 만듬
               );
             },
           ),

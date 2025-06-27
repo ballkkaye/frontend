@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/widgets/user_match_list_card.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/widgets/user_match_list_filter_dropdown.dart';
 import 'package:flutter/material.dart';
 
 class UserMatchListBody extends StatelessWidget {
@@ -12,13 +13,11 @@ class UserMatchListBody extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          child: Row(
+          child: Wrap(
+            spacing: 12,
+            runSpacing: 8,
             children: [
-              _buildFilterChip("성별"),
-              SizedBox(width: 12),
-              _buildFilterChip("연령대"),
-              SizedBox(width: 12),
-              _buildFilterChip("응원팀"),
+              UserMatchListFilterDropdown(),
             ],
           ),
         ),
@@ -31,17 +30,6 @@ class UserMatchListBody extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-
-  Widget _buildFilterChip(String label) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Text(label, style: const TextStyle(fontSize: 14)),
     );
   }
 }
