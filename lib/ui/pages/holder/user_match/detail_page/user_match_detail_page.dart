@@ -1,5 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/user_match_list_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/write_page/user_match_write_page.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/user_match_detail_action_sheet.dart';
@@ -18,7 +18,7 @@ class UserMatchDetailPage extends StatelessWidget {
         child: FloatingActionButton(onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (_) => UserMatchListPage()),
+            MaterialPageRoute(builder: (_) => UserMatchWritePage()),
           );
         }),
       ),
