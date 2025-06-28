@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class UserMatchUpdateGenderToggle extends StatefulWidget {
@@ -17,7 +18,7 @@ class _UserMatchUpdateGenderToggleState extends State<UserMatchUpdateGenderToggl
     return Container(
       height: 44,
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade300),
+        border: Border.all(color: MColor.kLine.normal),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
@@ -35,20 +36,24 @@ class _UserMatchUpdateGenderToggleState extends State<UserMatchUpdateGenderToggl
               child: Container(
                 decoration: BoxDecoration(
                   color: selected ? Colors.teal.shade50 : Colors.white,
-                  border: Border(
-                    left: index == 0 ? BorderSide.none : BorderSide(color:MColor.kLine.alternative),
-                    top: BorderSide(color: MColor.kLine.alternative),
-                    bottom: BorderSide(color: MColor.kLine.alternative),
+                  border: Border.all(
+                    color: selected ? MColor.kPrimary.strong : MColor.kLine.alternative,
+                    width: 1,
                   ),
+                  borderRadius: index == 0
+                      ? const BorderRadius.only(
+                    topLeft: Radius.circular(8),
+                    bottomLeft: Radius.circular(8),
+                  )
+                      : index == isSelected.length - 1
+                      ? const BorderRadius.only(
+                    topRight: Radius.circular(8),
+                    bottomRight: Radius.circular(8),
+                  )
+                      : BorderRadius.zero,
                 ),
                 alignment: Alignment.center,
-                child: Text(
-                  genderOptions[index],
-                  style: TextStyle(
-                    color: selected ? Colors.teal : Colors.grey,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
+                child: MText.button3(genderOptions[index],color: selected ? MColor.kPrimary.strong : MColor.kLabel.alternative)
               ),
             ),
           );

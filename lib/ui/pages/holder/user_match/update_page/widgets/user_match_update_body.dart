@@ -70,12 +70,6 @@ class UserMatchUpdateBody extends StatelessWidget {
                   ),
                 ),
                 UserMatchUpdateLabeledField(
-                  label: '모집 글 작성',
-                  child:   OutlinedInputField(
-                    hintText: '제목',
-                  ),
-                ),
-                UserMatchUpdateLabeledField(
                   child:   OutlinedInputField(
                     hintText: '글 내용',
                     maxLines: 7,
