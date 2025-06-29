@@ -1,18 +1,24 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:flutter/material.dart';
 
-class UserMatchListFilterDropdown extends StatefulWidget {
+class ListFilterDropdown extends StatefulWidget {
   @override
-  State<UserMatchListFilterDropdown> createState() => _UserMatchListFilterDropdownState();
+  State<ListFilterDropdown> createState() => _ListFilterDropdownState();
 }
 
-class _UserMatchListFilterDropdownState extends State<UserMatchListFilterDropdown> {
+class _ListFilterDropdownState extends State<ListFilterDropdown> {
   String selectedGender = '성별';
   String selectedAge = '연령대';
   String selectedTeam = '응원팀';
 
   final List<String> genders = ['남성', '여성'];
-  final List<String> ages = ['~20대', '20대 ~ 30대', '30대 ~ 40대', '40대 이상', '연령 무관'];
+  final List<String> ages = [
+    '~20대',
+    '20대 ~ 30대',
+    '30대 ~ 40대',
+    '40대 이상',
+    '연령 무관'
+  ];
   final List<String> teams = ['롯데', '두산', '삼성', 'SSG'];
 
   Widget buildFilterDropdown(
@@ -46,7 +52,9 @@ class _UserMatchListFilterDropdownState extends State<UserMatchListFilterDropdow
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: isSelected ? MColor.kPrimary.alternative : Colors.grey.shade300,
+              color: isSelected
+                  ? MColor.kPrimary.alternative
+                  : Colors.grey.shade300,
               width: 1.5,
             ),
             color: Colors.white,
@@ -58,7 +66,8 @@ class _UserMatchListFilterDropdownState extends State<UserMatchListFilterDropdow
                 selectedValue == '선택 안함' ? label : selectedValue,
                 style: TextStyle(
                   fontSize: 14,
-                  color: isSelected ? MColor.kPrimary.alternative : Colors.black45,
+                  color:
+                      isSelected ? MColor.kPrimary.alternative : Colors.black45,
                   fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
                 ),
               ),
@@ -66,7 +75,8 @@ class _UserMatchListFilterDropdownState extends State<UserMatchListFilterDropdow
               Icon(
                 Icons.arrow_drop_down,
                 size: 20,
-                color: isSelected ? MColor.kPrimary.alternative : Colors.black38,
+                color:
+                    isSelected ? MColor.kPrimary.alternative : Colors.black38,
               ),
             ],
           ),
@@ -86,9 +96,12 @@ class _UserMatchListFilterDropdownState extends State<UserMatchListFilterDropdow
           spacing: 8,
           runSpacing: 8,
           children: [
-            buildFilterDropdown('성별', selectedGender, genders, (val) => setState(() => selectedGender = val)),
-            buildFilterDropdown('연령대', selectedAge, ages, (val) => setState(() => selectedAge = val)),
-            buildFilterDropdown('응원팀', selectedTeam, teams, (val) => setState(() => selectedTeam = val)),
+            buildFilterDropdown('성별', selectedGender, genders,
+                (val) => setState(() => selectedGender = val)),
+            buildFilterDropdown('연령대', selectedAge, ages,
+                (val) => setState(() => selectedAge = val)),
+            buildFilterDropdown('응원팀', selectedTeam, teams,
+                (val) => setState(() => selectedTeam = val)),
           ],
         ),
       ),

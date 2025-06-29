@@ -1,10 +1,10 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/detail_page/user_match_detail_page.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/widgets/user_match_list_tag.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/widgets/list_tag.dart';
 import 'package:flutter/material.dart';
 
-class UserMatchListCard extends StatelessWidget {
+class ListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -54,9 +54,9 @@ class UserMatchListCard extends StatelessWidget {
               Wrap(
                 spacing: 8,
                 children: [
-                  UserMatchListTag(label: "여성"),
-                  UserMatchListTag(label: "20대 이상"),
-                  UserMatchListTag(label: "롯데 자이언츠"),
+                  ListTag(label: "여성"),
+                  ListTag(label: "20대 이상"),
+                  ListTag(label: "롯데 자이언츠"),
                 ],
               ),
               SizedBox(height: 10),
@@ -68,9 +68,11 @@ class UserMatchListCard extends StatelessWidget {
                   true
                       ? Row(
                           children: [
-                            Icon(Icons.check_box, size: 16, color: MColor.kPrimary.alternative),
+                            Icon(Icons.check_box,
+                                size: 16, color: MColor.kPrimary.alternative),
                             SizedBox(width: 4),
-                            MText.label2_7("같은 팀이면 좋겠어요", color: MColor.kPrimary.alternative),
+                            MText.label2_7("같은 팀이면 좋겠어요",
+                                color: MColor.kPrimary.alternative),
                           ],
                         )
                       : SizedBox.shrink(),
