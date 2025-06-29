@@ -1,13 +1,13 @@
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/update_page/widgets/update_text_form_Field.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/widgets/visit_record_btn.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/widgets/visit_record_game.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widgets/write_icon_btn.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widgets/write_img_thumbnail.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widgets/write_result_selector.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widgets/write_text_field.dart';
 import 'package:flutter/material.dart';
 
-class WriteBody extends StatelessWidget {
-  const WriteBody({
+class UpdateBody extends StatelessWidget {
+  const UpdateBody({
     super.key,
   });
 
@@ -39,13 +39,12 @@ class WriteBody extends StatelessWidget {
             WriteResultSelector(),
             SizedBox(height: 20),
             // 내용 입력 필드
-            WriteTextFormField(),
+            UpdateTextFormField(),
             Spacer(),
             // 작성완료 버튼
             VisitRecordBtn(
-              text: "완료",
+              text: "수정",
               onPressed: () {
-                Navigator.pop(context);
                 Navigator.pop(context);
               },
             ),

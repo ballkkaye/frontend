@@ -25,7 +25,7 @@ class _ListCalendarState extends State<ListCalendar> {
       locale: 'ko_KR',
       focusedDay: _focusedDay,
       firstDay: DateTime(2020, 3, 1),
-      lastDay: DateTime(DateTime.now().year + 1, 12, 31),
+      lastDay: DateTime(DateTime.now().year, DateTime.now().month + 1, 0),
       onDaySelected: (selectedDay, focusedDay) {
         setState(() {
           if (selectedDay.isAfter(DateTime.now())) return; // 오늘 이후 날짜 선택 차단

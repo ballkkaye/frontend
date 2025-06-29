@@ -12,6 +12,7 @@ import 'package:ballkkaye_frontend/ui/pages/holder/main_holder.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/detail_page/visit_record_detail_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/visit_record_list_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/select_page/visit_record_select_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/update_page/visit_record_update_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/visit_record_write_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
         "/visit-record/detail": (context) => const VisitRecordDetailPage(),
         "/visit-record/select": (context) => VisitRecordSelectPage(),
         "/visit-record/write": (context) => const VisitRecordWritePage(),
+        "/visit-record/update": (context) => const VisitRecordUpdatePage(),
         "/game-center/matchup": (context) => const MatchupPage(),
         "/game-center/prediction": (context) => const PredictionPage(),
         "/game-center/rainout-prediction": (context) =>
