@@ -1,5 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/detail_page/widgets/detail_action_sheet.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/detail_page/widgets/detail_body.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class VisitRecordDetailPage extends StatelessWidget {
       body: DetailBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, "/visit-record/write");
+          Navigator.pushNamed(context, "/visit-record/update");
         },
       ),
     );
@@ -31,37 +32,7 @@ class VisitRecordDetailPage extends StatelessWidget {
             showCupertinoModalPopup(
               context: context,
               builder: (context) {
-                return Container(
-                  child: CupertinoActionSheet(
-                    actions: [
-                      CupertinoButton(
-                        child: Text(
-                          '수정하기',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        onPressed: () {
-                          Navigator.pushNamed(context, "/visit-record/update");
-                        },
-                      ),
-                      CupertinoButton(
-                        child: Text(
-                          '삭제하기',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                        onPressed: () {},
-                      ),
-                    ],
-                    cancelButton: CupertinoButton(
-                      child: Text(
-                        '취소',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ),
-                );
+                return DetailActionSheet();
               },
             );
           }, // TODO : 버튼 수정
