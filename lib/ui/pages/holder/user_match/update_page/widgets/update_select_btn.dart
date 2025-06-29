@@ -3,12 +3,12 @@ import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
-class UpdateSelectButton extends StatefulWidget {
+class UpdateSelectBtn extends StatefulWidget {
   final List<String> options;
   final String hintText;
   final void Function(String?)? onChanged;
 
-  const UpdateSelectButton({
+  const UpdateSelectBtn({
     super.key,
     required this.options,
     required this.hintText,
@@ -16,10 +16,10 @@ class UpdateSelectButton extends StatefulWidget {
   });
 
   @override
-  State<UpdateSelectButton> createState() => _UpdateSelectButtonState();
+  State<UpdateSelectBtn> createState() => _UpdateSelectBtnState();
 }
 
-class _UpdateSelectButtonState extends State<UpdateSelectButton> {
+class _UpdateSelectBtnState extends State<UpdateSelectBtn> {
   String? selectedValue;
   bool isDropdownOpened = false;
 

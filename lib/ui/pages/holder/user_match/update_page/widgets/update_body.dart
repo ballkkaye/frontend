@@ -1,7 +1,7 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/update_page/widgets/update_gender_toggle.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/user_match/update_page/widgets/update_select_button.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/update_page/widgets/update_select_btn.dart';
 import 'package:flutter/material.dart';
 
 import '../../write_page/widgets/write_outlined_Input_field.dart';
@@ -49,7 +49,7 @@ class UpdateBody extends StatelessWidget {
                 ),
                 UpdateLabeledField(
                   label: '희망 연령',
-                  child: UpdateSelectButton(
+                  child: UpdateSelectBtn(
                     hintText: '연령',
                     options: [
                       '~20대',
@@ -62,7 +62,7 @@ class UpdateBody extends StatelessWidget {
                 ),
                 UpdateLabeledField(
                   label: '희망 응원팀',
-                  child: UpdateSelectButton(
+                  child: UpdateSelectBtn(
                     hintText: '희망 응원팀',
                     options: ['LG 트윈스', '두산 베어스'],
                     onChanged: (value) {
