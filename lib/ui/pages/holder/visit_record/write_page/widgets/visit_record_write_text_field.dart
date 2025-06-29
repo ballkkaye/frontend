@@ -9,7 +9,7 @@ class VisitRecordWriteTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      maxLines: 10,
+      maxLines: 6,
       maxLength: 1000,
       decoration: InputDecoration(
         hintText: "경기 기록을 자유롭게 적어주세요",

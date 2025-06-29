@@ -2,11 +2,11 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
-class VisitRecordWriteBtn extends StatelessWidget {
+class VisitRecordBtn extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
 
-  const VisitRecordWriteBtn({
+  const VisitRecordBtn({
     super.key,
     required this.text,
     required this.onPressed,
