@@ -3,6 +3,7 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/list_page/chat_room_list_page.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/chat_room_detail_body.dart';
@@ -16,6 +17,15 @@ class ChatRoomDetailPage extends StatelessWidget {
       resizeToAvoidBottomInset: true,
       appBar: _appbar(),
       body: ChatRoomDetailBody(),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 50),
+        child: FloatingActionButton(onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => ChatRoomListPage()),
+          );
+        }),
+      ),
     );
   }
 
