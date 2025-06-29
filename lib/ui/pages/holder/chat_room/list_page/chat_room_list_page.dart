@@ -5,9 +5,11 @@ class ChatRoomListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        child: Text("채팅 페이지"),
+    return Scaffold(
+      body: Center(
+        child: Container(
+          child: Text("채팅 페이지"),
+        ),
       ),
     );
   }
