@@ -1,14 +1,14 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/user_match/update_page/widgets/user_match_update_gender_toggle.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/user_match/update_page/widgets/user_match_update_select_button.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/update_page/widgets/update_gender_toggle.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/update_page/widgets/update_select_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../write_page/widgets/write_outlined_Input_field.dart';
-import 'user_match_update_labeled_field.dart';
+import 'update_labeled_field.dart';
 
-class UserMatchUpdateBody extends StatelessWidget {
-  const UserMatchUpdateBody({
+class UpdateBody extends StatelessWidget {
+  const UpdateBody({
     super.key,
   });
 
@@ -31,25 +31,25 @@ class UserMatchUpdateBody extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 10),
-                UserMatchUpdateLabeledField(
+                UpdateLabeledField(
                   label: '채팅방 인원',
                   child: WriteOutlinedInputField(
                     hintText: '인원 수',
                     keyboardType: TextInputType.number,
                   ),
                 ),
-                UserMatchUpdateLabeledField(
+                UpdateLabeledField(
                   label: '희망 성별',
                   child: Row(
                     children: [
-                      Expanded(child: UserMatchUpdateGenderToggle()),
+                      Expanded(child: UpdateGenderToggle()),
                       const SizedBox(width: 10),
                     ],
                   ),
                 ),
-                UserMatchUpdateLabeledField(
+                UpdateLabeledField(
                   label: '희망 연령',
-                  child: UserMatchUpdateSelectButton(
+                  child: UpdateSelectButton(
                     hintText: '연령',
                     options: [
                       '~20대',
@@ -60,9 +60,9 @@ class UserMatchUpdateBody extends StatelessWidget {
                     ],
                   ),
                 ),
-                UserMatchUpdateLabeledField(
+                UpdateLabeledField(
                   label: '희망 응원팀',
-                  child: UserMatchUpdateSelectButton(
+                  child: UpdateSelectButton(
                     hintText: '희망 응원팀',
                     options: ['LG 트윈스', '두산 베어스'],
                     onChanged: (value) {
@@ -70,13 +70,13 @@ class UserMatchUpdateBody extends StatelessWidget {
                     },
                   ),
                 ),
-                UserMatchUpdateLabeledField(
+                UpdateLabeledField(
                   label: '모집 글 작성',
                   child: WriteOutlinedInputField(
                     hintText: '제목',
                   ),
                 ),
-                UserMatchUpdateLabeledField(
+                UpdateLabeledField(
                   child: WriteOutlinedInputField(
                     hintText: '글 내용',
                     maxLines: 7,

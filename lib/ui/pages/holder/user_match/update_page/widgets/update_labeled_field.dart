@@ -2,12 +2,12 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
-class UserMatchUpdateLabeledField extends StatelessWidget {
+class UpdateLabeledField extends StatelessWidget {
   final String? label;
   final Widget child;
   final double bottomSpacing;
 
-  const UserMatchUpdateLabeledField({
+  const UpdateLabeledField({
     super.key,
     this.label,
     required this.child,

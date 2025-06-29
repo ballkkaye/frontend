@@ -3,12 +3,12 @@ import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
-class UserMatchUpdateSelectButton extends StatefulWidget {
+class UpdateSelectButton extends StatefulWidget {
   final List<String> options;
   final String hintText;
   final void Function(String?)? onChanged;
 
-  const UserMatchUpdateSelectButton({
+  const UpdateSelectButton({
     super.key,
     required this.options,
     required this.hintText,
@@ -16,10 +16,10 @@ class UserMatchUpdateSelectButton extends StatefulWidget {
   });
 
   @override
-  State<UserMatchUpdateSelectButton> createState() => _UserMatchUpdateSelectButtonState();
+  State<UpdateSelectButton> createState() => _UpdateSelectButtonState();
 }
 
-class _UserMatchUpdateSelectButtonState extends State<UserMatchUpdateSelectButton> {
+class _UpdateSelectButtonState extends State<UpdateSelectButton> {
   String? selectedValue;
   bool isDropdownOpened = false;
 
@@ -33,10 +33,9 @@ class _UserMatchUpdateSelectButtonState extends State<UserMatchUpdateSelectButto
         hint: Text(
           widget.hintText,
           style: TextStyle(
-            color: isActive ? Colors.black : MColor.kLabel.alternative,
-            fontSize: 16,
-            fontWeight: FontWeight.w400
-          ),
+              color: isActive ? Colors.black : MColor.kLabel.alternative,
+              fontSize: 16,
+              fontWeight: FontWeight.w400),
         ),
         value: selectedValue,
         onChanged: (value) {
@@ -49,12 +48,12 @@ class _UserMatchUpdateSelectButtonState extends State<UserMatchUpdateSelectButto
         items: [
           DropdownMenuItem<String>(
             value: '선택 안함',
-            child: MText.modal2_4('선택 안함',color: MColor.kLabel.alternative),
-            ),
+            child: MText.modal2_4('선택 안함', color: MColor.kLabel.alternative),
+          ),
           ...widget.options.map((option) {
             return DropdownMenuItem<String>(
               value: option,
-              child: MText.modal2_4(option,color: MColor.kLabel.alternative),
+              child: MText.modal2_4(option, color: MColor.kLabel.alternative),
             );
           }).toList(),
         ],
