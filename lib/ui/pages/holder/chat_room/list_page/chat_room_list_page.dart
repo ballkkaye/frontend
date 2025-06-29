@@ -13,13 +13,13 @@ class ChatRoomListPage extends StatelessWidget {
     return Scaffold(
       appBar: _appbar(context),
       body: ChatRoomListBody(),
-    floatingActionButton: FloatingActionButton(onPressed: () {
-    Navigator.push(
-    context,
-    MaterialPageRoute(builder: (_) => ChatRoomDetailPage()),
-    );
-    },
-    ),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => ChatRoomDetailPage()),
+          );
+        },
+      ),
     );
   }
 

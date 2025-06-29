@@ -1,5 +1,3 @@
-
-
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
@@ -45,4 +43,3 @@ class ChatRoomDetailPage extends StatelessWidget {
     );
   }
 }
-
