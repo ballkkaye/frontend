@@ -22,11 +22,6 @@ class VisitRecordDetailPage extends StatelessWidget {
   AppBar _appbar(BuildContext context) {
     return AppBar(
       actionsPadding: EdgeInsets.symmetric(horizontal: 10),
-      leading: BackButton(
-        onPressed: () {
-          Navigator.popAndPushNamed(context, "/visit-record/list");
-        },
-      ),
       title: MText.h1("직관 기록"),
       centerTitle: true,
       actions: [

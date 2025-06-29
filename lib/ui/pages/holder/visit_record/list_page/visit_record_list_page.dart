@@ -16,7 +16,7 @@ class VisitRecordListPage extends StatelessWidget {
       body: VisitRecordListBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, "/visit-record/select");
+          Navigator.pushNamed(context, "/visit-record/detail");
         },
       ),
     );

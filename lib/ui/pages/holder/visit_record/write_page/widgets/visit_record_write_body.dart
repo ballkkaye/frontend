@@ -15,47 +15,40 @@ class VisitRecordWriteBody extends StatelessWidget {
   Widget build(BuildContext context) {
     bool hasImage = true;
 
-    return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // 경기 카드
-            VisitRecordGame(),
-            SizedBox(height: 20),
-            // 사진 첨부 버튼
-            VisitRecordWriteIconBtn(),
-            SizedBox(height: 20),
-            Visibility(
-              visible: hasImage,
-              child: Column(
-                children: [
-                  VisitRecordWriteThumbnail(),
-                  SizedBox(height: 20),
-                ],
-              ),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+      child: Column(
+        children: [
+          // 경기 카드
+          VisitRecordGame(),
+          SizedBox(height: 20),
+          // 사진 첨부 버튼
+          VisitRecordWriteIconBtn(),
+          SizedBox(height: 20),
+          Visibility(
+            visible: hasImage,
+            child: Column(
+              children: [
+                VisitRecordWriteThumbnail(),
+                SizedBox(height: 20),
+              ],
             ),
-            // 승 무 패 선택 버튼
-            VisitRecordWriteResultSelector(),
-            SizedBox(height: 20),
-            // 내용 입력 필드
-            VisitRecordWriteTextField(),
-            SizedBox(height: 140),
-            // 작성완료 버튼
-            VisitRecordBtn(
-              text: "완료",
-              onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(
-                  // 상세페이지로 가되 목록만 남긴다.
-                  context,
-                  "/visit-record/detail",
-                  ModalRoute.withName("/visit-record/list"),
-                );
-              },
-            ),
-          ],
-        ),
+          ),
+          // 승 무 패 선택 버튼
+          VisitRecordWriteResultSelector(),
+          SizedBox(height: 20),
+          // 내용 입력 필드
+          VisitRecordWriteTextField(),
+          Spacer(),
+          // 작성완료 버튼
+          VisitRecordBtn(
+            text: "완료",
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
+          ),
+        ],
       ),
     );
   }
