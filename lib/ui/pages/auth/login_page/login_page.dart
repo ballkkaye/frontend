@@ -9,7 +9,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: LoginBody(),
       floatingActionButton: FloatingActionButton(onPressed: () {
-        Navigator.pushNamed(context, "/mainholder");
+        Navigator.pushNamed(context, "/main-holder");
       }),
     );
   }

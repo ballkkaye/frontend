@@ -72,6 +72,7 @@ class _UserMatch {
 class _Record {
   final Widget camera = SvgPicture.asset('assets/icons/page_record_camera.svg');
   final Widget image = SvgPicture.asset('assets/icons/page_record_image.svg');
+  final Widget calendarBlack = SvgPicture.asset('assets/icons/page_user_match_calendar_black.svg');
 }
 
 class _Mypage {

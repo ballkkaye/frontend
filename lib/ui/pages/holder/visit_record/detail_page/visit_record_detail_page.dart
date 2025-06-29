@@ -9,17 +9,17 @@ class VisitRecordDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _appbar(),
+      appBar: _appbar(context),
       body: VisitRecordDetailBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, "/visitrecord/write");
+          Navigator.pushNamed(context, "/visit-record/write");
         },
       ),
     );
   }
 
-  AppBar _appbar() {
+  AppBar _appbar(BuildContext context) {
     return AppBar(
       actionsPadding: EdgeInsets.symmetric(horizontal: 10),
       title: MText.h1("직관 기록"),
@@ -33,7 +33,3 @@ class VisitRecordDetailPage extends StatelessWidget {
     );
   }
 }
-
-
-
-

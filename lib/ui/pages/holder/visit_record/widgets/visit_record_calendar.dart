@@ -2,42 +2,38 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class VisitRecordListCalendar extends StatefulWidget {
-  const VisitRecordListCalendar({super.key, required this.cellSize});
+class VisitRecordCalendar extends StatelessWidget {
+  const VisitRecordCalendar({
+    super.key,
+    required this.cellSize,
+    required this.selectedDay,
+    required this.focusedDay,
+    required this.onDaySelected,
+  });
 
   final double cellSize;
-
-  @override
-  State<VisitRecordListCalendar> createState() => _VisitRecordListCalendarState();
-}
-
-class _VisitRecordListCalendarState extends State<VisitRecordListCalendar> {
-  DateTime _focusedDay = DateTime.now();
-  DateTime? _selectedDay;
+  final DateTime? selectedDay;
+  final DateTime focusedDay;
+  final void Function(DateTime selectedDay, DateTime focusedDay) onDaySelected;
 
   @override
   Widget build(BuildContext context) {
     return TableCalendar(
-      rowHeight: widget.cellSize,
-      // 각 날짜 셀의 높이
-      daysOfWeekHeight: widget.cellSize * (2 / 3),
-      // 요일(일~토) 셀의 높이
+      rowHeight: cellSize,
+      daysOfWeekHeight: cellSize * (2 / 3),
       locale: 'ko_KR',
-      focusedDay: _focusedDay,
+      focusedDay: focusedDay,
       firstDay: DateTime(2020, 3, 1),
-      lastDay: DateTime(DateTime.now().year + 1, 12, 31),
-      onDaySelected: (selectedDay, focusedDay) {
-        setState(() {
-          if (selectedDay.isAfter(DateTime.now())) return; // 오늘 이후 날짜 선택 차단
-          _selectedDay = selectedDay;
-          _focusedDay = focusedDay;
-        });
+      lastDay: DateTime(DateTime.now().year, DateTime.now().month + 1, 0),
+      onDaySelected: (selected, focused) {
+        if (selected.isAfter(DateTime.now())) return;
+        onDaySelected(selected, focused);
       },
-      selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+      selectedDayPredicate: (day) => isSameDay(selectedDay, day),
       headerStyle: _headerStyle(),
       daysOfWeekStyle: _daysOfWeekStyle(),
       calendarStyle: _calendarStyle(),
-      calendarBuilders: _calendarBuilders(),
+      calendarBuilders: _calendarBuilders(cellSize),
     );
   }
 
@@ -64,22 +60,20 @@ class _VisitRecordListCalendarState extends State<VisitRecordListCalendar> {
   CalendarStyle _calendarStyle() {
     return CalendarStyle(
       outsideDaysVisible: false,
-      defaultTextStyle: TextStyle(fontSize: 16, color: MColor.kLabel.neutral),
-      weekendTextStyle: TextStyle(fontSize: 16, color: MColor.kLabel.neutral),
-      todayTextStyle: TextStyle(fontSize: 16, color: MColor.kLabel.neutral),
       todayDecoration: const BoxDecoration(),
       selectedTextStyle: TextStyle(fontSize: 16, color: MColor.kLabel.white),
+      todayTextStyle: TextStyle(fontSize: 16, color: MColor.kLabel.neutral),
     );
   }
 
   // 선택된 날짜 BoxDecoration
-  CalendarBuilders<dynamic> _calendarBuilders() {
+  CalendarBuilders<dynamic> _calendarBuilders(double cellSize) {
     return CalendarBuilders(
       selectedBuilder: (context, date, _) {
         return Center(
           child: SizedBox(
-            width: widget.cellSize * 0.7,
-            height: widget.cellSize * 0.7,
+            width: cellSize * 0.7,
+            height: cellSize * 0.7,
             child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(

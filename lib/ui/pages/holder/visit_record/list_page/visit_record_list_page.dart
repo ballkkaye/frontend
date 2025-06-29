@@ -12,24 +12,26 @@ class VisitRecordListPage extends StatelessWidget {
     final cellSize = screenWidth * (47 / 360); // 디자인 비율 반영
 
     return Scaffold(
-      appBar: _appbar(),
-      body: VisitRecordListBody(cellSize: cellSize),
+      appBar: _appbar(context, cellSize),
+      body: VisitRecordListBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, "/visitrecord/detail");
+          Navigator.pushNamed(context, "/visit-record/detail");
         },
       ),
     );
   }
 
-  AppBar _appbar() {
+  AppBar _appbar(BuildContext context, cellSize) {
     return AppBar(
       actionsPadding: EdgeInsets.symmetric(horizontal: 10),
       title: MText.h1("직관 기록"),
       centerTitle: true,
       actions: [
         IconButton(
-          onPressed: () {}, // TODO : 버튼 이동 수정
+          onPressed: () {
+            Navigator.pushNamed(context, "/visit-record/select");
+          },
           icon: MIcon.nav.top.plus,
         ),
       ],
