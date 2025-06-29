@@ -1,7 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
-import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/widget/user_prediction_left_team.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/widget/user_prediction_right_team.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/widget/user_prediction_score_group.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/widget/user_prediction_time_group.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/widget/user_prediction_vote_group.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +11,8 @@ class UserPredictionCard extends StatelessWidget {
   final int rightScore;
   final double leftPercent;
   final double rightPercent;
+  final int startHour;
+  final int startMinute;
 
   const UserPredictionCard({
     super.key,
@@ -21,6 +22,8 @@ class UserPredictionCard extends StatelessWidget {
     required this.rightScore,
     required this.leftPercent,
     required this.rightPercent,
+    required this.startHour,
+    required this.startMinute,
   });
 
   @override
@@ -36,25 +39,15 @@ class UserPredictionCard extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Row(
-                //crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  UserPredictionLeftTeam(
-                    teamName: leftTeamName,
-                    score: leftScore,
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 12.5),
-                    child: Center(
-                      //TODO 예측 결과에 따라 success 혹은 fail 아이콘으로 변경될 수 있도록
-                      child: MIcon.page.userPrediction.success,
-                    ),
-                  ),
-                  UserPredictionRightTeam(
-                    teamName: rightTeamName,
-                    score: rightScore,
-                  ),
-                ],
+              UserPredictionTimeGroup(
+                hour: startHour,
+                minute: startMinute,
+              ),
+              UserPredictionScoreGroup(
+                leftTeamName: leftTeamName,
+                leftScore: leftScore,
+                rightTeamName: rightTeamName,
+                rightScore: rightScore,
               ),
               UserPredictionVoteGroup(
                 leftPercent: leftPercent,

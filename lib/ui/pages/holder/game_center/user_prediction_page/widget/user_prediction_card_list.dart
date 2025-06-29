@@ -10,6 +10,7 @@ class UserPredictionCardList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        // TODO 통신 받을 때 for문 돌리기
         UserPredictionCard(
           leftTeamName: '롯데 자이언츠',
           leftScore: 3,
@@ -17,6 +18,8 @@ class UserPredictionCardList extends StatelessWidget {
           rightScore: 2,
           leftPercent: 30,
           rightPercent: 70,
+          startHour: 16,
+          startMinute: 20,
         ),
         UserPredictionCard(
           leftTeamName: '롯데 자이언츠',
@@ -25,6 +28,8 @@ class UserPredictionCardList extends StatelessWidget {
           rightScore: 2,
           leftPercent: 70,
           rightPercent: 30,
+          startHour: 16,
+          startMinute: 20,
         ),
         UserPredictionCard(
           leftTeamName: '롯데 자이언츠',
@@ -33,6 +38,8 @@ class UserPredictionCardList extends StatelessWidget {
           rightScore: 2,
           leftPercent: 30,
           rightPercent: 70,
+          startHour: 16,
+          startMinute: 20,
         ),
         UserPredictionCard(
           leftTeamName: '롯데 자이언츠',
@@ -41,6 +48,8 @@ class UserPredictionCardList extends StatelessWidget {
           rightScore: 2,
           leftPercent: 30,
           rightPercent: 70,
+          startHour: 16,
+          startMinute: 20,
         ),
         UserPredictionCard(
           leftTeamName: '롯데 자이언츠',
@@ -49,6 +58,8 @@ class UserPredictionCardList extends StatelessWidget {
           rightScore: 2,
           leftPercent: 30,
           rightPercent: 70,
+          startHour: 16,
+          startMinute: 20,
         ),
       ],
     );
