@@ -2,8 +2,8 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
-class VisitRecordDetailGame extends StatelessWidget {
-  const VisitRecordDetailGame({
+class DetailGame extends StatelessWidget {
+  const DetailGame({
     super.key,
   });
 
@@ -14,7 +14,9 @@ class VisitRecordDetailGame extends StatelessWidget {
       children: [
         Text("0",
             style: TextStyle(
-                color: MColor.kLabel.disable, fontSize: 64, fontWeight: FontWeight.w700)),
+                color: MColor.kLabel.disable,
+                fontSize: 64,
+                fontWeight: FontWeight.w700)),
         Column(
           children: [
             Row(
@@ -33,7 +35,9 @@ class VisitRecordDetailGame extends StatelessWidget {
         ),
         Text("5",
             style: TextStyle(
-                color: MColor.kPrimary.strong, fontSize: 64, fontWeight: FontWeight.w700)),
+                color: MColor.kPrimary.strong,
+                fontSize: 64,
+                fontWeight: FontWeight.w700)),
       ],
     );
   }

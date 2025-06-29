@@ -1,8 +1,8 @@
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
-class VisitRecordDetailContent extends StatelessWidget {
-  const VisitRecordDetailContent({
+class DetailContent extends StatelessWidget {
+  const DetailContent({
     super.key,
   });
 
