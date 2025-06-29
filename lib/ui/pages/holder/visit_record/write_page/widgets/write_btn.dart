@@ -2,8 +2,8 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
-class VisitRecordWriteBtn extends StatelessWidget {
-  const VisitRecordWriteBtn({
+class WriteBtn extends StatelessWidget {
+  const WriteBtn({
     super.key,
   });
 

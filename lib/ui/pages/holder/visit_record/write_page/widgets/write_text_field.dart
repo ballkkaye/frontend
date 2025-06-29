@@ -1,8 +1,8 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:flutter/material.dart';
 
-class VisitRecordWriteTextField extends StatelessWidget {
-  const VisitRecordWriteTextField({
+class WriteTextField extends StatelessWidget {
+  const WriteTextField({
     super.key,
   });
 

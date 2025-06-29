@@ -1,13 +1,13 @@
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/widgets/visit_record_btn.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/widgets/visit_record_game.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widgets/visit_record_write_icon_btn.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widgets/visit_record_write_img_thumbnail.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widgets/visit_record_write_result_selector.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widgets/visit_record_write_text_field.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widgets/write_icon_btn.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widgets/write_img_thumbnail.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widgets/write_result_selector.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widgets/write_text_field.dart';
 import 'package:flutter/material.dart';
 
-class VisitRecordWriteBody extends StatelessWidget {
-  const VisitRecordWriteBody({
+class WriteBody extends StatelessWidget {
+  const WriteBody({
     super.key,
   });
 
@@ -23,22 +23,22 @@ class VisitRecordWriteBody extends StatelessWidget {
           VisitRecordGame(),
           SizedBox(height: 20),
           // 사진 첨부 버튼
-          VisitRecordWriteIconBtn(),
+          WriteIconBtn(),
           SizedBox(height: 20),
           Visibility(
             visible: hasImage,
             child: Column(
               children: [
-                VisitRecordWriteThumbnail(),
+                WriteThumbnail(),
                 SizedBox(height: 20),
               ],
             ),
           ),
           // 승 무 패 선택 버튼
-          VisitRecordWriteResultSelector(),
+          WriteResultSelector(),
           SizedBox(height: 20),
           // 내용 입력 필드
-          VisitRecordWriteTextField(),
+          WriteTextField(),
           Spacer(),
           // 작성완료 버튼
           VisitRecordBtn(

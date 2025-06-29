@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class VisitRecordWriteThumbnail extends StatelessWidget {
-  const VisitRecordWriteThumbnail({
+class WriteThumbnail extends StatelessWidget {
+  const WriteThumbnail({
     super.key,
   });
 

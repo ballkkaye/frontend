@@ -2,8 +2,8 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
-class VisitRecordWriteResultSelector extends StatelessWidget {
-  const VisitRecordWriteResultSelector({super.key});
+class WriteResultSelector extends StatelessWidget {
+  const WriteResultSelector({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +31,14 @@ class VisitRecordWriteResultSelector extends StatelessWidget {
                     ),
                     // 테두리 색상
                     border: Border.all(
-                        color: selected == 'win' ? MColor.kPrimary.strong : MColor.kLine.normal),
+                        color: selected == 'win'
+                            ? MColor.kPrimary.strong
+                            : MColor.kLine.normal),
                   ),
                   child: MText.button3("승",
-                      color:
-                          selected == 'win' ? MColor.kPrimary.strong : MColor.kLabel.alternative),
+                      color: selected == 'win'
+                          ? MColor.kPrimary.strong
+                          : MColor.kLabel.alternative),
                 ),
               ),
             ),
@@ -54,11 +57,14 @@ class VisitRecordWriteResultSelector extends StatelessWidget {
                   decoration: BoxDecoration(
                     // 테두리 색상
                     border: Border.all(
-                        color: selected == 'draw' ? MColor.kPrimary.strong : MColor.kLine.normal),
+                        color: selected == 'draw'
+                            ? MColor.kPrimary.strong
+                            : MColor.kLine.normal),
                   ),
                   child: MText.button3("무",
-                      color:
-                          selected == 'draw' ? MColor.kPrimary.strong : MColor.kLabel.alternative),
+                      color: selected == 'draw'
+                          ? MColor.kPrimary.strong
+                          : MColor.kLabel.alternative),
                 ),
               ),
             ),
@@ -81,11 +87,14 @@ class VisitRecordWriteResultSelector extends StatelessWidget {
                     ),
                     // 테두리 색상
                     border: Border.all(
-                        color: selected == 'lose' ? MColor.kPrimary.strong : MColor.kLine.normal),
+                        color: selected == 'lose'
+                            ? MColor.kPrimary.strong
+                            : MColor.kLine.normal),
                   ),
                   child: MText.button3("패",
-                      color:
-                          selected == 'lose' ? MColor.kPrimary.strong : MColor.kLabel.alternative),
+                      color: selected == 'lose'
+                          ? MColor.kPrimary.strong
+                          : MColor.kLabel.alternative),
                 ),
               ),
             ),
