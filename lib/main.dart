@@ -1,6 +1,10 @@
 import 'package:ballkkaye_frontend/_core/style/m_theme.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/login_page/login_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/detail_page/board_detail_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/list_page/board_list_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/update_page/board_update_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/write_page/board_write_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/matchup_page/matchup_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/prediction_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/rainout_prediction_page/rainout_prediction_page.dart';
@@ -62,6 +66,10 @@ class MyApp extends StatelessWidget {
         "/game-center/ranking": (context) => const RankingPage(),
         "/game-center/today-game": (context) => const TodayGamePage(),
         "/game-center/user-prediction": (context) => const UserPredictionPage(),
+        "/board/list": (context) => const BoardListPage(),
+        "/board/detail": (context) => const BoardDetailPage(),
+        "/board/write": (context) => const BoardWritePage(),
+        "/board/update": (context) => const BoardUpdatePage(),
       },
     );
   }
