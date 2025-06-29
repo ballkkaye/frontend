@@ -10,14 +10,7 @@ class UserMatchUpdatePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: MText.h1('동행 작성', color: MColor.kLabel.normal),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
-        ),
-        centerTitle: true,
-      ),
+      appBar: _appbar(context),
       body: UserMatchUpdateBody(),
         floatingActionButton: FloatingActionButton(onPressed: () {
             Navigator.push(
@@ -25,6 +18,17 @@ class UserMatchUpdatePage extends StatelessWidget {
               MaterialPageRoute(builder: (_) => ChatRoomListPage()),
             );
           }),
+    );
+  }
+  
+  AppBar _appbar(BuildContext context) {
+    return AppBar(
+      title: MText.h1('동행 작성', color: MColor.kLabel.normal),
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back),
+        onPressed: () => Navigator.pop(context),
+      ),
+      centerTitle: true,
     );
   }
 }
