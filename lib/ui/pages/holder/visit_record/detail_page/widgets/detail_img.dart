@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class DetailImage extends StatelessWidget {
-  const DetailImage({
+class DetailImg extends StatelessWidget {
+  const DetailImg({
     super.key,
   });
 

@@ -1,14 +1,15 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:flutter/material.dart';
 
-class WriteTextFormField extends StatelessWidget {
-  const WriteTextFormField({
+class UpdateTextFormField extends StatelessWidget {
+  const UpdateTextFormField({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: "경기 진짜 재밌었다~",
       maxLines: 6,
       maxLength: 1000,
       decoration: InputDecoration(

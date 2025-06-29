@@ -18,8 +18,7 @@ class VisitRecordSelectPage extends StatelessWidget {
 
   AppBar _appbar() {
     return AppBar(
-      actionsPadding: EdgeInsets.symmetric(horizontal: 10),
-      title: MText.h1("직관 기록 작성"),
+      title: MText.h1("기록 작성"),
       centerTitle: true,
     );
   }

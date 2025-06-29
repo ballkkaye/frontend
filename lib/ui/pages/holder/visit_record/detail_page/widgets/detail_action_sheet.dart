@@ -13,7 +13,7 @@ class DetailActionSheet extends StatelessWidget {
         DetailActionBtn(
           text: '수정하기',
           onPressed: () {
-            Navigator.pushNamed(context, "/visit-record/update");
+            Navigator.popAndPushNamed(context, "/visit-record/update");
           },
         ),
         DetailActionBtn(
