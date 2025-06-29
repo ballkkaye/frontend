@@ -1,6 +1,7 @@
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/detail_page/widgets/detail_body.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class VisitRecordDetailPage extends StatelessWidget {
@@ -26,7 +27,42 @@ class VisitRecordDetailPage extends StatelessWidget {
       centerTitle: true,
       actions: [
         IconButton(
-          onPressed: () {}, // TODO : 버튼 수정
+          onPressed: () {
+            showCupertinoModalPopup(
+              context: context,
+              builder: (context) {
+                return Container(
+                  child: CupertinoActionSheet(
+                    actions: [
+                      CupertinoButton(
+                        child: Text(
+                          '수정하기',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        onPressed: () {},
+                      ),
+                      CupertinoButton(
+                        child: Text(
+                          '삭제하기',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        onPressed: () {},
+                      ),
+                    ],
+                    cancelButton: CupertinoButton(
+                      child: Text(
+                        '취소',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ),
+                );
+              },
+            );
+          }, // TODO : 버튼 수정
           icon: MIcon.nav.top.dotHorizontal,
         ),
       ],

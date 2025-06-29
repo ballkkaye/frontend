@@ -22,7 +22,7 @@ class VisitRecordListBody extends StatelessWidget {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) => Padding(
-                padding: const EdgeInsets.only(bottom: 5), // 카드 리스트 아래 여백
+                padding: EdgeInsets.only(bottom: 5),
                 child: ListGameCard(),
               ),
               childCount: 5,
