@@ -39,7 +39,9 @@ class VisitRecordDetailPage extends StatelessWidget {
                           '수정하기',
                           style: TextStyle(color: Colors.black),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, "/visit-record/update");
+                        },
                       ),
                       CupertinoButton(
                         child: Text(
