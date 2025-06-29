@@ -40,8 +40,7 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [
-        Locale('en', ''), // English, no country code
-        Locale('ko', ''), // Korean, no country code
+        Locale('ko', ''),
       ],
       theme: mTheme(),
       home: SplashPage(),
@@ -51,9 +50,9 @@ class MyApp extends StatelessWidget {
         "/home": (context) => const HomePage(),
         "/main-holder": (context) => MainHolder(),
         "/visit-record/list": (context) => const VisitRecordListPage(),
-        "/visit-record/write": (context) => const VisitRecordWritePage(),
         "/visit-record/detail": (context) => const VisitRecordDetailPage(),
         "/visit-record/select": (context) => VisitRecordSelectPage(),
+        "/visit-record/write": (context) => const VisitRecordWritePage(),
         "/game-center/matchup": (context) => const MatchupPage(),
         "/game-center/prediction": (context) => const PredictionPage(),
         "/game-center/rainout-prediction": (context) =>
