@@ -22,7 +22,7 @@ class UserMatchUpdatePage extends StatelessWidget {
         floatingActionButton: FloatingActionButton(onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => ChatRoomListPage()), //todo : 다음에 구현할 페이지 추가할때 이동버튼
+              MaterialPageRoute(builder: (_) => ChatRoomListPage()),
             );
           }),
     );
