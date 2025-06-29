@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import 'user_match_write_calendar_bottom_sheet.dart';
-import 'user_match_write_select_button.dart';
+import 'write_calendar_bottom_sheet.dart';
+import 'write_select_button.dart';
 
-class UserMatchWriteBody extends StatefulWidget {
-  const UserMatchWriteBody({super.key});
+class WriteBody extends StatefulWidget {
+  const WriteBody({super.key});
 
   @override
-  State<UserMatchWriteBody> createState() => _UserMatchWriteBodyState();
+  State<WriteBody> createState() => _WriteBodyState();
 }
 
-class _UserMatchWriteBodyState extends State<UserMatchWriteBody> {
+class _WriteBodyState extends State<WriteBody> {
   DateTime? selectedDate;
   String? selectedMatch;
 
@@ -25,7 +25,6 @@ class _UserMatchWriteBodyState extends State<UserMatchWriteBody> {
 
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -41,7 +40,7 @@ class _UserMatchWriteBodyState extends State<UserMatchWriteBody> {
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
                 ),
-                builder: (context) => CalendarBottomSheet(
+                builder: (context) => WriteCalendarBottomSheet(
                   onDateSelected: (date) {
                     Navigator.pop(context, date);
                   },
@@ -53,8 +52,7 @@ class _UserMatchWriteBodyState extends State<UserMatchWriteBody> {
                   selectedDate = picked;
                   selectedMatch = null; // 날짜 바뀌면 경기 초기화
                 });
-              } else {
-              }
+              } else {}
             },
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
@@ -67,7 +65,9 @@ class _UserMatchWriteBodyState extends State<UserMatchWriteBody> {
                   const Icon(Icons.calendar_today, size: 20),
                   const SizedBox(width: 8),
                   Text(
-                    selectedDate != null ? DateFormat('yyyy.MM.dd').format(selectedDate!) : '날짜 선택',
+                    selectedDate != null
+                        ? DateFormat('yyyy.MM.dd').format(selectedDate!)
+                        : '날짜 선택',
                     style: const TextStyle(fontSize: 16),
                   ),
                 ],
@@ -78,7 +78,7 @@ class _UserMatchWriteBodyState extends State<UserMatchWriteBody> {
             const SizedBox(height: 24),
             const Text('경기 선택', style: TextStyle(fontSize: 16)),
             const SizedBox(height: 8),
-            SelectButton(
+            WriteSelectButton(
               hintText: '경기',
               options: matches,
               onChanged: (value) {
@@ -92,10 +92,7 @@ class _UserMatchWriteBodyState extends State<UserMatchWriteBody> {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: (selectedMatch != null)
-                  ? () {
-                    }
-                  : null,
+              onPressed: (selectedMatch != null) ? () {} : null,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.teal,
                 foregroundColor: Colors.white,

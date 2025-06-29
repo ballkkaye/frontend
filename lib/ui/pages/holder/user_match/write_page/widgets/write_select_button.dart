@@ -1,12 +1,12 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
-class SelectButton extends StatefulWidget {
+class WriteSelectButton extends StatefulWidget {
   final List<String> options;
   final String hintText;
   final void Function(String?)? onChanged;
 
-  const SelectButton({
+  const WriteSelectButton({
     super.key,
     required this.options,
     required this.hintText,
@@ -14,10 +14,10 @@ class SelectButton extends StatefulWidget {
   });
 
   @override
-  State<SelectButton> createState() => _SelectButtonState();
+  State<WriteSelectButton> createState() => _WriteSelectButtonState();
 }
 
-class _SelectButtonState extends State<SelectButton> {
+class _WriteSelectButtonState extends State<WriteSelectButton> {
   String? selectedValue;
   bool isDropdownOpened = false;
 

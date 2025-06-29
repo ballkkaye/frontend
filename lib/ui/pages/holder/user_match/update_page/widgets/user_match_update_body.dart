@@ -4,7 +4,7 @@ import 'package:ballkkaye_frontend/ui/pages/holder/user_match/update_page/widget
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/update_page/widgets/user_match_update_select_button.dart';
 import 'package:flutter/material.dart';
 
-import '../../write_page/widgets/user_match_write_outlined_Input_field.dart';
+import '../../write_page/widgets/write_outlined_Input_field.dart';
 import 'user_match_update_labeled_field.dart';
 
 class UserMatchUpdateBody extends StatelessWidget {
@@ -26,20 +26,21 @@ class UserMatchUpdateBody extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                   MText.label1_5('2025.06.28 한화 vs 롯데',color: MColor.kLabel.normal),
+                    MText.label1_5('2025.06.28 한화 vs 롯데',
+                        color: MColor.kLabel.normal),
                   ],
                 ),
                 const SizedBox(height: 10),
                 UserMatchUpdateLabeledField(
                   label: '채팅방 인원',
-                  child: OutlinedInputField(
+                  child: WriteOutlinedInputField(
                     hintText: '인원 수',
                     keyboardType: TextInputType.number,
                   ),
                 ),
                 UserMatchUpdateLabeledField(
                   label: '희망 성별',
-                  child:  Row(
+                  child: Row(
                     children: [
                       Expanded(child: UserMatchUpdateGenderToggle()),
                       const SizedBox(width: 10),
@@ -50,7 +51,13 @@ class UserMatchUpdateBody extends StatelessWidget {
                   label: '희망 연령',
                   child: UserMatchUpdateSelectButton(
                     hintText: '연령',
-                    options: ['~20대', '20대 ~ 30대', '30대 ~ 40대', '40대 이상', '연령 무관'],
+                    options: [
+                      '~20대',
+                      '20대 ~ 30대',
+                      '30대 ~ 40대',
+                      '40대 이상',
+                      '연령 무관'
+                    ],
                   ),
                 ),
                 UserMatchUpdateLabeledField(
@@ -65,12 +72,12 @@ class UserMatchUpdateBody extends StatelessWidget {
                 ),
                 UserMatchUpdateLabeledField(
                   label: '모집 글 작성',
-                  child:   OutlinedInputField(
+                  child: WriteOutlinedInputField(
                     hintText: '제목',
                   ),
                 ),
                 UserMatchUpdateLabeledField(
-                  child:   OutlinedInputField(
+                  child: WriteOutlinedInputField(
                     hintText: '글 내용',
                     maxLines: 7,
                     maxLength: 1000,
@@ -82,7 +89,8 @@ class UserMatchUpdateBody extends StatelessWidget {
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: MColor.kPrimary.strong,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(8)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadiusGeometry.circular(8)),
                       padding: const EdgeInsets.symmetric(vertical: 16),
                     ),
                     child: MText.button2('완료', color: MColor.kLabel.white),

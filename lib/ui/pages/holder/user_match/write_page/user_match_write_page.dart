@@ -1,7 +1,7 @@
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/update_page/user_match_update_page.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets/user_match_write_body.dart';
+import 'widgets/write_body.dart';
 
 class UserMatchWritePage extends StatefulWidget {
   const UserMatchWritePage({super.key});
@@ -18,7 +18,7 @@ class _UserMatchWritePageState extends State<UserMatchWritePage> {
         title: const Text('동행 작성'),
         centerTitle: true,
       ),
-      body: UserMatchWriteBody(),
+      body: WriteBody(),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 50),
         child: FloatingActionButton(onPressed: () {

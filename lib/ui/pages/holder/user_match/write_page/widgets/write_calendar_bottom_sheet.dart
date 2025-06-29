@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class CalendarBottomSheet extends StatefulWidget {
+class WriteCalendarBottomSheet extends StatefulWidget {
   final void Function(DateTime) onDateSelected;
 
-  const CalendarBottomSheet({required this.onDateSelected});
+  const WriteCalendarBottomSheet({required this.onDateSelected});
 
   @override
-  _CalendarBottomSheetState createState() => _CalendarBottomSheetState();
+  _WriteCalendarBottomSheetState createState() =>
+      _WriteCalendarBottomSheetState();
 }
 
-class _CalendarBottomSheetState extends State<CalendarBottomSheet> {
+class _WriteCalendarBottomSheetState extends State<WriteCalendarBottomSheet> {
   DateTime focusedDay = DateTime.now();
   DateTime? selectedDay;
 
@@ -48,7 +49,8 @@ class _CalendarBottomSheetState extends State<CalendarBottomSheet> {
                 ),
                 onPressed: () {
                   setState(() {
-                    focusedDay = DateTime(focusedDay.year, focusedDay.month - 1);
+                    focusedDay =
+                        DateTime(focusedDay.year, focusedDay.month - 1);
                   });
                 },
               ),
@@ -77,7 +79,8 @@ class _CalendarBottomSheetState extends State<CalendarBottomSheet> {
                 ),
                 onPressed: () {
                   setState(() {
-                    focusedDay = DateTime(focusedDay.year, focusedDay.month + 1);
+                    focusedDay =
+                        DateTime(focusedDay.year, focusedDay.month + 1);
                   });
                 },
               ),
@@ -103,7 +106,8 @@ class _CalendarBottomSheetState extends State<CalendarBottomSheet> {
               firstDay: DateTime(2020),
               lastDay: DateTime(2030),
               focusedDay: focusedDay,
-              selectedDayPredicate: (day) => selectedDay != null && isSameDay(selectedDay, day),
+              selectedDayPredicate: (day) =>
+                  selectedDay != null && isSameDay(selectedDay, day),
               onDaySelected: (selected, focused) {
                 setState(() {
                   selectedDay = selected;
@@ -162,7 +166,8 @@ class _CalendarBottomSheetState extends State<CalendarBottomSheet> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF17C3B2),
                 foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
                 padding: EdgeInsets.symmetric(vertical: 16),
               ),
               child: Text("적용"),

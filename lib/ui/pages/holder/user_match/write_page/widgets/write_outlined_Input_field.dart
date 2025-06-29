@@ -1,14 +1,14 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:flutter/material.dart';
 
-class OutlinedInputField extends StatefulWidget {
+class WriteOutlinedInputField extends StatefulWidget {
   final String hintText;
   final TextEditingController? controller;
   final int maxLines;
   final TextInputType keyboardType;
   final int? maxLength;
 
-  const OutlinedInputField({
+  const WriteOutlinedInputField({
     super.key,
     required this.hintText,
     this.controller,
@@ -18,10 +18,11 @@ class OutlinedInputField extends StatefulWidget {
   });
 
   @override
-  State<OutlinedInputField> createState() => _OutlinedInputFieldState();
+  State<WriteOutlinedInputField> createState() =>
+      _WriteOutlinedInputFieldState();
 }
 
-class _OutlinedInputFieldState extends State<OutlinedInputField> {
+class _WriteOutlinedInputFieldState extends State<WriteOutlinedInputField> {
   late FocusNode _focusNode;
   bool _isFocused = false;
 
@@ -44,7 +45,8 @@ class _OutlinedInputFieldState extends State<OutlinedInputField> {
 
   @override
   Widget build(BuildContext context) {
-    final borderColor = _isFocused ? MColor.kPrimary.strong : MColor.kLabel.alternative;
+    final borderColor =
+        _isFocused ? MColor.kPrimary.strong : MColor.kLabel.alternative;
 
     return TextField(
       focusNode: _focusNode,
@@ -53,7 +55,8 @@ class _OutlinedInputFieldState extends State<OutlinedInputField> {
       maxLength: widget.maxLength,
       decoration: InputDecoration(
         hintText: widget.hintText,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(color: borderColor, width: _isFocused ? 2 : 1),
