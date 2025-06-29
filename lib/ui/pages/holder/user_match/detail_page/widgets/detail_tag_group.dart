@@ -3,10 +3,10 @@ import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
-import 'user_match_detail_tag.dart';
+import 'detail_tag.dart';
 
-class UserMatchDetailTagGroup extends StatelessWidget {
-  const UserMatchDetailTagGroup({
+class DetailTagGroup extends StatelessWidget {
+  const DetailTagGroup({
     super.key,
   });
 
@@ -15,9 +15,9 @@ class UserMatchDetailTagGroup extends StatelessWidget {
     return Wrap(
       spacing: 8,
       children: [
-        UserMatchDetailTag(label: '여성'),
-        UserMatchDetailTag(label: '20대 이상'),
-        UserMatchDetailTag(label: '롯데 자이언츠'),
+        DetailTag(label: '여성'),
+        DetailTag(label: '20대 이상'),
+        DetailTag(label: '롯데 자이언츠'),
         Container(
           padding: const EdgeInsets.symmetric(vertical: 2.5),
           child: Row(

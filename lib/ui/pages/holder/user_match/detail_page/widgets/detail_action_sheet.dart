@@ -3,8 +3,8 @@ import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class UserMatchDetailActionSheet extends StatelessWidget {
-  const UserMatchDetailActionSheet({
+class DetailActionSheet extends StatelessWidget {
+  const DetailActionSheet({
     super.key,
   });
 

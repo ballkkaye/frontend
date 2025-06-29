@@ -1,13 +1,13 @@
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
-import 'user_match_detail_actionbar.dart';
-import 'user_match_detail_match_card.dart';
-import 'user_match_detail_profile.dart';
-import 'user_match_detail_tag_group.dart';
+import 'detail_action_bar.dart';
+import 'detail_match_card.dart';
+import 'detail_profile.dart';
+import 'detail_tag_group.dart';
 
-class UserMatchDetailBody extends StatelessWidget {
-  const UserMatchDetailBody({
+class DetailBody extends StatelessWidget {
+  const DetailBody({
     super.key,
   });
 
@@ -20,7 +20,7 @@ class UserMatchDetailBody extends StatelessWidget {
         children: [
           // 제목 + 시간
           SizedBox(height: 23),
-          UserMatchDetailProfile(),
+          DetailProfile(),
           SizedBox(height: 32),
           MText.h3_6('직관같이갑시다'),
           SizedBox(height: 13.5),
@@ -30,17 +30,17 @@ class UserMatchDetailBody extends StatelessWidget {
           Spacer(),
 
           // 경기 정보 카드
-          UserMatchDetailMatchCard(),
+          DetailMatchCard(),
 
           SizedBox(height: 9),
 
           // 태그들
-          UserMatchDetailTagGroup(),
+          DetailTagGroup(),
 
           SizedBox(height: 23),
 
           // 참여 인원 + 버튼
-          UserMatchDetailActionBar(),
+          DetailActionBar(),
 
           SizedBox(height: 30),
         ],

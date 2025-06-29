@@ -2,10 +2,10 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
-class UserMatchDetailTag extends StatelessWidget {
+class DetailTag extends StatelessWidget {
   final String label;
 
-  const UserMatchDetailTag({super.key, required this.label});
+  const DetailTag({super.key, required this.label});
 
   @override
   Widget build(BuildContext context) {

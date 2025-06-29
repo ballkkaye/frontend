@@ -3,8 +3,8 @@ import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
-class UserMatchDetailActionBar extends StatelessWidget {
-  const UserMatchDetailActionBar({
+class DetailActionBar extends StatelessWidget {
+  const DetailActionBar({
     super.key,
   });
 
@@ -24,7 +24,10 @@ class UserMatchDetailActionBar extends StatelessWidget {
               padding: EdgeInsets.only(bottom: 2), //
               child: Text(
                 '현재 2/6명 참여중',
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: MColor.kLabel.alternative),
+                style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: MColor.kLabel.alternative),
               ),
             ),
             SizedBox(width: 12.5),

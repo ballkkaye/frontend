@@ -2,8 +2,8 @@ import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
-class UserMatchDetailProfile extends StatelessWidget {
-  const UserMatchDetailProfile({
+class DetailProfile extends StatelessWidget {
+  const DetailProfile({
     super.key,
   });
 
@@ -34,7 +34,8 @@ class UserMatchDetailProfile extends StatelessWidget {
           ],
         ),
         Spacer(),
-        Text('15분전', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
+        Text('15분전',
+            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
       ],
     );
   }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'user_match_detail_match_row.dart';
+import 'detail_match_row.dart';
 
-class UserMatchDetailMatchCard extends StatelessWidget {
-  const UserMatchDetailMatchCard({
+class DetailMatchCard extends StatelessWidget {
+  const DetailMatchCard({
     super.key,
   });
 
@@ -17,11 +17,11 @@ class UserMatchDetailMatchCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          MatchRow(label: '경기 일정', value: '2025.06.19'),
+          DetailMatchRow(label: '경기 일정', value: '2025.06.19'),
           SizedBox(height: 4),
-          MatchRow(label: '경기', value: '롯데 vs 두산'),
+          DetailMatchRow(label: '경기', value: '롯데 vs 두산'),
           SizedBox(height: 4),
-          MatchRow(label: '경기장', value: '사직 야구장'),
+          DetailMatchRow(label: '경기장', value: '사직 야구장'),
         ],
       ),
     );
