@@ -12,12 +12,13 @@ class UserMatchUpdatePage extends StatelessWidget {
     return Scaffold(
       appBar: _appbar(context),
       body: UserMatchUpdateBody(),
-        floatingActionButton: FloatingActionButton(onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => ChatRoomListPage()),
-            );
-          }),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => ChatRoomListPage()),
+          );
+        },
+      ),
     );
   }
   
