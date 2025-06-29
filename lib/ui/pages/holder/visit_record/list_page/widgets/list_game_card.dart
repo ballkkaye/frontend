@@ -2,8 +2,8 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
-class VisitRecordListGameCard extends StatelessWidget {
-  const VisitRecordListGameCard({
+class ListGameCard extends StatelessWidget {
+  const ListGameCard({
     super.key,
   });
 
@@ -19,7 +19,9 @@ class VisitRecordListGameCard extends StatelessWidget {
           children: [
             Text("0",
                 style: TextStyle(
-                    color: MColor.kLabel.disable, fontSize: 64, fontWeight: FontWeight.w700)),
+                    color: MColor.kLabel.disable,
+                    fontSize: 64,
+                    fontWeight: FontWeight.w700)),
             Column(
               children: [
                 Row(
@@ -38,7 +40,9 @@ class VisitRecordListGameCard extends StatelessWidget {
             ),
             Text("5",
                 style: TextStyle(
-                    color: MColor.kPrimary.strong, fontSize: 64, fontWeight: FontWeight.w700)),
+                    color: MColor.kPrimary.strong,
+                    fontSize: 64,
+                    fontWeight: FontWeight.w700)),
           ],
         ),
       ),

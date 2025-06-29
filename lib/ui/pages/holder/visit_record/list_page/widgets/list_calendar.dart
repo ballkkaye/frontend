@@ -2,16 +2,16 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class VisitRecordListCalendar extends StatefulWidget {
-  const VisitRecordListCalendar({super.key, required this.cellSize});
+class ListCalendar extends StatefulWidget {
+  const ListCalendar({super.key, required this.cellSize});
 
   final double cellSize;
 
   @override
-  State<VisitRecordListCalendar> createState() => _VisitRecordListCalendarState();
+  State<ListCalendar> createState() => _ListCalendarState();
 }
 
-class _VisitRecordListCalendarState extends State<VisitRecordListCalendar> {
+class _ListCalendarState extends State<ListCalendar> {
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
 
@@ -96,7 +96,8 @@ class _VisitRecordListCalendarState extends State<VisitRecordListCalendar> {
       },
       defaultBuilder: (context, date, _) {
         final isFuture = date.isAfter(DateTime.now());
-        final textColor = isFuture ? MColor.kLabel.disable : MColor.kLabel.neutral;
+        final textColor =
+            isFuture ? MColor.kLabel.disable : MColor.kLabel.neutral;
 
         return Center(
           child: Text(
