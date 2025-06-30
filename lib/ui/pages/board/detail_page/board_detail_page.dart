@@ -2,11 +2,54 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/detail_action_sheet.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/reply_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BoardDetailPage extends StatelessWidget {
-  const BoardDetailPage({super.key});
+  BoardDetailPage({super.key});
+  final List<Map<String, dynamic>> replies = [
+    {
+      'id': 1,
+      'parentId': null,
+      'author': 'ssar',
+      'content': '댓글 1입니다',
+      'time': '3분 전',
+      'likeCount': 5,
+      'replyCount': 5,
+      'isReplyOwner': false,
+    },
+    {
+      'id': 2,
+      'parentId': 1,
+      'author': 'cos',
+      'content': '대댓글입니다',
+      'time': '2분 전',
+      'likeCount': 5,
+      'replyCount': 5,
+      'isReplyOwner': true,
+    },
+    {
+      'id': 3,
+      'parentId': 1,
+      'author': 'cos',
+      'content': '대댓글입니다',
+      'time': '2분 전',
+      'likeCount': 5,
+      'replyCount': 5,
+      'isReplyOwner': false,
+    },
+    {
+      'id': 4,
+      'parentId': null,
+      'author': 'cos',
+      'content': '대댓글입니다',
+      'time': '2분 전',
+      'likeCount': 5,
+      'replyCount': 5,
+      'isReplyOwner': false,
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +59,11 @@ class BoardDetailPage extends StatelessWidget {
 
     return Scaffold(
       appBar: _appbar(context),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, "/board/update");
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.pushNamed(context, "/board/update");
+      //   },
+      // ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -105,9 +148,21 @@ class BoardDetailPage extends StatelessWidget {
                 ],
               ),
             ),
-            Divider(),
+            Divider(
+              color: MColor.kLabel.disable,
+              thickness: 10,
+            ),
             // 댓글 영역
-            Column(),
+            Padding(
+              padding: EdgeInsetsGeometry.symmetric(vertical: 12, horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  MText.label1_5('댓글', color: MColor.kLabel.neutral),
+                  ...replies.map((reply) => ReplyItem(reply: reply)),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -126,7 +181,7 @@ class BoardDetailPage extends StatelessWidget {
               },
             );
           },
-          icon: MIcon.nav.top.dotHorizontal,
+          icon: MIcon.nav.top.dotVertical,
         ),
       ],
     );
