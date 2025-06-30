@@ -1,5 +1,7 @@
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/ui/pages/board/list_page/widgets/list_team_category_item.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/list_page/widgets/list_body.dart';
 import 'package:flutter/material.dart';
 
 class BoardListPage extends StatelessWidget {
@@ -7,30 +9,22 @@ class BoardListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool hasImg = false;
-
     return Scaffold(
       appBar: _appbar(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, "/board/detail");
-        },
-      ),
-      body: Column(
-        children: [
-          // 팀 카테고리 목록 (가로 스크롤)
-          Expanded(
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 11,
-              itemBuilder: (context, index) {
-                return ListTeamCategoryItem(label: '전체보기');
-              },
-            ),
-          )
-          // 게시글 목록 (세로 스크롤)
-        ],
-      ),
+      floatingActionButton: _floatingActionButton(context),
+      body: BoardListBody(),
+    );
+  }
+
+  FloatingActionButton _floatingActionButton(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () {
+        Navigator.pushNamed(context, "/board/write");
+      },
+      shape: CircleBorder(),
+      backgroundColor: MColor.kPrimary.strong,
+      foregroundColor: Colors.white,
+      child: MIcon.page.community.write,
     );
   }
 
