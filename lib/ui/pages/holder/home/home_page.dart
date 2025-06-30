@@ -5,9 +5,13 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        child: Text("홈 페이지"),
+    return Scaffold(
+      appBar: AppBar(),
+      body: Container(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, "/board/list");
+        },
       ),
     );
   }
