@@ -1,3 +1,5 @@
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widgets/write_body.dart';
 import 'package:flutter/material.dart';
 
 class VisitRecordWritePage extends StatelessWidget {
@@ -5,6 +7,16 @@ class VisitRecordWritePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: _appbar(),
+      body: WriteBody(),
+    );
+  }
+
+  AppBar _appbar() {
+    return AppBar(
+      title: MText.h1("기록 작성"),
+      centerTitle: true,
+    );
   }
 }

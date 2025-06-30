@@ -1,6 +1,10 @@
 import 'package:ballkkaye_frontend/_core/style/m_theme.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/login_page/login_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/detail_page/board_detail_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/list_page/board_list_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/update_page/board_update_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/write_page/board_write_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/matchup_page/matchup_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/prediction_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/rainout_prediction_page/rainout_prediction_page.dart';
@@ -10,9 +14,13 @@ import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_p
 import 'package:ballkkaye_frontend/ui/pages/holder/home/home_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/main_holder.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/detail_page/visit_record_detail_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/visit_record_list_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/select_page/visit_record_select_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/update_page/visit_record_update_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/visit_record_write_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -32,21 +40,36 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('ko', ''),
+      ],
       theme: mTheme(),
       home: SplashPage(),
       routes: {
         "/join": (context) => const JoinPage(),
         "/login": (context) => const LoginPage(),
         "/home": (context) => const HomePage(),
-        "/mainholder": (context) => MainHolder(),
-        "/visitrecord/write": (context) => const VisitRecordWritePage(),
-        "/visitrecord/detail": (context) => const VisitRecordDetailPage(),
+        "/main-holder": (context) => MainHolder(),
+        "/visit-record/list": (context) => const VisitRecordListPage(),
+        "/visit-record/detail": (context) => const VisitRecordDetailPage(),
+        "/visit-record/select": (context) => VisitRecordSelectPage(),
+        "/visit-record/write": (context) => const VisitRecordWritePage(),
+        "/visit-record/update": (context) => const VisitRecordUpdatePage(),
         "/game-center/matchup": (context) => const MatchupPage(),
         "/game-center/prediction": (context) => const PredictionPage(),
-        "/game-center/rainout-prediction": (context) => const RainoutPredictionPage(),
+        "/game-center/rainout-prediction": (context) =>
+            const RainoutPredictionPage(),
         "/game-center/ranking": (context) => const RankingPage(),
         "/game-center/today-game": (context) => const TodayGamePage(),
         "/game-center/user-prediction": (context) => const UserPredictionPage(),
+        "/board/list": (context) => const BoardListPage(),
+        "/board/detail": (context) => const BoardDetailPage(),
+        "/board/write": (context) => const BoardWritePage(),
+        "/board/update": (context) => const BoardUpdatePage(),
       },
     );
   }
