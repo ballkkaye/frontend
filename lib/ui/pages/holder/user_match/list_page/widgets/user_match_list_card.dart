@@ -35,15 +35,11 @@ class UserMatchListCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // 경기 정보 + 작성 시간
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    UserMatchListCardHeader(
-                      matchTitle: "롯데 자이언츠 vs 두산 베어스",
-                      postedTime: "15분전",
-                    ),
-                  ],
+                const UserMatchListCardHeader(
+                  matchTitle: "롯데 자이언츠 vs 두산 베어스",
+                  postedTime: "15분전",
                 ),
+
                 const SizedBox(height: 4),
 
                 // 제목
