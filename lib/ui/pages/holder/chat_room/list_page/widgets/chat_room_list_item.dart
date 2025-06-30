@@ -1,7 +1,8 @@
-
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/detail_page/chat_room_detail_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/list_page/widgets/chat_room_list_exit_dialog.dart';
 import 'package:flutter/material.dart';
 
 class ChatRoomListItem extends StatelessWidget {
@@ -45,9 +46,12 @@ class ChatRoomListItem extends StatelessWidget {
             chat['time']!,
             color: MColor.kLabel.neutral,
           ),
-          trailing: MIcon.page.userMatch.dotVertical,
+          trailing: ChatRoomListExitDialog(),
           onTap: () {
-            // 채팅방으로 이동
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => ChatRoomDetailPage()),
+            );
           },
         ),
         // 항목 아래 디바이더
