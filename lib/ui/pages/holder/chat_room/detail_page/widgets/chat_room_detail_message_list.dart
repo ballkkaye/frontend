@@ -1,5 +1,5 @@
-import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/detail_page/widgets/chat_room_detail_message_profile.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/detail_page/widgets/chat_room_detail_message_bubble.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/detail_page/widgets/chat_room_detail_message_profile.dart';
 import 'package:flutter/material.dart';
 
 class ChatRoomDetailMessageList extends StatelessWidget {
@@ -24,15 +24,13 @@ class ChatRoomDetailMessageList extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 5),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment:
-            isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+            mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
             children: [
               if (!isMe) ...[
                 ChatRoomDetailMessageProfile(user: message['user']),
                 const SizedBox(width: 10),
               ],
               ChatRoomDetailMessageBubble(message: message),
-              if (isMe) const SizedBox(width: 10),
             ],
           ),
         );
