@@ -89,23 +89,24 @@ class DetailReplyItem extends StatelessWidget {
           Row(
             children: [
               // 좋아요
-              InkWell(
-                onTap: () {
-                  print('좋아요 클릭됨: ${reply['id']}');
-                  // TODO: 좋아요 로직
-                },
-                borderRadius: BorderRadius.circular(50),
-                child: Row(
-                  children: [
-                    MIcon.page.community.likedRed,
-                    SizedBox(width: 2),
-                    MText.label2_5('$likeCount', color: MColor.kLabel.neutral),
-                  ],
-                ),
+              Row(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      print('좋아요 클릭됨: ${reply['id']}');
+                      // TODO: 좋아요 로직
+                    },
+                    borderRadius: BorderRadius.circular(50),
+                    child: Padding(
+                      padding: EdgeInsetsGeometry.directional(top: 4, bottom: 4, end: 4),
+                      child: MIcon.page.community.likedRed,
+                    ),
+                  ),
+                  MText.label2_5('$likeCount', color: MColor.kLabel.neutral),
+                ],
               ),
               SizedBox(width: 6),
-
-              // 대댓글 수
+              // 댓글
               Row(
                 children: [
                   MIcon.page.community.comment,
@@ -114,7 +115,6 @@ class DetailReplyItem extends StatelessWidget {
                 ],
               ),
               SizedBox(width: 10),
-
               // 답글 달기
               TextButton(
                 onPressed: () {

@@ -96,6 +96,7 @@ class DetailBoardArea extends StatelessWidget {
                 color: MColor.kLabel.normal,
               ),
               SizedBox(height: 14),
+              // 좋아요
               Row(
                 children: [
                   // 좋아요
@@ -125,7 +126,7 @@ class DetailBoardArea extends StatelessWidget {
                       MIcon.page.community.comment,
                       SizedBox(width: 4),
                       Text(
-                        '5',
+                        '4',
                         style: TextStyle(
                             color: MColor.kLabel.neutral,
                             fontSize: 14,
