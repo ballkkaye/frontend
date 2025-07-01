@@ -1,10 +1,11 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/user_match/update_page/widgets/update_labeled_field.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/update_page/widgets/update_select_btn.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/user_match/write_page/widgets/write_outlined_Input_field.dart';
 import 'package:flutter/material.dart';
+
+import 'user_update_labeled_field.dart';
+import 'user_update_outlinedInput_field.dart';
 
 class UserUpdateBody extends StatelessWidget {
   const UserUpdateBody({
@@ -32,49 +33,56 @@ class UserUpdateBody extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Stack(
-                        children: [
-                          // 배경 (동그라미 + 이미지 아이콘)
-                          Container(
-                            width: 80,
-                            height: 80,
-                            decoration: BoxDecoration(
-                              color: Colors.grey.shade200,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Center(child: MIcon.page.record.image),
-                          ),
+                      Container(
+                        height: 125,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 20, bottom: 20),
+                          child: Stack(
+                            children: [
+                              // 배경 (동그라미 + 이미지 아이콘)
+                              Container(
+                                width: 80,
+                                height: 80,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey.shade200,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Center(child: MIcon.page.record.image),
+                              ),
 
-                          // 오른쪽 아래 플러스 아이콘
-                          Positioned(
-                            bottom: 0,
-                            right: 0,
-                            child: Container(
-                              width: 24,
-                              height: 24,
-                              decoration: BoxDecoration(
-                                color: Colors.black,
-                                shape: BoxShape.circle,
+                              // 오른쪽 아래 플러스 아이콘
+                              Positioned(
+                                bottom: 0,
+                                right: 0,
+                                child: Container(
+                                  width: 24,
+                                  height: 24,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: const Icon(
+                                    Icons.add,
+                                    color: Colors.white,
+                                    size: 16,
+                                  ),
+                                ),
                               ),
-                              child: const Icon(
-                                Icons.add,
-                                color: Colors.white,
-                                size: 16,
-                              ),
-                            ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                     ],
                   ),
-                  UpdateLabeledField(
+                  SizedBox(height: 10),
+                  UserUpdateLabeledField(
                     label: '닉네임',
-                    child: WriteOutlinedInputField(
+                    child: UserUpdateOutlinedinputField(
                       hintText: 'ssar',
                       keyboardType: TextInputType.number,
                     ),
                   ),
-                  UpdateLabeledField(
+                  UserUpdateLabeledField(
                     label: '내 응원팀',
                     child: UpdateSelectBtn(
                       hintText: '롯데 자이언츠',
