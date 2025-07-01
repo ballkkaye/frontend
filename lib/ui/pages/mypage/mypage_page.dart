@@ -1,5 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/mypage/user/detail_page/user_detail_page.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/mypage_body.dart';
@@ -11,6 +12,12 @@ class MypagePage extends StatelessWidget {
     return Scaffold(
       appBar: _appbar(),
       body: MypageBody(),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => UserDetailPage()),
+        );
+      }),
       bottomNavigationBar: MypageNavBar(
         //임시 내비게이션바
         currentIndex: 2,
