@@ -21,7 +21,7 @@ class RainoutPredictionRainfall extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 25,
+          height: 50,
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -29,7 +29,10 @@ class RainoutPredictionRainfall extends StatelessWidget {
               children: List.generate(24, (index) {
                 return Row(
                   children: [
-                    RainoutPredictionRainfallBox(value: index == 3 ? 1 : 0),
+                    RainoutPredictionRainfallBox(
+                      value: index == 3 ? 1 : 0,
+                      hour: index.toString().padLeft(2, '0'),
+                    ),
                     if (index != 23) const SizedBox(width: 2),
                   ],
                 );
