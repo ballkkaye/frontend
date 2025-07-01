@@ -1,11 +1,11 @@
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:flutter/material.dart';
 
-class MyBottomNavigationBar extends StatelessWidget {
+class MypageNavBar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;
 
-  const MyBottomNavigationBar({
+  const MypageNavBar({
     super.key,
     required this.currentIndex,
     required this.onTap,
@@ -17,6 +17,8 @@ class MyBottomNavigationBar extends StatelessWidget {
       type: BottomNavigationBarType.fixed,
       selectedFontSize: 12.0,
       unselectedFontSize: 12.0,
+      selectedItemColor: Colors.grey,
+      unselectedItemColor: Colors.grey,
       currentIndex: currentIndex,
       onTap: onTap,
       items: [

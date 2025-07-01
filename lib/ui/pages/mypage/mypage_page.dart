@@ -2,8 +2,8 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets/my_bottom_navigation_bar.dart';
 import 'widgets/mypage_body.dart';
+import 'widgets/mypage_nav_bar.dart';
 
 class MypagePage extends StatelessWidget {
   @override
@@ -11,7 +11,7 @@ class MypagePage extends StatelessWidget {
     return Scaffold(
       appBar: _appbar(),
       body: MypageBody(),
-      bottomNavigationBar: MyBottomNavigationBar(
+      bottomNavigationBar: MypageNavBar(
         //임시 내비게이션바
         currentIndex: 2,
         onTap: (index) {
