@@ -1,14 +1,14 @@
-import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/widgets/user_match_list_filter_dropdown_button.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/widgets/list_filter_dropdown_btn.dart';
 import 'package:flutter/material.dart';
 
-class UserMatchListFilterDropdown extends StatefulWidget {
-  const UserMatchListFilterDropdown({super.key});
+class ListFilterDropdown extends StatefulWidget {
+  const ListFilterDropdown({super.key});
 
   @override
-  State<UserMatchListFilterDropdown> createState() => _UserMatchListFilterDropdownState();
+  State<ListFilterDropdown> createState() => _ListFilterDropdownState();
 }
 
-class _UserMatchListFilterDropdownState extends State<UserMatchListFilterDropdown> {
+class _ListFilterDropdownState extends State<ListFilterDropdown> {
   String selectedGender = '성별';
   String selectedAge = '연령대';
   String selectedTeam = '응원팀';
@@ -25,19 +25,19 @@ class _UserMatchListFilterDropdownState extends State<UserMatchListFilterDropdow
         spacing: 10,
         runSpacing: 8,
         children: [
-          UserMatchListFilterDropdownButton(
+          ListFilterDropdownBtn(
             label: '성별',
             selectedValue: selectedGender,
             options: genders,
             onChanged: (val) => setState(() => selectedGender = val),
           ),
-          UserMatchListFilterDropdownButton(
+          ListFilterDropdownBtn(
             label: '연령대',
             selectedValue: selectedAge,
             options: ages,
             onChanged: (val) => setState(() => selectedAge = val),
           ),
-          UserMatchListFilterDropdownButton(
+          ListFilterDropdownBtn(
             label: '응원팀',
             selectedValue: selectedTeam,
             options: teams,

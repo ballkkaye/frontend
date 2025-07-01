@@ -2,13 +2,13 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
-class UserMatchListFilterDropdownButton extends StatelessWidget {
+class ListFilterDropdownBtn extends StatelessWidget {
   final String label;
   final String selectedValue;
   final List<String> options;
   final ValueChanged<String> onChanged;
 
-  const UserMatchListFilterDropdownButton({
+  const ListFilterDropdownBtn({
     super.key,
     required this.label,
     required this.selectedValue,
