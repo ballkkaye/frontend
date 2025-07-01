@@ -1,3 +1,5 @@
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/today_game_page/widget/today_game_body.dart';
 import 'package:flutter/material.dart';
 
 class TodayGamePage extends StatelessWidget {
@@ -5,10 +7,18 @@ class TodayGamePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('오늘의 경기'),
-      ),
+    return Scaffold(
+      appBar: _appbar(),
+      body: TodayGameBody(),
+    );
+  }
+
+  AppBar _appbar() {
+    return AppBar(
+      centerTitle: true,
+      title: MText.h1('오늘의 경기'),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
     );
   }
 }
