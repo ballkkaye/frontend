@@ -2,7 +2,7 @@ import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/list_page/chat_room_list_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/game_center_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/home/home_page.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/user_match_list_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/list_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/visit_record_list_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

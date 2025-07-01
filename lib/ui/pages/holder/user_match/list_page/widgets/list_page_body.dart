@@ -12,14 +12,8 @@ class UserMatchListBody extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          child: Wrap(
-            spacing: 12,
-            runSpacing: 8,
-            children: [
-              ListFilterDropdown(),
-            ],
-          ),
+          padding: const EdgeInsets.only(top: 22, bottom: 12, left: 12, right: 12),
+          child: ListFilterDropdown(),
         ),
         Expanded(
           child: ListView.builder(
