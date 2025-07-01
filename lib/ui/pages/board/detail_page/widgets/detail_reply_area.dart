@@ -1,6 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/reply_item.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/detail_reply_item.dart';
 import 'package:flutter/material.dart';
 
 class DetailReplyArea extends StatelessWidget {
@@ -62,7 +62,7 @@ class DetailReplyArea extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MText.label1_5('댓글 4', color: MColor.kLabel.neutral),
-          ...replies.map((reply) => ReplyItem(
+          ...replies.map((reply) => DetailReplyItem(
                 reply: reply,
                 onMention: (tagReplyName) {
                   _replyController.text = tagReplyName;

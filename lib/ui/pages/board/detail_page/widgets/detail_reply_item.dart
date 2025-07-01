@@ -5,11 +5,11 @@ import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/detail_rep
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ReplyItem extends StatelessWidget {
+class DetailReplyItem extends StatelessWidget {
   final Map<String, dynamic> reply;
   final void Function(String mention)? onMention;
 
-  const ReplyItem({
+  const DetailReplyItem({
     super.key,
     required this.reply,
     this.onMention,
