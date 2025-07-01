@@ -3,11 +3,11 @@ import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/detail_page/user_match_detail_page.dart';
 import 'package:flutter/material.dart';
 
-import 'user_match_list_card_header.dart';
-import 'user_match_list_card_tag.dart';
+import 'list_card_header.dart';
+import 'list_card_tag.dart';
 
-class UserMatchListCard extends StatelessWidget {
-  const UserMatchListCard({super.key});
+class ListCard extends StatelessWidget {
+  const ListCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class UserMatchListCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // 경기 정보 + 작성 시간
-                const UserMatchListCardHeader(
+                const ListCardHeader(
                   matchTitle: "롯데 자이언츠 vs 두산 베어스",
                   postedTime: "15분전",
                 ),
@@ -57,9 +57,9 @@ class UserMatchListCard extends StatelessWidget {
                         Wrap(
                           spacing: 5,
                           children: const [
-                            UserMatchListCardTag(label: "여성"),
-                            UserMatchListCardTag(label: "20대 이상"),
-                            UserMatchListCardTag(label: "롯데 자이언츠"),
+                            ListCardTag(label: "여성"),
+                            ListCardTag(label: "20대 이상"),
+                            ListCardTag(label: "롯데 자이언츠"),
                           ],
                         ),
                         const SizedBox(height: 9),

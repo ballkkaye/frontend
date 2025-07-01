@@ -1,11 +1,11 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:flutter/material.dart';
 
-class UserMatchListCardHeader extends StatelessWidget {
+class ListCardHeader extends StatelessWidget {
   final String matchTitle;
   final String postedTime;
 
-  const UserMatchListCardHeader({
+  const ListCardHeader({
     super.key,
     required this.matchTitle,
     required this.postedTime,

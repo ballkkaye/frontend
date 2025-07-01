@@ -4,7 +4,7 @@ import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/detail_page/user_match_detail_page.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets/user_match_list_body.dart';
+import 'widgets/list_page_body.dart';
 
 class UserMatchListPage extends StatelessWidget {
   const UserMatchListPage({super.key});

@@ -2,10 +2,10 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
-class UserMatchListCardTag extends StatelessWidget {
+class ListCardTag extends StatelessWidget {
   final String label;
 
-  const UserMatchListCardTag({
+  const ListCardTag({
     super.key,
     required this.label,
   });
