@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
@@ -21,8 +22,7 @@ class DetailBoardArea extends StatelessWidget {
 중간에 비가 조금 왔지만 그마저도 추억이 되더라고요. 
 다음에도 이런 기회가 있다면 꼭 참여하고 싶습니다. 
 처음이라 걱정도 많았는데, 오히려 친구가 생긴 느낌이에요. 
-모두들 좋은 사람과 좋은 직관 경험 하셨으면 좋겠습니다!
-''';
+모두들 좋은 사람과 좋은 직관 경험 하셨으면 좋겠습니다!''';
 
     return Column(
       children: [
@@ -43,7 +43,7 @@ class DetailBoardArea extends StatelessWidget {
             ),
           ),
         ),
-        // 게시글 작성자 + 제목 + 내용 영역
+        // 게시글 작성자 + 제목 + 내용 + 좋아요 영역
         Padding(
           padding: EdgeInsetsGeometry.symmetric(horizontal: 16, vertical: 12),
           child: Column(
@@ -94,7 +94,47 @@ class DetailBoardArea extends StatelessWidget {
               MText.label1_5(
                 content,
                 color: MColor.kLabel.normal,
-              )
+              ),
+              SizedBox(height: 14),
+              Row(
+                children: [
+                  // 좋아요
+                  Row(
+                    children: [
+                      InkWell(
+                        onTap: () {},
+                        borderRadius: BorderRadius.circular(80),
+                        child: Padding(
+                          padding: EdgeInsetsGeometry.directional(top: 4, bottom: 4, end: 4),
+                          child: MIcon.page.community.likedRed,
+                        ),
+                      ),
+                      Text(
+                        '20',
+                        style: TextStyle(
+                            color: MColor.kLabel.neutral,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600),
+                      )
+                    ],
+                  ),
+                  SizedBox(width: 4),
+                  // 댓글
+                  Row(
+                    children: [
+                      MIcon.page.community.comment,
+                      SizedBox(width: 4),
+                      Text(
+                        '5',
+                        style: TextStyle(
+                            color: MColor.kLabel.neutral,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ],
           ),
         ),
