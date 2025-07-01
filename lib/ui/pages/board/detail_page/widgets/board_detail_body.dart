@@ -20,7 +20,7 @@ class BoardDetailBody extends StatelessWidget {
           DetailBoardArea(), // model.board
           Divider(
             color: MColor.kLabel.disable,
-            thickness: 10,
+            thickness: 15,
           ),
           // 댓글 영역
           DetailReplyArea(replyController: _replyController), // model.board.replies
