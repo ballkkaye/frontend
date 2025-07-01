@@ -1,6 +1,8 @@
 import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/detail_delete_alert.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/detail_page/widgets/detail_action_btn.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 
 class DetailActionSheet extends StatelessWidget {
   const DetailActionSheet({

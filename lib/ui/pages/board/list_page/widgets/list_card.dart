@@ -1,5 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class ListCard extends StatelessWidget {
@@ -23,22 +24,15 @@ class ListCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('ssar',
-                      style: TextStyle(
-                          color: MColor.kLabel.neutral, fontSize: 14, fontWeight: FontWeight.w600)),
-                  Text(
-                    '15분전',
-                    style: TextStyle(
-                        color: MColor.kLabel.normal, fontSize: 12, fontWeight: FontWeight.w400),
-                  ),
+                  MText.label1_5('ssar', color: MColor.kLabel.neutral),
+                  MText.label2_5('15분전', color: MColor.kLabel.normal),
                 ],
               ),
               SizedBox(height: 4),
               // 게시글 제목
-              Text(
+              MText.label1_5(
                 '동행후기 써봄',
-                style: TextStyle(
-                    color: MColor.kLabel.normal, fontSize: 16, fontWeight: FontWeight.w600),
+                color: MColor.kLabel.normal,
               ),
               SizedBox(height: 16),
               // 좋아요 + 댓글 수
@@ -51,17 +45,12 @@ class ListCard extends StatelessWidget {
                         onTap: () {},
                         borderRadius: BorderRadius.circular(80),
                         child: Padding(
-                          padding: EdgeInsetsGeometry.directional(top: 4, bottom: 4, end: 4),
+                          padding: EdgeInsetsGeometry.directional(
+                              top: 4, bottom: 4, end: 4),
                           child: MIcon.page.community.likedRed,
                         ),
                       ),
-                      Text(
-                        '20',
-                        style: TextStyle(
-                            color: MColor.kLabel.neutral,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600),
-                      )
+                      MText.label1_5('20', color: MColor.kLabel.neutral)
                     ],
                   ),
                   SizedBox(width: 4),
@@ -70,13 +59,7 @@ class ListCard extends StatelessWidget {
                     children: [
                       MIcon.page.community.comment,
                       SizedBox(width: 4),
-                      Text(
-                        '5',
-                        style: TextStyle(
-                            color: MColor.kLabel.neutral,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600),
-                      ),
+                      MText.label1_5('5', color: MColor.kLabel.neutral)
                     ],
                   ),
                 ],

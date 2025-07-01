@@ -25,7 +25,8 @@ class ListTeamCategoryItem extends StatelessWidget {
             Stack(
               children: [
                 CircleAvatar(
-                  backgroundColor: imgUrl != null ? null : MColor.kPrimary.strong,
+                  backgroundColor:
+                      imgUrl != null ? null : MColor.kPrimary.strong,
                   radius: 30,
                   child: imgUrl != null
                       ? ClipOval(
@@ -48,7 +49,8 @@ class ListTeamCategoryItem extends StatelessWidget {
                     top: 0,
                     right: 0,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 6, vertical: 1),
                       decoration: BoxDecoration(
                         color: Colors.black,
                         borderRadius: BorderRadius.circular(12),

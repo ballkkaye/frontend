@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/widgets/list_calendar.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/widgets/list_game_card.dart';
 import 'package:flutter/material.dart';

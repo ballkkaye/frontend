@@ -1,0 +1,6 @@
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+
+// ... existing code ...
+// 예: style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: MColor.kPrimary.strong)
+// → MText.button1('텍스트', color: MColor.kPrimary.strong)
+// ... existing code ...

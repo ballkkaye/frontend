@@ -55,10 +55,7 @@ class DetailReplyItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   MText.label2_4(author, color: MColor.kLabel.normal),
-                  Text(
-                    "롯데 자이언츠  •  $time",
-                    style: TextStyle(fontSize: 10, color: MColor.kLabel.neutral),
-                  ),
+                  MText.labelTiny(time, color: MColor.kLabel.neutral),
                 ],
               ),
               Spacer(),
@@ -98,7 +95,8 @@ class DetailReplyItem extends StatelessWidget {
                     },
                     borderRadius: BorderRadius.circular(50),
                     child: Padding(
-                      padding: EdgeInsetsGeometry.directional(top: 4, bottom: 4, end: 4),
+                      padding: EdgeInsetsGeometry.directional(
+                          top: 4, bottom: 4, end: 4),
                       child: MIcon.page.community.likedRed,
                     ),
                   ),
@@ -132,7 +130,7 @@ class DetailReplyItem extends StatelessWidget {
                 ),
                 child: Text(
                   '답글 달기',
-                  style: TextStyle(fontSize: 10, color: MColor.kLabel.neutral),
+                  style: MText.labelTiny('답글 달기', color: MColor.kLabel.neutral),
                 ),
               ),
             ],

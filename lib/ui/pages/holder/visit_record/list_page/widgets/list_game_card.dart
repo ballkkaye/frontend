@@ -21,11 +21,7 @@ class ListGameCard extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text("0",
-                  style: TextStyle(
-                      color: MColor.kLabel.disable,
-                      fontSize: 64,
-                      fontWeight: FontWeight.w700)),
+              MText.scoreHuge("0", color: MColor.kLabel.disable),
               Column(
                 children: [
                   Row(
@@ -42,11 +38,7 @@ class ListGameCard extends StatelessWidget {
                   MText.label3("대전한화생명이글스파크", color: MColor.kLabel.alternative),
                 ],
               ),
-              Text("5",
-                  style: TextStyle(
-                      color: MColor.kPrimary.strong,
-                      fontSize: 64,
-                      fontWeight: FontWeight.w700)),
+              MText.scoreHuge("5", color: MColor.kPrimary.strong),
             ],
           ),
         ),

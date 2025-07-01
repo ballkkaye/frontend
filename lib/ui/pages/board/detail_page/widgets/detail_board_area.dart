@@ -67,13 +67,7 @@ class DetailBoardArea extends StatelessWidget {
                       // 작성자 닉네임
                       MText.label1_6('ssar', color: MColor.kLabel.normal),
                       // 작성자 응원팀 ( != 게시글 카테고리)
-                      Text(
-                        "롯데 자이언츠",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: MColor.kLabel.neutral,
-                        ),
-                      ),
+                      MText.label2_4("롯데 자이언츠", color: MColor.kLabel.neutral),
                     ],
                   )
                 ],
@@ -82,12 +76,9 @@ class DetailBoardArea extends StatelessWidget {
               MText.h2('동행후기 써봄', color: MColor.kLabel.normal),
               SizedBox(height: 5),
               // 게시글 카테고리
-              Text(
+              MText.label2_4(
                 "롯데 자이언츠  •  15분전",
-                style: TextStyle(
-                  fontSize: 12,
-                  color: MColor.kLabel.neutral,
-                ),
+                color: MColor.kLabel.neutral,
               ),
               SizedBox(height: 14),
               // 내용
@@ -106,7 +97,8 @@ class DetailBoardArea extends StatelessWidget {
                         onTap: () {},
                         borderRadius: BorderRadius.circular(80),
                         child: Padding(
-                          padding: EdgeInsetsGeometry.directional(top: 4, bottom: 4, end: 4),
+                          padding: EdgeInsetsGeometry.directional(
+                              top: 4, bottom: 4, end: 4),
                           child: MIcon.page.community.likedRed,
                         ),
                       ),
