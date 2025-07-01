@@ -48,6 +48,11 @@ class MText {
         style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: color),
       );
 
+  static Text label1_4(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: color),
+      );
+
   static Text label2_7(String text, {Color? color}) => Text(
         text,
         style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: color),
@@ -56,6 +61,11 @@ class MText {
   static Text label2_5(String text, {Color? color}) => Text(
         text,
         style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: color),
+      );
+
+  static Text label2_4(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: color),
       );
 
   static Text label3(String text, {Color? color}) => Text(
