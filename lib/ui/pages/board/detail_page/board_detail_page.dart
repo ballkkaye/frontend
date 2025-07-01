@@ -8,6 +8,12 @@ import 'package:flutter/material.dart';
 
 class BoardDetailPage extends StatelessWidget {
   BoardDetailPage({super.key});
+
+  bool isBoardOwner = true; // 게시글 주인 판별 -> 더보기 버튼
+  int replyCount = 4; // 댓글 총 개수
+  TextEditingController _replyController = TextEditingController();
+  String mention = '';
+
   final List<Map<String, dynamic>> replies = [
     {
       'id': 1,
@@ -158,10 +164,48 @@ class BoardDetailPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  MText.label1_5('댓글', color: MColor.kLabel.neutral),
-                  ...replies.map((reply) => ReplyItem(reply: reply)),
+                  MText.label1_5('댓글 ${replyCount}', color: MColor.kLabel.neutral),
+                  ...replies.map((reply) => ReplyItem(
+                        reply: reply,
+                        onMention: (tagReplyName) {
+                          _replyController.text = tagReplyName;
+                          _replyController.selection = TextSelection.fromPosition(
+                            TextPosition(offset: _replyController.text.length),
+                          );
+                        },
+                      )), // TODO : 루트 댓글 입력 / 부모가 있는 댓글 입력
                 ],
               ),
+            ),
+          ],
+        ),
+      ),
+      // 댓글 입력창
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        color: Colors.white,
+        child: Row(
+          children: [
+            Expanded(
+              child: TextFormField(
+                controller: _replyController,
+                onChanged: (value) {},
+                decoration: InputDecoration(
+                  hintText: "댓글을 입력하세요",
+                  fillColor: MColor.kLabel.disable,
+                  filled: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide.none,
+                  ),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                ),
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: Icon(CupertinoIcons.arrow_up),
+              color: MColor.kLabel.neutral,
             ),
           ],
         ),
@@ -172,16 +216,19 @@ class BoardDetailPage extends StatelessWidget {
   AppBar _appbar(BuildContext context) {
     return AppBar(
       actions: [
-        IconButton(
-          onPressed: () {
-            showCupertinoModalPopup(
-              context: context,
-              builder: (context) {
-                return DetailActionSheet();
-              },
-            );
-          },
-          icon: MIcon.nav.top.dotVertical,
+        Visibility(
+          visible: isBoardOwner,
+          child: IconButton(
+            onPressed: () {
+              showCupertinoModalPopup(
+                context: context,
+                builder: (context) {
+                  return DetailActionSheet();
+                },
+              );
+            },
+            icon: MIcon.nav.top.dotHorizontal,
+          ),
         ),
       ],
     );

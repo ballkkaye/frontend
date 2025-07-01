@@ -7,20 +7,25 @@ import 'package:flutter/material.dart';
 
 class ReplyItem extends StatelessWidget {
   final Map<String, dynamic> reply;
+  final void Function(String mention)? onMention;
 
-  const ReplyItem({super.key, required this.reply});
+  const ReplyItem({
+    super.key,
+    required this.reply,
+    this.onMention,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final bool isReply = reply['parentId'] != null;
-    final String author = reply['author'];
-    final String content = reply['content'];
-    final String time = reply['time'];
-    final int likeCount = reply['likeCount'] ?? 0;
-    final int replyCount = reply['replyCount'] ?? 0;
-    final bool isReplyOwner = reply['isReplyOwner'];
-    final bool hasProfileImgUrl = true;
-    final String profileImgUrl = 'assets/images/lotte_emblem_sample.jpg';
+    bool isReply = reply['parentId'] != null;
+    String author = reply['author'];
+    String content = reply['content'];
+    String time = reply['time'];
+    int likeCount = reply['likeCount'] ?? 0;
+    int replyCount = reply['replyCount'] ?? 0;
+    bool isReplyOwner = reply['isReplyOwner'];
+    bool hasProfileImgUrl = true;
+    String profileImgUrl = 'assets/images/lotte_emblem_sample.jpg';
 
     return Padding(
       padding: EdgeInsets.only(
@@ -36,6 +41,7 @@ class ReplyItem extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // 프로필 이미지
               CircleAvatar(
                 radius: 16,
                 backgroundColor: Colors.white,
@@ -43,7 +49,8 @@ class ReplyItem extends StatelessWidget {
                     ? AssetImage(profileImgUrl)
                     : const AssetImage('assets/images/user.png'),
               ),
-              const SizedBox(width: 8),
+              SizedBox(width: 8),
+              // 응원 팀 및 작성 시간
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -54,10 +61,10 @@ class ReplyItem extends StatelessWidget {
                   ),
                 ],
               ),
-              const Spacer(),
-              // TODO : 로그인한 유저가 댓글 주인인 경우에만 버튼 활성화됨
+              Spacer(),
+              // 더보기 버튼
               Visibility(
-                visible: isReplyOwner,
+                visible: isReplyOwner, // 로그인한 유저=댓글 주인인 경우에만 활성화됨
                 child: InkWell(
                   onTap: () {
                     print('더보기 클릭됨: ${reply['id']}');
@@ -69,19 +76,15 @@ class ReplyItem extends StatelessWidget {
                       },
                     );
                   },
-                  child: MIcon.nav.top.dotVertical,
+                  child: MIcon.nav.top.dotHorizontal,
                 ),
               ),
             ],
           ),
-
-          const SizedBox(height: 8),
-
+          SizedBox(height: 8),
           // 댓글 내용
           MText.label1_5(content, color: MColor.kLabel.normal),
-
-          const SizedBox(height: 10),
-
+          SizedBox(height: 10),
           // 좋아요 + 대댓글 수 + 답글 달기
           Row(
             children: [
@@ -95,34 +98,32 @@ class ReplyItem extends StatelessWidget {
                 child: Row(
                   children: [
                     MIcon.page.community.likedRed,
-                    const SizedBox(width: 2),
+                    SizedBox(width: 2),
                     MText.label2_5('$likeCount', color: MColor.kLabel.neutral),
                   ],
                 ),
               ),
-              const SizedBox(width: 6),
+              SizedBox(width: 6),
 
               // 대댓글 수
-              InkWell(
-                onTap: () {
-                  print('답글 수 클릭됨: ${reply['id']}');
-                  // TODO: 대댓글 펼치기 등
-                },
-                child: Row(
-                  children: [
-                    MIcon.page.community.comment,
-                    const SizedBox(width: 2),
-                    MText.label2_5('$replyCount', color: MColor.kLabel.neutral),
-                  ],
-                ),
+              Row(
+                children: [
+                  MIcon.page.community.comment,
+                  SizedBox(width: 2),
+                  MText.label2_5('$replyCount', color: MColor.kLabel.neutral),
+                ],
               ),
-              const SizedBox(width: 10),
+              SizedBox(width: 10),
 
-              // 댓글 달기
+              // 답글 달기
               TextButton(
                 onPressed: () {
-                  print('댓글 달기 클릭됨: ${reply['id']}');
-                  // TODO: 댓글 입력창 열기
+                  print('답글 달기 클릭됨: ${reply['id']}');
+                  // TODO : 댓글 입력창에 @tagReplyName 자동 추가 author 대신 나중에 tagReplyName로 받기
+                  //  TODO : 대댓글 입력시 필요한 부모 및 tag id 전달
+                  if (onMention != null) {
+                    onMention!('@${reply['author']} ');
+                  }
                 },
                 style: ButtonStyle(
                   padding: WidgetStateProperty.all<EdgeInsets>(EdgeInsets.zero),
@@ -130,7 +131,7 @@ class ReplyItem extends StatelessWidget {
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
                 child: Text(
-                  '댓글 달기',
+                  '답글 달기',
                   style: TextStyle(fontSize: 10, color: MColor.kLabel.neutral),
                 ),
               ),
