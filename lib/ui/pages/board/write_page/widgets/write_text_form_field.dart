@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class WriteTextFormField extends StatelessWidget {
   final String hintText;
   final int maxLines;
+  final String? initialValue;
   final bool isDense;
   final void Function(String)? onChanged;
 
@@ -11,6 +12,7 @@ class WriteTextFormField extends StatelessWidget {
     super.key,
     required this.hintText,
     this.maxLines = 1,
+    required this.initialValue,
     this.isDense = false,
     this.onChanged,
   });
@@ -19,6 +21,7 @@ class WriteTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       maxLines: maxLines,
+      initialValue: initialValue,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(color: MColor.kLabel.disable),

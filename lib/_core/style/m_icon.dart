@@ -16,6 +16,7 @@ class _Top {
   final Widget plus = SvgPicture.asset('assets/icons/nav_top_plus.svg');
   final Widget write = SvgPicture.asset('assets/icons/nav_top_write.svg');
   final Widget dotHorizontal = SvgPicture.asset('assets/icons/page_user_match_dot_horizontal.svg');
+  final Widget dotVertical = SvgPicture.asset('assets/icons/page_user_match_dot_vertical.svg');
 }
 
 class _Bottom {
