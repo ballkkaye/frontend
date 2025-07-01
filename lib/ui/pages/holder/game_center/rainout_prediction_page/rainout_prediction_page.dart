@@ -1,14 +1,26 @@
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/rainout_prediction_page/widget/rainout_prediction_body.dart';
 import 'package:flutter/material.dart';
 
 class RainoutPredictionPage extends StatelessWidget {
-  const RainoutPredictionPage({super.key});
+  const RainoutPredictionPage({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('우천취소 예측'),
-      ),
+    return Scaffold(
+      appBar: _appbar(),
+      body: RainoutPredictionBody(),
+    );
+  }
+
+  AppBar _appbar() {
+    return AppBar(
+      centerTitle: true,
+      title: MText.h1('우천취소예측'),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
     );
   }
 }
