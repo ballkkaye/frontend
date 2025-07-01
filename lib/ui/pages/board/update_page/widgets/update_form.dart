@@ -3,6 +3,7 @@ import 'package:ballkkaye_frontend/ui/pages/board/write_page/widgets/write_img_s
 import 'package:ballkkaye_frontend/ui/pages/board/write_page/widgets/write_text_form_field.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/widgets/visit_record_btn.dart';
 import 'package:flutter/material.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text_form_field.dart';
 
 class UpdateForm extends StatelessWidget {
   const UpdateForm({
@@ -37,23 +38,24 @@ class UpdateForm extends StatelessWidget {
           ),
           SizedBox(height: 12),
           // 제목
-          WriteTextFormField(
+          MTextFormField(
+            hintText: '제목을 입력하세요',
             maxLines: 1,
-            initialValue: '동행후기 써봄',
+            initialValue: '',
             isDense: true,
-            hintText: '제목',
-            onChanged: (p0) {},
+            onChanged: (value) {},
           ),
           SizedBox(height: 12),
           // 이미지 버튼 (가로 스크롤)
           WriteImgSelector(),
           SizedBox(height: 12),
           // 내용
-          WriteTextFormField(
-            maxLines: 15,
-            initialValue: '불러온 글 내용',
-            hintText: '글 내용',
-            onChanged: (p0) {},
+          MTextFormField(
+            hintText: '내용을 입력하세요',
+            maxLines: 10,
+            initialValue: '',
+            isDense: false,
+            onChanged: (value) {},
           ),
           Spacer(),
           // 작성 버튼

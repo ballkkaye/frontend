@@ -5,6 +5,7 @@ import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widge
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widgets/write_result_selector.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widgets/write_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text_form_field.dart';
 
 class WriteBody extends StatelessWidget {
   const WriteBody({
@@ -39,7 +40,12 @@ class WriteBody extends StatelessWidget {
             WriteResultSelector(),
             SizedBox(height: 20),
             // 내용 입력 필드
-            WriteTextFormField(),
+            MTextFormField(
+              hintText: "경기 기록을 자유롭게 적어주세요",
+              maxLines: 6,
+              maxLength: 1000,
+              onChanged: (value) {},
+            ),
             Spacer(),
             // 작성완료 버튼
             VisitRecordBtn(
