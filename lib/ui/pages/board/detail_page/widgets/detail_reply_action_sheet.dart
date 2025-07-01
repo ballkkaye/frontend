@@ -1,8 +1,8 @@
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/detail_page/widgets/detail_action_btn.dart';
 import 'package:flutter/cupertino.dart';
 
-class DetailActionSheet extends StatelessWidget {
-  const DetailActionSheet({
+class DetailReplyActionSheet extends StatelessWidget {
+  const DetailReplyActionSheet({
     super.key,
   });
 
@@ -13,8 +13,7 @@ class DetailActionSheet extends StatelessWidget {
         DetailActionBtn(
           text: '수정하기',
           onPressed: () {
-            // TODO : reply/1/update
-            Navigator.popAndPushNamed(context, "/board/update");
+            // TODO : reply/{id}/update
           },
         ),
         DetailActionBtn(

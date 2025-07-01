@@ -72,7 +72,7 @@ class ReplyItem extends StatelessWidget {
                     showCupertinoModalPopup(
                       context: context,
                       builder: (context) {
-                        return DetailActionSheet();
+                        return DetailReplyActionSheet();
                       },
                     );
                   },
