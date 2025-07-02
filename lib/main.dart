@@ -13,6 +13,11 @@ import 'package:ballkkaye_frontend/ui/pages/holder/game_center/today_game_page/t
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/user_prediction_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/home/home_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/main_holder.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/detail_page/user_match_detail_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/list_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/select_page/user_match_select_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/update_page/user_match_update_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/write_page/user_match_write_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/detail_page/visit_record_detail_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/visit_record_list_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/select_page/visit_record_select_page.dart';
@@ -69,6 +74,11 @@ class MyApp extends StatelessWidget {
         "/board/detail": (context) => BoardDetailPage(),
         "/board/write": (context) => const BoardWritePage(),
         "/board/update": (context) => const BoardUpdatePage(),
+        "/user-match/update": (context) => const UserMatchUpdatePage(),
+        "/user-match/write": (context) => const UserMatchWritePage(),
+        "/user-match/detail": (context) => const UserMatchDetailPage(),
+        "/user-match/list": (context) => const UserMatchListPage(),
+        "/user-match/select": (context) => const UserMatchSelectPage(),
       },
     );
   }

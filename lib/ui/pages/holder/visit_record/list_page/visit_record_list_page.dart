@@ -14,11 +14,11 @@ class VisitRecordListPage extends StatelessWidget {
     return Scaffold(
       appBar: _appbar(context, cellSize),
       body: VisitRecordListBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, "/visit-record/detail");
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.pushNamed(context, "/visit-record/detail");
+      //   },
+      // ),
     );
   }
 

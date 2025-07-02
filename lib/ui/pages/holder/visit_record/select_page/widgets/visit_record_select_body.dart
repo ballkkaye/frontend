@@ -1,15 +1,14 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/select_page/widgets/select_dropdown_btn.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/widgets/visit_record_btn.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/widgets/visit_record_icon_btn.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_date_picker.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_dropdown_btn.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_icon_btn.dart';
 import 'package:flutter/material.dart';
 
-class SelectBody extends StatelessWidget {
-  SelectBody({super.key});
-  String selectedGame = '두산 베어스 vs 롯데 자이언츠 (사직)';
+class VisitRecordSelectBody extends StatelessWidget {
+  VisitRecordSelectBody({super.key});
   List<String> games = [
     '두산 베어스 vs 롯데 자이언츠 (사직)',
     'SSG 랜더스 vs LG 트윈스 (잠실)',
@@ -29,50 +28,50 @@ class SelectBody extends StatelessWidget {
             MText.h3_6("날짜 선택"),
             SizedBox(height: 10),
             // 날짜 선택 버튼
-            VisitRecordIconBtn(
+            MIconBtn(
               icon: MIcon.page.record.calendarBlack,
               text: "2025.06.27",
-              color: MColor.kLabel.normal,
+              textColor: MColor.kLabel.normal,
               onPressed: () {
                 print("날짜 선택됨");
                 // 날짜 선택 모달
-                _showCupertinoModalPopup(context);
+                showModalBottomSheet(
+                  backgroundColor: MColor.kBackground.normal,
+                  context: context,
+                  builder: (context) {
+                    return SizedBox(
+                      height: 250,
+                      child: MDatePicker(
+                        minimumDate: DateTime(2020, 3, 1),
+                        maximumDate: DateTime.now(),
+                        onDateTimeChanged: (value) {
+                          print("선택된 날짜: $value");
+                          // TODO : 상태 관리
+                        },
+                      ),
+                    );
+                  },
+                );
               },
             ),
             SizedBox(height: 16),
             MText.h3_6("경기 선택"),
             SizedBox(height: 10),
             // 경기 선택 버튼
-            SelectDropdownBtn(selectedGame: selectedGame, games: games),
+            MDropdownBtn(
+              hintText: '경기',
+              items: games,
+              onChanged: (value) {},
+            ),
             Spacer(),
             // 다음 버튼
-            VisitRecordBtn(
-              text: "다음",
+            MElevatedBtn(
+              text: '다음',
               onPressed: () {
                 Navigator.pushNamed(context, "/visit-record/write");
               },
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Future<dynamic> _showCupertinoModalPopup(BuildContext context) {
-    return showCupertinoModalPopup(
-      context: context,
-      builder: (context) => Container(
-        height: 250,
-        color: Colors.white,
-        child: CupertinoDatePicker(
-          mode: CupertinoDatePickerMode.date,
-          initialDateTime: DateTime.now(),
-          minimumDate: DateTime(2020, 3, 1),
-          maximumDate: DateTime.now(),
-          onDateTimeChanged: (value) {
-            print("선택된 날짜: $value");
-            // TODO : 상태 관리
-          },
         ),
       ),
     );

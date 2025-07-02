@@ -2,13 +2,15 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
-class VisitRecordBtn extends StatelessWidget {
+class MElevatedBtn extends StatelessWidget {
   final String text;
+  final bool isEnabled;
   final VoidCallback onPressed;
 
-  const VisitRecordBtn({
+  const MElevatedBtn({
     super.key,
     required this.text,
+    this.isEnabled = true,
     required this.onPressed,
   });
 
@@ -18,7 +20,7 @@ class VisitRecordBtn extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         minimumSize: const Size(double.infinity, 61),
-        backgroundColor: MColor.kPrimary.strong,
+        backgroundColor: isEnabled ? MColor.kPrimary.strong : MColor.kFill.strong,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),

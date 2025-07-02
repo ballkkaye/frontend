@@ -1,11 +1,12 @@
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
-class DetailActionBtn extends StatelessWidget {
+class MActionBtn extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
 
-  const DetailActionBtn({
+  const MActionBtn({
     super.key,
     required this.text,
     required this.onPressed,
@@ -16,10 +17,7 @@ class DetailActionBtn extends StatelessWidget {
     return CupertinoButton(
       onPressed: onPressed,
       padding: const EdgeInsets.symmetric(vertical: 16),
-      child: Text(
-        text,
-        style: const TextStyle(color: Colors.black),
-      ),
+      child: MText.modal2_4(text, color: MColor.kLabel.strong),
     );
   }
 }
