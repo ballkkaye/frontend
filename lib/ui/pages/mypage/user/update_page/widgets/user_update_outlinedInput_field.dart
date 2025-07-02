@@ -7,6 +7,8 @@ class UserUpdateOutlinedinputField extends StatefulWidget {
   final int maxLines;
   final TextInputType keyboardType;
   final int? maxLength;
+  final bool obscureText;
+
 
   const UserUpdateOutlinedinputField({
     super.key,
@@ -15,6 +17,7 @@ class UserUpdateOutlinedinputField extends StatefulWidget {
     this.maxLines = 1,
     this.keyboardType = TextInputType.text,
     this.maxLength,
+    this.obscureText = false,
   });
 
   @override

@@ -2,6 +2,7 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/update_page/widgets/update_select_btn.dart';
+import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_page/user_update_password_page.dart';
 import 'package:flutter/material.dart';
 
 import 'user_update_labeled_field.dart';
@@ -79,7 +80,7 @@ class UserUpdateBody extends StatelessWidget {
                     label: '닉네임',
                     child: UserUpdateOutlinedinputField(
                       hintText: 'ssar',
-                      keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.text,
                     ),
                   ),
                   UserUpdateLabeledField(
@@ -102,9 +103,12 @@ class UserUpdateBody extends StatelessWidget {
                     children: [
                       TextButton(
                         onPressed: () {
-                          // 로직
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (_) => UserUpdatePasswordPage()),
+                          );
                         },
-                        child: MText.label1_5('비밀번호 번경하기', color: MColor.kLabel.normal),
+                        child: MText.label1_5('비밀번호 변경하기', color: MColor.kLabel.normal),
                       ),
                     ],
                   ),

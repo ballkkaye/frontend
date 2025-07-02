@@ -2,6 +2,7 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
+import 'user_update_password_page.dart';
 import 'widgets/user_update_body.dart';
 
 class UserUpdatePage extends StatelessWidget {
@@ -10,6 +11,12 @@ class UserUpdatePage extends StatelessWidget {
     return Scaffold(
       appBar: _appbar(context),
       body: UserUpdateBody(),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => UserUpdatePasswordPage()),
+        );
+      }),
     );
   }
 
