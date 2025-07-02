@@ -2,7 +2,7 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/update_page/widgets/update_select_btn.dart';
-import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_page/user_update_password_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_password_page/user_update_password_page.dart';
 import 'package:flutter/material.dart';
 
 import 'user_update_labeled_field.dart';

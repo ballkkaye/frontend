@@ -2,7 +2,7 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
-import 'user_update_password_page.dart';
+import '../update_password_page/user_update_password_page.dart';
 import 'widgets/user_update_body.dart';
 
 class UserUpdatePage extends StatelessWidget {
