@@ -1,9 +1,7 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/ui/widgets/m_alert_dialog.dart';
-import 'package:ballkkaye_frontend/ui/widgets/m_update_delete_action_sheet.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_more_option_btn.dart';
 import 'package:flutter/material.dart';
 
 class DetailReplyItem extends StatelessWidget {
@@ -66,39 +64,15 @@ class DetailReplyItem extends StatelessWidget {
               // 더보기 버튼
               Visibility(
                 visible: isReplyOwner, // 로그인한 유저=댓글 주인인 경우에만 활성화됨
-                child: InkWell(
-                  onTap: () {
-                    print('더보기 클릭됨: ${reply['id']}');
-                    // TODO : actionSheet에 id 넘겨야 됨
-                    // 수정/삭제/취소 모달 팝업
-                    showCupertinoModalPopup(
-                      context: context,
-                      builder: (context) {
-                        return MUpdateDeleteActionSheet(
-                          onUpdate: () {}, // TODO : 댓글 수정 -> 입력창에 댓글 기존 내용 불러오기
-                          onDelete: () {
-                            Navigator.pop(context);
-                            showCupertinoDialog(
-                              context: context,
-                              builder: (BuildContext context) => MAlertDialog(
-                                title: '댓글 삭제',
-                                content: '댓글을 삭제하시겠습니까?',
-                                onConfirm: () {
-                                  Navigator.pop(context); // TODO : 삭제 로직
-                                },
-                                onCancel: () {
-                                  Navigator.pop(context);
-                                },
-                                confirmText: '삭제',
-                                cancelText: '취소',
-                              ),
-                            );
-                          },
-                        );
-                      },
-                    );
-                  },
-                  child: MIcon.nav.top.dotHorizontal,
+                child: MMoreOptionBtn(
+                  icon: MIcon.nav.top.dotHorizontal,
+                  onUpdate: () {}, // TODO : 댓글 수정 -> 입력창에 댓글 기존 내용 불러오기
+                  alertTitle: '댓글 삭제',
+                  alertContent: '댓글을 삭제하시겠습니까?',
+                  onAlertConfirm: () {}, // 다이얼로그 닫힌 뒤 동작
+                  onAlertCancel: () {}, // 다이얼로그 닫힌 뒤 동작
+                  alertConfirmText: '삭제',
+                  alertCancelText: '취소',
                 ),
               ),
             ],

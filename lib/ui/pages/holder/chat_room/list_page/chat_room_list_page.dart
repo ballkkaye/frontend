@@ -13,10 +13,11 @@ class ChatRoomListPage extends StatelessWidget {
     return Scaffold(
       appBar: _appbar(context),
       body: ChatRoomListBody(),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => ChatRoomDetailPage()),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => ChatRoomDetailPage()),
           );
         },
       ),
@@ -25,14 +26,8 @@ class ChatRoomListPage extends StatelessWidget {
 
   AppBar _appbar(BuildContext context) {
     return AppBar(
-      title: MText.h1('채팅',color: MColor.kLabel.normal),
+      title: MText.h1('채팅', color: MColor.kLabel.normal),
       centerTitle: true,
-      backgroundColor: Colors.white,
-      elevation: 1,
-      leading: IconButton(
-        icon: Icon(Icons.arrow_back, color: Colors.black),
-        onPressed: () => Navigator.pop(context),
-      ),
     );
   }
 }

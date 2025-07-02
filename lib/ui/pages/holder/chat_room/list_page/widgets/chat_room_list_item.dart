@@ -2,7 +2,7 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/detail_page/chat_room_detail_page.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/list_page/widgets/chat_room_list_exit_dialog.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/widgets/chat_room_leave_btn.dart';
 import 'package:flutter/material.dart';
 
 class ChatRoomListItem extends StatelessWidget {
@@ -46,7 +46,12 @@ class ChatRoomListItem extends StatelessWidget {
             chat['time']!,
             color: MColor.kLabel.neutral,
           ),
-          trailing: ChatRoomListExitDialog(),
+          trailing: ChatRoomLeaveBtn(
+            icon: MIcon.nav.top.dotVertical,
+            onConfirm: () {
+              print("list에서 채팅방 나감");
+            },
+          ),
           onTap: () {
             Navigator.push(
               context,
