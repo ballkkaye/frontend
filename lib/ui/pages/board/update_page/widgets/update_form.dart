@@ -1,7 +1,7 @@
-import 'package:ballkkaye_frontend/_core/style/m_text_form_field.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/write_page/widgets/write_dropdown_field.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/write_page/widgets/write_img_selector.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_text_form_field.dart';
 import 'package:flutter/material.dart';
 
 class UpdateForm extends StatelessWidget {

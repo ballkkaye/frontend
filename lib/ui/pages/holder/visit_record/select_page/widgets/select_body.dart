@@ -2,8 +2,8 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/select_page/widgets/select_dropdown_btn.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/widgets/visit_record_btn.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/widgets/visit_record_icon_btn.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -46,8 +46,8 @@ class SelectBody extends StatelessWidget {
             SelectDropdownBtn(selectedGame: selectedGame, games: games),
             Spacer(),
             // 다음 버튼
-            VisitRecordBtn(
-              text: "다음",
+            MElevatedBtn(
+              text: '다음',
               onPressed: () {
                 Navigator.pushNamed(context, "/visit-record/write");
               },

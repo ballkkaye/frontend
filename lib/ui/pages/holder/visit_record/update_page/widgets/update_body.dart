@@ -1,11 +1,10 @@
-import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/update_page/widgets/update_text_form_Field.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/widgets/visit_record_btn.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/widgets/visit_record_game.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widgets/write_icon_btn.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widgets/write_img_thumbnail.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widgets/write_result_selector.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_text_form_field.dart';
 import 'package:flutter/material.dart';
-import 'package:ballkkaye_frontend/_core/style/m_text_form_field.dart';
 
 class UpdateBody extends StatelessWidget {
   const UpdateBody({
@@ -48,9 +47,9 @@ class UpdateBody extends StatelessWidget {
               onChanged: (value) {},
             ),
             Spacer(),
-            // 작성완료 버튼
-            VisitRecordBtn(
-              text: "수정",
+            // 수정 완료 버튼
+            MElevatedBtn(
+              text: '수정',
               onPressed: () {
                 Navigator.pop(context);
               },
