@@ -1,7 +1,8 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/cupertino.dart';
 
-class DetailDeleteAlert extends StatelessWidget {
+class MAlertDialog extends StatelessWidget {
   final String title;
   final String content;
   final VoidCallback onConfirm;
@@ -9,7 +10,7 @@ class DetailDeleteAlert extends StatelessWidget {
   final String confirmText;
   final String cancelText;
 
-  const DetailDeleteAlert({
+  const MAlertDialog({
     super.key,
     required this.title,
     required this.content,
@@ -22,23 +23,21 @@ class DetailDeleteAlert extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoAlertDialog(
-      title: Text(title),
-      content: Text(content),
+      // title: Text(title),
+      title: MText.modal1(title),
+      content: MText.modal3_4(content),
       actions: <CupertinoDialogAction>[
         // 왼쪽 버튼
         CupertinoDialogAction(
           onPressed: onCancel,
           isDefaultAction: true,
-          child: Text(
-            cancelText,
-            style: TextStyle(color: MColor.kLabel.neutral),
-          ),
+          child: MText.modal2_4(cancelText, color: MColor.kLabel.neutral),
         ),
         // 오른쪽 버튼
         CupertinoDialogAction(
           onPressed: onConfirm,
           isDestructiveAction: true,
-          child: Text(confirmText),
+          child: MText.modal2_4(confirmText),
         ),
       ],
     );

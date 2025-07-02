@@ -1,8 +1,11 @@
+import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/write_page/user_match_write_page.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_alert_dialog.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_update_delete_action_sheet.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets/detail_action_sheet.dart';
 import 'widgets/detail_body.dart';
 
 class UserMatchDetailPage extends StatelessWidget {
@@ -25,21 +28,47 @@ class UserMatchDetailPage extends StatelessWidget {
     );
   }
 
-  PreferredSizeWidget _appbar(BuildContext context) {
+  AppBar _appbar(BuildContext context) {
     return AppBar(
+      actionsPadding: EdgeInsets.symmetric(horizontal: 10),
       title: MText.h1("동행"),
       centerTitle: true,
-      leading: IconButton(
-        icon: Icon(Icons.arrow_back),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-      ),
       actions: [
-        DetailActionSheet(),
-        SizedBox(width: 16),
+        // 더보기 버튼
+        IconButton(
+          onPressed: () {
+            showCupertinoModalPopup(
+              context: context,
+              builder: (context) {
+                return MUpdateDeleteActionSheet(
+                  onUpdate: () {
+                    Navigator.popAndPushNamed(context, '/user-match/update');
+                  },
+                  onDelete: () {
+                    Navigator.pop(context);
+                    showCupertinoDialog(
+                      context: context,
+                      builder: (BuildContext context) => MAlertDialog(
+                        title: '동행글 삭제',
+                        content: '동행글을 삭제하시겠습니까?',
+                        onConfirm: () {
+                          Navigator.pop(context); // TODO : 삭제 로직
+                        },
+                        onCancel: () {
+                          Navigator.pop(context);
+                        },
+                        confirmText: '삭제',
+                        cancelText: '취소',
+                      ),
+                    );
+                  },
+                );
+              },
+            );
+          }, // TODO : 버튼 수정
+          icon: MIcon.nav.top.dotHorizontal,
+        ),
       ],
-      elevation: 0,
     );
   }
 }

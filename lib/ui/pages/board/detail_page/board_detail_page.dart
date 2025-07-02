@@ -1,8 +1,9 @@
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/board_detail_body.dart';
-import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/detail_action_sheet.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/detail_reply_input_bar.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_alert_dialog.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_update_delete_action_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +34,29 @@ class BoardDetailPage extends StatelessWidget {
               showCupertinoModalPopup(
                 context: context,
                 builder: (context) {
-                  return DetailActionSheet();
+                  return MUpdateDeleteActionSheet(
+                    onUpdate: () {
+                      Navigator.popAndPushNamed(context, '/board/update');
+                    },
+                    onDelete: () {
+                      Navigator.pop(context);
+                      showCupertinoDialog(
+                        context: context,
+                        builder: (BuildContext context) => MAlertDialog(
+                          title: '게시글 삭제',
+                          content: '게시글을 삭제하시겠습니까?',
+                          onConfirm: () {
+                            Navigator.pop(context); // TODO : 삭제 로직
+                          },
+                          onCancel: () {
+                            Navigator.pop(context);
+                          },
+                          confirmText: '삭제',
+                          cancelText: '취소',
+                        ),
+                      );
+                    },
+                  );
                 },
               );
             },
