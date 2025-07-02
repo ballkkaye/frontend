@@ -22,14 +22,10 @@ class UserMatchUpdatePage extends StatelessWidget {
       ),
     );
   }
-  
+
   AppBar _appbar(BuildContext context) {
     return AppBar(
-      title: MText.h1('동행 작성', color: MColor.kLabel.normal),
-      leading: IconButton(
-        icon: const Icon(Icons.arrow_back),
-        onPressed: () => Navigator.pop(context),
-      ),
+      title: MText.h1('동행 글수정', color: MColor.kLabel.normal),
       centerTitle: true,
     );
   }

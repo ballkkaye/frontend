@@ -2,6 +2,7 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/update_page/widgets/update_gender_toggle.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/update_page/widgets/update_select_btn.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
 import 'package:flutter/material.dart';
 
 import '../../write_page/widgets/write_outlined_Input_field.dart';
@@ -26,8 +27,7 @@ class UpdateBody extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    MText.label1_5('2025.06.28 한화 vs 롯데',
-                        color: MColor.kLabel.normal),
+                    MText.label1_5('2025.06.28 한화 vs 롯데', color: MColor.kLabel.normal),
                   ],
                 ),
                 const SizedBox(height: 10),
@@ -51,13 +51,7 @@ class UpdateBody extends StatelessWidget {
                   label: '희망 연령',
                   child: UpdateSelectBtn(
                     hintText: '연령',
-                    options: [
-                      '~20대',
-                      '20대 ~ 30대',
-                      '30대 ~ 40대',
-                      '40대 이상',
-                      '연령 무관'
-                    ],
+                    options: ['~20대', '20대 ~ 30대', '30대 ~ 40대', '40대 이상', '연령 무관'],
                   ),
                 ),
                 UpdateLabeledField(
@@ -83,19 +77,13 @@ class UpdateBody extends StatelessWidget {
                     maxLength: 1000,
                   ),
                 ),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: MColor.kPrimary.strong,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadiusGeometry.circular(8)),
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                    ),
-                    child: MText.button2('완료', color: MColor.kLabel.white),
-                  ),
-                ),
+                MElevatedBtn(
+                  text: '수정',
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  },
+                )
               ],
             ),
           ),
