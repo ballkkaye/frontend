@@ -1,5 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/home/home_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/home/widget/home_today_game_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -24,9 +24,8 @@ class _HomeTodatGameSliderState extends State<HomeTodatGameSlider> {
           CarouselSlider(
             carouselController: _carouselSliderController,
             options: CarouselOptions(
-              aspectRatio: 328 / 220,
+              aspectRatio: 328 / 160,
               enableInfiniteScroll: true,
-              enlargeCenterPage: true,
               onPageChanged: (index, reason) {
                 setState(() {
                   _currentIndex = index;

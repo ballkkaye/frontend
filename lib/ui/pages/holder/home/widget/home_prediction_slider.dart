@@ -1,5 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/home/home_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/home/widget/home_prdiction_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -24,9 +24,8 @@ class _HomePredictionSliderState extends State<HomePredictionSlider> {
           CarouselSlider(
             carouselController: _carouselSliderController,
             options: CarouselOptions(
-              height: 700,
+              aspectRatio: 328 / 312,
               enableInfiniteScroll: true,
-              enlargeCenterPage: true,
               onPageChanged: (index, reason) {
                 setState(() {
                   _currentIndex = index;
