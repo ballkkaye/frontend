@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_date_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -14,7 +15,7 @@ class _TodayGameCalenderState extends State<TodayGameCalender> {
 
   void _changeDate(int offset) {
     final newDate = selectedDate.add(Duration(days: offset));
-    // 미래는 선택 불가
+    // 미래는 선택 불가 // TODO : 오늘의 경기는 미래 선택 가능 -> 수정 필요
     if (newDate.isAfter(DateTime.now())) return;
     setState(() {
       selectedDate = newDate;
@@ -23,21 +24,18 @@ class _TodayGameCalenderState extends State<TodayGameCalender> {
 
   void _showDatePicker() {
     showModalBottomSheet(
+      backgroundColor: MColor.kBackground.normal,
       context: context,
       builder: (context) {
-        return SizedBox(
-          height: 250,
-          child: CupertinoDatePicker(
-            mode: CupertinoDatePickerMode.date,
-            initialDateTime: selectedDate,
-            maximumDate: DateTime.now(),
-            onDateTimeChanged: (DateTime newDate) {
-              setState(() {
-                print('날짜 선택됨');
-                selectedDate = newDate;
-              });
-            },
-          ),
+        return MDatePicker(
+          minimumDate: DateTime(2020, 3, 1), // TODO : 실제 서버에서 전달해주는 전체 날짜 중 첫 날짜 기준으로 변경
+          maximumDate: DateTime.now(),
+          onDateTimeChanged: (DateTime newDate) {
+            setState(() {
+              print('날짜 선택됨');
+              selectedDate = newDate;
+            });
+          },
         );
       },
     );
