@@ -40,7 +40,6 @@ class WriteForm extends StatelessWidget {
             hintText: '제목을 입력하세요',
             maxLines: 1,
             initialValue: '',
-            isDense: true,
             onChanged: (value) {},
           ),
           SizedBox(height: 12),

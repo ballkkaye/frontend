@@ -41,8 +41,8 @@ class UpdateForm extends StatelessWidget {
             hintText: '제목을 입력하세요',
             maxLines: 1,
             initialValue: '',
-            isDense: true,
             onChanged: (value) {},
+            keyboardType: TextInputType.text,
           ),
           SizedBox(height: 12),
           // 이미지 버튼 (가로 스크롤)
@@ -55,6 +55,7 @@ class UpdateForm extends StatelessWidget {
             initialValue: '',
             isDense: false,
             onChanged: (value) {},
+            keyboardType: TextInputType.text,
           ),
           Spacer(),
           // 작성 버튼

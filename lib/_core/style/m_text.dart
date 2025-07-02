@@ -33,6 +33,16 @@ class MText {
         style: TextStyle(fontSize: 11, fontWeight: FontWeight.w500, color: color),
       );
 
+  static Text input1_5(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: color),
+      );
+
+  static Text input1_4(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: color),
+      );
+
   static Text valid(String text, {Color? color}) => Text(
         text,
         style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: color),

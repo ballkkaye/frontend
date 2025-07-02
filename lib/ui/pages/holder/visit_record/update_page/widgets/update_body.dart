@@ -45,6 +45,7 @@ class UpdateBody extends StatelessWidget {
               maxLength: 1000,
               initialValue: "경기 진짜 재밌었다~",
               onChanged: (value) {},
+              keyboardType: TextInputType.text,
             ),
             Spacer(),
             // 수정 완료 버튼

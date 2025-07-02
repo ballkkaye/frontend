@@ -31,14 +31,11 @@ class WriteResultSelector extends StatelessWidget {
                     ),
                     // 테두리 색상
                     border: Border.all(
-                        color: selected == 'win'
-                            ? MColor.kPrimary.strong
-                            : MColor.kLine.normal),
+                        color: selected == 'win' ? MColor.kPrimary.strong : MColor.kLine.normal),
                   ),
                   child: MText.button3("승",
-                      color: selected == 'win'
-                          ? MColor.kPrimary.strong
-                          : MColor.kLabel.alternative),
+                      color:
+                          selected == 'win' ? MColor.kPrimary.strong : MColor.kLabel.alternative),
                 ),
               ),
             ),
@@ -57,14 +54,11 @@ class WriteResultSelector extends StatelessWidget {
                   decoration: BoxDecoration(
                     // 테두리 색상
                     border: Border.all(
-                        color: selected == 'draw'
-                            ? MColor.kPrimary.strong
-                            : MColor.kLine.normal),
+                        color: selected == 'draw' ? MColor.kPrimary.strong : MColor.kLine.normal),
                   ),
                   child: MText.button3("무",
-                      color: selected == 'draw'
-                          ? MColor.kPrimary.strong
-                          : MColor.kLabel.alternative),
+                      color:
+                          selected == 'draw' ? MColor.kPrimary.strong : MColor.kLabel.alternative),
                 ),
               ),
             ),
@@ -87,14 +81,11 @@ class WriteResultSelector extends StatelessWidget {
                     ),
                     // 테두리 색상
                     border: Border.all(
-                        color: selected == 'lose'
-                            ? MColor.kPrimary.strong
-                            : MColor.kLine.normal),
+                        color: selected == 'lose' ? MColor.kPrimary.strong : MColor.kLine.normal),
                   ),
                   child: MText.button3("패",
-                      color: selected == 'lose'
-                          ? MColor.kPrimary.strong
-                          : MColor.kLabel.alternative),
+                      color:
+                          selected == 'lose' ? MColor.kPrimary.strong : MColor.kLabel.alternative),
                 ),
               ),
             ),

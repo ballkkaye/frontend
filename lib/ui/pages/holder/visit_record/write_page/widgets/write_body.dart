@@ -4,6 +4,7 @@ import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widge
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widgets/write_result_selector.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_text_form_field.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_toggle_btn.dart';
 import 'package:flutter/material.dart';
 
 class WriteBody extends StatelessWidget {
@@ -14,6 +15,7 @@ class WriteBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool hasImage = true;
+    List<String> results = ['승', '무', '패'];
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
@@ -36,7 +38,13 @@ class WriteBody extends StatelessWidget {
               ),
             ),
             // 승 무 패 선택 버튼
-            WriteResultSelector(),
+            //WriteResultSelector(),
+            MToggleBtn(
+              options: results,
+              onSelected: (value) {
+                print(value);
+              },
+            ),
             SizedBox(height: 20),
             // 내용 입력 필드
             MTextFormField(
@@ -44,6 +52,7 @@ class WriteBody extends StatelessWidget {
               maxLines: 6,
               maxLength: 1000,
               onChanged: (value) {},
+              keyboardType: TextInputType.text,
             ),
             Spacer(),
             // 작성 완료 버튼

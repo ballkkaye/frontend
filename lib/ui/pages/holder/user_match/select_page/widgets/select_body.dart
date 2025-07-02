@@ -1,8 +1,6 @@
-import 'package:ballkkaye_frontend/_core/style/m_color.dart';
-import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/widgets/visit_record_icon_btn.dart';
-import 'package:ballkkaye_frontend/ui/widgets/m_date_picker.dart';
+import 'package:ballkkaye_frontend/_core/utils/m_util.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_date_select_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_dropdown_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
 import 'package:flutter/material.dart';
@@ -28,30 +26,13 @@ class SelectBody extends StatelessWidget {
             MText.h3_6("날짜 선택"),
             SizedBox(height: 10),
             // 날짜 선택 버튼
-            VisitRecordIconBtn(
-              icon: MIcon.page.record.calendarBlack,
-              text: "2025.06.27",
-              color: MColor.kLabel.normal,
-              onPressed: () {
-                print("날짜 선택됨");
-                // 날짜 선택 모달
-                showModalBottomSheet(
-                  backgroundColor: MColor.kBackground.normal,
-                  context: context,
-                  builder: (context) {
-                    return SizedBox(
-                      height: 250,
-                      child: MDatePicker(
-                        minimumDate: DateTime(2020, 3, 1),
-                        maximumDate: DateTime.now(),
-                        onDateTimeChanged: (value) {
-                          print("선택된 날짜: $value");
-                          // TODO : 상태 관리
-                        },
-                      ),
-                    );
-                  },
-                );
+            MDateSelectBtn(
+              text: '2025.06.27',
+              minimumDate: today, // 최소 오늘
+              maximumDate:
+                  DateTime(DateTime.now().year + 1, DateTime.now().month + 1, 0), // 최대 일년 뒤
+              onDateTimeChanged: (value) {
+                // TODO : 날짜 선택해서 들어온 값 value -> text로 들어가도록 하면 됨
               },
             ),
             SizedBox(height: 16),
@@ -68,7 +49,7 @@ class SelectBody extends StatelessWidget {
             MElevatedBtn(
               text: '다음',
               onPressed: () {
-                Navigator.pushNamed(context, "/visit-record/write");
+                Navigator.pushNamed(context, "/user-match/write");
               },
             ),
           ],

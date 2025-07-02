@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/_core/utils/m_util.dart';
 import 'package:flutter/cupertino.dart';
 
 class MDatePicker extends StatelessWidget {
@@ -14,17 +15,12 @@ class MDatePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // maximumDate에 DataTime.now()가 들어오면 initialDateTime이 microseconds 단위에서 앞서는 경우 예방
-    DateTime initialDateTime = DateTime(
-      DateTime.now().year,
-      DateTime.now().month,
-      DateTime.now().day,
-    );
     return SizedBox(
       height: 250,
       child: CupertinoDatePicker(
         mode: CupertinoDatePickerMode.date,
-        initialDateTime: initialDateTime,
+        initialDateTime:
+            today, // maximumDate에 DataTime.now()가 들어오면 initialDateTime이 microseconds 단위에서 앞서는 경우 예방
         minimumDate: minimumDate,
         maximumDate: maximumDate,
         onDateTimeChanged: onDateTimeChanged,
