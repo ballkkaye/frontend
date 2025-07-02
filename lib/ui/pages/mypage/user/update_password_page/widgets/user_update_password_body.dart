@@ -1,8 +1,8 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_password_page/widgets/user_update_outlinedInput_field.dart';
 import 'package:flutter/material.dart';
 
-import 'user_update_outlinedInput_field.dart';
 
 class UserUpdatePasswordBody extends StatelessWidget {
   const UserUpdatePasswordBody({
