@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 
 class MElevatedBtn extends StatelessWidget {
   final String text;
+  final bool isEnabled;
   final VoidCallback onPressed;
 
   const MElevatedBtn({
     super.key,
     required this.text,
+    this.isEnabled = true,
     required this.onPressed,
   });
 
@@ -18,7 +20,7 @@ class MElevatedBtn extends StatelessWidget {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         minimumSize: const Size(double.infinity, 61),
-        backgroundColor: MColor.kPrimary.strong,
+        backgroundColor: isEnabled ? MColor.kPrimary.strong : MColor.kFill.strong,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),

@@ -1,19 +1,20 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
-class VisitRecordIconBtn extends StatelessWidget {
-  const VisitRecordIconBtn({
+class MIconBtn extends StatelessWidget {
+  const MIconBtn({
     super.key,
     required this.icon,
     required this.text,
-    required this.color,
-    this.onPressed,
+    required this.onPressed,
+    required this.textColor,
   });
 
   final Widget icon;
   final String text;
-  final Color color;
-  final VoidCallback? onPressed;
+  final VoidCallback onPressed;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +23,7 @@ class VisitRecordIconBtn extends StatelessWidget {
       child: OutlinedButton.icon(
         onPressed: onPressed,
         icon: icon,
-        label: Text(
-          text,
-          style: TextStyle(
-            fontSize: 16,
-            color: color,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
+        label: MText.button3(text, color: textColor),
         style: OutlinedButton.styleFrom(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),

@@ -1,5 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/user_match/select_page/widgets/select_body.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/select_page/widgets/user_match_select_body.dart';
 import 'package:flutter/material.dart';
 
 class UserMatchSelectPage extends StatelessWidget {
@@ -9,7 +9,7 @@ class UserMatchSelectPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appbar(),
-      body: SelectBody(),
+      body: UserMatchSelectBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushNamed(context, "/user-match/write");

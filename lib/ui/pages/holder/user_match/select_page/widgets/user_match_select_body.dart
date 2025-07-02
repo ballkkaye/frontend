@@ -5,8 +5,8 @@ import 'package:ballkkaye_frontend/ui/widgets/m_dropdown_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
 import 'package:flutter/material.dart';
 
-class SelectBody extends StatelessWidget {
-  SelectBody({super.key});
+class UserMatchSelectBody extends StatelessWidget {
+  UserMatchSelectBody({super.key});
   List<String> games = [
     '두산 베어스 vs 롯데 자이언츠 (사직)',
     'SSG 랜더스 vs LG 트윈스 (잠실)',
