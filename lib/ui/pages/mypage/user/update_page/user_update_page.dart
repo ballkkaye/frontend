@@ -33,7 +33,10 @@ class UserUpdatePage extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () {
-            // 수정 로직
+            // 수정 성공 시
+            Navigator.pop(
+              context, /* 필요하다면 수정된 유저정보 */
+            );
           },
           child: MText.label1_5('수정', color: MColor.kLabel.normal),
         ),
