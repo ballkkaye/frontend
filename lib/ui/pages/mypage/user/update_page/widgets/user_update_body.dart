@@ -85,7 +85,7 @@ class UserUpdateBody extends StatelessWidget {
                   ),
                   UserUpdateLabeledField(
                     label: '내 응원팀',
-                    child: UpdateSelectBtn(
+                    child: UserUpdateSelectBtn(
                       hintText: '롯데 자이언츠',
                       options: [
                         '롯데 자이언츠',
