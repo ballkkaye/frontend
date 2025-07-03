@@ -1,6 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
-import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_page/widgets/update_profile_img_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_dropdown_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_text_form_field.dart';
@@ -35,46 +35,8 @@ class UserUpdateForm extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // 프로필 사진 + 수정 버튼
-                  Center(
-                    child: InkWell(
-                      onTap: () {}, // TODO : image_picker로 이미지 가져오기
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: MColor.kFill.normal,
-                            radius: 40,
-                            child: SizedBox(
-                              width: 40,
-                              height: 40,
-                              child: MIcon.page.mypage.userDummy,
-                            ), // 이미지 있으면 이미지로 대체되도록
-                          ),
-                          Positioned(
-                            bottom: 0,
-                            right: 0,
-                            child: Container(
-                              width: 24,
-                              height: 24,
-                              decoration: BoxDecoration(
-                                color: Colors.black,
-                                shape: BoxShape.circle,
-                                border: Border.all(color: Colors.white, width: 2),
-                              ),
-                              child: Center(
-                                child: SizedBox(
-                                  width: 14,
-                                  height: 14,
-                                  child: MIcon.page.mypage.plus, // + 아이콘
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  // 프로필 사진 수정 버튼
+                  UpdateProfileImgBtn(),
                   SizedBox(height: 20),
 
                   // 닉네임 수정
@@ -101,7 +63,7 @@ class UserUpdateForm extends StatelessWidget {
               ),
             ),
           ),
-          // 수정 버튼
+          // 수정 완료 버튼
           Spacer(),
           MElevatedBtn(
             text: '수정',
