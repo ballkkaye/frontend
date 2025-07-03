@@ -22,14 +22,10 @@ class UserUpdatePage extends StatelessWidget {
 
   AppBar _appbar(BuildContext context) {
     return AppBar(
-      title: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        child: MText.h1(
-          '프로필 수정',
-          color: MColor.kLabel.normal,
-        ),
-      ),
       centerTitle: true,
+      title: MText.h1('프로필 수정', color: MColor.kLabel.normal),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
       actions: [
         TextButton(
           onPressed: () {
@@ -38,8 +34,6 @@ class UserUpdatePage extends StatelessWidget {
           child: MText.label1_5('수정', color: MColor.kLabel.normal),
         ),
       ],
-      backgroundColor: MColor.kBackground.normal,
-      toolbarHeight: 70,
     );
   }
 }

@@ -25,8 +25,10 @@ class UserMatchUpdatePage extends StatelessWidget {
 
   AppBar _appbar(BuildContext context) {
     return AppBar(
-      title: MText.h1('동행 글수정', color: MColor.kLabel.normal),
       centerTitle: true,
+      title: MText.h1('동행 글수정', color: MColor.kLabel.normal),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
     );
   }
 }

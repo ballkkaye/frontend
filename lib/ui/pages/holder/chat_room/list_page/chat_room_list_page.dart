@@ -26,8 +26,10 @@ class ChatRoomListPage extends StatelessWidget {
 
   AppBar _appbar(BuildContext context) {
     return AppBar(
-      title: MText.h1('채팅', color: MColor.kLabel.normal),
       centerTitle: true,
+      title: MText.h1('채팅', color: MColor.kLabel.normal),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
     );
   }
 }
