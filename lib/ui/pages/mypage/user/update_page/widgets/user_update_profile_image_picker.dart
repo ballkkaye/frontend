@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -27,7 +28,6 @@ class _UserUpdateProfileImagePickerState extends State<UserUpdateProfileImagePic
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print('✅ tapped!');
         _pickImage();
       },
       child: Stack(
@@ -48,7 +48,7 @@ class _UserUpdateProfileImagePickerState extends State<UserUpdateProfileImagePic
             ),
             child: _selectedImage == null
                 ? Center(
-                    child: Icon(Icons.image, size: 30, color: Colors.grey),
+                    child: Center(child: MIcon.page.record.image),
                   )
                 : null,
           ),
