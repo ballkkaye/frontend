@@ -1,7 +1,7 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/user_match/update_page/widgets/update_select_btn.dart';
+import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_page/widgets/user_update_select_btn.dart';
 import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_password_page/user_update_password_page.dart';
 import 'package:flutter/material.dart';
 
@@ -85,7 +85,7 @@ class UserUpdateBody extends StatelessWidget {
                   ),
                   UserUpdateLabeledField(
                     label: '내 응원팀',
-                    child: UpdateSelectBtn(
+                    child: UserUpdateSelectBtn(
                       hintText: '롯데 자이언츠',
                       options: [
                         '롯데 자이언츠',
@@ -104,8 +104,8 @@ class UserUpdateBody extends StatelessWidget {
                       TextButton(
                         onPressed: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (_) => UserUpdatePasswordPage()),
+                            context,
+                            MaterialPageRoute(builder: (_) => UserUpdatePasswordPage()),
                           );
                         },
                         child: MText.label1_5('비밀번호 변경하기', color: MColor.kLabel.normal),

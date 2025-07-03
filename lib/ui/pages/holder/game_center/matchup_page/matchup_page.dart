@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/matchup_page/widget/matchup_body.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +17,9 @@ class MatchupPage extends StatelessWidget {
   AppBar _appbar() {
     return AppBar(
       centerTitle: true,
-      title: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4),
-        child: MText.h1('상대전적확인'),
-      ),
+      title: MText.h1('상대전적확인', color: MColor.kLabel.normal),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
     );
   }
 }

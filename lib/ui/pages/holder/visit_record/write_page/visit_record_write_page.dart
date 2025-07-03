@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widgets/visit_record_write_body.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +16,10 @@ class VisitRecordWritePage extends StatelessWidget {
 
   AppBar _appbar() {
     return AppBar(
-      title: MText.h1("기록 작성"),
       centerTitle: true,
+      title: MText.h1('기록 작성', color: MColor.kLabel.normal),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
     );
   }
 }
