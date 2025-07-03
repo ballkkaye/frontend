@@ -23,6 +23,8 @@ import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/visit_
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/select_page/visit_record_select_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/update_page/visit_record_update_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/visit_record_write_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/mypage/user/detail_page/user_detail_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_page/user_update_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -79,6 +81,8 @@ class MyApp extends StatelessWidget {
         "/user-match/detail": (context) => const UserMatchDetailPage(),
         "/user-match/list": (context) => const UserMatchListPage(),
         "/user-match/select": (context) => const UserMatchSelectPage(),
+        "/user/detail": (context) => const UserDetailPage(),
+        "/user/update": (context) => const UserUpdatePage(),
       },
     );
   }

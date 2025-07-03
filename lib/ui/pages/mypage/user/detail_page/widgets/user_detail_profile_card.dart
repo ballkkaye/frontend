@@ -48,7 +48,10 @@ class UserDetailProfileCard extends StatelessWidget {
                       Text(
                         "ssar",
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w700, height: 1.2, color: MColor.kLabel.normal),
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            height: 1.2,
+                            color: MColor.kLabel.normal),
                       ),
                       Text(
                         "롯데 자이언츠",
