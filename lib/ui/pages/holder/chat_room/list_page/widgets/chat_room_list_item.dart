@@ -18,6 +18,7 @@ class ChatRoomListItem extends StatelessWidget {
     return Column(
       children: [
         ListTile(
+          contentPadding: EdgeInsets.only(left: 12),
           leading: ClipOval(
             child: Container(
               width: 30,

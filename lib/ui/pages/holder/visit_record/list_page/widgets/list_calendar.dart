@@ -17,30 +17,31 @@ class _ListCalendarState extends State<ListCalendar> {
 
   @override
   Widget build(BuildContext context) {
-    return TableCalendar(
-      rowHeight: widget.cellSize,
-      // 각 날짜 셀의 높이
-      daysOfWeekHeight: widget.cellSize * (2 / 3),
-      // 요일(일~토) 셀의 높이
-      locale: 'ko_KR',
-      focusedDay: _focusedDay,
-      firstDay: DateTime(2020, 3, 1),
-      lastDay: DateTime(_focusedDay.year, _focusedDay.month + 1, 0),
-      onDaySelected: (selectedDay, focusedDay) {
-        setState(() {
-          if (DateTime(selectedDay.year, selectedDay.month, selectedDay.day)
-              .isAfter(
-                  DateTime(focusedDay.year, focusedDay.month, focusedDay.day)))
-            return; // 오늘 이후 날짜 선택 차단
-          _selectedDay = selectedDay;
-          _focusedDay = focusedDay;
-        });
-      },
-      selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-      headerStyle: _headerStyle(),
-      daysOfWeekStyle: _daysOfWeekStyle(),
-      calendarStyle: _calendarStyle(),
-      calendarBuilders: _calendarBuilders(),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: TableCalendar(
+        rowHeight: widget.cellSize,
+        // 각 날짜 셀의 높이
+        daysOfWeekHeight: widget.cellSize * (2 / 3),
+        // 요일(일~토) 셀의 높이
+        locale: 'ko_KR',
+        focusedDay: _focusedDay,
+        firstDay: DateTime(2020, 3, 1),
+        lastDay: DateTime(_focusedDay.year, _focusedDay.month + 1, 0),
+        onDaySelected: (selectedDay, focusedDay) {
+          setState(() {
+            if (DateTime(selectedDay.year, selectedDay.month, selectedDay.day)
+                .isAfter(DateTime(focusedDay.year, focusedDay.month, focusedDay.day))) return; // 오늘 이후 날짜 선택 차단
+            _selectedDay = selectedDay;
+            _focusedDay = focusedDay;
+          });
+        },
+        selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+        headerStyle: _headerStyle(),
+        daysOfWeekStyle: _daysOfWeekStyle(),
+        calendarStyle: _calendarStyle(),
+        calendarBuilders: _calendarBuilders(),
+      ),
     );
   }
 
@@ -99,8 +100,7 @@ class _ListCalendarState extends State<ListCalendar> {
       },
       defaultBuilder: (context, date, _) {
         final isFuture = date.isAfter(DateTime.now());
-        final textColor =
-            isFuture ? MColor.kLabel.disable : MColor.kLabel.neutral;
+        final textColor = isFuture ? MColor.kLabel.disable : MColor.kLabel.neutral;
 
         return Center(
           child: Text(
