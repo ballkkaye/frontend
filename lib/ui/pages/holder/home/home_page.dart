@@ -1,6 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/home/widget/home_body.dart';
-import 'package:ballkkaye_frontend/ui/pages/mypage/mypage_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -32,10 +31,7 @@ class HomePage extends StatelessWidget {
       actions: [
         InkWell(
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => MypagePage()),
-            );
+            Navigator.pushNamed(context, '/user/detail');
           },
           child: ClipOval(
             child: Container(
