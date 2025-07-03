@@ -30,19 +30,35 @@ class ListCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('ssar',
-                        style: TextStyle(color: MColor.kLabel.neutral, fontSize: 14, fontWeight: FontWeight.w600)),
+                    Text(
+                      'ssar',
+                      style: TextStyle(
+                        color: MColor.kLabel.neutral,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                     Text(
                       '15분전',
-                      style: TextStyle(color: MColor.kLabel.normal, fontSize: 12, fontWeight: FontWeight.w400),
+                      style: TextStyle(
+                        color: MColor.kLabel.normal,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ],
                 ),
                 SizedBox(height: 4),
                 // 게시글 제목
                 Text(
-                  '동행후기 써봄',
-                  style: TextStyle(color: MColor.kLabel.normal, fontSize: 16, fontWeight: FontWeight.w600),
+                  '동행후기 써봄 길게길게길게길게길게길게길게길게길게길게',
+                  style: TextStyle(
+                    color: MColor.kLabel.normal,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
                 ),
                 SizedBox(height: 16),
                 // 좋아요 + 댓글 수
