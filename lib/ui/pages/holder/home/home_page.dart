@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
       actions: [
         InkWell(
           onTap: () {
-            Navigator.pushNamed(context, '/user/detail');
+            Navigator.pushNamed(context, '/mypage');
           },
           child: ClipOval(
             child: Container(
