@@ -1,5 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/update_page/widgets/update_body.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/update_page/widgets/visit_record_update_body.dart';
 import 'package:flutter/material.dart';
 
 class VisitRecordUpdatePage extends StatelessWidget {
@@ -9,7 +9,7 @@ class VisitRecordUpdatePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appbar(),
-      body: UpdateBody(),
+      body: VisitRecordUpdateBody(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.popAndPushNamed(context, "/visit-record/detail");

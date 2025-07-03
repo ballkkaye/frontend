@@ -33,10 +33,7 @@ class UserMatchListPage extends StatelessWidget {
         IconButton(
           icon: MIcon.nav.top.write,
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => UserMatchDetailPage()),
-            );
+            Navigator.pushNamed(context, '/user-match/select');
           },
         ),
       ],
