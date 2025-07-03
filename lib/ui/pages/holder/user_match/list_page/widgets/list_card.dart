@@ -43,7 +43,17 @@ class ListCard extends StatelessWidget {
                 const SizedBox(height: 4),
 
                 // 제목
-                MText.modal2_5("직관같이갑시다", color: MColor.kLabel.strong),
+                //MText.modal2_5("직관같이갑시다", color: MColor.kLabel.strong),
+                Text(
+                  '직관 같이 갑시다갑시다갑시다갑시다갑시다갑시다갑시다갑시다갑시다',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: MColor.kLabel.strong,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                ),
                 const SizedBox(height: 18),
 
                 // 태그 + 같은 팀이면 + 참여 인원
@@ -57,18 +67,9 @@ class ListCard extends StatelessWidget {
                         Wrap(
                           spacing: 5,
                           children: [
-                            MTag(
-                                label: '여성',
-                                fillColor: MColor.kFill.normal,
-                                textColor: MColor.kLabel.neutral),
-                            MTag(
-                                label: '20대 이상',
-                                fillColor: MColor.kFill.normal,
-                                textColor: MColor.kLabel.neutral),
-                            MTag(
-                                label: '롯데 자이언츠',
-                                fillColor: MColor.kFill.normal,
-                                textColor: MColor.kLabel.neutral),
+                            MTag(label: '여성', fillColor: MColor.kFill.normal, textColor: MColor.kLabel.neutral),
+                            MTag(label: '20대 이상', fillColor: MColor.kFill.normal, textColor: MColor.kLabel.neutral),
+                            MTag(label: '롯데 자이언츠', fillColor: MColor.kFill.normal, textColor: MColor.kLabel.neutral),
                           ],
                         ),
                         // 같은 팀 체크박스 선택 했을 경우 = true
