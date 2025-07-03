@@ -1,5 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_theme.dart';
-import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_nickname_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_team_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/login_page/login_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/detail_page/board_detail_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/list_page/board_list_page.dart';
@@ -57,8 +58,9 @@ class MyApp extends StatelessWidget {
       theme: mTheme(),
       home: SplashPage(),
       routes: {
-        "/join": (context) => const JoinPage(),
         "/login": (context) => const LoginPage(),
+        "/join/nickname": (context) => const JoinNicknamePage(),
+        "/join/team": (context) => const JoinTeamPage(),
         "/home": (context) => const HomePage(),
         "/main-holder": (context) => MainHolder(),
         "/visit-record/list": (context) => const VisitRecordListPage(),
