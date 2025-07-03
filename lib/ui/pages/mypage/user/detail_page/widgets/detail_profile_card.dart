@@ -3,8 +3,8 @@ import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
-class UserDetailProfileCard extends StatelessWidget {
-  const UserDetailProfileCard({
+class DetailProfileCard extends StatelessWidget {
+  const DetailProfileCard({
     super.key,
   });
 

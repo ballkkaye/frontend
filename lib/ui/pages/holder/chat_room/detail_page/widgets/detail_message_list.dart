@@ -1,9 +1,9 @@
-import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/detail_page/widgets/chat_room_detail_message_bubble.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/detail_page/widgets/chat_room_detail_message_profile.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/detail_page/widgets/detail_message_bubble.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/detail_page/widgets/detail_message_profile.dart';
 import 'package:flutter/material.dart';
 
-class ChatRoomDetailMessageList extends StatelessWidget {
-  ChatRoomDetailMessageList({super.key});
+class DetailMessageList extends StatelessWidget {
+  DetailMessageList({super.key});
 
   final List<Map<String, dynamic>> messages = [
     {'user': 'love', 'text': '같이가실?', 'me': false, 'time': '오후 7:51'},
@@ -33,10 +33,10 @@ class ChatRoomDetailMessageList extends StatelessWidget {
             mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
             children: [
               if (!isMe) ...[
-                ChatRoomDetailMessageProfile(user: message['user']),
+                DetailMessageProfile(user: message['user']),
                 const SizedBox(width: 10),
               ],
-              ChatRoomDetailMessageBubble(message: message),
+              DetailMessageBubble(message: message),
             ],
           ),
         );

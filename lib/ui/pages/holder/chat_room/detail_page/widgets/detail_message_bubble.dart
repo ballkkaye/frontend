@@ -1,10 +1,10 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:flutter/material.dart';
 
-class ChatRoomDetailMessageBubble extends StatelessWidget {
+class DetailMessageBubble extends StatelessWidget {
   final Map<String, dynamic> message;
 
-  const ChatRoomDetailMessageBubble({super.key, required this.message});
+  const DetailMessageBubble({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
