@@ -5,8 +5,8 @@ import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/detail_page/chat_ro
 import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/widgets/chat_room_leave_btn.dart';
 import 'package:flutter/material.dart';
 
-class ChatRoomListItem extends StatelessWidget {
-  const ChatRoomListItem({
+class ListItem extends StatelessWidget {
+  const ListItem({
     super.key,
     required this.chat,
   });
