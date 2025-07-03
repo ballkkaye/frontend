@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/widget/game_center_body.dart';
 import 'package:flutter/material.dart';
@@ -15,11 +16,10 @@ class GameCenterPage extends StatelessWidget {
 
   AppBar _appbar() {
     return AppBar(
-      automaticallyImplyLeading: false,
-      title: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4),
-        child: MText.h1('예측'),
-      ),
+      centerTitle: true,
+      title: MText.h1('예측', color: MColor.kLabel.normal),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
     );
   }
 }
