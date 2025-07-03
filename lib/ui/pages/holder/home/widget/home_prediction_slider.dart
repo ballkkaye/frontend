@@ -24,7 +24,7 @@ class _HomePredictionSliderState extends State<HomePredictionSlider> {
           CarouselSlider(
             carouselController: _carouselSliderController,
             options: CarouselOptions(
-              aspectRatio: 328 / 312,
+              height: 412,
               enableInfiniteScroll: true,
               onPageChanged: (index, reason) {
                 setState(() {
