@@ -26,26 +26,18 @@ class UserMatchListPage extends StatelessWidget {
 
   AppBar _appbar(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.white,
-      title: MText.h1('동행', color: MColor.kLabel.normal),
       centerTitle: true,
+      title: MText.h1('동행', color: MColor.kLabel.normal),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
       actions: [
         IconButton(
           icon: MIcon.nav.top.write,
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => UserMatchDetailPage()),
-            );
+            Navigator.pushNamed(context, '/user-match/select');
           },
         ),
       ],
-      leading: IconButton(
-        icon: Icon(Icons.arrow_back),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-      ),
     );
   }
 }

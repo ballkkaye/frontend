@@ -1,33 +1,30 @@
-import 'package:ballkkaye_frontend/ui/pages/holder/user_match/update_page/user_match_update_page.dart';
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/write_page/widgets/user_match_write_body.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets/write_body.dart';
-
-class UserMatchWritePage extends StatefulWidget {
+class UserMatchWritePage extends StatelessWidget {
   const UserMatchWritePage({super.key});
 
   @override
-  State<UserMatchWritePage> createState() => _UserMatchWritePageState();
-}
-
-class _UserMatchWritePageState extends State<UserMatchWritePage> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('동행 작성'),
-        centerTitle: true,
+      appBar: _appbar(),
+      body: UserMatchWriteBody(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, "/user-match/detail");
+        },
       ),
-      body: WriteBody(),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 50),
-        child: FloatingActionButton(onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => UserMatchUpdatePage()),
-          );
-        }),
-      ),
+    );
+  }
+
+  AppBar _appbar() {
+    return AppBar(
+      centerTitle: true,
+      title: MText.h1('동행 작성', color: MColor.kLabel.normal),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
     );
   }
 }

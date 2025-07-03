@@ -1,7 +1,7 @@
-import 'package:ballkkaye_frontend/ui/pages/board/write_page/widgets/write_dropdown_field.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/write_page/widgets/write_img_selector.dart';
-import 'package:ballkkaye_frontend/ui/pages/board/write_page/widgets/write_text_form_field.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/widgets/visit_record_btn.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_dropdown_btn.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_text_form_field.dart';
 import 'package:flutter/material.dart';
 
 class UpdateForm extends StatelessWidget {
@@ -29,36 +29,38 @@ class UpdateForm extends StatelessWidget {
       child: Column(
         children: [
           // 팀 선택
-          WriteDropdownField(
-            value: selectedTeam, // TODO : 기존에 작성된 팀 불러오기
+          MDropdownBtn(
             hintText: '팀 선택',
             items: teams,
-            onChanged: (p0) {},
+            value: selectedTeam, // TODO : 기존에 작성된 팀 불러오기
+            onChanged: (value) {},
           ),
           SizedBox(height: 12),
           // 제목
-          WriteTextFormField(
+          MTextFormField(
+            hintText: '제목을 입력하세요',
             maxLines: 1,
-            initialValue: '동행후기 써봄',
-            isDense: true,
-            hintText: '제목',
-            onChanged: (p0) {},
+            initialValue: '동행후기 써봄', // TODO : 기존에 작성된 제목 불러오기
+            onChanged: (value) {},
+            keyboardType: TextInputType.text,
           ),
           SizedBox(height: 12),
           // 이미지 버튼 (가로 스크롤)
           WriteImgSelector(),
           SizedBox(height: 12),
           // 내용
-          WriteTextFormField(
-            maxLines: 15,
-            initialValue: '불러온 글 내용',
-            hintText: '글 내용',
-            onChanged: (p0) {},
+          MTextFormField(
+            hintText: '내용을 입력하세요',
+            maxLines: 10,
+            initialValue: '동행후기 써봄 내용~~~~~~', // TODO : 기존에 작성된 내용 불러오기
+            isDense: false,
+            onChanged: (value) {},
+            keyboardType: TextInputType.text,
           ),
           Spacer(),
           // 작성 버튼
-          VisitRecordBtn(
-            text: "수정",
+          MElevatedBtn(
+            text: '수정',
             onPressed: () {
               Navigator.pop(context);
             },

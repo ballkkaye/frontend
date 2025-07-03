@@ -1,7 +1,7 @@
-import 'package:ballkkaye_frontend/ui/pages/board/write_page/widgets/write_dropdown_field.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/write_page/widgets/write_img_selector.dart';
-import 'package:ballkkaye_frontend/ui/pages/board/write_page/widgets/write_text_form_field.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/widgets/visit_record_btn.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_dropdown_btn.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_text_form_field.dart';
 import 'package:flutter/material.dart';
 
 class WriteForm extends StatelessWidget {
@@ -28,36 +28,35 @@ class WriteForm extends StatelessWidget {
       child: Column(
         children: [
           // 팀 선택
-          WriteDropdownField(
-            value: null,
+          MDropdownBtn(
             hintText: '팀 선택',
             items: teams,
-            onChanged: (p0) {},
+            onChanged: (value) {},
           ),
           SizedBox(height: 12),
           // 제목
-          WriteTextFormField(
+          MTextFormField(
+            hintText: '제목을 입력하세요',
             maxLines: 1,
-            initialValue: null,
-            isDense: true,
-            hintText: '제목',
-            onChanged: (p0) {},
+            initialValue: '',
+            onChanged: (value) {},
           ),
           SizedBox(height: 12),
           // 이미지 버튼 (가로 스크롤)
           WriteImgSelector(),
           SizedBox(height: 12),
           // 내용
-          WriteTextFormField(
-            maxLines: 15,
-            initialValue: null,
-            hintText: '글 내용',
-            onChanged: (p0) {},
+          MTextFormField(
+            hintText: '내용을 입력하세요',
+            maxLines: 10,
+            initialValue: '',
+            isDense: false,
+            onChanged: (value) {},
           ),
           Spacer(),
           // 작성 버튼
-          VisitRecordBtn(
-            text: "완료",
+          MElevatedBtn(
+            text: '완료',
             onPressed: () {
               Navigator.popAndPushNamed(context, "/board/detail");
             },

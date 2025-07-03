@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/ranking_page/widget/ranking_body.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class RankingPage extends StatelessWidget {
   AppBar _appbar() {
     return AppBar(
       centerTitle: true,
-      title: MText.h1('팀순위'),
+      title: MText.h1('팀순위', color: MColor.kLabel.normal),
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.white,
     );

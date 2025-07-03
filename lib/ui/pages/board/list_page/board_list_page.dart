@@ -30,8 +30,10 @@ class BoardListPage extends StatelessWidget {
 
   AppBar _appbar() {
     return AppBar(
-      title: MText.h1("커뮤니티"),
       centerTitle: true,
+      title: MText.h1('커뮤니티', color: MColor.kLabel.normal),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
     );
   }
 }

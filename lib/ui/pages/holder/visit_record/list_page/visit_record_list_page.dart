@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/widgets/list_body.dart';
@@ -14,19 +15,20 @@ class VisitRecordListPage extends StatelessWidget {
     return Scaffold(
       appBar: _appbar(context, cellSize),
       body: VisitRecordListBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, "/visit-record/detail");
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.pushNamed(context, "/visit-record/detail");
+      //   },
+      // ),
     );
   }
 
   AppBar _appbar(BuildContext context, cellSize) {
     return AppBar(
-      actionsPadding: EdgeInsets.symmetric(horizontal: 10),
-      title: MText.h1("직관 기록"),
       centerTitle: true,
+      title: MText.h1('직관 기록', color: MColor.kLabel.normal),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
       actions: [
         IconButton(
           onPressed: () {
