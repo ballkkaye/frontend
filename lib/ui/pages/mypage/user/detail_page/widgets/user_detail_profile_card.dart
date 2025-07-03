@@ -87,7 +87,7 @@ class UserDetailProfileCard extends StatelessWidget {
                   backgroundColor: Colors.black,
                 ),
                 onPressed: () {
-                  // 프로필 수정
+                  Navigator.pushNamed(context, '/user/update');
                 },
                 child: Text(
                   "프로필 수정",
