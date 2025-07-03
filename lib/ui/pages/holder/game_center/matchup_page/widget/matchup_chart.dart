@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class MatchupChart extends StatelessWidget {
@@ -294,12 +295,9 @@ class MatchupNormalRow extends StatelessWidget {
       width: childWidth,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Text(
-          textAlign: TextAlign.center,
-          title,
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w400,
+        child: Center(
+          child: MText.normal7_400(
+            title,
             color: MColor.kLabel.normal,
           ),
         ),
@@ -325,12 +323,9 @@ class MatchupBoldRow extends StatelessWidget {
       width: childWidth,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Text(
-          textAlign: TextAlign.center,
-          title,
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
+        child: Center(
+          child: MText.normal7_600(
+            title,
             color: MColor.kLabel.normal,
           ),
         ),

@@ -46,22 +46,12 @@ class PredictionCard extends StatelessWidget {
                                   horizontal: 4,
                                   vertical: 2,
                                 ),
-                                child: MText.label2_7(
-                                  '팀명',
-                                  color: MColor.kLabel.white,
-                                ),
+                                child: MText.label2_7('팀명', color: MColor.kLabel.white),
                               ),
                             ),
                             SizedBox(width: 2),
                             // 선수명
-                            Text(
-                              '선수명',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: MColor.kLabel.normal,
-                              ),
-                            ),
+                            MText.normal6_400('선수명', color: MColor.kLabel.normal),
                           ],
                         ),
                         // 여백
@@ -101,11 +91,9 @@ class PredictionCard extends StatelessWidget {
                                 ),
                                 foregroundColor: MColor.kPrimary.normal,
                                 side: BorderSide(color: MColor.kPrimary.strong),
+                                padding: EdgeInsets.all(0),
                               ),
-                              child: MText.button5_7(
-                                '상대 전적 확인',
-                                color: MColor.kPrimary.strong,
-                              ),
+                              child: MText.button5_7('상대 전적 확인', color: MColor.kPrimary.strong),
                             ),
                           ),
                         ),
@@ -113,14 +101,7 @@ class PredictionCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: 10),
-                  Text(
-                    'VS',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: MColor.kLabel.neutral,
-                    ),
-                  ),
+                  MText.normal5_600('VS', color: MColor.kLabel.neutral),
                   SizedBox(width: 10),
                   Expanded(
                     child: Column(
@@ -141,22 +122,12 @@ class PredictionCard extends StatelessWidget {
                                   horizontal: 4,
                                   vertical: 2,
                                 ),
-                                child: MText.label2_7(
-                                  '팀명',
-                                  color: MColor.kLabel.white,
-                                ),
+                                child: MText.label2_7('팀명', color: MColor.kLabel.white),
                               ),
                             ),
                             SizedBox(width: 2),
                             // 선수명
-                            Text(
-                              '선수명',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: MColor.kLabel.normal,
-                              ),
-                            ),
+                            MText.normal6_400('선수명', color: MColor.kLabel.normal),
                           ],
                         ),
                         // 여백
@@ -197,10 +168,7 @@ class PredictionCard extends StatelessWidget {
                                 foregroundColor: MColor.kPrimary.normal,
                                 side: BorderSide(color: MColor.kPrimary.strong),
                               ),
-                              child: MText.button5_7(
-                                '상대 전적 확인',
-                                color: MColor.kPrimary.strong,
-                              ),
+                              child: MText.button5_7('상대 전적 확인', color: MColor.kPrimary.strong),
                             ),
                           ),
                         ),

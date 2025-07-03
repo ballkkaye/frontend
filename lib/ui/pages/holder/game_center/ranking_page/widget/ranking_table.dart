@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class RankingTable extends StatelessWidget {
@@ -191,10 +192,11 @@ class RankingContentRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Text(
-        '$value',
-        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-        textAlign: TextAlign.center,
+      child: Center(
+        child: MText.normal8_400(
+          '$value',
+          color: MColor.kLabel.normal,
+        ),
       ),
     );
   }
@@ -212,10 +214,11 @@ class RankingHeadRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Text(
-        value,
-        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-        textAlign: TextAlign.center,
+      child: Center(
+        child: MText.normal8_600(
+          value,
+          color: MColor.kLabel.normal,
+        ),
       ),
     );
   }

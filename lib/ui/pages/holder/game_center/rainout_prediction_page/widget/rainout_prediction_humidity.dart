@@ -1,5 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class RainoutPredictionHumidity extends StatelessWidget {
@@ -13,13 +14,9 @@ class RainoutPredictionHumidity extends StatelessWidget {
       children: [
         MIcon.page.rainout.bHumidity,
         SizedBox(height: 6),
-        Text(
+        MText.normal6_500(
           '습도 73%',
-          style: TextStyle(
-            color: MColor.kLabel.normal,
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-          ),
+          color: MColor.kLabel.normal,
         ),
       ],
     );
