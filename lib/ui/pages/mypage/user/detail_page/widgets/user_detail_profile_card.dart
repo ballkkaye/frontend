@@ -70,7 +70,7 @@ class UserDetailProfileCard extends StatelessWidget {
                       context,
                       MaterialPageRoute(builder: (_) => const LoginPage()),
                       (route) => false,
-                    ); // 로그아웃 로직
+                    ); //로그아웃 로직
                   },
                   style: TextButton.styleFrom(
                       minimumSize: const Size(0, 20),
