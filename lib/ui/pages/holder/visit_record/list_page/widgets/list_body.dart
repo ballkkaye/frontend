@@ -10,26 +10,28 @@ class VisitRecordListBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final cellSize = screenWidth * (47 / 360); // 디자인 비율 반영
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: CustomScrollView(
-        slivers: [
-          // 캘린더
-          SliverToBoxAdapter(
-            child: ListCalendar(cellSize: cellSize),
+    return CustomScrollView(
+      slivers: [
+        // 캘린더
+        SliverToBoxAdapter(
+          child: Column(
+            children: [
+              ListCalendar(cellSize: cellSize),
+              SizedBox(height: 12),
+            ],
           ),
-          // 카드 리스트
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) => Padding(
-                padding: EdgeInsets.only(bottom: 5),
-                child: ListGameCard(),
-              ),
-              childCount: 5,
+        ),
+        // 카드 리스트
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) => Padding(
+              padding: EdgeInsets.only(bottom: 10),
+              child: ListGameCard(),
             ),
+            childCount: 5,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

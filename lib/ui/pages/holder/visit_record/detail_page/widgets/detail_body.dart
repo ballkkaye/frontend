@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/detail_page/widgets/detail_content.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/detail_page/widgets/detail_game.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/detail_page/widgets/detail_img.dart';
@@ -12,8 +13,12 @@ class DetailBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 22),
-      child: Card(
-        elevation: 5,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: MColor.kShadow.normal,
+          color: MColor.kBackground.normal,
+        ),
         child: Padding(
           padding: EdgeInsets.all(14),
           child: Column(
