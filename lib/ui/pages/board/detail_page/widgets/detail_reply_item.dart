@@ -44,9 +44,8 @@ class DetailReplyItem extends StatelessWidget {
               CircleAvatar(
                 radius: 16,
                 backgroundColor: Colors.white,
-                backgroundImage: hasProfileImgUrl
-                    ? AssetImage(profileImgUrl)
-                    : const AssetImage('assets/images/user.png'),
+                backgroundImage:
+                    hasProfileImgUrl ? AssetImage(profileImgUrl) : const AssetImage('assets/images/user.png'),
               ),
               SizedBox(width: 8),
               // 응원 팀 및 작성 시간
@@ -54,7 +53,10 @@ class DetailReplyItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   MText.label2_4(author, color: MColor.kLabel.normal),
-                  MText.labelTiny(time, color: MColor.kLabel.neutral),
+                  Text(
+                    "롯데 자이언츠  •  $time",
+                    style: TextStyle(fontSize: 10, color: MColor.kLabel.neutral),
+                  ),
                 ],
               ),
               Spacer(),
@@ -63,11 +65,14 @@ class DetailReplyItem extends StatelessWidget {
                 visible: isReplyOwner, // 로그인한 유저=댓글 주인인 경우에만 활성화됨
                 child: MMoreOptionBtn(
                   icon: MIcon.nav.top.dotHorizontal,
-                  onUpdate: () {}, // TODO : 댓글 수정 -> 입력창에 댓글 기존 내용 불러오기
+                  onUpdate: () {},
+                  // TODO : 댓글 수정 -> 입력창에 댓글 기존 내용 불러오기
                   alertTitle: '댓글 삭제',
                   alertContent: '댓글을 삭제하시겠습니까?',
-                  onAlertConfirm: () {}, // 다이얼로그 닫힌 뒤 동작
-                  onAlertCancel: () {}, // 다이얼로그 닫힌 뒤 동작
+                  onAlertConfirm: () {},
+                  // 다이얼로그 닫힌 뒤 동작
+                  onAlertCancel: () {},
+                  // 다이얼로그 닫힌 뒤 동작
                   alertConfirmText: '삭제',
                   alertCancelText: '취소',
                 ),
@@ -91,8 +96,7 @@ class DetailReplyItem extends StatelessWidget {
                     },
                     borderRadius: BorderRadius.circular(50),
                     child: Padding(
-                      padding: EdgeInsetsGeometry.directional(
-                          top: 4, bottom: 4, end: 4),
+                      padding: EdgeInsetsGeometry.directional(top: 4, bottom: 4, end: 4),
                       child: MIcon.page.community.likedRed,
                     ),
                   ),
@@ -126,7 +130,7 @@ class DetailReplyItem extends StatelessWidget {
                 ),
                 child: Text(
                   '답글 달기',
-                  style: MText.labelTiny('답글 달기', color: MColor.kLabel.neutral),
+                  style: TextStyle(fontSize: 10, color: MColor.kLabel.neutral),
                 ),
               ),
             ],
