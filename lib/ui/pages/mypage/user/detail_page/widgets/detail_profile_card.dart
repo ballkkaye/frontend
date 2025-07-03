@@ -3,8 +3,8 @@ import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
-class UserDetailProfileCard extends StatelessWidget {
-  const UserDetailProfileCard({
+class DetailProfileCard extends StatelessWidget {
+  const DetailProfileCard({
     super.key,
   });
 
@@ -48,7 +48,10 @@ class UserDetailProfileCard extends StatelessWidget {
                       Text(
                         "ssar",
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w700, height: 1.2, color: MColor.kLabel.normal),
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            height: 1.2,
+                            color: MColor.kLabel.normal),
                       ),
                       Text(
                         "롯데 자이언츠",
@@ -84,7 +87,7 @@ class UserDetailProfileCard extends StatelessWidget {
                   backgroundColor: Colors.black,
                 ),
                 onPressed: () {
-                  // 프로필 수정
+                  Navigator.pushNamed(context, '/user/update');
                 },
                 child: Text(
                   "프로필 수정",

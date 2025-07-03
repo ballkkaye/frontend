@@ -17,15 +17,15 @@ class RankingTable extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: Table(
         columnWidths: const {
-          0: FixedColumnWidth(36),
+          0: FixedColumnWidth(26),
           1: FlexColumnWidth(),
           2: FlexColumnWidth(),
-          3: FixedColumnWidth(36),
-          4: FixedColumnWidth(36),
-          5: FixedColumnWidth(36),
-          6: FixedColumnWidth(54),
-          7: FixedColumnWidth(48),
-          8: FixedColumnWidth(80),
+          3: FixedColumnWidth(26),
+          4: FixedColumnWidth(26),
+          5: FixedColumnWidth(26),
+          6: FixedColumnWidth(46),
+          7: FixedColumnWidth(42),
+          8: FixedColumnWidth(68),
           9: FlexColumnWidth(),
         },
         children: [
@@ -47,14 +47,14 @@ class RankingTable extends StatelessWidget {
               ]),
           _rankingConRow([
             '1',
-            '한화',
+            'SSG',
             '68',
             '41',
             '27',
             '1',
             '0.603',
             '0',
-            '6승1무3패',
+            '16승1무3패',
             '4승',
           ]),
           _rankingConRow([
@@ -192,11 +192,12 @@ class RankingContentRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Center(
-        child: MText.normal8_400(
-          '$value',
-          color: MColor.kLabel.normal,
-        ),
+      child: Text(
+        '$value',
+        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+        textAlign: TextAlign.center,
+        overflow: TextOverflow.ellipsis,
+        maxLines: 1,
       ),
     );
   }

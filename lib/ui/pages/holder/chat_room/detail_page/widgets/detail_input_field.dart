@@ -2,8 +2,8 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:flutter/material.dart';
 
-class ChatRoomDetailInputField extends StatelessWidget {
-  const ChatRoomDetailInputField({
+class DetailInputField extends StatelessWidget {
+  const DetailInputField({
     super.key,
   });
 

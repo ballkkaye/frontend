@@ -8,9 +8,11 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: LoginBody(),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        Navigator.pushNamed(context, "/main-holder");
-      }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, "/join/nickname");
+        },
+      ),
     );
   }
 }

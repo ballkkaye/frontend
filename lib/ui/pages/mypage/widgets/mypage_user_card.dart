@@ -11,7 +11,9 @@ class MypageUserCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: MColor.kBackground.normal, borderRadius: BorderRadius.circular(8), boxShadow: MColor.kShadow.normal),
+          color: MColor.kBackground.normal,
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: MColor.kShadow.normal),
       child: ListTile(
         leading: ClipOval(
           child: Container(

@@ -19,7 +19,7 @@ class ListTeamCategoryItem extends StatelessWidget {
     return InkWell(
       onTap: () {}, // TODO : 클릭시 카테고리별 조회
       child: Padding(
-        padding: EdgeInsetsGeometry.symmetric(horizontal: 7.5),
+        padding: EdgeInsetsGeometry.symmetric(horizontal: 10),
         child: Column(
           children: [
             Stack(
