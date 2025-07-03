@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/board_detail_body.dart';
@@ -22,8 +23,10 @@ class BoardDetailPage extends StatelessWidget {
 
   AppBar _appbar(BuildContext context) {
     return AppBar(
-      title: MText.h1("커뮤니티"),
       centerTitle: true,
+      title: MText.h1('커뮤니티', color: MColor.kLabel.normal),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
       actions: [
         // 더보기 버튼
         Visibility(
@@ -35,8 +38,10 @@ class BoardDetailPage extends StatelessWidget {
             },
             alertTitle: '게시글 삭제',
             alertContent: '게시글을 삭제하시겠습니까?',
-            onAlertConfirm: () {}, // 다이얼로그 닫힌 뒤 동작
-            onAlertCancel: () {}, // 다이얼로그 닫힌 뒤 동작
+            onAlertConfirm: () {},
+            // 다이얼로그 닫힌 뒤 동작
+            onAlertCancel: () {},
+            // 다이얼로그 닫힌 뒤 동작
             alertConfirmText: '삭제',
             alertCancelText: '취소',
           ),

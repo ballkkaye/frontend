@@ -30,17 +30,10 @@ class MypagePage extends StatelessWidget {
 
   AppBar _appbar() {
     return AppBar(
-      title: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        child: MText.h1(
-          '마이페이지',
-          color: MColor.kLabel.normal,
-        ),
-      ),
-      backgroundColor: MColor.kBackground.normal,
-      elevation: 0,
-      automaticallyImplyLeading: false,
-      toolbarHeight: 70,
+      centerTitle: true,
+      title: MText.h1('마이페이지', color: MColor.kLabel.normal),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
     );
   }
 }

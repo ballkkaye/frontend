@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/update_page/widgets/board_update_body.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +16,10 @@ class BoardUpdatePage extends StatelessWidget {
 
   AppBar _appbar() {
     return AppBar(
-      title: MText.h1("글수정"),
       centerTitle: true,
+      title: MText.h1('글수정', color: MColor.kLabel.normal),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
     );
   }
 }

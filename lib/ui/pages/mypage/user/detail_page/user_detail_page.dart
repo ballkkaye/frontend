@@ -20,17 +20,10 @@ class UserDetailPage extends StatelessWidget {
 
   AppBar _appbar() {
     return AppBar(
-      title: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        child: MText.h1(
-          '프로필',
-          color: MColor.kLabel.normal,
-        ),
-      ),
       centerTitle: true,
-      backgroundColor: MColor.kBackground.normal,
-      elevation: 0,
-      toolbarHeight: 70,
+      title: MText.h1('프로필', color: MColor.kLabel.normal),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
     );
   }
 }
