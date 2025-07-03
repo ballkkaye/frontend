@@ -24,7 +24,7 @@ class _HomeTodatGameSliderState extends State<HomeTodatGameSlider> {
           CarouselSlider(
             carouselController: _carouselSliderController,
             options: CarouselOptions(
-              aspectRatio: 328 / 160,
+              height: 242,
               enableInfiniteScroll: true,
               onPageChanged: (index, reason) {
                 setState(() {
