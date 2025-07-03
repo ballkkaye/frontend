@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/select_page/widgets/user_match_select_body.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +21,10 @@ class UserMatchSelectPage extends StatelessWidget {
 
   AppBar _appbar() {
     return AppBar(
-      title: MText.h1("동행 작성"),
       centerTitle: true,
+      title: MText.h1('동행 작성', color: MColor.kLabel.normal),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
     );
   }
 }
