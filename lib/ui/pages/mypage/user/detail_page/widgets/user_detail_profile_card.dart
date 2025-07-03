@@ -1,6 +1,8 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/auth/login_page/login_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_page/user_update_page.dart';
 import 'package:flutter/material.dart';
 
 class UserDetailProfileCard extends StatelessWidget {
@@ -64,7 +66,11 @@ class UserDetailProfileCard extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    // 로그아웃 로직
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (_) => const LoginPage()),
+                      (route) => false,
+                    ); // 로그아웃 로직
                   },
                   style: TextButton.styleFrom(
                       minimumSize: const Size(0, 20),
@@ -84,7 +90,10 @@ class UserDetailProfileCard extends StatelessWidget {
                   backgroundColor: Colors.black,
                 ),
                 onPressed: () {
-                  // 프로필 수정
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => UserUpdatePage()),
+                  );
                 },
                 child: Text(
                   "프로필 수정",
