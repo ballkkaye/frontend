@@ -1,5 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class BoardListCard extends StatelessWidget {
@@ -30,28 +31,14 @@ class BoardListCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'ssar',
-                      style: TextStyle(
-                        color: MColor.kLabel.neutral,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Text(
-                      '15분전',
-                      style: TextStyle(
-                        color: MColor.kLabel.normal,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
+                    MText.normal5_600('ssar', color: MColor.kLabel.neutral),
+                    MText.normal7_400('15분전', color: MColor.kLabel.normal),
                   ],
                 ),
                 SizedBox(height: 4),
                 // 게시글 제목
                 Text(
-                  '동행후기 써봄 길게길게길게길게길게길게길게길게길게길게',
+                  '동행후기 써봄 길게길게길게길게길게길게길게길게길게길게길게길게길게',
                   style: TextStyle(
                     color: MColor.kLabel.normal,
                     fontSize: 16,
@@ -75,13 +62,7 @@ class BoardListCard extends StatelessWidget {
                             child: MIcon.page.community.likedRed,
                           ),
                         ),
-                        Text(
-                          '20',
-                          style: TextStyle(
-                              color: MColor.kLabel.neutral,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600),
-                        )
+                        MText.button4_5('20', color: MColor.kLabel.neutral),
                       ],
                     ),
                     SizedBox(width: 4),
@@ -90,13 +71,7 @@ class BoardListCard extends StatelessWidget {
                       children: [
                         MIcon.page.community.comment,
                         SizedBox(width: 4),
-                        Text(
-                          '5',
-                          style: TextStyle(
-                              color: MColor.kLabel.neutral,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600),
-                        ),
+                        MText.button4_5('5', color: MColor.kLabel.neutral),
                       ],
                     ),
                   ],

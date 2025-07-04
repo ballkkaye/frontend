@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class TodayGamePitchers extends StatelessWidget {
@@ -15,22 +16,14 @@ class TodayGamePitchers extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(
+        MText.normal5_500(
           leftPitcher,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-            color: MColor.kLabel.normal,
-          ),
+          color: MColor.kLabel.normal,
         ),
         SizedBox(width: 20),
-        Text(
+        MText.normal5_500(
           rightPitcher,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-            color: MColor.kLabel.normal,
-          ),
+          color: MColor.kLabel.normal,
         ),
       ],
     );

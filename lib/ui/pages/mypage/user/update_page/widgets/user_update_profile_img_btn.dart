@@ -21,7 +21,7 @@ class UserUpdateProfileImgBtn extends StatelessWidget {
               child: SizedBox(
                 width: 40,
                 height: 40,
-                child: MIcon.page.mypage.userDummy,
+                child: MIcon.page.mypage.image,
               ), // 이미지 있으면 이미지로 대체되도록
             ),
             Positioned(

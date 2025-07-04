@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/matchup_page/widget/matchup_player_image.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/matchup_page/widget/matchup_player_stat_list.dart';
 import 'package:flutter/material.dart';
@@ -39,13 +40,9 @@ class MatchupStartingPitcher extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    MText.normal4_600(
                       '선수명',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: MColor.kLabel.normal,
-                      ),
+                      color: MColor.kLabel.normal,
                     ),
                     SizedBox(height: 2),
                     MatchupPlayerStatList(),

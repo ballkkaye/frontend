@@ -1,5 +1,6 @@
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/widgets/list_calendar.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/widgets/list_game_card.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/widgets/visit_record_list_calendar.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/widgets/visit_record_list_game_card.dart';
 import 'package:flutter/material.dart';
 
 class VisitRecordListBody extends StatelessWidget {

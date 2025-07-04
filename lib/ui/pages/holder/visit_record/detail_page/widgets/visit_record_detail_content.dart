@@ -12,7 +12,7 @@ class VisitRecordDetailContent extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       child: Align(
         alignment: Alignment.centerLeft,
-        child: MText.label1_5(
+        child: MText.normal6_500(
           '''
 2025년 6월 22일, 사직구장에서 롯데 경기를 직관했다.
 처음엔 삼성에게 6점이나 내줘서 마음이 철렁했지만, 7회 대반전이 시작되면서 분위기가 확 뒤집혔다.

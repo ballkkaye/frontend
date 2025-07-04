@@ -1,3 +1,5 @@
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class ServiceItem extends StatelessWidget {
@@ -21,12 +23,9 @@ class ServiceItem extends StatelessWidget {
         child: Row(
           children: [
             icon,
-            const SizedBox(width: 10),
+            SizedBox(width: 10),
             Expanded(
-              child: Text(
-                label,
-                style: const TextStyle(fontSize: 14),
-              ),
+              child: MText.normal5_500(label, color: MColor.kLabel.normal),
             ),
           ],
         ),

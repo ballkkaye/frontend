@@ -65,36 +65,21 @@ class BoardDetailBoardArea extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // 작성자 닉네임
-                      MText.label1_6('ssar', color: MColor.kLabel.normal),
+                      MText.normal6_400('ssar', color: MColor.kLabel.normal),
                       // 작성자 응원팀 ( != 게시글 카테고리)
-                      Text(
-                        "롯데 자이언츠",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: MColor.kLabel.neutral,
-                        ),
-                      ),
+                      MText.normal7_400("롯데 자이언츠", color: MColor.kLabel.neutral),
                     ],
                   )
                 ],
               ),
               SizedBox(height: 12),
-              MText.h2('동행후기 써봄', color: MColor.kLabel.normal),
+              MText.normal5_600('동행후기 써봄', color: MColor.kLabel.normal),
               SizedBox(height: 5),
               // 게시글 카테고리
-              Text(
-                "롯데 자이언츠  •  15분전",
-                style: TextStyle(
-                  fontSize: 12,
-                  color: MColor.kLabel.neutral,
-                ),
-              ),
+              MText.normal7_400("롯데 자이언츠  •  15분전", color: MColor.kLabel.neutral),
               SizedBox(height: 14),
               // 내용
-              MText.label1_5(
-                content,
-                color: MColor.kLabel.normal,
-              ),
+              MText.normal6_500(content, color: MColor.kLabel.normal),
               SizedBox(height: 14),
               // 좋아요
               Row(
@@ -110,13 +95,7 @@ class BoardDetailBoardArea extends StatelessWidget {
                           child: MIcon.page.community.likedRed,
                         ),
                       ),
-                      Text(
-                        '20',
-                        style: TextStyle(
-                            color: MColor.kLabel.neutral,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600),
-                      )
+                      MText.normal6_700('20', color: MColor.kLabel.neutral)
                     ],
                   ),
                   SizedBox(width: 4),
@@ -125,13 +104,7 @@ class BoardDetailBoardArea extends StatelessWidget {
                     children: [
                       MIcon.page.community.comment,
                       SizedBox(width: 4),
-                      Text(
-                        '4',
-                        style: TextStyle(
-                            color: MColor.kLabel.neutral,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600),
-                      ),
+                      MText.normal6_700('4', color: MColor.kLabel.neutral),
                     ],
                   ),
                 ],

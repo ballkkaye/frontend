@@ -9,17 +9,20 @@ class MIconBtn extends StatelessWidget {
     required this.text,
     required this.onPressed,
     required this.textColor,
+    this.height,
   });
 
   final Widget icon;
   final String text;
   final VoidCallback onPressed;
   final Color textColor;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
+      height: height,
       child: OutlinedButton.icon(
         onPressed: onPressed,
         icon: icon,

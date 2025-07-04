@@ -16,8 +16,7 @@ class BoardWriteImgSelector extends StatelessWidget {
           child: Container(
             height: 80,
             width: 80,
-            decoration:
-                BoxDecoration(color: MColor.kLabel.disable, borderRadius: BorderRadius.circular(8)),
+            decoration: BoxDecoration(color: MColor.kFill.normal, borderRadius: BorderRadius.circular(8)),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

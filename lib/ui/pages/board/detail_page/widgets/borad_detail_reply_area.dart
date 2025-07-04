@@ -61,7 +61,7 @@ class BoardDetailReplyArea extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          MText.label1_5('댓글', color: MColor.kLabel.neutral),
+          MText.normal6_500('댓글', color: MColor.kLabel.neutral),
           ...replies.map((reply) => BoardDetailReplyItem(
                 reply: reply,
                 onMention: (tagReplyName) {

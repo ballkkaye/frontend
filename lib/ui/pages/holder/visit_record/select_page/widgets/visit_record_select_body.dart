@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 
 class VisitRecordSelectBody extends StatelessWidget {
   VisitRecordSelectBody({super.key});
+
   List<String> games = [
     '두산 베어스 vs 롯데 자이언츠 (사직)',
     'SSG 랜더스 vs LG 트윈스 (잠실)',
@@ -29,6 +30,7 @@ class VisitRecordSelectBody extends StatelessWidget {
             SizedBox(height: 10),
             // 날짜 선택 버튼
             MIconBtn(
+              height: 49,
               icon: MIcon.page.record.calendarBlack,
               text: "2025.06.27",
               textColor: MColor.kLabel.normal,

@@ -9,18 +9,22 @@ class UserMatchListBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 22, bottom: 12, left: 12, right: 12),
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+            child: Padding(
+          padding: const EdgeInsets.only(
+            top: 22,
+            left: 16,
+            right: 16,
+            bottom: 12,
+          ),
           child: UserMatchListFilterDropdown(),
-        ),
-        Expanded(
-          child: ListView.builder(
-            itemCount: 6,
-            itemBuilder: (context, index) {
-              return UserMatchListCard();
-            },
+        )),
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) => UserMatchListCard(),
+            childCount: 6,
           ),
         ),
       ],

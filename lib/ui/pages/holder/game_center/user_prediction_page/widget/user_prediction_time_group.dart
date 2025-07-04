@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class UserPredictionTimeGroup extends StatelessWidget {
@@ -30,14 +31,11 @@ class UserPredictionTimeGroup extends StatelessWidget {
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 4),
-        child: Text(
-          '${hour}:${minute}',
-          style: TextStyle(
+        child: Center(
+          child: MText.normal4_600(
+            '${hour}:${minute}',
             color: MColor.kLabel.white,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
           ),
-          textAlign: TextAlign.center,
         ),
       ),
     );

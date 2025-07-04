@@ -37,6 +37,7 @@ class MTextFormField extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(color: MColor.kLine.normal),
         ),
+        contentPadding: EdgeInsets.all(15),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(

@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class PredictionGraphTitle extends StatelessWidget {
@@ -20,34 +21,13 @@ class PredictionGraphTitle extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          title,
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-            color: MColor.kLabel.normal,
-          ),
-        ),
+        MText.normal6_600(title, color: MColor.kLabel.normal),
         if (showTotalLabel && totalScore != null && totalScoreValue != null)
           Row(
             children: [
-              Text(
-                totalScore!,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: MColor.kLabel.normal,
-                ),
-              ),
+              MText.normal6_400(totalScore!, color: MColor.kLabel.normal),
               SizedBox(width: 4),
-              Text(
-                totalScoreValue!.toStringAsFixed(1),
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
-                  color: MColor.kLabel.normal,
-                ),
-              ),
+              MText.normal6_700(totalScoreValue!.toStringAsFixed(1), color: MColor.kLabel.normal),
             ],
           ),
       ],
