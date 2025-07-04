@@ -88,7 +88,7 @@ class MyApp extends StatelessWidget {
         "/board/update": (context) => const BoardUpdatePage(),
         "/user-match/update": (context) => const UserMatchUpdatePage(),
         "/user-match/write": (context) => const UserMatchWritePage(),
-        "/user-match/detail": (context) => const UserMatchDetailPage(),
+        "/user-match/detail": (context) => UserMatchDetailPage(1),
         "/user-match/list": (context) => const UserMatchListPage(),
         "/user-match/select": (context) => const UserMatchSelectPage(),
         "/user/detail": (context) => const UserDetailPage(),

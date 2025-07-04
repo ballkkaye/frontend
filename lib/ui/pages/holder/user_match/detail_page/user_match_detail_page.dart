@@ -8,13 +8,15 @@ import 'package:flutter/material.dart';
 import 'widgets/user_match_detail_body.dart';
 
 class UserMatchDetailPage extends StatelessWidget {
-  const UserMatchDetailPage({super.key});
+  int userMatchId;
+
+  UserMatchDetailPage(this.userMatchId);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appbar(context),
-      body: UserMatchDetailBody(),
+      body: UserMatchDetailBody(userMatchId),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 210),
         child: FloatingActionButton(onPressed: () {

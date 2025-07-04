@@ -26,7 +26,7 @@ class UserMatchListCard extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => UserMatchDetailPage()),
+              MaterialPageRoute(builder: (_) => UserMatchDetailPage(1)),
             );
           },
           child: Padding(

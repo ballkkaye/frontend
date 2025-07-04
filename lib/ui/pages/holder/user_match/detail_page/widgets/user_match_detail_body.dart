@@ -7,13 +7,9 @@ import 'package:ballkkaye_frontend/ui/pages/holder/user_match/detail_page/widget
 import 'package:flutter/material.dart';
 
 class UserMatchDetailBody extends StatelessWidget {
-  const UserMatchDetailBody({
-    super.key,
-  });
+  int userMatchId;
 
-  // constraints: BoxConstraints(
-  // minHeight: 600, // 최대 높이 제한
-  // ),
+  UserMatchDetailBody(this.userMatchId);
 
   @override
   Widget build(BuildContext context) {
