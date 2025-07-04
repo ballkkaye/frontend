@@ -1,22 +1,22 @@
 class VisitRecordRepository {
-  Future<Map<String, dynamic>> getOne(int id) async {
+  Future<Map<String, dynamic>> getOne(int visitRecordId) async {
     // Response response = await dio.get("${/s/api/visitRecords/{id}/detail}");
     final responseBody = {
-      "visitRecordId": 1,
-      "result": "패",
-      "content": "졌으요",
-      "imgs": ["/images/1.png", "/images/2.png"],
-      "game": {
-        "gameId": 101,
-        "date": "2025-06-08",
-        "homeTeam": "롯데 자이언츠",
-        "awayTeam": "두산 베어스",
+      "status": 200,
+      "msg": "성공",
+      "body": {
+        "id": 10,
+        "homeTeamName": "두산",
+        "awayTeamName": "SSG",
+        "homeScore": 3,
+        "awayScore": 6,
+        "gameDate": "2026.07.06",
         "stadiumName": "사직 야구장",
-        "homeScore": 4,
-        "awayScore": 7
+        "result": "승",
+        "content": "역전승 직관! 최고였음!",
+        "imageString": "",
       }
     };
-    print(responseBody);
     return responseBody;
   }
 }

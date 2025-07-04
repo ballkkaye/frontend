@@ -5,6 +5,7 @@ class VisitRecordDetailImg extends StatelessWidget {
     super.key,
   });
 
+  // TODO: 이미지는 마지막에
   @override
   Widget build(BuildContext context) {
     return ClipRRect(

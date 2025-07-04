@@ -6,13 +6,18 @@ import 'package:ballkkaye_frontend/ui/widgets/m_more_option_btn.dart';
 import 'package:flutter/material.dart';
 
 class VisitRecordDetailPage extends StatelessWidget {
-  const VisitRecordDetailPage({super.key});
+  final int visitRecordId;
+
+  const VisitRecordDetailPage({
+    super.key,
+    required this.visitRecordId,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appbar(context),
-      body: VisitRecordDetailBody(),
+      body: VisitRecordDetailBody(visitRecordId: visitRecordId),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushNamed(context, "/visit-record/update");

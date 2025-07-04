@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
         "/home": (context) => const HomePage(),
         "/main-holder": (context) => MainHolder(),
         "/visit-record/list": (context) => const VisitRecordListPage(),
-        "/visit-record/detail": (context) => const VisitRecordDetailPage(),
+        "/visit-record/detail": (context) => const VisitRecordDetailPage(visitRecordId: 10),
         "/visit-record/select": (context) => VisitRecordSelectPage(),
         "/visit-record/write": (context) => const VisitRecordWritePage(),
         "/visit-record/update": (context) => const VisitRecordUpdatePage(),
