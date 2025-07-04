@@ -8,7 +8,13 @@ class ChatRoomDetailMessageList extends StatelessWidget {
   final List<Map<String, dynamic>> messages = [
     {'user': 'love', 'text': '같이가실?', 'me': false, 'time': '오후 7:51'},
     {'user': 'cos', 'text': 'ㅇㅇ', 'me': false, 'time': '오후 7:51'},
-    {'user': 'me', 'text': '와 안되겠습니까', 'me': true, 'time': '오후 7:51'},
+    {
+      'user': 'me',
+      'text':
+          '와 안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까안되겠습니까',
+      'me': true,
+      'time': '오후 7:51'
+    },
   ];
 
   @override

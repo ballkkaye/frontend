@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/rainout_prediction_page/widget/rainout_prediction_body.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class RainoutPredictionPage extends StatelessWidget {
   AppBar _appbar() {
     return AppBar(
       centerTitle: true,
-      title: MText.h1('우천취소예측'),
+      title: MText.h1('우천취소예측', color: MColor.kLabel.normal),
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.white,
     );

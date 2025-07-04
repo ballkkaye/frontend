@@ -30,8 +30,10 @@ class ChatRoomDetailPage extends StatelessWidget {
 
   AppBar _appbar(BuildContext context) {
     return AppBar(
-      title: MText.h1('직관같이갑시다', color: MColor.kLabel.normal),
       centerTitle: true,
+      title: MText.h1('직관같이갑시다', color: MColor.kLabel.normal),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
       actions: [
         ChatRoomLeaveBtn(
           icon: MIcon.nav.top.dotHorizontal,

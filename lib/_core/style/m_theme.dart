@@ -16,17 +16,56 @@
 //     elevation: 0,
 //   );
 // }
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_size.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ThemeData mTheme() {
   return ThemeData(
-      useMaterial3: true,
-      textTheme: GoogleFonts.notoSansTextTheme(),
-      appBarTheme: AppBarTheme(backgroundColor: Colors.white),
-      scaffoldBackgroundColor: Colors.white,
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: Colors.white,
+    useMaterial3: true,
+    primaryColor: MColor.kPrimary.strong,
+    scaffoldBackgroundColor: Colors.white,
+    appBarTheme: AppBarTheme(
+      backgroundColor: Colors.white,
+      titleTextStyle:
+          TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: MColor.kLabel.normal),
+      centerTitle: true,
+      elevation: 0,
+    ),
+    cardTheme: CardThemeData(
+      color: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(cardRadius),
       ),
-      cardTheme: CardThemeData(color: Colors.white));
+      elevation: 5,
+      margin: EdgeInsets.all(gapM),
+    ),
+    dividerTheme: DividerThemeData(
+      thickness: dividerThickness,
+      color: MColor.kLine.normal,
+    ),
+    textTheme: GoogleFonts.notoSansTextTheme(),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: Colors.white,
+      selectedItemColor: MColor.kPrimary.strong,
+      unselectedItemColor: MColor.kLabel.neutral,
+      selectedLabelStyle: TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
+      unselectedLabelStyle: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+    ),
+    buttonTheme: ButtonThemeData(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(buttonRadius),
+      ),
+      buttonColor: MColor.kPrimary.strong,
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(radiusM),
+        borderSide: BorderSide(color: MColor.kLine.normal),
+      ),
+      contentPadding: EdgeInsets.symmetric(horizontal: gapM, vertical: gapS),
+      hintStyle: TextStyle(fontSize: 14, color: MColor.kLabel.disable),
+    ),
+  );
 }

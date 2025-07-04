@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class ChatRoomDetailMessageBubble extends StatelessWidget {
@@ -11,59 +12,45 @@ class ChatRoomDetailMessageBubble extends StatelessWidget {
     final isMe = message['me'] == true;
 
     return Column(
-      crossAxisAlignment:
-      isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+      crossAxisAlignment: isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
       children: [
         if (!isMe)
-          Text(
+          MText.normal7_4(
             message['user'],
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-              color: MColor.kLabel.normal,
-            ),
+            color: MColor.kLabel.normal,
           ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             if (isMe)
-              Text(
+              MText.normal8_4(
                 message['time'],
-                style: TextStyle(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w400,
-                  color: MColor.kLabel.normal,
-                ),
+                color: MColor.kLabel.normal,
               ),
             const SizedBox(width: 4),
             Container(
-              padding:
-              const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-              decoration: BoxDecoration(
-                color:
-                isMe ? MColor.kPrimary.heavy : MColor.kFill.normal,
-                borderRadius: BorderRadius.circular(30),
+              constraints: BoxConstraints(
+                maxWidth: 300,
               ),
-              child: Text(
+              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+              decoration: BoxDecoration(
+                color: isMe ? MColor.kPrimary.heavy : MColor.kFill.normal,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: MText.normal6_4(
                 message['text']!,
-                style: TextStyle(
-                  color: isMe
-                      ? MColor.kLabel.white
-                      : MColor.kLabel.normal,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                ),
+                color: isMe ? MColor.kLabel.white : MColor.kLabel.normal,
+                // 더보기 버튼을 통해 채팅 전체 화면을 보여주는 화면이 있으면, ...으로 생략할 수 있는 코드.
+                // 현재는 채팅한 전체 내용이 다 보이게 됨.
+                // overflow: TextOverflow.ellipsis,
+                // maxLines: 6,
               ),
             ),
             const SizedBox(width: 2),
             if (!isMe)
-              Text(
+              MText.normal8_4(
                 message['time'],
-                style: TextStyle(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w400,
-                  color: MColor.kLabel.normal,
-                ),
+                color: MColor.kLabel.normal,
               ),
           ],
         ),

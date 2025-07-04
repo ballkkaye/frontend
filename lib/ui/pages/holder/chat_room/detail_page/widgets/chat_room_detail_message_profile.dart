@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ChatRoomDetailMessageProfile extends StatelessWidget {
   final String user;
 
-  const ChatRoomDetailMessageProfile ({super.key, required this.user});
+  const ChatRoomDetailMessageProfile({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {

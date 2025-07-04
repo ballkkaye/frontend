@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class RainoutPredictionWeatherHead extends StatelessWidget {
@@ -10,31 +11,19 @@ class RainoutPredictionWeatherHead extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
+        MText.normal6_5(
           '부산광역시 사직동',
-          style: TextStyle(
-            color: MColor.kLabel.normal,
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-          ),
+          color: MColor.kLabel.normal,
         ),
         SizedBox(height: 4),
-        Text(
+        MText.normal1_7(
           '13˚',
-          style: TextStyle(
-            color: MColor.kLabel.normal,
-            fontSize: 38,
-            fontWeight: FontWeight.w700,
-          ),
+          color: MColor.kLabel.normal,
         ),
         SizedBox(height: 4),
-        Text(
+        MText.normal6_4(
           '어제보다 0.9˚↑',
-          style: TextStyle(
-            color: MColor.kLabel.normal,
-            fontSize: 14,
-            fontWeight: FontWeight.w400,
-          ),
+          color: MColor.kLabel.normal,
         ),
       ],
     );

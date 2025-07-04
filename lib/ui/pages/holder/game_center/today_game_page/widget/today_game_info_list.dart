@@ -30,13 +30,9 @@ class TodayGameInfoList extends StatelessWidget {
           ],
         ),
         SizedBox(height: 4),
-        Text(
+        MText.normal6_6(
           broadcastInfo,
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-            color: MColor.kLabel.normal,
-          ),
+          color: MColor.kLabel.normal,
         )
       ],
     );

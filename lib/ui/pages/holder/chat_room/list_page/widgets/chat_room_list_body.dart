@@ -1,5 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/list_page/widgets/chat_room_list_item.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/list_page/widgets/char_room_list_item.dart';
 import 'package:flutter/material.dart';
 
 class ChatRoomListBody extends StatelessWidget {

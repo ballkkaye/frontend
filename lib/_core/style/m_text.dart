@@ -153,6 +153,103 @@ class MText {
         style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: color),
       );
 
-  static TextStyle modal5({Color? color}) =>
-      TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: color);
+  static Text normal1_7(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 64, fontWeight: FontWeight.w700, color: color),
+      );
+
+  static Text normal2_7(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700, color: color),
+      );
+
+  static Text normal2_6(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600, color: color),
+      );
+
+  static Text normal3_6(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: color),
+      );
+
+  static Text normal4_6(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: color),
+      );
+
+  static Text normal5_7(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: color),
+      );
+
+  static Text normal5_6(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: color),
+      );
+
+  static Text normal5_5(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: color),
+      );
+
+  static Text normal5_4(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: color),
+      );
+
+  static Text normal6_7(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: color),
+      );
+
+  static Text normal6_6(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: color),
+      );
+
+  static Text normal6_5(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: color),
+      );
+
+  static Text normal6_4(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: color),
+      );
+
+  static Text normal7_7(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: color),
+      );
+
+  static Text normal7_6(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: color),
+      );
+
+  static Text normal7_4(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: color),
+      );
+
+  static Text normal8_7(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: color),
+      );
+
+  static Text normal8_6(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: color),
+      );
+
+  static Text normal8_5(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 11, fontWeight: FontWeight.w500, color: color),
+      );
+
+  static Text normal8_4(String text, {Color? color}) => Text(
+        text,
+        style: TextStyle(fontSize: 11, fontWeight: FontWeight.w400, color: color),
+      );
 }

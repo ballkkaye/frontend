@@ -1,5 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class RainoutPredictionKeyword extends StatelessWidget {
@@ -13,13 +14,9 @@ class RainoutPredictionKeyword extends StatelessWidget {
       children: [
         MIcon.page.rainout.bSunny,
         SizedBox(height: 6),
-        Text(
+        MText.normal6_5(
           '맑음',
-          style: TextStyle(
-            color: MColor.kLabel.normal,
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-          ),
+          color: MColor.kLabel.normal,
         ),
       ],
     );

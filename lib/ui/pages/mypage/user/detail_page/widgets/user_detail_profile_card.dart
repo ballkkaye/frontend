@@ -1,8 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/ui/pages/auth/login_page/login_page.dart';
-import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_page/user_update_page.dart';
 import 'package:flutter/material.dart';
 
 class UserDetailProfileCard extends StatelessWidget {
@@ -30,7 +28,7 @@ class UserDetailProfileCard extends StatelessWidget {
                     child: Container(
                       width: 30,
                       height: 30,
-                      color: Colors.grey.shade300,
+                      color: MColor.kFill.normal,
                       child: Align(
                         alignment: Alignment.bottomCenter,
                         child: SizedBox(
@@ -47,36 +45,20 @@ class UserDetailProfileCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "ssar",
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w700, height: 1.2, color: MColor.kLabel.normal),
-                      ),
-                      Text(
-                        "롯데 자이언츠",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          height: 1.2,
-                          color: MColor.kLabel.alternative,
-                        ),
-                      ),
+                      MText.normal4_6("ssar", color: MColor.kLabel.normal),
+                      MText.normal6_5("롯데 자이언츠", color: MColor.kLabel.alternative),
                     ],
                   ),
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (_) => const LoginPage()),
-                      (route) => false,
-                    ); //로그아웃 로직
+                    // 로그아웃 로직
                   },
                   style: TextButton.styleFrom(
                       minimumSize: const Size(0, 20),
                       padding: EdgeInsets.zero,
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-                  child: MText.label1_5('로그아웃', color: MColor.kStatus.negative),
+                  child: MText.button4_5('로그아웃', color: MColor.kStatus.negative),
                 ),
               ],
             ),
@@ -90,18 +72,9 @@ class UserDetailProfileCard extends StatelessWidget {
                   backgroundColor: Colors.black,
                 ),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => UserUpdatePage()),
-                  );
+                  Navigator.pushNamed(context, '/user/update');
                 },
-                child: Text(
-                  "프로필 수정",
-                  style: TextStyle(
-                    color: MColor.kLabel.white,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+                child: MText.button4_5("프로필 수정", color: MColor.kLabel.white),
               ),
             )
           ],

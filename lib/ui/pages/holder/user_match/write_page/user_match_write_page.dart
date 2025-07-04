@@ -21,8 +21,10 @@ class UserMatchWritePage extends StatelessWidget {
 
   AppBar _appbar() {
     return AppBar(
-      title: MText.h1("동행 작성", color: MColor.kLabel.normal),
       centerTitle: true,
+      title: MText.h1('동행 작성', color: MColor.kLabel.normal),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
     );
   }
 }

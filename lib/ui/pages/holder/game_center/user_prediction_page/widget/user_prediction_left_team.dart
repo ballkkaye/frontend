@@ -1,5 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class UserPredictionLeftTeam extends StatelessWidget {
@@ -16,7 +17,7 @@ class UserPredictionLeftTeam extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: GestureDetector(
-        //TODO 클릭 시 상태 저장하는 추가 작업 필요 (stateful)
+        //TODO 클릭 시 상태 저장하는 추가 작업, 배경색 변경 필요 (stateful)
         onTap: () {},
         child: Container(
           decoration: BoxDecoration(
@@ -47,24 +48,16 @@ class UserPredictionLeftTeam extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Text(
+                    MText.normal5_7(
                       teamName,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        color: MColor.kLabel.normal,
-                      ),
+                      color: MColor.kLabel.normal,
                     ),
                   ],
                 ),
                 const SizedBox(width: 28),
-                Text(
+                MText.normal2_6(
                   '${score}',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w600,
-                    color: MColor.kLabel.normal,
-                  ),
+                  color: MColor.kLabel.normal,
                 ),
               ],
             ),

@@ -1,5 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class UserPredictionRightTeam extends StatelessWidget {
@@ -32,13 +33,9 @@ class UserPredictionRightTeam extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                MText.normal2_6(
                   '${score}',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w600,
-                    color: MColor.kLabel.normal,
-                  ),
+                  color: MColor.kLabel.normal,
                 ),
                 const SizedBox(width: 28),
                 Column(
@@ -56,13 +53,9 @@ class UserPredictionRightTeam extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Text(
+                    MText.normal5_7(
                       teamName,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        color: MColor.kLabel.normal,
-                      ),
+                      color: MColor.kLabel.normal,
                     ),
                   ],
                 ),

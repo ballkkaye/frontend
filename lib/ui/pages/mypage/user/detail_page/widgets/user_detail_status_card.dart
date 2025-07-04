@@ -12,9 +12,12 @@ class UserDetailStatusCard extends StatelessWidget {
     return Container(
       height: 160,
       width: double.infinity,
-      decoration:
-          BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8), boxShadow: MColor.kShadow.normal),
-      child: Center(child: MText.label1_5('내 예측 결과 혹은 뱃지/점수 시스템 영역', color: MColor.kLabel.alternative)),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: MColor.kShadow.normal),
+      child: Center(
+          child: MText.label1_5('내 예측 결과 혹은 뱃지/점수 시스템 영역', color: MColor.kLabel.alternative)),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/widget/user_prediction_graph_group.dart';
 import 'package:flutter/material.dart';
 
@@ -29,13 +30,9 @@ class UserPredictionVoteGroup extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
+                MText.normal7_6(
                   '볼까예 투표율',
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                    color: MColor.kLabel.normal,
-                  ),
+                  color: MColor.kLabel.normal,
                 ),
                 SizedBox(width: 8),
                 MIcon.page.userPrediction.arrow,

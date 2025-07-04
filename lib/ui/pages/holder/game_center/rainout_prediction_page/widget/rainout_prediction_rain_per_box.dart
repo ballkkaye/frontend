@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class RainoutPredictionRainPerBox extends StatelessWidget {
@@ -16,13 +17,9 @@ class RainoutPredictionRainPerBox extends StatelessWidget {
       height: 24,
       color: value == 0 ? MColor.kFill.normal : Color(0x664EE1BB),
       alignment: Alignment.center,
-      child: Text(
+      child: MText.normal8_6(
         '${value}%',
-        style: TextStyle(
-          fontSize: 11,
-          fontWeight: FontWeight.w600,
-          color: value == 0 ? MColor.kLabel.alternative : MColor.kLabel.normal,
-        ),
+        color: value == 0 ? MColor.kLabel.alternative : MColor.kLabel.normal,
       ),
     );
   }

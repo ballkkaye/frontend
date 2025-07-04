@@ -1,7 +1,7 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/ui/pages/board/list_page/widgets/list_body.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/list_page/widgets/borad_list_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -36,8 +36,10 @@ class BoardListPage extends ConsumerWidget {
 
   AppBar _appbar() {
     return AppBar(
-      title: MText.h1("커뮤니티"),
       centerTitle: true,
+      title: MText.h1('커뮤니티', color: MColor.kLabel.normal),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
     );
   }
 }

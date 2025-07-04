@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_date_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -58,9 +59,9 @@ class _TodayGameCalenderState extends State<TodayGameCalender> {
             onTap: _showDatePicker,
             child: Row(
               children: [
-                Text(
+                MText.normal4_6(
                   formattedDate,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                  color: MColor.kLabel.normal,
                 ),
                 SizedBox(width: 8),
                 Padding(

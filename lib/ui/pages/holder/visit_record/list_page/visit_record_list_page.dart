@@ -1,6 +1,7 @@
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/widgets/list_body.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/widgets/visit_record_list_body.dart';
 import 'package:flutter/material.dart';
 
 class VisitRecordListPage extends StatelessWidget {
@@ -24,9 +25,10 @@ class VisitRecordListPage extends StatelessWidget {
 
   AppBar _appbar(BuildContext context, cellSize) {
     return AppBar(
-      actionsPadding: EdgeInsets.symmetric(horizontal: 10),
-      title: MText.h1("직관 기록"),
       centerTitle: true,
+      title: MText.h1('직관 기록', color: MColor.kLabel.normal),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
       actions: [
         IconButton(
           onPressed: () {

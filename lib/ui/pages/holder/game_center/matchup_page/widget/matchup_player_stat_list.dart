@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class MatchupPlayerStatList extends StatelessWidget {
@@ -77,13 +78,9 @@ class MatchupStatValue extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
+    return MText.normal5_4(
       '${value}',
-      style: TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.w400,
-        color: MColor.kLabel.normal,
-      ),
+      color: MColor.kLabel.normal,
     );
   }
 }
@@ -99,13 +96,9 @@ class MatchupStatTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
+    return MText.normal5_4(
       '${title} : ',
-      style: TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.w400,
-        color: MColor.kLabel.normal,
-      ),
+      color: MColor.kLabel.normal,
     );
   }
 }

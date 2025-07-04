@@ -24,5 +24,3 @@ class ChatRoomDetailBody extends StatelessWidget {
     );
   }
 }
-
-

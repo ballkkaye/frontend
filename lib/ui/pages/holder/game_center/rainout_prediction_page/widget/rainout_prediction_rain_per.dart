@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/rainout_prediction_page/widget/rainout_prediction_rain_per_box.dart';
 import 'package:flutter/material.dart';
 
@@ -12,13 +13,9 @@ class RainoutPredictionRainPer extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        MText.normal8_4(
           '확률 %',
-          style: TextStyle(
-            fontSize: 11,
-            fontWeight: FontWeight.w400,
-            color: MColor.kLabel.normal,
-          ),
+          color: MColor.kLabel.normal,
         ),
         SizedBox(
           height: 25,

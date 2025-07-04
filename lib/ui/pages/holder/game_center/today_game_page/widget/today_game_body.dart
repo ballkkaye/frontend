@@ -16,6 +16,7 @@ class TodayGameBody extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 10),
           child: TodayGameCalender(),
         ),
+        SizedBox(height: 10),
         Column(
           children: [
             TodayGameCard(
