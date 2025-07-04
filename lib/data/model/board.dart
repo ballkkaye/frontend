@@ -1,5 +1,5 @@
 // rule (copyWith, fromJson, toJson)
-class BoardDetailItem {
+class Board {
   int boardId;
   String nickname;
 
@@ -16,7 +16,7 @@ class BoardDetailItem {
 
   // List<ReplyItem> replyItems;
 
-  BoardDetailItem({
+  Board({
     required this.boardId,
     required this.nickname,
     // required this.profileImgUrl,
@@ -32,8 +32,8 @@ class BoardDetailItem {
     // required this.replyItems,
   });
 
-  factory BoardDetailItem.fromMap(Map<String, dynamic> json) {
-    return BoardDetailItem(
+  factory Board.fromMap(Map<String, dynamic> json) {
+    return Board(
       boardId: json['boardId'],
       nickname: json['nickname'],
       // profileImgUrl: json['profileImageUrl'], //나중에 이미지넣을예정

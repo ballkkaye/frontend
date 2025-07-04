@@ -3,12 +3,12 @@ import 'package:ballkkaye_frontend/data/repository/board_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// 1. 창고 관리자
-final boardDetailProvider = StateNotifierProvider<BoardDetailVM, BoardDetailItem?>((ref) {
+final boardDetailProvider = StateNotifierProvider<BoardDetailVM, Board?>((ref) {
   return BoardDetailVM();
 });
 
 /// 2. 창고 (상태가 변경되어도, 화면 갱신 안함 - watch 하지마)
-class BoardDetailVM extends StateNotifier<BoardDetailItem?> {
+class BoardDetailVM extends StateNotifier<Board?> {
   BoardDetailVM() : super(null);
 
   Future<void> getBoardDetail({
@@ -29,12 +29,12 @@ class BoardDetailVM extends StateNotifier<BoardDetailItem?> {
 
 /// 3. 창고 데이터 타입 (불변 아님)
 class BoardDetailModel {
-  final BoardDetailItem? detail;
+  final Board? detail;
 
   BoardDetailModel({required this.detail});
 
   BoardDetailModel copyWith({
-    BoardDetailItem? detail,
+    Board? detail,
   }) {
     return BoardDetailModel(
       detail: detail ?? this.detail,

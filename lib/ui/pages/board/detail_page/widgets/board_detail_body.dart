@@ -5,7 +5,7 @@ import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/borad_deta
 import 'package:flutter/material.dart';
 
 class BoardDetailBody extends StatelessWidget {
-  final BoardDetailItem detail;
+  final Board detail;
 
   const BoardDetailBody({
     super.key,
