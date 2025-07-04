@@ -1,10 +1,9 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/list_page/board_list_vm.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/list_page/widgets/borad_list_card.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/list_page/widgets/borad_list_team_category_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'list_card.dart';
 
 class BoardListBody extends ConsumerStatefulWidget {
   final String accessToken;
@@ -72,7 +71,7 @@ class _BoardListBodyState extends ConsumerState<BoardListBody> {
               itemCount: model.items.length,
               itemBuilder: (context, index) {
                 final item = model.items[index];
-                return ListCard(boardItem: item);
+                return BoardListCard(boardItem: item);
               },
             ),
           ),
