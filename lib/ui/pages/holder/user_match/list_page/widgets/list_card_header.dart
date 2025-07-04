@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class ListCardHeader extends StatelessWidget {
@@ -16,21 +17,13 @@ class ListCardHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
+        MText.normal7_400(
           matchTitle,
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w400,
-            color: MColor.kLabel.alternative,
-          ),
+          color: MColor.kLabel.alternative,
         ),
-        Text(
+        MText.normal7_400(
           postedTime,
-          style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w400,
-            color: MColor.kLabel.strong,
-          ),
+          color: MColor.kLabel.strong,
         ),
       ],
     );

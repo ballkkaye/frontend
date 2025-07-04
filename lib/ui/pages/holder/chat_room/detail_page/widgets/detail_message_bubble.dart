@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class DetailMessageBubble extends StatelessWidget {
@@ -14,25 +15,17 @@ class DetailMessageBubble extends StatelessWidget {
       crossAxisAlignment: isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
       children: [
         if (!isMe)
-          Text(
+          MText.normal7_400(
             message['user'],
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-              color: MColor.kLabel.normal,
-            ),
+            color: MColor.kLabel.normal,
           ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             if (isMe)
-              Text(
+              MText.normal8_400(
                 message['time'],
-                style: TextStyle(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w400,
-                  color: MColor.kLabel.normal,
-                ),
+                color: MColor.kLabel.normal,
               ),
             const SizedBox(width: 4),
             Container(
@@ -44,13 +37,9 @@ class DetailMessageBubble extends StatelessWidget {
                 color: isMe ? MColor.kPrimary.heavy : MColor.kFill.normal,
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: Text(
+              child: MText.normal6_400(
                 message['text']!,
-                style: TextStyle(
-                  color: isMe ? MColor.kLabel.white : MColor.kLabel.normal,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                ),
+                color: isMe ? MColor.kLabel.white : MColor.kLabel.normal,
                 // 더보기 버튼을 통해 채팅 전체 화면을 보여주는 화면이 있으면, ...으로 생략할 수 있는 코드.
                 // 현재는 채팅한 전체 내용이 다 보이게 됨.
                 // overflow: TextOverflow.ellipsis,
@@ -59,13 +48,9 @@ class DetailMessageBubble extends StatelessWidget {
             ),
             const SizedBox(width: 2),
             if (!isMe)
-              Text(
+              MText.normal8_400(
                 message['time'],
-                style: TextStyle(
-                  fontSize: 11,
-                  fontWeight: FontWeight.w400,
-                  color: MColor.kLabel.normal,
-                ),
+                color: MColor.kLabel.normal,
               ),
           ],
         ),

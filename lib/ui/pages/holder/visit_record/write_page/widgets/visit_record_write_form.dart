@@ -25,6 +25,7 @@ class VisitRecordWriteForm extends StatelessWidget {
           SizedBox(height: 20),
           // 사진 첨부 버튼
           MIconBtn(
+            height: 49,
             icon: MIcon.page.record.camera,
             text: '사진 첨부하기',
             onPressed: () {

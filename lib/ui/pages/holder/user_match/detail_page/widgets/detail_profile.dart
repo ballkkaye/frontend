@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
@@ -29,13 +30,12 @@ class DetailProfile extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            MText.h3_7("ssar"),
-            MText.label1_5("롯데자이언트", color: Colors.grey),
+            MText.normal4_600("ssar"),
+            MText.normal6_500("롯데자이언트", color: MColor.kLabel.alternative),
           ],
         ),
         Spacer(),
-        Text('15분전',
-            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
+        MText.normal7_400('15분전', color: MColor.kLabel.normal),
       ],
     );
   }

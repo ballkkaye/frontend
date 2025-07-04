@@ -40,7 +40,7 @@ class UserUpdateForm extends StatelessWidget {
                   SizedBox(height: 20),
 
                   // 닉네임 수정
-                  MText.h3_6('닉네임', color: MColor.kLabel.normal),
+                  MText.normal6_500('닉네임', color: MColor.kLabel.normal),
                   SizedBox(height: 6),
                   MTextFormField(
                     hintText: '닉네임',
@@ -50,7 +50,7 @@ class UserUpdateForm extends StatelessWidget {
                   SizedBox(height: 12),
 
                   // 응원팀 수정
-                  MText.h3_6('내 응원팀', color: MColor.kLabel.normal),
+                  MText.normal6_500('내 응원팀', color: MColor.kLabel.normal),
                   SizedBox(height: 6),
                   MDropdownBtn(
                     hintText: '내 응원팀',

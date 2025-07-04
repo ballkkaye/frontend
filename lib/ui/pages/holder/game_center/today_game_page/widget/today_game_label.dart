@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class TodayGameLabel extends StatelessWidget {
@@ -23,14 +24,9 @@ class TodayGameLabel extends StatelessWidget {
       alignment: Alignment.center,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-        child: Text(
+        child: MText.label2_7(
           gameState,
-          style: TextStyle(
-            height: 1,
-            fontSize: 12,
-            fontWeight: FontWeight.w700,
-            color: MColor.kLabel.white,
-          ),
+          color: MColor.kLabel.white,
         ),
       ),
     );

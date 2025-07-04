@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -90,9 +91,9 @@ class _ListCalendarState extends State<ListCalendar> {
                 color: MColor.kPrimary.strong,
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Text(
+              child: MText.normal5_600(
                 '${date.day}',
-                style: TextStyle(fontSize: 16, color: MColor.kLabel.white),
+                color: MColor.kLabel.white,
               ),
             ),
           ),
@@ -103,9 +104,9 @@ class _ListCalendarState extends State<ListCalendar> {
         final textColor = isFuture ? MColor.kLabel.disable : MColor.kLabel.neutral;
 
         return Center(
-          child: Text(
+          child: MText.normal5_600(
             '${date.day}',
-            style: TextStyle(fontSize: 16, color: textColor),
+            color: textColor,
           ),
         );
       },

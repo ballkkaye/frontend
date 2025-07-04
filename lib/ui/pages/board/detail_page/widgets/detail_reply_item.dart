@@ -44,20 +44,16 @@ class DetailReplyItem extends StatelessWidget {
               CircleAvatar(
                 radius: 16,
                 backgroundColor: Colors.white,
-                backgroundImage: hasProfileImgUrl
-                    ? AssetImage(profileImgUrl)
-                    : const AssetImage('assets/images/user.png'),
+                backgroundImage:
+                    hasProfileImgUrl ? AssetImage(profileImgUrl) : const AssetImage('assets/images/user.png'),
               ),
               SizedBox(width: 8),
               // 응원 팀 및 작성 시간
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  MText.label2_4(author, color: MColor.kLabel.normal),
-                  Text(
-                    "롯데 자이언츠  •  $time",
-                    style: TextStyle(fontSize: 10, color: MColor.kLabel.neutral),
-                  ),
+                  MText.normal6_400(author, color: MColor.kLabel.normal),
+                  MText.normal7_400("롯데 자이언츠  •  $time", color: MColor.kLabel.neutral),
                 ],
               ),
               Spacer(),
@@ -66,11 +62,14 @@ class DetailReplyItem extends StatelessWidget {
                 visible: isReplyOwner, // 로그인한 유저=댓글 주인인 경우에만 활성화됨
                 child: MMoreOptionBtn(
                   icon: MIcon.nav.top.dotHorizontal,
-                  onUpdate: () {}, // TODO : 댓글 수정 -> 입력창에 댓글 기존 내용 불러오기
+                  onUpdate: () {},
+                  // TODO : 댓글 수정 -> 입력창에 댓글 기존 내용 불러오기
                   alertTitle: '댓글 삭제',
                   alertContent: '댓글을 삭제하시겠습니까?',
-                  onAlertConfirm: () {}, // 다이얼로그 닫힌 뒤 동작
-                  onAlertCancel: () {}, // 다이얼로그 닫힌 뒤 동작
+                  onAlertConfirm: () {},
+                  // 다이얼로그 닫힌 뒤 동작
+                  onAlertCancel: () {},
+                  // 다이얼로그 닫힌 뒤 동작
                   alertConfirmText: '삭제',
                   alertCancelText: '취소',
                 ),
@@ -79,7 +78,7 @@ class DetailReplyItem extends StatelessWidget {
           ),
           SizedBox(height: 8),
           // 댓글 내용
-          MText.label1_5(content, color: MColor.kLabel.normal),
+          MText.normal6_500(content, color: MColor.kLabel.normal),
           SizedBox(height: 10),
           // 좋아요 + 대댓글 수 + 답글 달기
           Row(
@@ -98,7 +97,7 @@ class DetailReplyItem extends StatelessWidget {
                       child: MIcon.page.community.likedRed,
                     ),
                   ),
-                  MText.label2_5('$likeCount', color: MColor.kLabel.neutral),
+                  MText.normal7_600('$likeCount', color: MColor.kLabel.neutral),
                 ],
               ),
               SizedBox(width: 6),
@@ -107,7 +106,7 @@ class DetailReplyItem extends StatelessWidget {
                 children: [
                   MIcon.page.community.comment,
                   SizedBox(width: 2),
-                  MText.label2_5('$replyCount', color: MColor.kLabel.neutral),
+                  MText.normal7_600('$replyCount', color: MColor.kLabel.neutral),
                 ],
               ),
               SizedBox(width: 10),
@@ -126,10 +125,7 @@ class DetailReplyItem extends StatelessWidget {
                   minimumSize: WidgetStateProperty.all<Size>(Size.zero),
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
-                child: Text(
-                  '답글 달기',
-                  style: TextStyle(fontSize: 10, color: MColor.kLabel.neutral),
-                ),
+                child: MText.normal7_400('답글 달기', color: MColor.kLabel.neutral),
               ),
             ],
           ),
