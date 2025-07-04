@@ -15,7 +15,7 @@ class ChatRoomDetailMessageBubble extends StatelessWidget {
       crossAxisAlignment: isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
       children: [
         if (!isMe)
-          MText.normal7_400(
+          MText.normal7_4(
             message['user'],
             color: MColor.kLabel.normal,
           ),
@@ -23,7 +23,7 @@ class ChatRoomDetailMessageBubble extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             if (isMe)
-              MText.normal8_400(
+              MText.normal8_4(
                 message['time'],
                 color: MColor.kLabel.normal,
               ),
@@ -37,7 +37,7 @@ class ChatRoomDetailMessageBubble extends StatelessWidget {
                 color: isMe ? MColor.kPrimary.heavy : MColor.kFill.normal,
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: MText.normal6_400(
+              child: MText.normal6_4(
                 message['text']!,
                 color: isMe ? MColor.kLabel.white : MColor.kLabel.normal,
                 // 더보기 버튼을 통해 채팅 전체 화면을 보여주는 화면이 있으면, ...으로 생략할 수 있는 코드.
@@ -48,7 +48,7 @@ class ChatRoomDetailMessageBubble extends StatelessWidget {
             ),
             const SizedBox(width: 2),
             if (!isMe)
-              MText.normal8_400(
+              MText.normal8_4(
                 message['time'],
                 color: MColor.kLabel.normal,
               ),

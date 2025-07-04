@@ -45,8 +45,8 @@ class UserDetailProfileCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      MText.normal4_600("ssar", color: MColor.kLabel.normal),
-                      MText.normal6_500("롯데 자이언츠", color: MColor.kLabel.alternative),
+                      MText.normal4_6("ssar", color: MColor.kLabel.normal),
+                      MText.normal6_5("롯데 자이언츠", color: MColor.kLabel.alternative),
                     ],
                   ),
                 ),

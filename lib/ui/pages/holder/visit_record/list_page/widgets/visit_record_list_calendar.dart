@@ -92,7 +92,7 @@ class _VisitRecordListCalendarState extends State<VisitRecordListCalendar> {
                 color: MColor.kPrimary.strong,
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: MText.normal5_600(
+              child: MText.normal5_6(
                 '${date.day}',
                 color: MColor.kLabel.white,
               ),
@@ -105,7 +105,7 @@ class _VisitRecordListCalendarState extends State<VisitRecordListCalendar> {
         final textColor = isFuture ? MColor.kLabel.disable : MColor.kLabel.neutral;
 
         return Center(
-          child: MText.normal5_600(
+          child: MText.normal5_6(
             '${date.day}',
             color: textColor,
           ),

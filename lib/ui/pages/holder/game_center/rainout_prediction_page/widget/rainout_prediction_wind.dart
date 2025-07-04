@@ -14,7 +14,7 @@ class RainoutPredictionWind extends StatelessWidget {
       children: [
         MIcon.page.rainout.bWind,
         SizedBox(height: 6),
-        MText.normal6_500(
+        MText.normal6_5(
           '남서풍 0.4m/s',
           color: MColor.kLabel.normal,
         ),

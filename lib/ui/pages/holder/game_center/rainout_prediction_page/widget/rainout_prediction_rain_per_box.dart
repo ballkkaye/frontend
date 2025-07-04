@@ -17,7 +17,7 @@ class RainoutPredictionRainPerBox extends StatelessWidget {
       height: 24,
       color: value == 0 ? MColor.kFill.normal : Color(0x664EE1BB),
       alignment: Alignment.center,
-      child: MText.normal8_600(
+      child: MText.normal8_6(
         '${value}%',
         color: value == 0 ? MColor.kLabel.alternative : MColor.kLabel.normal,
       ),

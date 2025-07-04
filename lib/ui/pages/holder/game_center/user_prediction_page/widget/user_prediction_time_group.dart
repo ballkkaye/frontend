@@ -32,7 +32,7 @@ class UserPredictionTimeGroup extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 4),
         child: Center(
-          child: MText.normal4_600(
+          child: MText.normal4_6(
             '${hour}:${minute}',
             color: MColor.kLabel.white,
           ),

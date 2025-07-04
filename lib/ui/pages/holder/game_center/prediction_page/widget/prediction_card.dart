@@ -51,7 +51,7 @@ class PredictionCard extends StatelessWidget {
                             ),
                             SizedBox(width: 2),
                             // 선수명
-                            MText.normal6_400('선수명', color: MColor.kLabel.normal),
+                            MText.normal6_4('선수명', color: MColor.kLabel.normal),
                           ],
                         ),
                         // 여백
@@ -101,7 +101,7 @@ class PredictionCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: 10),
-                  MText.normal5_600('VS', color: MColor.kLabel.neutral),
+                  MText.normal5_6('VS', color: MColor.kLabel.neutral),
                   SizedBox(width: 10),
                   Expanded(
                     child: Column(
@@ -127,7 +127,7 @@ class PredictionCard extends StatelessWidget {
                             ),
                             SizedBox(width: 2),
                             // 선수명
-                            MText.normal6_400('선수명', color: MColor.kLabel.normal),
+                            MText.normal6_4('선수명', color: MColor.kLabel.normal),
                           ],
                         ),
                         // 여백

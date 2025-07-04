@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 Widget MatchupPlayerImage(String? imageUrl) {
   if (imageUrl == null || imageUrl.isEmpty) {
     return Center(
-      child: MText.normal6_600(
+      child: MText.normal6_6(
         '이미지 준비중',
         color: MColor.kLabel.alternative,
       ),

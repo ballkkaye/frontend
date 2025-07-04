@@ -15,14 +15,15 @@ class ChatRoomDetailHeader extends StatelessWidget {
         // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            decoration: BoxDecoration(color: MColor.kFill.normal, borderRadius: BorderRadius.circular(20)),
+            decoration:
+                BoxDecoration(color: MColor.kFill.normal, borderRadius: BorderRadius.circular(20)),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
               child: MText.label2_7("2025.06.19 롯데 자이언츠 vs 두산 베어스", color: MColor.kLabel.normal),
             ),
           ),
           SizedBox(height: 10),
-          MText.normal6_700("2025년 06월 16일", color: MColor.kLabel.normal),
+          MText.normal6_7("2025년 06월 16일", color: MColor.kLabel.normal),
         ],
       ),
     );

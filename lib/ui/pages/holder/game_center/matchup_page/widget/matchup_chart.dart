@@ -296,7 +296,7 @@ class MatchupNormalRow extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: Center(
-          child: MText.normal7_400(
+          child: MText.normal7_4(
             title,
             color: MColor.kLabel.normal,
           ),
@@ -324,7 +324,7 @@ class MatchupBoldRow extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: Center(
-          child: MText.normal7_600(
+          child: MText.normal7_6(
             title,
             color: MColor.kLabel.normal,
           ),

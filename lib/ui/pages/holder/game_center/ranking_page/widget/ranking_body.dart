@@ -14,7 +14,7 @@ class RankingBody extends StatelessWidget {
       padding: EdgeInsets.only(top: 22, left: 16, right: 16),
       child: Column(
         children: [
-          MText.normal4_600(
+          MText.normal4_6(
             '2025.06.16 (목)',
             color: MColor.kLabel.normal,
           ),

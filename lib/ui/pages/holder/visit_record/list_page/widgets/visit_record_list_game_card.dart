@@ -26,24 +26,24 @@ class VisitRecordListGameCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                MText.normal1_700("0", color: MColor.kLabel.disable),
+                MText.normal1_7("0", color: MColor.kLabel.disable),
                 Column(
                   children: [
                     Row(
                       children: [
                         MText.h1("한화", color: MColor.kLabel.normal),
                         SizedBox(width: 16),
-                        MText.normal7_600("vs", color: MColor.kLabel.alternative),
+                        MText.normal7_6("vs", color: MColor.kLabel.alternative),
                         SizedBox(width: 16),
                         MText.h1("키움", color: MColor.kLabel.normal),
                       ],
                     ),
                     SizedBox(height: 8),
-                    MText.normal8_500("2025.06.22", color: MColor.kLabel.alternative),
-                    MText.normal8_500("대전한화생명이글스파크", color: MColor.kLabel.alternative),
+                    MText.normal8_5("2025.06.22", color: MColor.kLabel.alternative),
+                    MText.normal8_5("대전한화생명이글스파크", color: MColor.kLabel.alternative),
                   ],
                 ),
-                MText.normal1_700("5", color: MColor.kPrimary.strong),
+                MText.normal1_7("5", color: MColor.kPrimary.strong),
               ],
             ),
           ),

@@ -34,7 +34,7 @@ class ChatRoomListItem extends StatelessWidget {
               ),
             ),
           ),
-          title: MText.normal5_600(
+          title: MText.normal5_6(
             chat['name']!,
             color: MColor.kLabel.normal,
           ),

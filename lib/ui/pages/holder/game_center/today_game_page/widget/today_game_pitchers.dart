@@ -16,12 +16,12 @@ class TodayGamePitchers extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        MText.normal5_500(
+        MText.normal5_5(
           leftPitcher,
           color: MColor.kLabel.normal,
         ),
         SizedBox(width: 20),
-        MText.normal5_500(
+        MText.normal5_5(
           rightPitcher,
           color: MColor.kLabel.normal,
         ),

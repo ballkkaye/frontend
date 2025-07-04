@@ -12,7 +12,9 @@ class MypageUserCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: MColor.kBackground.normal, borderRadius: BorderRadius.circular(8), boxShadow: MColor.kShadow.normal),
+          color: MColor.kBackground.normal,
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: MColor.kShadow.normal),
       child: Padding(
         padding: const EdgeInsets.all(14),
         child: Row(
@@ -39,8 +41,8 @@ class MypageUserCard extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    MText.normal4_600('ssar', color: MColor.kLabel.normal),
-                    MText.normal6_500('롯데 자이언츠', color: MColor.kLabel.alternative),
+                    MText.normal4_6('ssar', color: MColor.kLabel.normal),
+                    MText.normal6_5('롯데 자이언츠', color: MColor.kLabel.alternative),
                   ],
                 ),
               ],

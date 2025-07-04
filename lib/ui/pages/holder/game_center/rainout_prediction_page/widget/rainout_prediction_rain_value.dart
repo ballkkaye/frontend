@@ -14,7 +14,7 @@ class RainoutPredictionRainValue extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        MText.normal5_600(
+        MText.normal5_6(
           '강수',
           color: MColor.kLabel.normal,
         ),

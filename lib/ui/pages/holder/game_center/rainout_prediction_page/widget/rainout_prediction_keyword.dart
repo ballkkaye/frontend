@@ -14,7 +14,7 @@ class RainoutPredictionKeyword extends StatelessWidget {
       children: [
         MIcon.page.rainout.bSunny,
         SizedBox(height: 6),
-        MText.normal6_500(
+        MText.normal6_5(
           '맑음',
           color: MColor.kLabel.normal,
         ),

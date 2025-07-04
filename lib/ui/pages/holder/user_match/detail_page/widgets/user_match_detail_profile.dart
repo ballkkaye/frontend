@@ -30,12 +30,12 @@ class UserMatchDetailProfile extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            MText.normal4_600("ssar"),
-            MText.normal6_500("롯데자이언트", color: MColor.kLabel.alternative),
+            MText.normal4_6("ssar"),
+            MText.normal6_5("롯데자이언트", color: MColor.kLabel.alternative),
           ],
         ),
         Spacer(),
-        MText.normal7_400('15분전', color: MColor.kLabel.normal),
+        MText.normal7_4('15분전', color: MColor.kLabel.normal),
       ],
     );
   }

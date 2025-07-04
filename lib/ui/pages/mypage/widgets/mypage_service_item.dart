@@ -25,7 +25,7 @@ class ServiceItem extends StatelessWidget {
             icon,
             SizedBox(width: 10),
             Expanded(
-              child: MText.normal5_500(label, color: MColor.kLabel.normal),
+              child: MText.normal5_5(label, color: MColor.kLabel.normal),
             ),
           ],
         ),

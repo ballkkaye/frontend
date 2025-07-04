@@ -44,16 +44,17 @@ class BoardDetailReplyItem extends StatelessWidget {
               CircleAvatar(
                 radius: 16,
                 backgroundColor: Colors.white,
-                backgroundImage:
-                    hasProfileImgUrl ? AssetImage(profileImgUrl) : const AssetImage('assets/images/user.png'),
+                backgroundImage: hasProfileImgUrl
+                    ? AssetImage(profileImgUrl)
+                    : const AssetImage('assets/images/user.png'),
               ),
               SizedBox(width: 8),
               // 응원 팀 및 작성 시간
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  MText.normal6_400(author, color: MColor.kLabel.normal),
-                  MText.normal7_400("롯데 자이언츠  •  $time", color: MColor.kLabel.neutral),
+                  MText.normal6_4(author, color: MColor.kLabel.normal),
+                  MText.normal7_4("롯데 자이언츠  •  $time", color: MColor.kLabel.neutral),
                 ],
               ),
               Spacer(),
@@ -78,7 +79,7 @@ class BoardDetailReplyItem extends StatelessWidget {
           ),
           SizedBox(height: 8),
           // 댓글 내용
-          MText.normal6_500(content, color: MColor.kLabel.normal),
+          MText.normal6_5(content, color: MColor.kLabel.normal),
           SizedBox(height: 10),
           // 좋아요 + 대댓글 수 + 답글 달기
           Row(
@@ -97,7 +98,7 @@ class BoardDetailReplyItem extends StatelessWidget {
                       child: MIcon.page.community.likedRed,
                     ),
                   ),
-                  MText.normal7_600('$likeCount', color: MColor.kLabel.neutral),
+                  MText.normal7_6('$likeCount', color: MColor.kLabel.neutral),
                 ],
               ),
               SizedBox(width: 6),
@@ -106,7 +107,7 @@ class BoardDetailReplyItem extends StatelessWidget {
                 children: [
                   MIcon.page.community.comment,
                   SizedBox(width: 2),
-                  MText.normal7_600('$replyCount', color: MColor.kLabel.neutral),
+                  MText.normal7_6('$replyCount', color: MColor.kLabel.neutral),
                 ],
               ),
               SizedBox(width: 10),
@@ -125,7 +126,7 @@ class BoardDetailReplyItem extends StatelessWidget {
                   minimumSize: WidgetStateProperty.all<Size>(Size.zero),
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
-                child: MText.normal7_400('답글 달기', color: MColor.kLabel.neutral),
+                child: MText.normal7_4('답글 달기', color: MColor.kLabel.neutral),
               ),
             ],
           ),

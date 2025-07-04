@@ -11,17 +11,17 @@ class RainoutPredictionWeatherHead extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        MText.normal6_500(
+        MText.normal6_5(
           '부산광역시 사직동',
           color: MColor.kLabel.normal,
         ),
         SizedBox(height: 4),
-        MText.normal1_700(
+        MText.normal1_7(
           '13˚',
           color: MColor.kLabel.normal,
         ),
         SizedBox(height: 4),
-        MText.normal6_400(
+        MText.normal6_4(
           '어제보다 0.9˚↑',
           color: MColor.kLabel.normal,
         ),

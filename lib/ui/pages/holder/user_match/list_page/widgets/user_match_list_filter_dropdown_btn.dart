@@ -29,7 +29,7 @@ class ListFilterDropdownBtn extends StatelessWidget {
         itemBuilder: (context) => options
             .map((value) => PopupMenuItem<String>(
                   value: value,
-                  child: MText.normal6_400(value, color: MColor.kLabel.normal),
+                  child: MText.normal6_4(value, color: MColor.kLabel.normal),
                 ))
             .toList(),
         offset: const Offset(0, 40),

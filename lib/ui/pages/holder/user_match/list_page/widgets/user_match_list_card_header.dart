@@ -17,11 +17,11 @@ class UserMatchListCardHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        MText.normal7_400(
+        MText.normal7_4(
           matchTitle,
           color: MColor.kLabel.alternative,
         ),
-        MText.normal7_400(
+        MText.normal7_4(
           postedTime,
           color: MColor.kLabel.strong,
         ),

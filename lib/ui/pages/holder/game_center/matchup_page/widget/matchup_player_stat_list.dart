@@ -78,7 +78,7 @@ class MatchupStatValue extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MText.normal5_400(
+    return MText.normal5_4(
       '${value}',
       color: MColor.kLabel.normal,
     );
@@ -96,7 +96,7 @@ class MatchupStatTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MText.normal5_400(
+    return MText.normal5_4(
       '${title} : ',
       color: MColor.kLabel.normal,
     );

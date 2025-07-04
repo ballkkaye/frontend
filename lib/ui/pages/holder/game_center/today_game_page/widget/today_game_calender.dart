@@ -59,7 +59,7 @@ class _TodayGameCalenderState extends State<TodayGameCalender> {
             onTap: _showDatePicker,
             child: Row(
               children: [
-                MText.normal4_600(
+                MText.normal4_6(
                   formattedDate,
                   color: MColor.kLabel.normal,
                 ),

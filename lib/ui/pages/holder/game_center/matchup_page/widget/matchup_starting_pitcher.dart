@@ -40,7 +40,7 @@ class MatchupStartingPitcher extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    MText.normal4_600(
+                    MText.normal4_6(
                       '선수명',
                       color: MColor.kLabel.normal,
                     ),

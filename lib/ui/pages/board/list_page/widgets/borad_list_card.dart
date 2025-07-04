@@ -31,8 +31,8 @@ class BoardListCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    MText.normal5_600('ssar', color: MColor.kLabel.neutral),
-                    MText.normal7_400('15분전', color: MColor.kLabel.normal),
+                    MText.normal5_6('ssar', color: MColor.kLabel.neutral),
+                    MText.normal7_4('15분전', color: MColor.kLabel.normal),
                   ],
                 ),
                 SizedBox(height: 4),

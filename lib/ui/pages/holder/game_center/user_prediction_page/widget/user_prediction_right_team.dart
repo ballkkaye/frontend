@@ -33,7 +33,7 @@ class UserPredictionRightTeam extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                MText.normal2_600(
+                MText.normal2_6(
                   '${score}',
                   color: MColor.kLabel.normal,
                 ),
@@ -53,7 +53,7 @@ class UserPredictionRightTeam extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    MText.normal5_700(
+                    MText.normal5_7(
                       teamName,
                       color: MColor.kLabel.normal,
                     ),
