@@ -49,7 +49,11 @@ class BoardListBody extends StatelessWidget {
             separatorBuilder: (context, index) => SizedBox(height: 10),
             itemCount: 10,
             itemBuilder: (context, index) {
-              return BoardListCard();
+              return BoardListCard(
+                boardId: 3,
+                accessToken:
+                    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhY2Nlc3MtdG9rZW4iLCJuaWNrbmFtZSI6InNzYXIiLCJ1c2Vycm9sZSI6IlVTRVIiLCJpZCI6MSwiZXhwIjoxNzUxNjE1OTA4fQ.a8S5gV9s_a-wnbPPg9G8A2hMCRlZhnm21J0kny8dxL6OLnGPtI-4MAUDy-P8rbJDn_o_bxbY5zwjqmo_2E7w5g",
+              );
             },
           ),
         ),
