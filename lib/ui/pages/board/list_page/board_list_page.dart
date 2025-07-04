@@ -13,7 +13,7 @@ class BoardListPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     const accessToken =
-        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhY2Nlc3MtdG9rZW4iLCJuaWNrbmFtZSI6InNzYXIiLCJ1c2Vycm9sZSI6IlVTRVIiLCJpZCI6MSwiZXhwIjoxNzUxNjAxOTQ3fQ.7KkWIl3yTXNhSV390lXQ5yXKBnwNBiHGQlChf6HMBJ--7WM7PE2S9h2dgOaD9MhgnsZujvTkIMAds3GZ4UY5Rg";
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhY2Nlc3MtdG9rZW4iLCJuaWNrbmFtZSI6InNzYXIiLCJ1c2Vycm9sZSI6IlVTRVIiLCJpZCI6MSwiZXhwIjoxNzUxNjA5MTc2fQ.xiBibqw2vsJG6QIjfq0RE4ncmaGV8ChGQyfyn7nQOb0a3oj-2id0NyICoXUqfFk4AUlcvFTCXlaeD1-sCASgrw"; // 임시 토큰 나중에 로그인할때 토큰가져올예정
 
     return Scaffold(
       appBar: _appbar(),

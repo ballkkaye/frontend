@@ -29,8 +29,8 @@ class BoardItem {
       team: Team(
         teamId: json['teamId'],
         teamName: json['teamName'],
-        teamLogo: '', //
-        teamRank: 0, //
+        teamLogo: '',
+        teamRank: 0,
       ),
       likeCount: json['likeCount'],
       replyCount: json['replyCount'],

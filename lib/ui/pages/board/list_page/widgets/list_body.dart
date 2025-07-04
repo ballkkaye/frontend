@@ -44,7 +44,7 @@ class _BoardListBodyState extends ConsumerState<BoardListBody> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: SizedBox(
-            height: 80,
+            height: 85,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: model.teams.length + 1,
@@ -55,7 +55,7 @@ class _BoardListBodyState extends ConsumerState<BoardListBody> {
                   final team = model.teams[index - 1];
                   return ListTeamCategoryItem(
                     label: team.teamName,
-                    imgUrl: team.teamLogo,
+                    imgUrl: 'assets/images/lotte_emblem_sample.jpg', // todo:나중에 이미지넣기
                     rank: team.teamRank,
                   );
                 }
