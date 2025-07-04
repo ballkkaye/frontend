@@ -18,7 +18,7 @@ class UserMatchListPage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (_) => UserMatchDetailPage()),
+          MaterialPageRoute(builder: (_) => UserMatchDetailPage(5)),
         );
       }),
     );
