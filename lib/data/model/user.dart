@@ -1,23 +1,23 @@
 class User {
   final int? id;
-  final String? nickname;
+  final String nickname;
   final String? birthDate;
   final String? ageRange;
   final String? gender;
   final String? profileUrl;
   final int? teamId;
-  final String? teamName;
+  final String teamName;
   final String? accessToken;
 
   User({
     this.id,
-    this.nickname,
+    required this.nickname,
     this.birthDate,
     this.ageRange,
     this.gender,
     this.profileUrl,
     this.teamId,
-    this.teamName,
+    required this.teamName,
     this.accessToken,
   });
 
