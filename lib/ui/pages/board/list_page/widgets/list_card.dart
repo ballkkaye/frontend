@@ -31,20 +31,14 @@ class ListCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    MText.label1_5(
-                      'ssar',
-                        color: MColor.kLabel.neutral
-                    ),
-                    MText.label2_5(
-                      '15분전',
-                        color: MColor.kLabel.normal
-                    ),
+                    MText.normal5_600('ssar', color: MColor.kLabel.neutral),
+                    MText.normal7_400('15분전', color: MColor.kLabel.normal),
                   ],
                 ),
                 SizedBox(height: 4),
                 // 게시글 제목
                 Text(
-                  '동행후기 써봄 길게길게길게길게길게길게길게길게길게길게',
+                  '동행후기 써봄 길게길게길게길게길게길게길게길게길게길게길게길게길게',
                   style: TextStyle(
                     color: MColor.kLabel.normal,
                     fontSize: 16,
@@ -68,10 +62,7 @@ class ListCard extends StatelessWidget {
                             child: MIcon.page.community.likedRed,
                           ),
                         ),
-                        MText.label1_5(
-                          '20',
-                            color: MColor.kLabel.neutral
-                        ),
+                        MText.button4_5('20', color: MColor.kLabel.neutral),
                       ],
                     ),
                     SizedBox(width: 4),
@@ -80,10 +71,7 @@ class ListCard extends StatelessWidget {
                       children: [
                         MIcon.page.community.comment,
                         SizedBox(width: 4),
-                        MText.label1_5(
-                          '5',
-                          color: MColor.kLabel.neutral,
-                        ),
+                        MText.button4_5('5', color: MColor.kLabel.neutral),
                       ],
                     ),
                   ],

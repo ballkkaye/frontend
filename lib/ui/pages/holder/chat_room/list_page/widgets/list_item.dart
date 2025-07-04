@@ -34,14 +34,9 @@ class ListItem extends StatelessWidget {
               ),
             ),
           ),
-          title: Text(
+          title: MText.normal5_600(
             chat['name']!,
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: MColor.kLabel.normal,
-              height: 1.1,
-            ),
+            color: MColor.kLabel.normal,
           ),
           subtitle: MText.label3(
             chat['time']!,

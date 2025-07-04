@@ -1,5 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/mypage/widgets/mypage_service_item.dart';
 import 'package:flutter/material.dart';
 
@@ -78,24 +79,16 @@ class MypageServiceList extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-          color: MColor.kBackground.normal,
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: MColor.kShadow.normal),
+          color: MColor.kBackground.normal, borderRadius: BorderRadius.circular(12), boxShadow: MColor.kShadow.normal),
       child: Padding(
-        padding: const EdgeInsets.all(14),
+        padding: EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              '서비스',
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-                fontSize: 16,
-              ),
-            ),
-            const SizedBox(height: 19),
+            MText.normal5_700('서비스', color: MColor.kLabel.normal),
+            SizedBox(height: 18),
             SizedBox(
-              height: 420, // 스크롤 없게 고정
+              height: 432, // 스크롤 없게 고정
               child: ListView.separated(
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: serviceItems.length,

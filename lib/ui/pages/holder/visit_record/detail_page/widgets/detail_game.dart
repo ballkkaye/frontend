@@ -12,32 +12,24 @@ class DetailGame extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Text("0",
-            style: TextStyle(
-                color: MColor.kLabel.disable,
-                fontSize: 64,
-                fontWeight: FontWeight.w700)),
+        MText.normal1_700("0", color: MColor.kLabel.disable),
         Column(
           children: [
             Row(
               children: [
                 MText.h1("한화", color: MColor.kLabel.normal),
                 SizedBox(width: 16),
-                MText.label2_5("vs", color: MColor.kLabel.normal),
+                MText.normal7_600("vs", color: MColor.kLabel.alternative),
                 SizedBox(width: 16),
                 MText.h1("키움", color: MColor.kLabel.normal),
               ],
             ),
             SizedBox(height: 8),
-            MText.label3("2025.06.22", color: MColor.kLabel.alternative),
-            MText.label3("대전한화생명이글스파크", color: MColor.kLabel.alternative),
+            MText.normal8_500("2025.06.22", color: MColor.kLabel.alternative),
+            MText.normal8_500("대전한화생명이글스파크", color: MColor.kLabel.alternative),
           ],
         ),
-        Text("5",
-            style: TextStyle(
-                color: MColor.kPrimary.strong,
-                fontSize: 64,
-                fontWeight: FontWeight.w700)),
+        MText.normal1_700("5", color: MColor.kPrimary.strong),
       ],
     );
   }
