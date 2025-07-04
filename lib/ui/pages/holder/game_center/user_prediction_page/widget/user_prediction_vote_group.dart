@@ -30,7 +30,7 @@ class UserPredictionVoteGroup extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                MText.normal7_600(
+                MText.normal7_6(
                   '볼까예 투표율',
                   color: MColor.kLabel.normal,
                 ),

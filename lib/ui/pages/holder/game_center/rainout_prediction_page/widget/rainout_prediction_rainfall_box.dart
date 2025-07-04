@@ -21,7 +21,7 @@ class RainoutPredictionRainfallBox extends StatelessWidget {
           height: 24,
           color: value == 0 ? MColor.kFill.normal : Color(0x664EE1BB),
           alignment: Alignment.center,
-          child: MText.normal8_600(
+          child: MText.normal8_6(
             '$value',
             color: value == 0 ? MColor.kLabel.alternative : MColor.kLabel.normal,
           ),
@@ -30,7 +30,7 @@ class RainoutPredictionRainfallBox extends StatelessWidget {
           width: 34,
           height: 24,
           alignment: Alignment.center,
-          child: MText.normal8_400(
+          child: MText.normal8_4(
             '${hour}시',
             color: MColor.kLabel.normal,
           ),

@@ -2,7 +2,7 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/board_detail_body.dart';
-import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/detail_reply_input_bar.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/borad_detail_reply_input_bar.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_more_option_btn.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +17,7 @@ class BoardDetailPage extends StatelessWidget {
       appBar: _appbar(context),
       body: BoardDetailBody(replyController: _replyController),
       // 댓글 입력창
-      bottomNavigationBar: DetailReplyInputBar(replyController: _replyController),
+      bottomNavigationBar: BoardDetailReplyInputBar(replyController: _replyController),
     );
   }
 

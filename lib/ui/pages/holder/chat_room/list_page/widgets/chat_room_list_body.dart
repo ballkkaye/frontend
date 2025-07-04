@@ -1,5 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/list_page/widgets/list_item.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/list_page/widgets/char_room_list_item.dart';
 import 'package:flutter/material.dart';
 
 class ChatRoomListBody extends StatelessWidget {
@@ -23,7 +23,7 @@ class ChatRoomListBody extends StatelessWidget {
             itemCount: chatRooms.length,
             itemBuilder: (context, index) {
               final chat = chatRooms[index];
-              return ListItem(chat: chat);
+              return ChatRoomListItem(chat: chat);
             },
           ),
         ),

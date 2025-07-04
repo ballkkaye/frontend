@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 Widget PredictionPlayerImage(String? imageUrl) {
   if (imageUrl == null || imageUrl.isEmpty) {
     return Center(
-      child: MText.normal5_600('이미지 준비중', color: MColor.kLabel.alternative),
+      child: MText.normal5_6('이미지 준비중', color: MColor.kLabel.alternative),
     );
   } else {
     return ClipRRect(

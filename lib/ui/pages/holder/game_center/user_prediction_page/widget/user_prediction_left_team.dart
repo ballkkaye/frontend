@@ -48,14 +48,14 @@ class UserPredictionLeftTeam extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    MText.normal5_700(
+                    MText.normal5_7(
                       teamName,
                       color: MColor.kLabel.normal,
                     ),
                   ],
                 ),
                 const SizedBox(width: 28),
-                MText.normal2_600(
+                MText.normal2_6(
                   '${score}',
                   color: MColor.kLabel.normal,
                 ),

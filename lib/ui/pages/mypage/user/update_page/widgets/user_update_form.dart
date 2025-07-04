@@ -1,6 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_page/widgets/update_profile_img_btn.dart';
+import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_page/widgets/user_update_profile_img_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_dropdown_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_text_form_field.dart';
@@ -36,11 +36,11 @@ class UserUpdateForm extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // 프로필 사진 수정 버튼
-                  UpdateProfileImgBtn(),
+                  UserUpdateProfileImgBtn(),
                   SizedBox(height: 20),
 
                   // 닉네임 수정
-                  MText.normal6_500('닉네임', color: MColor.kLabel.normal),
+                  MText.normal6_5('닉네임', color: MColor.kLabel.normal),
                   SizedBox(height: 6),
                   MTextFormField(
                     hintText: '닉네임',
@@ -50,7 +50,7 @@ class UserUpdateForm extends StatelessWidget {
                   SizedBox(height: 12),
 
                   // 응원팀 수정
-                  MText.normal6_500('내 응원팀', color: MColor.kLabel.normal),
+                  MText.normal6_5('내 응원팀', color: MColor.kLabel.normal),
                   SizedBox(height: 6),
                   MDropdownBtn(
                     hintText: '내 응원팀',

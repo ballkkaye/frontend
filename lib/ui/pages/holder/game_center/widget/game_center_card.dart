@@ -40,9 +40,9 @@ class GameCenterCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    MText.normal5_700(title, color: MColor.kLabel.normal),
+                    MText.normal5_7(title, color: MColor.kLabel.normal),
                     SizedBox(height: 8),
-                    MText.normal7_600(description, color: MColor.kLabel.neutral),
+                    MText.normal7_6(description, color: MColor.kLabel.neutral),
                   ],
                 ),
               ),

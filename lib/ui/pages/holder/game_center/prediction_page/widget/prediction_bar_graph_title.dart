@@ -21,13 +21,13 @@ class PredictionGraphTitle extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        MText.normal6_600(title, color: MColor.kLabel.normal),
+        MText.normal6_6(title, color: MColor.kLabel.normal),
         if (showTotalLabel && totalScore != null && totalScoreValue != null)
           Row(
             children: [
-              MText.normal6_400(totalScore!, color: MColor.kLabel.normal),
+              MText.normal6_4(totalScore!, color: MColor.kLabel.normal),
               SizedBox(width: 4),
-              MText.normal6_700(totalScoreValue!.toStringAsFixed(1), color: MColor.kLabel.normal),
+              MText.normal6_7(totalScoreValue!.toStringAsFixed(1), color: MColor.kLabel.normal),
             ],
           ),
       ],

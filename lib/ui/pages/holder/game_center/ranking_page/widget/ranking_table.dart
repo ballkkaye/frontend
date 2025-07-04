@@ -216,7 +216,7 @@ class RankingHeadRow extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Center(
-        child: MText.normal8_600(
+        child: MText.normal8_6(
           value,
           color: MColor.kLabel.normal,
         ),

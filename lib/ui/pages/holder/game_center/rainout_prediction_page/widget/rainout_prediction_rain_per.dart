@@ -13,7 +13,7 @@ class RainoutPredictionRainPer extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        MText.normal8_400(
+        MText.normal8_4(
           '확률 %',
           color: MColor.kLabel.normal,
         ),

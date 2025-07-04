@@ -79,13 +79,15 @@ class MypageServiceList extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-          color: MColor.kBackground.normal, borderRadius: BorderRadius.circular(12), boxShadow: MColor.kShadow.normal),
+          color: MColor.kBackground.normal,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: MColor.kShadow.normal),
       child: Padding(
         padding: EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            MText.normal5_700('서비스', color: MColor.kLabel.normal),
+            MText.normal5_7('서비스', color: MColor.kLabel.normal),
             SizedBox(height: 18),
             SizedBox(
               height: 432, // 스크롤 없게 고정

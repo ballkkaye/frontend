@@ -16,11 +16,10 @@
 //     elevation: 0,
 //   );
 // }
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_size.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ballkkaye_frontend/_core/style/m_size.dart';
-import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 
 ThemeData mTheme() {
   return ThemeData(
@@ -29,10 +28,8 @@ ThemeData mTheme() {
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.white,
-      titleTextStyle: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.w700,
-          color: MColor.kLabel.normal),
+      titleTextStyle:
+          TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: MColor.kLabel.normal),
       centerTitle: true,
       elevation: 0,
     ),
@@ -54,8 +51,7 @@ ThemeData mTheme() {
       selectedItemColor: MColor.kPrimary.strong,
       unselectedItemColor: MColor.kLabel.neutral,
       selectedLabelStyle: TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
-      unselectedLabelStyle:
-          TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+      unselectedLabelStyle: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
     ),
     buttonTheme: ButtonThemeData(
       shape: RoundedRectangleBorder(

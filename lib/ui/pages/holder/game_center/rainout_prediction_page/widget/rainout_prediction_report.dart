@@ -13,7 +13,7 @@ class RainoutPredictionReport extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        MText.normal5_600(
+        MText.normal5_6(
           '우천취소 예측 리포트',
           color: MColor.kLabel.normal,
         ),

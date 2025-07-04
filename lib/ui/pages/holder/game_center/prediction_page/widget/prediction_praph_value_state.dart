@@ -3,7 +3,8 @@ import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/widget/prediction_graph_value.dart';
 import 'package:flutter/material.dart';
 
-class PredictionGraphValueState extends State<PredictionGraphValue> with SingleTickerProviderStateMixin {
+class PredictionGraphValueState extends State<PredictionGraphValue>
+    with SingleTickerProviderStateMixin {
   late double leftRatio;
   late double rightRatio;
   late bool isLeftHigher;
@@ -71,13 +72,13 @@ class PredictionGraphValueState extends State<PredictionGraphValue> with SingleT
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Center(
-                      child: MText.normal6_600(
+                      child: MText.normal6_6(
                         widget.leftScore.toStringAsFixed(1),
                         color: isLeftHigher ? MColor.kLabel.white : MColor.kLabel.alternative,
                       ),
                     ),
                     Center(
-                      child: MText.normal6_600(
+                      child: MText.normal6_6(
                         widget.leftScore.toStringAsFixed(1),
                         color: isLeftHigher ? MColor.kLabel.alternative : MColor.kLabel.white,
                       ),

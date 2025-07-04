@@ -1,5 +1,5 @@
-import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/widgets/list_card.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/widgets/list_filter_dropdown.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/widgets/user_match_list_card.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/widgets/user_match_list_filter_dropdown.dart';
 import 'package:flutter/material.dart';
 
 class UserMatchListBody extends StatelessWidget {
@@ -19,11 +19,11 @@ class UserMatchListBody extends StatelessWidget {
             right: 16,
             bottom: 12,
           ),
-          child: ListFilterDropdown(),
+          child: UserMatchListFilterDropdown(),
         )),
         SliverList(
           delegate: SliverChildBuilderDelegate(
-            (context, index) => ListCard(),
+            (context, index) => UserMatchListCard(),
             childCount: 6,
           ),
         ),

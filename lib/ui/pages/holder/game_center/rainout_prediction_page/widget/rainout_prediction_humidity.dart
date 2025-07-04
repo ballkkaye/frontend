@@ -14,7 +14,7 @@ class RainoutPredictionHumidity extends StatelessWidget {
       children: [
         MIcon.page.rainout.bHumidity,
         SizedBox(height: 6),
-        MText.normal6_500(
+        MText.normal6_5(
           '습도 73%',
           color: MColor.kLabel.normal,
         ),

@@ -5,7 +5,7 @@ import 'package:ballkkaye_frontend/ui/pages/holder/user_match/write_page/user_ma
 import 'package:ballkkaye_frontend/ui/widgets/m_more_option_btn.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets/detail_body.dart';
+import 'widgets/user_match_detail_body.dart';
 
 class UserMatchDetailPage extends StatelessWidget {
   const UserMatchDetailPage({super.key});
@@ -14,7 +14,7 @@ class UserMatchDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appbar(context),
-      body: DetailBody(),
+      body: UserMatchDetailBody(),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 210),
         child: FloatingActionButton(onPressed: () {
