@@ -1,4 +1,4 @@
-import 'package:ballkkaye_frontend/ui/pages/auth/login_page/widget/login_body.dart';
+import 'package:ballkkaye_frontend/ui/pages/auth/login_page/widgets/login_body.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {

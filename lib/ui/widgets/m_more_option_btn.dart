@@ -1,5 +1,5 @@
 import 'package:ballkkaye_frontend/ui/widgets/m_alert_dialog.dart';
-import 'package:ballkkaye_frontend/ui/widgets/m_update_delete_action_sheet.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_detail_action_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +33,7 @@ class MMoreOptionBtn extends StatelessWidget {
       onPressed: () {
         showCupertinoModalPopup(
           context: context,
-          builder: (context) => MUpdateDeleteActionSheet(
+          builder: (context) => MDetailActionSheet(
             onUpdate: () {
               Navigator.pop(context);
               onUpdate();

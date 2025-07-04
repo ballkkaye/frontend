@@ -1,6 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_page/widgets/update_profile_img_btn.dart';
+import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_page/widgets/user_update_profile_img_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_dropdown_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_text_form_field.dart';
@@ -36,7 +36,7 @@ class UserUpdateForm extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // 프로필 사진 수정 버튼
-                  UpdateProfileImgBtn(),
+                  UserUpdateProfileImgBtn(),
                   SizedBox(height: 20),
 
                   // 닉네임 수정

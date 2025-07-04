@@ -1,6 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
-import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/detail_board_area.dart';
-import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/detail_reply_area.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/borad_detail_board_area.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/borad_detail_reply_area.dart';
 import 'package:flutter/material.dart';
 
 class BoardDetailBody extends StatelessWidget {
@@ -17,13 +17,13 @@ class BoardDetailBody extends StatelessWidget {
       child: Column(
         children: [
           // 게시글 영역
-          DetailBoardArea(), // model.board
+          BoardDetailBoardArea(), // model.board
           Divider(
             color: MColor.kLabel.disable,
             thickness: 15,
           ),
           // 댓글 영역
-          DetailReplyArea(replyController: _replyController), // model.board.replies
+          BoardDetailReplyArea(replyController: _replyController), // model.board.replies
         ],
       ),
     );

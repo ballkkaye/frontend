@@ -1,6 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/ui/pages/board/write_page/widgets/write_body.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/write_page/widgets/borad_write_body.dart';
 import 'package:flutter/material.dart';
 
 class BoardWritePage extends StatelessWidget {
@@ -15,7 +15,7 @@ class BoardWritePage extends StatelessWidget {
           Navigator.pushNamed(context, "/board/detail");
         },
       ),
-      body: WriteBody(),
+      body: BoardWriteBody(),
     );
   }
 

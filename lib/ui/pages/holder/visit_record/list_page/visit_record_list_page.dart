@@ -1,7 +1,7 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/widgets/list_body.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/widgets/visit_record_list_body.dart';
 import 'package:flutter/material.dart';
 
 class VisitRecordListPage extends StatelessWidget {
