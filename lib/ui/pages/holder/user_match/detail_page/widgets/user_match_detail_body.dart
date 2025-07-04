@@ -15,7 +15,8 @@ class UserMatchDetailBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    UserMatchDetailModel? model = ref.watch(UserMatchDetailProvider(userMatchId));
+    UserMatchDetailModel? model =
+        ref.watch(UserMatchDetailProvider(userMatchId));
 
     if (model == null) {
       return Center(child: CircularProgressIndicator());
@@ -24,7 +25,8 @@ class UserMatchDetailBody extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: SingleChildScrollView(
           child: ConstrainedBox(
-            constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height * 0.9),
+            constraints: BoxConstraints(
+                minHeight: MediaQuery.of(context).size.height * 0.9),
             child: IntrinsicHeight(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,12 +34,13 @@ class UserMatchDetailBody extends ConsumerWidget {
                   SizedBox(height: 22),
                   UserMatchDetailProfile(model.userMatch),
                   SizedBox(height: 22),
-                  MText.normal4_6(model.userMatch.title, color: MColor.kLabel.normal),
+                  MText.normal4_6(model.userMatch.title,
+                      color: MColor.kLabel.normal),
                   SizedBox(height: 13.5),
-                  MText.normal6_4(model.userMatch.content, color: MColor.kLabel.normal),
+                  MText.normal6_4(model.userMatch.content,
+                      color: MColor.kLabel.normal),
                   SizedBox(height: 22),
 
-                  // 중간에 Spacer를 넣어서 아래 콘텐츠를 하단으로 밀기
                   Spacer(),
 
                   // 경기 정보 카드
@@ -45,11 +48,11 @@ class UserMatchDetailBody extends ConsumerWidget {
                   SizedBox(height: 9),
 
                   // 태그들
-                  UserMatchDetailTagGroup(),
+                  UserMatchDetailTagGroup(model.userMatch),
                   SizedBox(height: 22),
 
                   // 참여 인원 + 버튼
-                  UserMatchDetailActionBar(),
+                  UserMatchDetailActionBar(model.userMatch),
                   SizedBox(height: 12),
                 ],
               ),

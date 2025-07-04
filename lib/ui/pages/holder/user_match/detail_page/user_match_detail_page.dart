@@ -8,9 +8,9 @@ import 'package:flutter/material.dart';
 import 'widgets/user_match_detail_body.dart';
 
 class UserMatchDetailPage extends StatelessWidget {
-  int userMatchId;
+  final int userMatchId;
 
-  UserMatchDetailPage(this.userMatchId);
+  const UserMatchDetailPage(this.userMatchId, {super.key});
 
   @override
   Widget build(BuildContext context) {
