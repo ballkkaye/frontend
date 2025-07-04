@@ -25,6 +25,7 @@ import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/update_page/visi
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/visit_record_write_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -33,6 +34,8 @@ GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load();
+  print("==== BASE_URL: ${dotenv.env['BASE_URL']}");
   await initializeDateFormatting();
   runApp(const ProviderScope(child: MyApp()));
 }

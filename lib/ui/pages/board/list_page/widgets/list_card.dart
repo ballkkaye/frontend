@@ -1,17 +1,25 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
+import 'package:ballkkaye_frontend/data/model/board.dart';
 import 'package:flutter/material.dart';
 
 class ListCard extends StatelessWidget {
+  final BoardItem boardItem; // BoardItem 주입
+
   const ListCard({
     super.key,
+    required this.boardItem,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, "/board/detail");
+        Navigator.pushNamed(
+          context,
+          "/board/detail",
+          arguments: boardItem.boardId,
+        );
       },
       child: Card(
         child: Padding(
@@ -23,24 +31,35 @@ class ListCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('ssar',
-                      style: TextStyle(
-                          color: MColor.kLabel.neutral, fontSize: 14, fontWeight: FontWeight.w600)),
                   Text(
-                    '15분전',
+                    boardItem.nickname,
                     style: TextStyle(
-                        color: MColor.kLabel.normal, fontSize: 12, fontWeight: FontWeight.w400),
+                      color: MColor.kLabel.neutral,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    boardItem.relativeTime,
+                    style: TextStyle(
+                      color: MColor.kLabel.normal,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ],
               ),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               // 게시글 제목
               Text(
-                '동행후기 써봄',
+                boardItem.title,
                 style: TextStyle(
-                    color: MColor.kLabel.normal, fontSize: 16, fontWeight: FontWeight.w600),
+                  color: MColor.kLabel.normal,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               // 좋아요 + 댓글 수
               Row(
                 children: [
@@ -48,34 +67,38 @@ class ListCard extends StatelessWidget {
                   Row(
                     children: [
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          // 좋아요 클릭 로직 추후 연결
+                        },
                         borderRadius: BorderRadius.circular(80),
                         child: Padding(
-                          padding: EdgeInsetsGeometry.directional(top: 4, bottom: 4, end: 4),
+                          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
                           child: MIcon.page.community.likedRed,
                         ),
                       ),
                       Text(
-                        '20',
+                        '${boardItem.likeCount}',
                         style: TextStyle(
-                            color: MColor.kLabel.neutral,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600),
-                      )
+                          color: MColor.kLabel.neutral,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ],
                   ),
-                  SizedBox(width: 4),
+                  const SizedBox(width: 4),
                   // 댓글
                   Row(
                     children: [
                       MIcon.page.community.comment,
-                      SizedBox(width: 4),
+                      const SizedBox(width: 4),
                       Text(
-                        '5',
+                        '${boardItem.replyCount}',
                         style: TextStyle(
-                            color: MColor.kLabel.neutral,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600),
+                          color: MColor.kLabel.neutral,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ],
                   ),
