@@ -28,7 +28,6 @@ class UserMatchRepository {
         "chatRoomId": 1
       }
     };
-
     Logger().d(responseBody);
     return responseBody;
   }

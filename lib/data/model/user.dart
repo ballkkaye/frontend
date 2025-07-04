@@ -6,6 +6,7 @@ class User {
   final String? gender;
   final String? profileUrl;
   final int? teamId;
+  final String? teamName;
   final String? accessToken;
 
   User({
@@ -16,21 +17,20 @@ class User {
     this.gender,
     this.profileUrl,
     this.teamId,
+    this.teamName,
     this.accessToken,
   });
 
-  factory User.fromMap(Map<String, dynamic> data) {
-    return User(
-      id: data['id'],
-      nickname: data['nickname'],
-      birthDate: data['birthDate'] ?? data['birth_date'],
-      ageRange: data['ageRange'] ?? data['age_range'],
-      gender: data['gender'],
-      profileUrl: data['profileUrl'] ?? data['profile_url'],
-      teamId: data['teamId'] ?? data['team_id'],
-      accessToken: data['accessToken'],
-    );
-  }
+  User.fromMap(Map<String, dynamic> data)
+      : id = data['id'],
+        nickname = data['nickname'],
+        birthDate = data['birthDate'],
+        ageRange = data['ageRange'],
+        gender = data['gender'],
+        profileUrl = data['profileUrl'],
+        teamId = data['teamId'],
+        teamName = data['teamName'],
+        accessToken = data['accessToken'];
 
   @override
   String toString() {
