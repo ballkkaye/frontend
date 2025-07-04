@@ -32,11 +32,11 @@ class BoardDetailItem {
     // required this.replyItems,
   });
 
-  factory BoardDetailItem.fromJson(Map<String, dynamic> json) {
+  factory BoardDetailItem.fromMap(Map<String, dynamic> json) {
     return BoardDetailItem(
       boardId: json['boardId'],
       nickname: json['nickname'],
-      // profileImgUrl: json['profileImageUrl'],
+      // profileImgUrl: json['profileImageUrl'], //나중에 이미지넣을예정
       relativeTime: json['relativeTime'],
       myTeamName: json['myTeamName'],
       teamCategoryId: json['teamCategoryId'],

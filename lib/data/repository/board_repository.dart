@@ -20,7 +20,7 @@ class BoardRepository {
 
       if (response.statusCode == 200) {
         final body = response.data['body'];
-        return BoardDetailItem.fromJson(body);
+        return BoardDetailItem.fromMap(body);
       } else {
         throw Exception("커뮤니티 상세보기 불러오기 실패: ${response.statusCode}");
       }
