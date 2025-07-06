@@ -19,7 +19,7 @@ class LoginBtn extends StatelessWidget {
             Navigator.pushNamed(context, "/join");
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFFFFE812),
+            backgroundColor: const Color(0xFF03C759),
             foregroundColor: Colors.black,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
@@ -30,11 +30,11 @@ class LoginBtn extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               Center(
-                child: MText.button4_7('카카오톡 로그인', color: MColor.kLabel.normal),
+                child: MText.button4_7('네이버 로그인', color: MColor.kLabel.white),
               ),
               Positioned(
                 left: 16,
-                child: MIcon.page.login.kakaoLogo,
+                child: MIcon.page.login.naverLogo,
               ),
             ],
           ),
