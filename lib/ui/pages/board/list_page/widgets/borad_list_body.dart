@@ -49,7 +49,9 @@ class BoardListBody extends StatelessWidget {
             separatorBuilder: (context, index) => SizedBox(height: 10),
             itemCount: 10,
             itemBuilder: (context, index) {
-              return BoardListCard();
+              return BoardListCard(
+                boardId: 1, //상세보기할 게시글번호
+              );
             },
           ),
         ),

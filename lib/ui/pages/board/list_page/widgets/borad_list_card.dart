@@ -4,8 +4,11 @@ import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class BoardListCard extends StatelessWidget {
+  final int boardId; // BoardItem 주입
+
   const BoardListCard({
     super.key,
+    required this.boardId,
   });
 
   @override
@@ -14,7 +17,9 @@ class BoardListCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(context, "/board/detail");
+          Navigator.pushNamed(context, "/board/detail", arguments: {
+            "boardId": boardId,
+          });
         },
         child: Container(
           decoration: BoxDecoration(
