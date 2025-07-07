@@ -72,6 +72,8 @@ class LoginBtn extends StatelessWidget {
 
         final userRepository = UserRepository();
         final result = await userRepository.oauthLogin(accessToken);
+        Logger().d('result: $result');
+
         Navigator.pushNamed(context, '/join/nickname');
       } else {
         Logger().d('유효하지 않은 토큰입니다.');

@@ -9,6 +9,13 @@ class User {
   final String teamName;
   final String? accessToken;
 
+  final String? username;
+  final String? name;
+  final String? phoneNumber;
+  final String? email;
+  final String? providerType;
+  final String? userRole;
+
   User({
     this.id,
     required this.nickname,
@@ -19,6 +26,12 @@ class User {
     this.teamId,
     required this.teamName,
     this.accessToken,
+    this.username,
+    this.name,
+    this.phoneNumber,
+    this.email,
+    this.providerType,
+    this.userRole,
   });
 
   User.fromMap(Map<String, dynamic> data)
@@ -29,11 +42,17 @@ class User {
         gender = data['gender'],
         profileUrl = data['profileUrl'],
         teamId = data['teamId'],
-        teamName = data['teamName'],
-        accessToken = data['accessToken'];
+        teamName = data['teamName'] ?? '',
+        accessToken = data['accessToken'],
+        username = data['username'],
+        name = data['name'],
+        phoneNumber = data['phoneNumber'],
+        email = data['email'],
+        providerType = data['providerType'],
+        userRole = data['userRole'];
 
   @override
   String toString() {
-    return 'User(id: $id, nickname: $nickname, birthDate: $birthDate, ageRange: $ageRange, gender: $gender, profileUrl: $profileUrl, teamId: $teamId)';
+    return 'User(id: $id, nickname: $nickname, birthDate: $birthDate, ageRange: $ageRange, gender: $gender, profileUrl: $profileUrl, teamId: $teamId, teamName: $teamName, accessToken: $accessToken, username: $username, name: $name, phoneNumber: $phoneNumber, email: $email, providerType: $providerType, userRole: $userRole)';
   }
 }
