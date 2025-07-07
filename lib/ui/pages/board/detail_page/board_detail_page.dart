@@ -7,7 +7,9 @@ import 'package:ballkkaye_frontend/ui/widgets/m_more_option_btn.dart';
 import 'package:flutter/material.dart';
 
 class BoardDetailPage extends StatelessWidget {
-  BoardDetailPage({super.key});
+  int boardId;
+
+  BoardDetailPage(this.boardId);
 
   TextEditingController _replyController = TextEditingController();
 
@@ -15,7 +17,7 @@ class BoardDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appbar(context),
-      body: BoardDetailBody(replyController: _replyController),
+      body: BoardDetailBody(boardId: boardId, replyController: _replyController),
       // 댓글 입력창
       bottomNavigationBar: BoardDetailReplyInputBar(replyController: _replyController),
     );

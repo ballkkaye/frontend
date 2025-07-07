@@ -1,28 +1,19 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/data/model/board.dart';
 import 'package:flutter/material.dart';
 
 class BoardDetailBoardArea extends StatelessWidget {
-  const BoardDetailBoardArea({
-    super.key,
-  });
+  Board board;
+
+  BoardDetailBoardArea(this.board);
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
 
-    String content = '''
-오늘 처음으로 커뮤니티에서 만난 분과 직관을 다녀왔습니다. 
-처음에는 조금 어색했지만, 야구 이야기로 금방 친해질 수 있었어요. 
-같이 치킨도 먹고 응원가도 부르면서 정말 즐거운 시간을 보냈습니다. 
-특히 7회말에 터진 역전 홈런은 평생 못 잊을 순간이었어요. 
-같이 하이파이브도 하고 사진도 찍고, 진짜 가족같은 분위기였습니다. 
-롯데 자이언츠 팬으로서 이런 동행이 더 많아졌으면 좋겠어요. 
-중간에 비가 조금 왔지만 그마저도 추억이 되더라고요. 
-다음에도 이런 기회가 있다면 꼭 참여하고 싶습니다. 
-처음이라 걱정도 많았는데, 오히려 친구가 생긴 느낌이에요. 
-모두들 좋은 사람과 좋은 직관 경험 하셨으면 좋겠습니다!''';
+    String content = board.content;
 
     return Column(
       children: [
@@ -65,7 +56,7 @@ class BoardDetailBoardArea extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // 작성자 닉네임
-                      MText.normal6_4('ssar', color: MColor.kLabel.normal),
+                      MText.normal6_4('${board.nickname}', color: MColor.kLabel.normal),
                       // 작성자 응원팀 ( != 게시글 카테고리)
                       MText.normal7_4("롯데 자이언츠", color: MColor.kLabel.neutral),
                     ],

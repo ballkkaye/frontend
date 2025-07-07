@@ -83,7 +83,7 @@ class MyApp extends StatelessWidget {
         "/game-center/today-game": (context) => const TodayGamePage(),
         "/game-center/user-prediction": (context) => const UserPredictionPage(),
         "/board/list": (context) => const BoardListPage(),
-        "/board/detail": (context) => BoardDetailPage(),
+        "/board/detail": (context) => BoardDetailPage(1),
         "/board/write": (context) => const BoardWritePage(),
         "/board/update": (context) => const BoardUpdatePage(),
         "/user-match/update": (context) => const UserMatchUpdatePage(),
