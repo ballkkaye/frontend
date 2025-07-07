@@ -5,15 +5,14 @@ import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/borad_deta
 import 'package:flutter/material.dart';
 
 class BoardDetailBody extends StatelessWidget {
-  final Board detail;
-
-  const BoardDetailBody({
-    super.key,
-    required TextEditingController replyController,
-    required this.detail,
-  }) : _replyController = replyController;
-
+  final Board board;
   final TextEditingController _replyController;
+
+  BoardDetailBody({
+    super.key,
+    required this.board,
+    required TextEditingController replyController,
+  }) : _replyController = replyController;
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +20,15 @@ class BoardDetailBody extends StatelessWidget {
       child: Column(
         children: [
           // 게시글 영역
-          BoardDetailBoardArea(detail: detail), // model.board
+          BoardDetailBoardArea(board),
+          // model.board
           Divider(
             color: MColor.kLabel.disable,
             thickness: 15,
           ),
           // 댓글 영역
-          BoardDetailReplyArea(replyController: _replyController, replies: detail.replyItems), // model.board.replies
+          BoardDetailReplyArea(replyController: _replyController, replies: board.replyItems),
+          // model.board.replies
         ],
       ),
     );

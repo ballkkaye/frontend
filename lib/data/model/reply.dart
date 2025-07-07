@@ -26,6 +26,7 @@ class ReplyItem {
   });
 
   factory ReplyItem.fromMap(Map<String, dynamic> json) {
+    //  factory: 복합 중첩 데이터(childReplies 등) 파싱을 위해 사용
     return ReplyItem(
       replyId: json['replyId'],
       nickname: json['nickname'],
@@ -37,7 +38,10 @@ class ReplyItem {
       isLike: json['isLike'],
       likeCount: json['likeCount'],
       parentReplyId: json['parentReplyId'],
-      childReplies: (json['childReplies'] as List<dynamic>).map((e) => ReplyItem.fromMap(e)).toList(),
+      childReplies: (json['childReplies'] as List<dynamic>?) // null 허용
+              ?.map((e) => ReplyItem.fromMap(e)) // ReplyItem으로 변환
+              .toList() ??
+          [], // null이면 빈 배열로 변환
     );
   }
 }

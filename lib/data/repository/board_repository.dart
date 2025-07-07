@@ -1,8 +1,6 @@
-import 'package:dio/dio.dart';
-
 class BoardRepository {
-  Future<Response> getOne(int boardId) async {
-    final mockJson = {
+  Future<Map<String, dynamic>> getOne(int boardId) async {
+    final responseBody = {
       "status": 200,
       "msg": "성공",
       "body": {
@@ -48,7 +46,6 @@ class BoardRepository {
                 "isOwner": false,
                 "isLike": false,
                 "likeCount": 0,
-                "childReplies": []
               },
               {
                 "replyId": 3,
@@ -63,7 +60,6 @@ class BoardRepository {
                 "isOwner": false,
                 "isLike": false,
                 "likeCount": 0,
-                "childReplies": []
               }
             ]
           },
@@ -77,17 +73,10 @@ class BoardRepository {
             "isOwner": true,
             "isLike": false,
             "likeCount": 0,
-            "childReplies": []
           }
         ]
       }
     };
-    await Future.delayed(const Duration(milliseconds: 300));
-
-    return Response(
-      data: mockJson,
-      statusCode: 200,
-      requestOptions: RequestOptions(path: "/api/boards/$boardId"),
-    );
+    return responseBody;
   }
 }

@@ -1,51 +1,61 @@
 import 'package:ballkkaye_frontend/data/model/board.dart';
 import 'package:ballkkaye_frontend/data/repository/board_repository.dart';
+import 'package:ballkkaye_frontend/main.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 
-/// 1. 창고 관리자
-final boardDetailProvider = StateNotifierProvider<BoardDetailVM, Board?>((ref) {
+final boardDetailProvider = AutoDisposeNotifierProvider.family<BoardDetailVM, BoardDetailModel?, int>(() {
   return BoardDetailVM();
 });
 
-/// 2. 창고 (상태가 변경되어도, 화면 갱신 안함 - watch 하지마)
-class BoardDetailVM extends StateNotifier<Board?> {
-  BoardDetailVM() : super(null);
+// TODO 3 : init 완성하기 (state 갱신)
+class BoardDetailVM extends AutoDisposeFamilyNotifier<BoardDetailModel?, int> {
+  final mContext = navigatorKey.currentContext!;
 
-  Future<void> getOne({
-    required int boardId,
-  }) async {
-    try {
-      final response = await BoardRepository().getOne(boardId);
+  @override
+  BoardDetailModel? build(int boardId) {
+    // 1. 상태 초기화
+    init(boardId);
 
-      if (response.statusCode == 200) {
-        final body = response.data['body'];
-        state = Board.fromMap(body); // 모델로 변환
-      } else {
-        throw Exception("게시글 상세조회 실패: ${response.statusCode}");
-      }
-    } catch (e) {
-      print("BoardDetailVM Error(getOne): $e");
-      // 스낵바나 토스트 알림 등도 여기서 처리
+    // 2. VM 파괴되는지 확인하는 이벤트
+    ref.onDispose(() {
+      Logger().d("BoardDetailModel 파괴됨");
+    });
+
+    // 3. 상태 값 세팅
+    return null;
+  }
+
+  Future<void> init(int boardId) async {
+    Map<String, dynamic> data = await BoardRepository().getOne(boardId);
+    if (data["status"] != 200) {
+      ScaffoldMessenger.of(mContext!).showSnackBar(
+        SnackBar(content: Text("게시글 상세보기 실패 : ${data["msg"]}")),
+      );
+      return;
     }
+
+    state = BoardDetailModel.fromMap(data["body"]);
   }
 }
 
-/// 3. 창고 데이터 타입 (불변 아님)
+// TODO 2 : replies 빼고 상태로 관리하기
 class BoardDetailModel {
-  final Board? detail;
+  Board board;
 
-  BoardDetailModel({required this.detail});
+  BoardDetailModel(this.board);
+
+  BoardDetailModel.fromMap(Map<String, dynamic> data) : board = Board.fromMap(data);
 
   BoardDetailModel copyWith({
-    Board? detail,
+    Board? board,
   }) {
-    return BoardDetailModel(
-      detail: detail ?? this.detail,
-    );
+    return BoardDetailModel(board ?? this.board);
   }
 
   @override
   String toString() {
-    return 'BoardListModel(detail: $detail)';
+    return 'BoardDetailModel(Board: $board)';
   }
 }

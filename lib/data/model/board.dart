@@ -2,26 +2,26 @@
 import 'package:ballkkaye_frontend/data/model/reply.dart';
 
 class Board {
-  int boardId;
-  String nickname;
+  final int boardId;
+  final String nickname;
 
-  // String profileImgUrl;
-  String relativeTime;
-  String myTeamName;
-  int teamCategoryId;
-  String teamCategoryName;
-  String title;
-  String content;
-  bool isOwner;
-  bool isLike;
-  int likeCount;
+  //final String profileImgUrl;
+  final String relativeTime;
+  final String myTeamName;
+  final int teamCategoryId;
+  final String teamCategoryName;
+  final String title;
+  final String content;
+  final bool isOwner;
+  final bool isLike;
+  final int likeCount;
 
-  // List<BoardImage> images;
-  List<ReplyItem> replyItems;
+  //final List<BoardImage> images;
+  final List<ReplyItem> replyItems;
 
   Board({
     required this.boardId,
-    required this.nickname,
+    required this.nickname, //todo: 나중에 유저모델에서 받아서 사용
     required this.relativeTime,
     required this.myTeamName,
     required this.teamCategoryId,
@@ -37,10 +37,11 @@ class Board {
   });
 
   factory Board.fromMap(Map<String, dynamic> json) {
+    // 복합 데이터(replyItems) 파싱을 factory로 처리해서 가독성과 유지보수성을 높임
     return Board(
       boardId: json['boardId'],
       nickname: json['nickname'],
-      // profileImgUrl: json['profileImageUrl'],
+      // profileImgUrl: json['profileImageUrl'], //todo: 나중에 이미지추가할때 주석지워서 사용
       relativeTime: json['relativeTime'],
       myTeamName: json['myTeamName'],
       teamCategoryId: json['teamCategoryId'],
@@ -50,7 +51,7 @@ class Board {
       isOwner: json['isOwner'],
       isLike: json['isLike'],
       likeCount: json['likeCount'],
-      // images: (json['images'] as List<dynamic>).map((e) => BoardImage.fromMap(e)).toList(),
+      // images: (json['images'] as List<dynamic>).map((e) => BoardImage.fromMap(e)).toList(), //todo: 나중에 이미지추가할때 주석지워서 사용
       replyItems: (json['replyItems'] as List<dynamic>).map((e) => ReplyItem.fromMap(e)).toList(),
     );
   }

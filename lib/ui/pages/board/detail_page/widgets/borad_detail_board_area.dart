@@ -5,12 +5,9 @@ import 'package:ballkkaye_frontend/data/model/board.dart';
 import 'package:flutter/material.dart';
 
 class BoardDetailBoardArea extends StatelessWidget {
-  final Board detail;
+  final Board board;
 
-  const BoardDetailBoardArea({
-    super.key,
-    required this.detail,
-  });
+  const BoardDetailBoardArea(this.board, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -69,21 +66,21 @@ class BoardDetailBoardArea extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // 작성자 닉네임
-                      MText.normal6_4(detail.nickname, color: MColor.kLabel.normal),
+                      MText.normal6_4('${board.nickname}', color: MColor.kLabel.normal),
                       // 작성자 응원팀 ( != 게시글 카테고리)
-                      MText.normal7_4(detail.myTeamName, color: MColor.kLabel.neutral),
+                      MText.normal7_4(board.myTeamName, color: MColor.kLabel.neutral),
                     ],
                   )
                 ],
               ),
               SizedBox(height: 12),
-              MText.normal5_6(detail.title, color: MColor.kLabel.normal),
+              MText.normal5_6(board.title, color: MColor.kLabel.normal),
               SizedBox(height: 5),
               // 게시글 카테고리
-              MText.normal7_4("${detail.teamCategoryName}  •  ${detail.relativeTime}", color: MColor.kLabel.neutral),
+              MText.normal7_4("${board.teamCategoryName}  •  ${board.relativeTime}", color: MColor.kLabel.neutral),
               SizedBox(height: 14),
               // 내용
-              MText.normal6_5(detail.content, color: MColor.kLabel.normal),
+              MText.normal6_5(board.content, color: MColor.kLabel.normal),
               SizedBox(height: 14),
               // 좋아요
               Row(
@@ -99,7 +96,7 @@ class BoardDetailBoardArea extends StatelessWidget {
                           child: MIcon.page.community.likedRed,
                         ),
                       ),
-                      MText.normal6_7('${detail.likeCount}', color: MColor.kLabel.neutral)
+                      MText.normal6_7('${board.likeCount}', color: MColor.kLabel.neutral)
                     ],
                   ),
                   SizedBox(width: 4),
