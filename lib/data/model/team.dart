@@ -11,6 +11,8 @@ class Team {
       : id = data['id'],
         name = data['name'];
 
+  String get label => name ?? '';
+
   @override
   String toString() {
     return 'Team(id: $id, name: $name)';

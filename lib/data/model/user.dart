@@ -1,12 +1,12 @@
 class User {
   final int? id;
-  final String nickname;
+  final String? nickname;
   final String? birthDate;
   final String? ageRange;
   final String? gender;
   final String? profileUrl;
   final int? teamId;
-  final String teamName;
+  final String? teamName;
   final String? accessToken;
 
   final String? username;
@@ -19,13 +19,13 @@ class User {
 
   User({
     this.id,
-    required this.nickname,
+    this.nickname,
     this.birthDate,
     this.ageRange,
     this.gender,
     this.profileUrl,
     this.teamId,
-    required this.teamName,
+    this.teamName,
     this.accessToken,
     this.username,
     this.name,
