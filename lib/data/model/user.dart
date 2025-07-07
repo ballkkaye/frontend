@@ -15,6 +15,7 @@ class User {
   final String? email;
   final String? providerType;
   final String? userRole;
+  final bool? isNewUser;
 
   User({
     this.id,
@@ -32,6 +33,7 @@ class User {
     this.email,
     this.providerType,
     this.userRole,
+    this.isNewUser,
   });
 
   User.fromMap(Map<String, dynamic> data)
@@ -49,7 +51,8 @@ class User {
         phoneNumber = data['phoneNumber'],
         email = data['email'],
         providerType = data['providerType'],
-        userRole = data['userRole'];
+        userRole = data['userRole'],
+        isNewUser = data['isNewUser'];
 
   @override
   String toString() {
