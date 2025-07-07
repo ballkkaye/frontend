@@ -1,16 +1,15 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
-import 'package:ballkkaye_frontend/ui/pages/board/list_page/board_list_vm.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/list_page/board_list_board_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/list_page/widgets/borad_list_card.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/list_page/widgets/borad_list_team_category_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class BoardListBody extends ConsumerStatefulWidget {
-  final String accessToken;
+import '../board_list_team_vm.dart';
 
+class BoardListBody extends ConsumerStatefulWidget {
   const BoardListBody({
     super.key,
-    required this.accessToken,
   });
 
   @override
@@ -27,12 +26,11 @@ class _BoardListBodyState extends ConsumerState<BoardListBody> {
 
   @override
   Widget build(BuildContext context) {
-    final model = ref.watch(boardListProvider);
-
-    if (model == null) {
+    final boardModel = ref.watch(boardListProvider);
+    final teamModel = ref.watch(boardListTeamProvider);
+    if (boardModel == null || teamModel == null) {
       return const Center(child: CircularProgressIndicator());
     }
-
     return Column(
       children: [
         // 팀 카테고리
@@ -42,12 +40,12 @@ class _BoardListBodyState extends ConsumerState<BoardListBody> {
             height: 85,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: model.teams.length + 1,
+              itemCount: teamModel.teams.length + 1,
               itemBuilder: (context, index) {
                 if (index == 0) {
                   return const BoardListTeamCategoryItem(label: '전체보기');
                 } else {
-                  final team = model.teams[index - 1];
+                  final team = teamModel.teams[index - 1];
                   return BoardListTeamCategoryItem(
                     label: team.teamName,
                     imgUrl: 'assets/images/lotte_emblem_sample.jpg', // todo:나중에 이미지넣기
@@ -64,9 +62,9 @@ class _BoardListBodyState extends ConsumerState<BoardListBody> {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: ListView.separated(
               separatorBuilder: (context, index) => const SizedBox(height: 5),
-              itemCount: model.items.length,
+              itemCount: boardModel.boards.length,
               itemBuilder: (context, index) {
-                final item = model.items[index];
+                final item = boardModel.boards[index];
                 return BoardListCard(boardItem: item);
               },
             ),

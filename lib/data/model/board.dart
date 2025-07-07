@@ -20,7 +20,7 @@ class Board {
     required this.replyCount,
   });
 
-  factory Board.fromJson(Map<String, dynamic> data) {
+  factory Board.fromMap(Map<String, dynamic> data) {
     return Board(
       boardId: data['boardId'],
       title: data['title'],

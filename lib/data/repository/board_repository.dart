@@ -109,8 +109,8 @@ class BoardRepository {
             "relativeTime": "방금",
             "teamId": 2,
             "teamName": "두산 베어스",
-            "likeCount": 0,
-            "replyCount": 0
+            "likeCount": 1,
+            "replyCount": 1
           },
           {
             "boardId": 10,

@@ -121,7 +121,7 @@ class BoardListModel {
   BoardListModel(this.boards);
 
   BoardListModel.fromMap(Map<String, dynamic> data)
-      : boards = (data['boards'] as List).map((e) => Board.fromMap(e)).toList();
+      : boards = (data['items'] as List).map((e) => Board.fromMap(e)).toList();
 
   BoardListModel copyWith({
     List<Board>? boards,
