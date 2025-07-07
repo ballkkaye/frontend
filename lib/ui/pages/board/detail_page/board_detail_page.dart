@@ -42,7 +42,7 @@ class BoardDetailPage extends ConsumerWidget {
       actions: [
         // 더보기 버튼
         Visibility(
-          visible: model.board.isOwner, // bool isBoardOwner = true; // 게시글 주인 판별 -> 더보기 버튼
+          visible: model.board.isOwner, // 여기서부터 isOwner 값이 필요해서 body가 아닌 여기서 vm에 접근
           child: MMoreOptionBtn(
             icon: MIcon.nav.top.dotHorizontal,
             onUpdate: () {

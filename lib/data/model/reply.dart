@@ -26,7 +26,7 @@ class ReplyItem {
   });
 
   factory ReplyItem.fromMap(Map<String, dynamic> json) {
-    //  factory: 복합 중첩 데이터(childReplies 등) 파싱을 위해 사용
+    //  factory: 복합 중첩 데이터(childReplies 등) 파싱 및 null 처리 위해서 사용
     return ReplyItem(
       replyId: json['replyId'],
       nickname: json['nickname'],
