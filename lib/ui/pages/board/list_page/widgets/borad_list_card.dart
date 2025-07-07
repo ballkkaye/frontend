@@ -5,7 +5,7 @@ import 'package:ballkkaye_frontend/data/model/board.dart';
 import 'package:flutter/material.dart';
 
 class BoardListCard extends StatelessWidget {
-  final BoardItem boardItem; // BoardItem 주입
+  final Board boardItem; // BoardItem 주입
 
   const BoardListCard({
     super.key,

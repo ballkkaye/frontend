@@ -1,7 +1,7 @@
 // rule (copyWith, fromJson, toJson)
 import 'team.dart';
 
-class BoardItem {
+class Board {
   int boardId;
   String title;
   String nickname;
@@ -10,7 +10,7 @@ class BoardItem {
   int likeCount;
   int replyCount;
 
-  BoardItem({
+  Board({
     required this.boardId,
     required this.title,
     required this.nickname,
@@ -20,24 +20,24 @@ class BoardItem {
     required this.replyCount,
   });
 
-  factory BoardItem.fromJson(Map<String, dynamic> json) {
-    return BoardItem(
-      boardId: json['boardId'],
-      title: json['title'],
-      nickname: json['nickname'],
-      relativeTime: json['relativeTime'],
+  factory Board.fromJson(Map<String, dynamic> data) {
+    return Board(
+      boardId: data['boardId'],
+      title: data['title'],
+      nickname: data['nickname'],
+      relativeTime: data['relativeTime'],
       team: Team(
-        teamId: json['teamId'],
-        teamName: json['teamName'],
+        teamId: data['teamId'],
+        teamName: data['teamName'],
         teamLogo: '',
         teamRank: 0,
       ),
-      likeCount: json['likeCount'],
-      replyCount: json['replyCount'],
+      likeCount: data['likeCount'],
+      replyCount: data['replyCount'],
     );
   }
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toMap() {
     return {
       'boardId': boardId,
       'title': title,

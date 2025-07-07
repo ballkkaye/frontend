@@ -23,10 +23,6 @@ class _BoardListBodyState extends ConsumerState<BoardListBody> {
     super.initState();
 
     // initState에서 최초 1번만
-    Future.microtask(() {
-      print("==== BoardListBody accessToken: ${widget.accessToken}");
-      ref.read(boardListProvider.notifier).init(accessToken: widget.accessToken);
-    });
   }
 
   @override

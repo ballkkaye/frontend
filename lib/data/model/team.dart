@@ -11,16 +11,16 @@ class Team {
     required this.teamRank,
   });
 
-  factory Team.fromJson(Map<String, dynamic> json) {
+  factory Team.fromMap(Map<String, dynamic> data) {
     return Team(
-      teamId: json['teamId'],
-      teamName: json['teamName'],
-      teamLogo: json['teamLogo'],
-      teamRank: json['teamRank'],
+      teamId: data['teamId'],
+      teamName: data['teamName'],
+      teamLogo: data['teamLogo'],
+      teamRank: data['teamRank'],
     );
   }
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> fromMap() {
     return {
       'teamId': teamId,
       'teamName': teamName,
