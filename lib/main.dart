@@ -44,6 +44,7 @@ void main() async {
   print("Current Directory: ${Directory.current.path}");
   await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load();
   await initializeDateFormatting();
   runApp(const ProviderScope(child: MyApp()));
 }
@@ -83,7 +84,7 @@ class MyApp extends StatelessWidget {
         "/game-center/today-game": (context) => const TodayGamePage(),
         "/game-center/user-prediction": (context) => const UserPredictionPage(),
         "/board/list": (context) => const BoardListPage(),
-        "/board/detail": (context) => BoardDetailPage(),
+        "/board/detail": (context) => BoardDetailPage(1), //todo 나중에 리스트에서 받은값 전달하기
         "/board/write": (context) => const BoardWritePage(),
         "/board/update": (context) => const BoardUpdatePage(),
         "/user-match/update": (context) => const UserMatchUpdatePage(),
