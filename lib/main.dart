@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ballkkaye_frontend/_core/style/m_theme.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_nickname_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_team_page.dart';
@@ -31,6 +33,7 @@ import 'package:ballkkaye_frontend/ui/pages/mypage/user/detail_page/user_detail_
 import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_page/user_update_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -38,6 +41,8 @@ import 'package:intl/date_symbol_data_local.dart';
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
+  print("Current Directory: ${Directory.current.path}");
+  await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDateFormatting();
   runApp(const ProviderScope(child: MyApp()));
@@ -83,7 +88,7 @@ class MyApp extends StatelessWidget {
         "/board/update": (context) => const BoardUpdatePage(),
         "/user-match/update": (context) => const UserMatchUpdatePage(),
         "/user-match/write": (context) => const UserMatchWritePage(),
-        "/user-match/detail": (context) => const UserMatchDetailPage(),
+        "/user-match/detail": (context) => UserMatchDetailPage(1),
         "/user-match/list": (context) => const UserMatchListPage(),
         "/user-match/select": (context) => const UserMatchSelectPage(),
         "/user/detail": (context) => const UserDetailPage(),

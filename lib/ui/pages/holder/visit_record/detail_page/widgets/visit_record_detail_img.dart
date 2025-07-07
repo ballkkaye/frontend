@@ -9,6 +9,7 @@ class VisitRecordDetailImg extends StatelessWidget {
     required this.visitRecord,
   });
 
+  // TODO: 이미지는 마지막에
   @override
   Widget build(BuildContext context) {
     final imageUrls = visitRecord.imageString;
