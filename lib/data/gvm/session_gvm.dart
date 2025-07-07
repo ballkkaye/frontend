@@ -3,6 +3,7 @@ import 'package:ballkkaye_frontend/_core/utils/m_http.dart';
 import 'package:ballkkaye_frontend/data/model/user.dart';
 import 'package:ballkkaye_frontend/data/repository/user_repository.dart';
 import 'package:ballkkaye_frontend/main.dart';
+import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_fm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -61,6 +62,34 @@ class SessionGVM extends Notifier<SessionModel> {
 
     // 4. login 페이지 이동
     Navigator.pushNamedAndRemoveUntil(mContext, "/login", (route) => false);
+  }
+
+  Future<void> writeAdditionalInfo(JoinModel model) async {
+    // 1. 유효성 검사
+
+    // 2. 통신
+    Map<String, dynamic> data = await UserRepository().writeAdditionalInfo(model.toMap());
+    if (data["status"] != 200) {
+      ScaffoldMessenger.of(mContext).showSnackBar(
+        SnackBar(content: Text("${data["msg"]}")),
+      );
+      return;
+    }
+
+    // 3. 파싱
+    User user = User.fromMap(data["body"]);
+
+    // 4. 토큰 디바이스 저장 -> 자동 로그인 가능
+    await saveAccessToken(user.accessToken);
+
+    // 5. 세션 모델 갱신 (현재 isLogin = false 상태)
+    state = SessionModel.fromMap(data["body"]);
+
+    // 6. dio의 header에 토큰 세팅 (Bearer 붙어 있음)
+    dio.options.headers["Authorization"] = user.accessToken;
+
+    // 7. 페이지 이동
+    Navigator.pushNamed(mContext, "/main-holder");
   }
 }
 

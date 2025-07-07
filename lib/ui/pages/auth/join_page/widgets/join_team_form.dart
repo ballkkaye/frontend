@@ -1,48 +1,54 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/data/gvm/session_gvm.dart';
+import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_fm.dart';
+import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_team_vm.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_dropdown_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class JoinTeamForm extends StatelessWidget {
+class JoinTeamForm extends ConsumerWidget {
   const JoinTeamForm({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
-    List<String> teams = [
-      'SSG 랜더스',
-      '키움 히어로즈',
-      'LG 트윈스',
-      'KT 위즈',
-      'NC 다이노스',
-      'KIA 타이거즈',
-      '롯데 자이언츠',
-      '삼성 라이온즈',
-      '두산 베어스',
-      '한화 이글스',
-    ];
-    return Form(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          MText.h3_6('응원팀을 선택해주세요', color: MColor.kLabel.normal),
-          SizedBox(height: 12),
-          MDropdownBtn(
-            hintText: '응원팀 선택',
-            items: teams,
-            onChanged: (value) {},
-          ),
-          Spacer(),
-          MElevatedBtn(
-            text: '완료',
-            onPressed: () {
-              Navigator.pushNamed(context, "/main-holder");
-            },
-          ),
-        ],
-      ),
-    );
+  Widget build(BuildContext context, WidgetRef ref) {
+    JoinTeamModel? joinTeamModel = ref.watch(joinTeamProvider);
+    JoinModel joinModel = ref.read(joinProvider);
+    JoinFM fm = ref.read(joinProvider.notifier);
+    SessionGVM gvm = ref.watch(sessionProvider.notifier);
+
+    if (joinTeamModel == null) {
+      return Center(child: CircularProgressIndicator());
+    } else {
+      return Form(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            MText.h3_6('응원팀을 선택해주세요', color: MColor.kLabel.normal),
+            SizedBox(height: 12),
+            MDropdownBtn(
+              hintText: '응원팀 선택',
+              items: joinTeamModel.teams,
+              itemLabel: (team) => team.label,
+              onChanged: (team) {
+                if (team != null) {
+                  fm.teamId(team.id!);
+                }
+              },
+            ),
+            Spacer(),
+            MElevatedBtn(
+              text: '완료',
+              onPressed: () {
+                gvm.writeAdditionalInfo(joinModel);
+              },
+            ),
+          ],
+        ),
+      );
+    }
   }
 }

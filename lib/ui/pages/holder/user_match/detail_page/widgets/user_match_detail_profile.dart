@@ -38,8 +38,8 @@ class UserMatchDetailProfile extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            MText.normal4_6(userMatch.user.nickname),
-            MText.normal6_5(userMatch.user.teamName, color: MColor.kLabel.alternative),
+            MText.normal4_6(userMatch.user.nickname!),
+            MText.normal6_5(userMatch.user.teamName!, color: MColor.kLabel.alternative),
           ],
         ),
         Spacer(),
