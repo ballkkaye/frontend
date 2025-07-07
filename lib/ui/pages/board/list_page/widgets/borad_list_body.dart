@@ -51,8 +51,6 @@ class BoardListBody extends StatelessWidget {
             itemBuilder: (context, index) {
               return BoardListCard(
                 boardId: 1, //상세보기할 게시글번호
-                accessToken:
-                    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhY2Nlc3MtdG9rZW4iLCJuaWNrbmFtZSI6InNzYXIiLCJ1c2Vycm9sZSI6IlVTRVIiLCJpZCI6MSwiZXhwIjoxNzUxNjE4NTQ0fQ.mLJ0SoO68ocajUAeStLpX4c6DEsa-m8aVquMvVcqgM1iPpmWx_L1UZraAp0GRKSohDmuml0CWQbnt79tE59mSQ", //임시토큰 만료되면 교체해야함
               );
             },
           ),

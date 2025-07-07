@@ -1,11 +1,12 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/data/model/reply.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_more_option_btn.dart';
 import 'package:flutter/material.dart';
 
 class BoardDetailReplyItem extends StatelessWidget {
-  final Map<String, dynamic> reply;
+  final ReplyItem reply;
   final void Function(String mention)? onMention;
 
   const BoardDetailReplyItem({
@@ -16,13 +17,13 @@ class BoardDetailReplyItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isReply = reply['parentId'] != null;
-    String author = reply['author'];
-    String content = reply['content'];
-    String time = reply['time'];
-    int likeCount = reply['likeCount'] ?? 0;
-    int replyCount = reply['replyCount'] ?? 0;
-    bool isReplyOwner = reply['isReplyOwner'];
+    bool isReply = reply.parentReplyId != null;
+    String author = reply.nickname;
+    String content = reply.content;
+    String time = reply.relativeTime;
+    int likeCount = reply.likeCount;
+    int replyCount = reply.childReplies.length;
+    bool isReplyOwner = reply.isOwner;
     bool hasProfileImgUrl = true;
     String profileImgUrl = 'assets/images/lotte_emblem_sample.jpg';
 
@@ -44,9 +45,8 @@ class BoardDetailReplyItem extends StatelessWidget {
               CircleAvatar(
                 radius: 16,
                 backgroundColor: Colors.white,
-                backgroundImage: hasProfileImgUrl
-                    ? AssetImage(profileImgUrl)
-                    : const AssetImage('assets/images/user.png'),
+                backgroundImage:
+                    hasProfileImgUrl ? AssetImage(profileImgUrl) : const AssetImage('assets/images/user.png'),
               ),
               SizedBox(width: 8),
               // 응원 팀 및 작성 시간
@@ -89,7 +89,7 @@ class BoardDetailReplyItem extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
-                      print('좋아요 클릭됨: ${reply['id']}');
+                      print('좋아요 클릭됨: ${reply.replyId}');
                       // TODO: 좋아요 로직
                     },
                     borderRadius: BorderRadius.circular(50),
@@ -114,11 +114,11 @@ class BoardDetailReplyItem extends StatelessWidget {
               // 답글 달기
               TextButton(
                 onPressed: () {
-                  print('답글 달기 클릭됨: ${reply['id']}');
+                  print('답글 달기 클릭됨: ${reply.replyId}');
                   // TODO : 댓글 입력창에 @tagReplyName 자동 추가 author 대신 나중에 tagReplyName로 받기
                   //  TODO : 대댓글 입력시 필요한 부모 및 tag id 전달
                   if (onMention != null) {
-                    onMention!('@${reply['author']} ');
+                    onMention!('@${reply.replyId} ');
                   }
                 },
                 style: ButtonStyle(
@@ -130,6 +130,17 @@ class BoardDetailReplyItem extends StatelessWidget {
               ),
             ],
           ),
+          if (reply.childReplies != null && reply.childReplies!.isNotEmpty)
+            Column(
+              children: reply.childReplies!
+                  .map(
+                    (child) => BoardDetailReplyItem(
+                      reply: child,
+                      onMention: onMention,
+                    ),
+                  )
+                  .toList(),
+            ),
         ],
       ),
     );

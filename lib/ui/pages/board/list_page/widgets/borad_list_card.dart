@@ -5,12 +5,10 @@ import 'package:flutter/material.dart';
 
 class BoardListCard extends StatelessWidget {
   final int boardId; // BoardItem 주입
-  final String accessToken; // 토큰 주입
 
   const BoardListCard({
     super.key,
     required this.boardId,
-    required this.accessToken,
   });
 
   @override
@@ -21,7 +19,6 @@ class BoardListCard extends StatelessWidget {
         onTap: () {
           Navigator.pushNamed(context, "/board/detail", arguments: {
             "boardId": boardId,
-            "accessToken": accessToken,
           });
         },
         child: Container(

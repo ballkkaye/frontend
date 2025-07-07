@@ -27,7 +27,7 @@ class BoardDetailBody extends StatelessWidget {
             thickness: 15,
           ),
           // 댓글 영역
-          BoardDetailReplyArea(replyController: _replyController), // model.board.replies
+          BoardDetailReplyArea(replyController: _replyController, replies: detail.replyItems), // model.board.replies
         ],
       ),
     );

@@ -1,24 +1,93 @@
-import 'package:ballkkaye_frontend/_core/utils/m_http.dart';
-import 'package:ballkkaye_frontend/data/model/board.dart';
 import 'package:dio/dio.dart';
 
 class BoardRepository {
-  Future<Board> getOneBoard({
-  }) async {
-    try {
-      final response = await dio.get(
-        ),
-      );
-
-      if (response.statusCode == 200) {
-        final body = response.data['body'];
-        return Board.fromMap(body);
-      } else {
-        throw Exception("커뮤니티 상세보기 불러오기 실패: ${response.statusCode}");
+  Future<Response> getOne(int boardId) async {
+    final mockJson = {
+      "status": 200,
+      "msg": "성공",
+      "body": {
+        "boardId": 1,
+        "nickname": "cos",
+        // "profileImageUrl": "/img/profile.png",
+        "relativeTime": "8분 전",
+        "myTeamName": "두산 베어스",
+        "teamCategoryId": 3,
+        "teamCategoryName": "키움 히어로즈",
+        "title": "수정된 게시글 제목",
+        "content": "이건 수정된 게시글 내용입니다.",
+        "isOwner": true,
+        "isLike": false,
+        "likeCount": 0,
+        // "images": [
+        //   {"id": 1, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img001.png"},
+        //   {"id": 2, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img002.png"},
+        //   {"id": 3, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/new003.png"}
+        // ],
+        "replyItems": [
+          {
+            "replyId": 1,
+            "nickname": "cos",
+            "profileImg": "/img/profile.png",
+            "relativeTime": "8분 전",
+            "myTeamName": "두산 베어스",
+            "content": "좋은 글이네요! 감사합니다.",
+            "isOwner": true,
+            "isLike": false,
+            "likeCount": 0,
+            "childReplies": [
+              {
+                "replyId": 2,
+                "nickname": "harim",
+                "profileImg": "/img/profile.png",
+                "relativeTime": "1분 전",
+                "myTeamName": "SSG 랜더스",
+                "content": "좋은 글이네요! 감사합니다.",
+                "parentReplyId": 1,
+                "tagReplyId": null,
+                "tagReplyName": null,
+                "isOwner": false,
+                "isLike": false,
+                "likeCount": 0,
+                "childReplies": []
+              },
+              {
+                "replyId": 3,
+                "nickname": "jungwon",
+                "profileImg": "/img/profile.png",
+                "relativeTime": "방금",
+                "myTeamName": "KIA 타이거즈",
+                "content": "좋은 글이네요! 감사합니다.",
+                "parentReplyId": 1,
+                "tagReplyId": 2,
+                "tagReplyName": "harim",
+                "isOwner": false,
+                "isLike": false,
+                "likeCount": 0,
+                "childReplies": []
+              }
+            ]
+          },
+          {
+            "replyId": 4,
+            "nickname": "jungwon",
+            "profileImg": "/img/profile.png",
+            "relativeTime": "4분 전",
+            "myTeamName": "KIA 타이거즈",
+            "content": "좋은 글이네요! 감사합니다.",
+            "isOwner": true,
+            "isLike": false,
+            "likeCount": 0,
+            "childReplies": []
+          }
+        ]
       }
-    } catch (e) {
-      print("BoardRepository Error(getBoardDetail):  $e");
-      rethrow;
-    }
+    };
+    await Future.delayed(const Duration(milliseconds: 300));
+
+    return Response(
+      data: mockJson,
+      statusCode: 200,
+      requestOptions: RequestOptions(path: "/api/boards/$boardId"),
+    );
   }
 }

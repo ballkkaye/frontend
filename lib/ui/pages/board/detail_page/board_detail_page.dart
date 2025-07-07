@@ -19,7 +19,6 @@ class BoardDetailPage extends ConsumerStatefulWidget {
 
 class _BoardDetailPageState extends ConsumerState<BoardDetailPage> {
   late int boardId; // 게시글 ID
-  late String accessToken; // 토큰
   TextEditingController _replyController = TextEditingController();
 
   @override
@@ -28,11 +27,9 @@ class _BoardDetailPageState extends ConsumerState<BoardDetailPage> {
     // arguments에서 boardId, accessToken 꺼내오기
     final args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     boardId = args['boardId']; // 게시글 ID
-    accessToken = args['accessToken']; // 토큰
 
     // 상세 API 호출
-    ref.read(boardDetailProvider.notifier).getBoardDetail(
-          accessToken: accessToken,
+    ref.read(boardDetailProvider.notifier).getOne(
           boardId: boardId,
         );
   }

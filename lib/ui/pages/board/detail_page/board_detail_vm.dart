@@ -11,18 +11,21 @@ final boardDetailProvider = StateNotifierProvider<BoardDetailVM, Board?>((ref) {
 class BoardDetailVM extends StateNotifier<Board?> {
   BoardDetailVM() : super(null);
 
-  Future<void> getBoardDetail({
-    required String accessToken,
+  Future<void> getOne({
     required int boardId,
   }) async {
     try {
-      final detail = await BoardRepository().getBoardDetail(
-        accessToken: accessToken,
-        boardId: boardId,
-      );
-      state = detail;
+      final response = await BoardRepository().getOne(boardId);
+
+      if (response.statusCode == 200) {
+        final body = response.data['body'];
+        state = Board.fromMap(body); // 모델로 변환
+      } else {
+        throw Exception("게시글 상세조회 실패: ${response.statusCode}");
+      }
     } catch (e) {
-      print("BoardListVM Error: $e");
+      print("BoardDetailVM Error(getOne): $e");
+      // 스낵바나 토스트 알림 등도 여기서 처리
     }
   }
 }
