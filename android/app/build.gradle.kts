@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -5,10 +7,18 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.inputStream().use { input ->
+        localProperties.load(input)
+    }
+}
+
 android {
     namespace = "com.example.ballkkaye_frontend"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -28,6 +38,10 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+
+        resValue("string", "client_id", "\"${localProperties["NAVER_CLIENT_ID"]}\"")
+        resValue("string", "client_secret", "\"${localProperties["NAVER_CLIENT_SECRET"]}\"")
+        resValue("string", "client_name", "\"${localProperties["NAVER_CLIENT_NAME"]}\"")
     }
 
     buildTypes {
