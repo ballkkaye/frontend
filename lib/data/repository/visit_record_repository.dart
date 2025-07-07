@@ -5,16 +5,16 @@ class VisitRecordRepository {
       "status": 200,
       "msg": "성공",
       "body": {
-        "id": 10,
+        "imageString": [],
+        "id": 1,
         "homeTeamName": "두산",
         "awayTeamName": "SSG",
         "homeScore": 3,
-        "awayScore": 6,
-        "gameDate": "2026.07.06",
-        "stadiumName": "사직 야구장",
+        "awayScore": 5,
+        "gameDate": "2025.07.05",
+        "stadiumName": "잠실야구장",
         "result": "승",
-        "content": "역전승 직관! 최고였음!",
-        "imageString": "",
+        "content": "오늘 직관 진짜 미쳤음. 9회말 역전타 감동ㅠㅠ"
       }
     };
     return responseBody;
