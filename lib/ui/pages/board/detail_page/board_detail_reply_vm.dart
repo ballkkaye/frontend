@@ -10,21 +10,17 @@ final boardDetailReplyProvider =
   return BoardDetailReplyVM();
 });
 
-// TODO 3 : init 완성하기 (state 갱신)
 class BoardDetailReplyVM extends AutoDisposeFamilyNotifier<BoardDetailReplyModel?, int> {
   final mContext = navigatorKey.currentContext!;
 
   @override
   BoardDetailReplyModel? build(int boardId) {
-    // 1. 상태 초기화
     init(boardId);
 
-    // 2. VM 파괴되는지 확인하는 이벤트
     ref.onDispose(() {
       Logger().d("PostDetailModel 파괴됨");
     });
 
-    // 3. 상태 값 세팅
     return null;
   }
 
@@ -41,7 +37,6 @@ class BoardDetailReplyVM extends AutoDisposeFamilyNotifier<BoardDetailReplyModel
   }
 }
 
-// TODO 2 : replies 빼고 상태로 관리하기
 class BoardDetailReplyModel {
   List<Reply> replies;
 

@@ -1,8 +1,8 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/detail_page/board_detail_board_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/detail_page/board_detail_reply_vm.dart';
-import 'package:ballkkaye_frontend/ui/pages/board/detail_page/board_detail_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/board_detail_body.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/borad_detail_reply_input_bar.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_more_option_btn.dart';
