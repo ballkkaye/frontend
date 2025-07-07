@@ -17,9 +17,7 @@ class JoinFM extends Notifier<JoinModel> {
   }
 
   void teamId(int teamId) {
-    state = state.copyWith(
-      teamId: teamId,
-    );
+    state = state.copyWith(teamId: teamId);
   }
 }
 

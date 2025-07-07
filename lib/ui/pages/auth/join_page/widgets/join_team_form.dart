@@ -7,6 +7,7 @@ import 'package:ballkkaye_frontend/ui/widgets/m_dropdown_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 
 class JoinTeamForm extends ConsumerWidget {
   const JoinTeamForm({
@@ -16,7 +17,7 @@ class JoinTeamForm extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     JoinTeamModel? joinTeamModel = ref.watch(joinTeamProvider);
-    JoinModel joinModel = ref.read(joinProvider);
+    JoinModel joinModel = ref.watch(joinProvider);
     JoinFM fm = ref.read(joinProvider.notifier);
     SessionGVM gvm = ref.watch(sessionProvider.notifier);
 
@@ -34,8 +35,9 @@ class JoinTeamForm extends ConsumerWidget {
               items: joinTeamModel.teams,
               itemLabel: (team) => team.label,
               onChanged: (team) {
-                if (team != null) {
+                if (team != null && team.id != null) {
                   fm.teamId(team.id!);
+                  Logger().d("선택된 teamId: ${team.id}");
                 }
               },
             ),

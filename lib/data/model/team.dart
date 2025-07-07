@@ -8,8 +8,8 @@ class Team {
   });
 
   Team.fromMap(Map<String, dynamic> data)
-      : id = data['id'],
-        name = data['name'];
+      : id = data['teamId'],
+        name = data['teamName'];
 
   String get label => name ?? '';
 

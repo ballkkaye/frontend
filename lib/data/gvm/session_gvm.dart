@@ -6,6 +6,7 @@ import 'package:ballkkaye_frontend/main.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_fm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 
 final sessionProvider = NotifierProvider<SessionGVM, SessionModel>(() {
   return SessionGVM();
@@ -40,7 +41,7 @@ class SessionGVM extends Notifier<SessionModel> {
     state = SessionModel.fromMap(data["body"]);
 
     // 6. dio의 header에 토큰 세팅 (Bearer 붙어 있음)
-    dio.options.headers["Authorization"] = user.accessToken;
+    dio.options.headers["Authorization"] = "Bearer ${user.accessToken}";
 
     // 7. 메인 홀더 (홈) 페이지 이동
     if (user.isNewUser!) {
@@ -68,7 +69,10 @@ class SessionGVM extends Notifier<SessionModel> {
     // 1. 유효성 검사
 
     // 2. 통신
-    Map<String, dynamic> data = await UserRepository().writeAdditionalInfo(model.toMap());
+    Logger().d("추가정보 요청 데이터: ${model.toMap()}");
+
+    Map<String, dynamic> data =
+        await UserRepository().writeAdditionalInfo(model.toMap());
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext).showSnackBar(
         SnackBar(content: Text("${data["msg"]}")),
