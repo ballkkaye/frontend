@@ -40,8 +40,9 @@ class SessionGVM extends Notifier<SessionModel> {
     // 5. 세션 모델 갱신 (현재 isLogin = false 상태)
     state = SessionModel.fromMap(data["body"]);
 
-    // 6. dio의 header에 토큰 세팅 (Bearer 붙어 있음)
+    // 6. dio의 header에 토큰 세팅
     dio.options.headers["Authorization"] = "Bearer ${user.accessToken}";
+    Logger().d('oauthLogin : ${dio.options.headers["Authorization"]}');
 
     // 7. 메인 홀더 (홈) 페이지 이동
     if (user.isNewUser!) {
@@ -89,8 +90,9 @@ class SessionGVM extends Notifier<SessionModel> {
     // 5. 세션 모델 갱신 (현재 isLogin = false 상태)
     state = SessionModel.fromMap(data["body"]);
 
-    // 6. dio의 header에 토큰 세팅 (Bearer 붙어 있음)
-    dio.options.headers["Authorization"] = user.accessToken;
+    // 6. dio의 header에 토큰 세팅
+    dio.options.headers["Authorization"] = "Bearer ${user.accessToken}";
+    Logger().d('writeAdditionalInfo : ${dio.options.headers["Authorization"]}');
 
     // 7. 페이지 이동
     Navigator.pushNamed(mContext, "/main-holder");

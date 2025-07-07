@@ -51,7 +51,7 @@ class UserRepository {
             "https://ssl.pstatic.net/static/pwe/address/img_profile.png",
         "providerType": "NAVER",
         "userRole": "USER",
-        "isNewUser": true // 신규회원
+        "isNewUser": false // 회원가입 완료 후 기존회원
       }
     };
     Logger().d(responseBody);

@@ -1,15 +1,18 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/data/gvm/session_gvm.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserDetailProfileCard extends StatelessWidget {
+class UserDetailProfileCard extends ConsumerWidget {
   const UserDetailProfileCard({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    SessionGVM gvm = ref.read(sessionProvider.notifier);
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -46,19 +49,21 @@ class UserDetailProfileCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       MText.normal4_6("ssar", color: MColor.kLabel.normal),
-                      MText.normal6_5("롯데 자이언츠", color: MColor.kLabel.alternative),
+                      MText.normal6_5("롯데 자이언츠",
+                          color: MColor.kLabel.alternative),
                     ],
                   ),
                 ),
                 TextButton(
                   onPressed: () {
-                    // 로그아웃 로직
+                    gvm.logout();
                   },
                   style: TextButton.styleFrom(
                       minimumSize: const Size(0, 20),
                       padding: EdgeInsets.zero,
                       tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-                  child: MText.button4_5('로그아웃', color: MColor.kStatus.negative),
+                  child:
+                      MText.button4_5('로그아웃', color: MColor.kStatus.negative),
                 ),
               ],
             ),
@@ -68,7 +73,8 @@ class UserDetailProfileCard extends StatelessWidget {
               height: 45,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(8)),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadiusGeometry.circular(8)),
                   backgroundColor: Colors.black,
                 ),
                 onPressed: () {
