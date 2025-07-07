@@ -9,21 +9,17 @@ final boardDetailProvider = AutoDisposeNotifierProvider.family<BoardDetailVM, Bo
   return BoardDetailVM();
 });
 
-// TODO 3 : init 완성하기 (state 갱신)
 class BoardDetailVM extends AutoDisposeFamilyNotifier<BoardDetailModel?, int> {
   final mContext = navigatorKey.currentContext!;
 
   @override
   BoardDetailModel? build(int boardId) {
-    // 1. 상태 초기화
     init(boardId);
 
-    // 2. VM 파괴되는지 확인하는 이벤트
     ref.onDispose(() {
       Logger().d("BoardDetailModel 파괴됨");
     });
 
-    // 3. 상태 값 세팅
     return null;
   }
 
@@ -40,7 +36,6 @@ class BoardDetailVM extends AutoDisposeFamilyNotifier<BoardDetailModel?, int> {
   }
 }
 
-// TODO 2 : replies 빼고 상태로 관리하기
 class BoardDetailModel {
   Board board;
 
