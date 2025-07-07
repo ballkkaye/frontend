@@ -7,10 +7,10 @@ class BoardImage {
     required this.imageUrl,
   });
 
-  factory BoardImage.fromMap(Map<String, dynamic> json) {
+  factory BoardImage.fromMap(Map<String, dynamic> data) {
     return BoardImage(
-      id: json['id'],
-      imageUrl: json['imageUrl'],
+      id: data['id'],
+      imageUrl: data['imageUrl'],
     );
   }
 }

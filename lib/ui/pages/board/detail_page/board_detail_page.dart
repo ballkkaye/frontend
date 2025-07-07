@@ -1,6 +1,7 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/detail_page/board_detail_reply_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/detail_page/board_detail_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/board_detail_body.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/borad_detail_reply_input_bar.dart';
@@ -17,14 +18,16 @@ class BoardDetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    BoardDetailModel? model = ref.watch(boardDetailProvider(boardId));
-    if (model == null) {
+    BoardDetailModel? boardModel = ref.watch(boardDetailProvider(boardId));
+    BoardDetailReplyModel? replyModel = ref.watch(boardDetailReplyProvider(boardId));
+    if (boardModel == null || replyModel == null) {
       return Center(child: CircularProgressIndicator());
     } else {
       return Scaffold(
-        appBar: _appbar(context, model),
+        appBar: _appbar(context, boardModel),
         body: BoardDetailBody(
-          board: model.board,
+          board: boardModel.board,
+          replies: replyModel.replies,
           replyController: _replyController,
         ),
         // 댓글 입력창

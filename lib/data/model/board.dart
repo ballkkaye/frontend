@@ -1,4 +1,5 @@
 // rule (copyWith, fromJson, toJson)
+
 import 'package:ballkkaye_frontend/data/model/reply.dart';
 
 class Board {
@@ -17,7 +18,7 @@ class Board {
   final int likeCount;
 
   //final List<BoardImage> images;
-  final List<ReplyItem> replyItems;
+  final List<Reply> replyItems;
 
   Board({
     required this.boardId,
@@ -36,23 +37,23 @@ class Board {
     // required this.profileImgUrl,
   });
 
-  factory Board.fromMap(Map<String, dynamic> json) {
+  factory Board.fromMap(Map<String, dynamic> data) {
     // 복합 데이터(replyItems) 파싱을 factory로 처리해서 가독성과 유지보수성을 높임
     return Board(
-      boardId: json['boardId'],
-      nickname: json['nickname'],
+      boardId: data['boardId'],
+      nickname: data['nickname'],
       // profileImgUrl: json['profileImageUrl'], //todo: 나중에 이미지추가할때 주석지워서 사용
-      relativeTime: json['relativeTime'],
-      myTeamName: json['myTeamName'],
-      teamCategoryId: json['teamCategoryId'],
-      teamCategoryName: json['teamCategoryName'],
-      title: json['title'],
-      content: json['content'],
-      isOwner: json['isOwner'],
-      isLike: json['isLike'],
-      likeCount: json['likeCount'],
+      relativeTime: data['relativeTime'],
+      myTeamName: data['myTeamName'],
+      teamCategoryId: data['teamCategoryId'],
+      teamCategoryName: data['teamCategoryName'],
+      title: data['title'],
+      content: data['content'],
+      isOwner: data['isOwner'],
+      isLike: data['isLike'],
+      likeCount: data['likeCount'],
       // images: (json['images'] as List<dynamic>).map((e) => BoardImage.fromMap(e)).toList(), //todo: 나중에 이미지추가할때 주석지워서 사용
-      replyItems: (json['replyItems'] as List<dynamic>).map((e) => ReplyItem.fromMap(e)).toList(),
+      replyItems: (data['replyItems'] as List<dynamic>?)?.map((e) => Reply.fromMap(e)).toList() ?? [],
     );
   }
 }

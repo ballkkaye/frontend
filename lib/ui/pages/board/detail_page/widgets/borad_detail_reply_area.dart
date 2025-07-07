@@ -5,7 +5,7 @@ import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/borad_deta
 import 'package:flutter/material.dart';
 
 class BoardDetailReplyArea extends StatelessWidget {
-  final List<ReplyItem> replies;
+  final List<Reply> replies;
   final TextEditingController replyController;
 
   const BoardDetailReplyArea({super.key, required this.replies, required this.replyController});

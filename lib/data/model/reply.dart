@@ -1,4 +1,4 @@
-class ReplyItem {
+class Reply {
   final int replyId;
   final String nickname;
   final String profileImg;
@@ -9,9 +9,9 @@ class ReplyItem {
   final bool isLike;
   final int likeCount;
   final int? parentReplyId;
-  final List<ReplyItem> childReplies; // 대댓글
+  final List<Reply> childReplies; // 대댓글
 
-  ReplyItem({
+  Reply({
     required this.replyId,
     required this.nickname,
     required this.profileImg,
@@ -25,21 +25,21 @@ class ReplyItem {
     required this.parentReplyId,
   });
 
-  factory ReplyItem.fromMap(Map<String, dynamic> json) {
+  factory Reply.fromMap(Map<String, dynamic> data) {
     //  factory: 복합 중첩 데이터(childReplies 등) 파싱 및 null 처리 위해서 사용
-    return ReplyItem(
-      replyId: json['replyId'],
-      nickname: json['nickname'],
-      profileImg: json['profileImg'],
-      relativeTime: json['relativeTime'],
-      myTeamName: json['myTeamName'],
-      content: json['content'],
-      isOwner: json['isOwner'],
-      isLike: json['isLike'],
-      likeCount: json['likeCount'],
-      parentReplyId: json['parentReplyId'],
-      childReplies: (json['childReplies'] as List<dynamic>?) // null 허용
-              ?.map((e) => ReplyItem.fromMap(e)) // ReplyItem으로 변환
+    return Reply(
+      replyId: data['replyId'],
+      nickname: data['nickname'],
+      profileImg: data['profileImg'],
+      relativeTime: data['relativeTime'],
+      myTeamName: data['myTeamName'],
+      content: data['content'],
+      isOwner: data['isOwner'],
+      isLike: data['isLike'],
+      likeCount: data['likeCount'],
+      parentReplyId: data['parentReplyId'],
+      childReplies: (data['childReplies'] as List<dynamic>?) // null 허용
+              ?.map((e) => Reply.fromMap(e)) // ReplyItem으로 변환
               .toList() ??
           [], // null이면 빈 배열로 변환
     );

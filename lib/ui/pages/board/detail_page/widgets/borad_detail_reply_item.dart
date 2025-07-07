@@ -6,7 +6,7 @@ import 'package:ballkkaye_frontend/ui/widgets/m_more_option_btn.dart';
 import 'package:flutter/material.dart';
 
 class BoardDetailReplyItem extends StatelessWidget {
-  final ReplyItem reply;
+  final Reply reply;
   final void Function(String mention)? onMention;
 
   const BoardDetailReplyItem({
@@ -17,22 +17,12 @@ class BoardDetailReplyItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isReply = reply.parentReplyId != null;
-    String author = reply.nickname;
-    String content = reply.content;
-    String time = reply.relativeTime;
-    int likeCount = reply.likeCount;
-    int replyCount = reply.childReplies.length;
-    bool isReplyOwner = reply.isOwner;
-    bool hasProfileImgUrl = true;
-    String profileImgUrl = 'assets/images/lotte_emblem_sample.jpg';
-
     return Padding(
       padding: EdgeInsets.only(
         top: 12,
         bottom: 0,
         right: 0,
-        left: isReply ? 40 : 0,
+        left: reply.parentReplyId != null ? 40 : 0,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,22 +35,23 @@ class BoardDetailReplyItem extends StatelessWidget {
               CircleAvatar(
                 radius: 16,
                 backgroundColor: Colors.white,
-                backgroundImage:
-                    hasProfileImgUrl ? AssetImage(profileImgUrl) : const AssetImage('assets/images/user.png'),
+                backgroundImage: true
+                    ? AssetImage('assets/images/lotte_emblem_sample.jpg')
+                    : const AssetImage('assets/images/user.png'), //todo: 나중에 이미지넣으면 profileImgUrl로 바꾸기
               ),
               SizedBox(width: 8),
               // 응원 팀 및 작성 시간
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  MText.normal6_4(author, color: MColor.kLabel.normal),
-                  MText.normal7_4("롯데 자이언츠  •  $time", color: MColor.kLabel.neutral),
+                  MText.normal6_4(reply.nickname, color: MColor.kLabel.normal),
+                  MText.normal7_4("${reply.myTeamName}  •  ${reply.relativeTime}", color: MColor.kLabel.neutral),
                 ],
               ),
               Spacer(),
               // 더보기 버튼
               Visibility(
-                visible: isReplyOwner, // 로그인한 유저=댓글 주인인 경우에만 활성화됨
+                visible: reply.isOwner, // 로그인한 유저=댓글 주인인 경우에만 활성화됨
                 child: MMoreOptionBtn(
                   icon: MIcon.nav.top.dotHorizontal,
                   onUpdate: () {},
@@ -79,7 +70,7 @@ class BoardDetailReplyItem extends StatelessWidget {
           ),
           SizedBox(height: 8),
           // 댓글 내용
-          MText.normal6_5(content, color: MColor.kLabel.normal),
+          MText.normal6_5(reply.content, color: MColor.kLabel.normal),
           SizedBox(height: 10),
           // 좋아요 + 대댓글 수 + 답글 달기
           Row(
@@ -98,7 +89,7 @@ class BoardDetailReplyItem extends StatelessWidget {
                       child: MIcon.page.community.likedRed,
                     ),
                   ),
-                  MText.normal7_6('$likeCount', color: MColor.kLabel.neutral),
+                  MText.normal7_6('${reply.likeCount}', color: MColor.kLabel.neutral),
                 ],
               ),
               SizedBox(width: 6),
@@ -107,7 +98,7 @@ class BoardDetailReplyItem extends StatelessWidget {
                 children: [
                   MIcon.page.community.comment,
                   SizedBox(width: 2),
-                  MText.normal7_6('$replyCount', color: MColor.kLabel.neutral),
+                  MText.normal7_6('${reply.childReplies.length}', color: MColor.kLabel.neutral),
                 ],
               ),
               SizedBox(width: 10),
