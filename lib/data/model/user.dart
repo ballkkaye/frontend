@@ -44,7 +44,7 @@ class User {
         gender = data['gender'],
         profileUrl = data['profileUrl'],
         teamId = data['teamId'],
-        teamName = data['teamName'] ?? '',
+        teamName = data['teamName'],
         accessToken = data['accessToken'],
         username = data['username'],
         name = data['name'],

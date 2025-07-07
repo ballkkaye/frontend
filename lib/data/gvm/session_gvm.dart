@@ -74,7 +74,7 @@ class SessionModel {
 
   // fromMap
   SessionModel.fromMap(Map<String, dynamic> data)
-      : user = User.fromMap(data), // user가 flat하므로
+      : user = User.fromMap(data),
         isLogin = true;
 
   // copyWith : 화면 갱신X -> 생성X
