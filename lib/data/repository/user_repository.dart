@@ -39,6 +39,7 @@ class UserRepository {
         "name": "김주희",
         "nickname": "jh",
         "teamId": 7,
+        "teamName": "롯데 자이언츠",
         "phoneNumber": "010-3268-9720",
         "email": "wngml9720@naver.com",
         "birthDate": "2000-08-26",

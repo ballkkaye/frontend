@@ -1,17 +1,20 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/data/model/user.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/user_detail_body.dart';
 
 class UserDetailPage extends StatelessWidget {
-  const UserDetailPage();
+  User user;
+
+  UserDetailPage(this.user);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appbar(),
-      body: UserDetailBody(),
+      body: UserDetailBody(user),
       floatingActionButton: FloatingActionButton(onPressed: () {
         Navigator.pushNamed(context, '/user/update');
       }),
