@@ -18,13 +18,13 @@ class Team {
         teamRank = data['teamRank'] ?? 0;
 
   Team copyWith({
-    int? teamId,
+    int? id,
     String? name,
     String? teamLogo,
     int? teamRank,
   }) {
     return Team(
-      id: teamId ?? this.id,
+      id: id ?? this.id,
       name: name ?? this.name,
       teamLogo: teamLogo ?? this.teamLogo,
       teamRank: teamRank ?? this.teamRank,

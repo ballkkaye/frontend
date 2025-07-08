@@ -7,10 +7,7 @@ import 'package:flutter/material.dart';
 class BoardListCard extends StatelessWidget {
   final Board board;
 
-  const BoardListCard({
-    super.key,
-    required this.board,
-  });
+  const BoardListCard(this.board, {super.key});
 
   @override
   Widget build(BuildContext context) {

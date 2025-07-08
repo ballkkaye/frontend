@@ -41,8 +41,6 @@ GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load();
-  print("==== BASE_URL: ${dotenv.env['BASE_URL']}");
   await initializeDateFormatting();
   runApp(const ProviderScope(child: MyApp()));
 }
