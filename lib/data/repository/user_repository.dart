@@ -51,4 +51,28 @@ class UserRepository {
     Logger().d('UserRepository의 writeAdditionalInfo: ${responseBody}');
     return responseBody;
   }
+
+  Future<Map<String, dynamic>> update(Map<String, dynamic> data) async {
+    // Response response = await dio.put("/s/api/users", data: data);
+    // final responseBody = response.data;
+    final responseBody = {
+      "status": 200,
+      "msg": "성공",
+      "body": {
+        "username": "ssar123",
+        "name": "쌀",
+        "nickname": "수정한닉네임",
+        "teamId": 5,
+        "phoneNumber": "01011112222",
+        "email": "ssar@nate.com",
+        "birthDate": "1999-09-09",
+        "gender": "MALE",
+        "profileUrl": "https://example.com/images/profile123.png",
+        "providerType": "BALLKKAYE",
+        "userRole": "USER"
+      }
+    };
+    Logger().d('UserRepository의 writeAdditionalInfo: ${responseBody}');
+    return responseBody;
+  }
 }
