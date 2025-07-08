@@ -11,14 +11,11 @@ class Team {
     this.teamRank,
   });
 
-  factory Team.fromMap(Map<String, dynamic> data) {
-    return Team(
-      id: data['teamId'] ?? 0,
-      name: data['teamName'] ?? '',
-      teamLogo: data['teamLogo'],
-      teamRank: data['teamRank'] ?? 0,
-    );
-  }
+  Team.fromMap(Map<String, dynamic> data)
+      : id = data['teamId'] ?? 0,
+        name = data['teamName'] ?? '',
+        teamLogo = data['teamLogo'],
+        teamRank = data['teamRank'] ?? 0;
 
   Team copyWith({
     int? teamId,
