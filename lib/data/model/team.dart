@@ -15,7 +15,7 @@ class Team {
     return Team(
       id: data['teamId'] ?? 0,
       name: data['teamName'] ?? '',
-      teamLogo: data['teamLogo'] ?? 'assets/images/lotte_emblem_sample.jpg',
+      teamLogo: data['teamLogo'],
       teamRank: data['teamRank'] ?? 0,
     );
   }
