@@ -46,7 +46,8 @@ class MDropdownBtn<T> extends StatelessWidget {
       items: items.map((item) {
         return DropdownMenuItem<T>(
           value: item,
-          child: MText.input1_4(itemLabel!(item), color: MColor.kLabel.neutral),
+          child: MText.input1_4(itemLabel != null ? itemLabel!(item) : item.toString(),
+              color: MColor.kLabel.neutral),
         );
       }).toList(),
       onChanged: onChanged,
