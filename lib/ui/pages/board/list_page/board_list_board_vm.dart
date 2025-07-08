@@ -66,6 +66,21 @@ class BoardListBoardVM extends AutoDisposeNotifier<BoardListBoardModel?> {
 
     state = nextModel.copyWith(boards: [...prevModel.boards, ...nextModel.boards]);
   }
+
+Future<void> write(String title, String content) async {
+  BoardListBoardModel prevModel = state!;
+  Map<String, dynamic> data = await BoardRepository().write(title, content);
+  if (data["status"] != 200) {
+    ScaffoldMessenger.of(mContext!).showSnackBar(
+      SnackBar(content: Text("게시글 로드 실패 : ${data["msg"]}")),
+    );
+    return;
+  }
+
+  BoardListBoardModel nextModel = BoardListBoardModel.fromMap(data["body"]);
+
+  state = nextModel.copyWith(boards: [...prevModel.boards, ...nextModel.boards]);
+}
 }
 
 /// 3. 창고 데이터 타입 (불변 아님)

@@ -1,10 +1,13 @@
+import 'package:ballkkaye_frontend/ui/pages/board/list_page/board_list_board_vm.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/write_page/board_write_fm.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/write_page/widgets/borad_write_img_selector.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_dropdown_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class BoardWriteForm extends StatelessWidget {
+class BoardWriteForm extends ConsumerWidget {
   BoardWriteForm({super.key});
 
   String selectedTeam = '롯데 자이언츠';
@@ -23,7 +26,11 @@ class BoardWriteForm extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext contextm,WidgetRef ref) {
+    BoardWriteFM fm = ref.read(boardWriteProvider.notifier);
+    BoardWriteModel model = ref.watch(boardWriteProvider);
+    BoardListBoardVM vm = ref.read(boardListBoardProvider.notifier);
+
     return Form(
       child: Column(
         children: [
@@ -31,7 +38,8 @@ class BoardWriteForm extends StatelessWidget {
           MDropdownBtn(
             hintText: '팀 선택',
             items: teams,
-            onChanged: (value) {},
+            onChanged: (value) {
+            },
           ),
           SizedBox(height: 12),
           // 제목
@@ -39,7 +47,9 @@ class BoardWriteForm extends StatelessWidget {
             hintText: '제목을 입력하세요',
             maxLines: 1,
             initialValue: '',
-            onChanged: (value) {},
+            onChanged: (value) {
+              fm.title(value);
+            },
           ),
           SizedBox(height: 12),
           // 이미지 버튼 (가로 스크롤)
@@ -51,7 +61,9 @@ class BoardWriteForm extends StatelessWidget {
             maxLines: 10,
             initialValue: '',
             isDense: false,
-            onChanged: (value) {},
+            onChanged: (value) {
+              fm.content(value);
+            },
           ),
           Spacer(),
           // 작성 버튼
