@@ -65,7 +65,7 @@ class _BoardListBodyState extends ConsumerState<BoardListBody> {
               itemCount: boardModel.boards.length,
               itemBuilder: (context, index) {
                 final item = boardModel.boards[index];
-                return BoardListCard(boardItem: item);
+                return BoardListCard(board: item);
               },
             ),
           ),

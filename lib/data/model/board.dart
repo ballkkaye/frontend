@@ -30,7 +30,7 @@ class Board {
         teamId: data['teamId'],
         teamName: data['teamName'],
         teamLogo: '',
-        teamRank: 0,
+        teamRank: data['teamRank'] ?? 0,
       ),
       likeCount: data['likeCount'],
       replyCount: data['replyCount'],
@@ -45,6 +45,7 @@ class Board {
       'relativeTime': relativeTime,
       'teamId': team.teamId,
       'teamName': team.teamName,
+      'teamRank': team.teamRank,
       'likeCount': likeCount,
       'replyCount': replyCount,
     };

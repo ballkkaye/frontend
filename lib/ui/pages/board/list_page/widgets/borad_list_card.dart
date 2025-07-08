@@ -5,11 +5,11 @@ import 'package:ballkkaye_frontend/data/model/board.dart';
 import 'package:flutter/material.dart';
 
 class BoardListCard extends StatelessWidget {
-  final Board boardItem; // BoardItem 주입
+  final Board board; // BoardItem 주입
 
   const BoardListCard({
     super.key,
-    required this.boardItem,
+    required this.board,
   });
 
   @override
@@ -21,7 +21,7 @@ class BoardListCard extends StatelessWidget {
           Navigator.pushNamed(
             context,
             "/board/detail",
-            arguments: boardItem.boardId,
+            arguments: board.boardId,
           );
         },
         child: Container(
@@ -39,14 +39,14 @@ class BoardListCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    MText.normal5_6(boardItem.nickname, color: MColor.kLabel.neutral),
-                    MText.normal7_4(boardItem.relativeTime, color: MColor.kLabel.normal),
+                    MText.normal5_6(board.nickname, color: MColor.kLabel.neutral),
+                    MText.normal7_4(board.relativeTime, color: MColor.kLabel.normal),
                   ],
                 ),
                 SizedBox(height: 4),
                 // 게시글 제목
                 Text(
-                  boardItem.title,
+                  board.title,
                   style: TextStyle(
                     color: MColor.kLabel.normal,
                     fontSize: 16,
@@ -70,7 +70,7 @@ class BoardListCard extends StatelessWidget {
                             child: MIcon.page.community.likedRed,
                           ),
                         ),
-                        MText.button4_5('${boardItem.likeCount}', color: MColor.kLabel.neutral),
+                        MText.button4_5('${board.likeCount}', color: MColor.kLabel.neutral),
                       ],
                     ),
                     SizedBox(width: 4),
@@ -79,7 +79,7 @@ class BoardListCard extends StatelessWidget {
                       children: [
                         MIcon.page.community.comment,
                         SizedBox(width: 4),
-                        MText.button4_5('${boardItem.replyCount}', color: MColor.kLabel.neutral),
+                        MText.button4_5('${board.replyCount}', color: MColor.kLabel.neutral),
                       ],
                     ),
                   ],
