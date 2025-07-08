@@ -1,75 +1,67 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
-import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/list_page/board_list_board_vm.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/list_page/board_list_team_vm.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/list_page/widgets/board_list_card.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/list_page/widgets/board_list_team_category_list.dart';
 import 'package:flutter/material.dart';
 
 class BoardListTeamCategory extends StatelessWidget {
   const BoardListTeamCategory({
     super.key,
-    required this.label,
-    this.imgUrl,
-    this.rank,
+    required this.teamModel,
+    required this.boardModel,
   });
 
-  final String label;
-  final String? imgUrl;
-  final int? rank;
+  final BoardListTeamModel? teamModel;
+  final BoardListModel? boardModel;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {}, // TODO : 클릭시 카테고리별 조회
-      child: Padding(
-        padding: EdgeInsetsGeometry.symmetric(horizontal: 10),
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                CircleAvatar(
-                  backgroundColor: imgUrl != null ? null : MColor.kPrimary.strong,
-                  radius: 30,
-                  child: imgUrl != null
-                      ? Image.network(
-                          imgUrl!,
-                          width: 60,
-                          height: 60,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) {
-                            return Image.asset(
-                              'assets/images/lotte_emblem_sample.jpg', //서버에서 사진추가 다되면 여기코드 제거예정
-                              width: 60,
-                              height: 60,
-                              fit: BoxFit.cover,
-                            );
-                          },
-                        )
-                      : Text(
-                          label[0] + label[1],
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 18,
-                          ),
-                        ),
-                ),
-                if (rank == 1)
-                  Positioned(
-                    top: 0,
-                    right: 0,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
-                      decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: MText.label3('1위', color: Colors.white),
-                    ),
-                  ),
-              ],
+    return Column(
+      children: [
+        // 팀 카테고리
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: SizedBox(
+            height: 85,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: teamModel!.teams.length + 1,
+              itemBuilder: (context, index) {
+                if (index == 0) {
+                  return const BoardListTeamCategoryList(label: '전체보기');
+                } else {
+                  final team = teamModel!.teams[index - 1];
+                  return BoardListTeamCategoryList(
+                    label: team.label,
+                    imgUrl: team.teamLogo, // todo:나중에 이미지넣기
+                    rank: team.teamRank,
+                  );
+                }
+              },
             ),
-            MText.label1_5(label, color: MColor.kLabel.normal),
-          ],
+          ),
         ),
-      ),
+
+        Divider(
+          color: MColor.kLine.normal,
+          thickness: 1,
+        ),
+        // 게시글 목록 (세로 스크롤)
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: ListView.separated(
+              separatorBuilder: (context, index) => const SizedBox(height: 10),
+              itemCount: boardModel!.boards.length,
+              itemBuilder: (context, index) {
+                final item = boardModel!.boards[index];
+                return BoardListCard(board: item);
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
