@@ -20,7 +20,7 @@ class TeamRepository {
         {"teamId": 10, "teamName": "KT 위즈"}
       ]
     };
-    Logger().d(responseBody);
+    Logger().d('TeamRepository의 getList: ${responseBody}');
     return responseBody;
   }
 }

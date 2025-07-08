@@ -19,6 +19,7 @@ class SessionGVM extends Notifier<SessionModel> {
     return SessionModel(); // isLogin = false, 그 외 = null로 초기화
   }
 
+  // 1. 로그인
   Future<void> oauthLogin(String accessToken) async {
     // 1. 유효성 검사 (oauth 로그인 생략)
 
@@ -52,6 +53,7 @@ class SessionGVM extends Notifier<SessionModel> {
     }
   }
 
+  // 2. 로그아웃
   Future<void> logout() async {
     // 1. 토큰 디바이스 제거
     await deleteAccessToken;
@@ -66,14 +68,14 @@ class SessionGVM extends Notifier<SessionModel> {
     Navigator.pushNamedAndRemoveUntil(mContext, "/login", (route) => false);
   }
 
+  // 3. 회원가입 후 추가 정보 등록
   Future<void> writeAdditionalInfo(JoinModel model) async {
     // 1. 유효성 검사
 
     // 2. 통신
     Logger().d("추가정보 요청 데이터: ${model.toMap()}");
 
-    Map<String, dynamic> data =
-        await UserRepository().writeAdditionalInfo(model.toMap());
+    Map<String, dynamic> data = await UserRepository().writeAdditionalInfo(model.toMap());
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext).showSnackBar(
         SnackBar(content: Text("${data["msg"]}")),
@@ -81,20 +83,12 @@ class SessionGVM extends Notifier<SessionModel> {
       return;
     }
 
-    // 3. 파싱
-    User user = User.fromMap(data["body"]);
-
-    // 4. 토큰 디바이스 저장 -> 자동 로그인 가능
-    await saveAccessToken(user.accessToken);
-
-    // 5. 세션 모델 갱신 (현재 isLogin = false 상태)
+    // 3. 세션 모델 갱신 (현재 isLogin = false 상태)
     state = SessionModel.fromMap(data["body"]);
-
-    // 6. dio의 header에 토큰 세팅
-    dio.options.headers["Authorization"] = "Bearer ${user.accessToken}";
+    Logger().d('writeAdditionalInfo : ${state}');
     Logger().d('writeAdditionalInfo : ${dio.options.headers["Authorization"]}');
 
-    // 7. 페이지 이동
+    // 4. 페이지 이동
     Navigator.pushNamed(mContext, "/main-holder");
   }
 }
