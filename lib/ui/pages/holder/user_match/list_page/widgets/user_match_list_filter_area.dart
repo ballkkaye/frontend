@@ -2,12 +2,15 @@ import 'package:ballkkaye_frontend/data/enum/age.dart';
 import 'package:ballkkaye_frontend/data/enum/gender.dart';
 import 'package:ballkkaye_frontend/data/model/team.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/user_match_list_team_vm.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/user_match_list_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/widgets/user_match_list_dropdown_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserMatchListFilterArea extends ConsumerStatefulWidget {
-  const UserMatchListFilterArea({super.key});
+  UserMatchListModel? model;
+
+  UserMatchListFilterArea(this.model);
 
   @override
   ConsumerState<UserMatchListFilterArea> createState() => _UserMatchListFilterAreaState();

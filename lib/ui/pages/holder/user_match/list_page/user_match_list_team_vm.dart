@@ -59,6 +59,6 @@ class UserMatchListTeamModel {
 
   @override
   String toString() {
-    return 'JoinTeamModel{teams: $teams}';
+    return 'UserMatchListTeamModel{teams: $teams}';
   }
 }

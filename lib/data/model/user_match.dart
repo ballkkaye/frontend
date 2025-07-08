@@ -3,21 +3,23 @@ import 'package:ballkkaye_frontend/data/model/team.dart';
 import 'package:ballkkaye_frontend/data/model/user.dart';
 
 class UserMatch {
-  final bool isOwner;
-  final String relativeTime;
-  final int likeCount;
-  final bool isLike;
+  final int matchId;
+  final bool? isOwner;
+  final String? relativeTime;
+  final int? likeCount;
+  final bool? isLike;
   final Game game;
   final User user;
   final String title;
   final String content;
-  final String gender;
-  final String age;
-  final bool isSameTeam;
-  final String participationInfo;
-  final int chatRoomId;
+  final String? gender;
+  final String? age;
+  final bool? isSameTeam;
+  final String? participationInfo;
+  final int? chatRoomId;
 
   UserMatch({
+    required this.matchId,
     required this.isOwner,
     required this.relativeTime,
     required this.likeCount,
@@ -34,7 +36,8 @@ class UserMatch {
   });
 
   UserMatch.fromMap(Map<String, dynamic> data)
-      : isOwner = data['isOwner'],
+      : matchId = data['matchId'],
+        isOwner = data['isOwner'],
         relativeTime = data['relativeTime'],
         likeCount = data['likeCount'],
         isLike = data['isLike'],

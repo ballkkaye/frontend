@@ -21,17 +21,17 @@ class UserMatchDetailTagGroup extends StatelessWidget {
             fillColor: MColor.kFill.normal,
             textColor: MColor.kLabel.neutral),
         MTag(
-            label: formatAgeRange(userMatch.age),
+            label: formatAgeRange(userMatch.age!),
             fillColor: MColor.kFill.normal,
             textColor: MColor.kLabel.neutral),
         MTag(
-            label: userMatch.user.teamName!,
+            label: userMatch.user.teamName!, // TODO : 희망 응원팀으로 변경
             fillColor: MColor.kFill.normal,
             textColor: MColor.kLabel.neutral),
         Container(
           padding: const EdgeInsets.symmetric(vertical: 2.5),
           child: Visibility(
-            visible: userMatch.isSameTeam,
+            visible: userMatch.isSameTeam!,
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
