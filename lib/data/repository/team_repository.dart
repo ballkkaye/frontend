@@ -70,7 +70,7 @@ class TeamRepository {
         }
       ]
     };
-    Logger().d(responseBody);
+    Logger().d('TeamRepository의 getList: ${responseBody}');
     return responseBody;
   }
 }
