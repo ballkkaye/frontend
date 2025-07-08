@@ -1,11 +1,14 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/rainout_prediction_page/rainout_prdiction_weather_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/rainout_prediction_page/widget/rainout_prediction_report_label.dart';
 import 'package:flutter/material.dart';
 
 class RainoutPredictionReport extends StatelessWidget {
+  final RainoutPredictionWeatherModel weatherModel;
   const RainoutPredictionReport({
     super.key,
+    required this.weatherModel,
   });
 
   @override
@@ -18,7 +21,9 @@ class RainoutPredictionReport extends StatelessWidget {
           color: MColor.kLabel.normal,
         ),
         SizedBox(height: 10),
-        RainoutPredictionReportLabel(),
+        RainoutPredictionReportLabel(
+          message: weatherModel.message,
+        ),
       ],
     );
   }
