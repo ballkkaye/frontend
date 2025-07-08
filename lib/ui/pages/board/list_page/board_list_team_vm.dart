@@ -1,5 +1,5 @@
 import 'package:ballkkaye_frontend/data/model/team.dart';
-import 'package:ballkkaye_frontend/data/repository/board_repository.dart';
+import 'package:ballkkaye_frontend/data/repository/team_repository.dart';
 import 'package:ballkkaye_frontend/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,15 +18,19 @@ class BoardListTeamVM extends AutoDisposeNotifier<BoardListTeamModel?> {
   }
 
   Future<void> init() async {
-    Map<String, dynamic> data = await BoardRepository().getList();
+    final data = await TeamRepository().getList();
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
-        SnackBar(content: Text("팀 리스트 보기 실패 : ${data["msg"]}")),
+        SnackBar(content: Text("팀 목록 불러오기 실패 : ${data["msg"]}")),
       );
       return;
     }
 
-    state = BoardListTeamModel.fromMap(data["body"]);
+    final List teams = data['body'];
+
+    state = BoardListTeamModel(
+      teams.map((e) => Team.fromMap(e)).toList(),
+    );
   }
 }
 

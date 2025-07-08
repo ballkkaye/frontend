@@ -54,7 +54,7 @@ class Board {
       isOwner: data['isOwner'] ?? false,
       isLike: data['isLike'] ?? false,
       likeCount: data['likeCount'],
-      replyCount: data['replyCount'],
+      replyCount: data['replyCount'] ?? 0,
       // images: (json['images'] as List<dynamic>).map((e) => BoardImage.fromMap(e)).toList(), //todo: 나중에 이미지추가할때 주석지워서 사용
       replyItems: (data['replyItems'] as List<dynamic>?)?.map((e) => Reply.fromMap(e)).toList() ?? [],
     );

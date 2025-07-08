@@ -1,11 +1,10 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/list_page/board_list_board_vm.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/list_page/board_list_team_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/list_page/widgets/board_list_card.dart';
-import 'package:ballkkaye_frontend/ui/pages/board/list_page/widgets/borad_list_team_category_item.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/list_page/widgets/board_list_team_category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../board_list_team_vm.dart';
 
 class BoardListBody extends ConsumerStatefulWidget {
   const BoardListBody({
@@ -43,12 +42,12 @@ class _BoardListBodyState extends ConsumerState<BoardListBody> {
               itemCount: teamModel.teams.length + 1,
               itemBuilder: (context, index) {
                 if (index == 0) {
-                  return const BoardListTeamCategoryItem(label: '전체보기');
+                  return const BoardListTeamCategory(label: '전체보기');
                 } else {
                   final team = teamModel.teams[index - 1];
-                  return BoardListTeamCategoryItem(
+                  return BoardListTeamCategory(
                     label: team.label,
-                    imgUrl: 'assets/images/lotte_emblem_sample.jpg', // todo:나중에 이미지넣기
+                    imgUrl: team.teamLogo, // todo:나중에 이미지넣기
                     rank: team.teamRank,
                   );
                 }
@@ -56,12 +55,17 @@ class _BoardListBodyState extends ConsumerState<BoardListBody> {
             ),
           ),
         ),
-        Divider(color: MColor.kLine.normal),
+
+        Divider(
+          color: MColor.kLine.normal,
+          thickness: 1,
+        ),
+        // 게시글 목록 (세로 스크롤)
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.symmetric(vertical: 16),
             child: ListView.separated(
-              separatorBuilder: (context, index) => const SizedBox(height: 5),
+              separatorBuilder: (context, index) => const SizedBox(height: 10),
               itemCount: boardModel.boards.length,
               itemBuilder: (context, index) {
                 final item = boardModel.boards[index];

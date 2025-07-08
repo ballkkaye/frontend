@@ -1,8 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-    <uses-permission android:name="android.permission.CAMERA" />
-
     <application
         android:label="ballkkaye_frontend"
         android:name="${applicationName}"
@@ -16,6 +13,7 @@
         <meta-data
             android:name="com.naver.sdk.clientName"
             android:value="@string/client_name" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

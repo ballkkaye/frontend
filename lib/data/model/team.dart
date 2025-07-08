@@ -15,17 +15,8 @@ class Team {
     return Team(
       id: data['teamId'] ?? 0,
       name: data['teamName'] ?? '',
-      teamLogo: data['teamLogo'] ?? '',
+      teamLogo: data['teamLogo'] ?? 'assets/images/lotte_emblem_sample.jpg',
       teamRank: data['teamRank'] ?? 0,
-    );
-  }
-
-  factory Team.empty() {
-    return Team(
-      id: 0,
-      name: '',
-      teamLogo: '',
-      teamRank: 0,
     );
   }
 

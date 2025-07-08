@@ -53,15 +53,15 @@ class BoardListVM extends AutoDisposeNotifier<BoardListModel?> {
 
   Future<void> getList() async {
     BoardListModel prevModel = state!;
-    Map<String, dynamic> body = await BoardRepository().getList();
-    if (!body["success"]) {
+    Map<String, dynamic> data = await BoardRepository().getList();
+    if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
-        SnackBar(content: Text("게시글 로드 실패 : ${body["errorMessage"]}")),
+        SnackBar(content: Text("게시글 로드 실패 : ${data["msg"]}")),
       );
       return;
     }
 
-    BoardListModel nextModel = BoardListModel.fromMap(body["response"]);
+    BoardListModel nextModel = BoardListModel.fromMap(data["body"]);
 
     state = nextModel.copyWith(boards: [...prevModel.boards, ...nextModel.boards]);
   }
