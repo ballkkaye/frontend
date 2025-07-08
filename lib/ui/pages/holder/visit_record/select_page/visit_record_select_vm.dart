@@ -29,6 +29,11 @@ class VisitRecordSelectVM extends AutoDisposeFamilyNotifier<VisitRecordSelectMod
     final bodyData = body["body"] as Map<String, dynamic>;
     state = VisitRecordSelectModel.fromMap(bodyData);
   }
+
+  Future<VisitRecordSelectModel?> getModel(String date) async {
+    await init(date);
+    return state;
+  }
 }
 
 class VisitRecordSelectModel {
@@ -38,9 +43,17 @@ class VisitRecordSelectModel {
 
   factory VisitRecordSelectModel.fromMap(Map<String, dynamic> data) {
     final games = data["games"] as List<dynamic>;
-    if (games.isEmpty) return VisitRecordSelectModel([]);
 
-    final items = games.first["items"] as List<dynamic>;
+    if (games.isEmpty) {
+      return VisitRecordSelectModel([]);
+    }
+
+    final items = games.first["items"] as List<dynamic>?;
+
+    if (items == null || items.isEmpty) {
+      return VisitRecordSelectModel([]);
+    }
+
     final records = items.map((e) => VisitRecord.fromMap(e)).toList();
 
     return VisitRecordSelectModel(records);

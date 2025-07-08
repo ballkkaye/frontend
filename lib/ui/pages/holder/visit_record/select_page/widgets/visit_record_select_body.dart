@@ -1,22 +1,46 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/select_page/visit_record_select_vm.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_date_picker.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_dropdown_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_icon_btn.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class VisitRecordSelectBody extends StatelessWidget {
+class VisitRecordSelectBody extends ConsumerStatefulWidget {
   VisitRecordSelectBody({super.key});
 
-  List<String> games = [
-    '두산 베어스 vs 롯데 자이언츠 (사직)',
-    'SSG 랜더스 vs LG 트윈스 (잠실)',
-    '삼성 라이온즈 vs 기아 타이거즈 (광주)',
-    'KT 위즈 vs 한화 이글스 (대전)',
-    'NC 다이노스 vs 키움 히어로즈 (고척)'
-  ];
+  @override
+  ConsumerState<VisitRecordSelectBody> createState() => _VisitRecordSelectBodyState();
+}
+
+class _VisitRecordSelectBodyState extends ConsumerState<VisitRecordSelectBody> {
+  String? selectedDate;
+  List<String> gameList = [];
+  String? selectedGame;
+
+  void _fetchGames(String date) async {
+    setState(() {
+      selectedDate = date;
+    });
+
+    final model = await ref.read(visitRecordSelectProvider(date).notifier).getModel(date);
+    if (model != null) {
+      setState(() {
+        gameList = model.records.map((e) => '${e.homeTeamFullName} vs ${e.awayTeamFullName} (${e.stadiumShortName})').toList();
+      });
+    }
+  }
+
+  // List<String> games = [
+  //   '두산 베어스 vs 롯데 자이언츠 (사직)',
+  //   'SSG 랜더스 vs LG 트윈스 (잠실)',
+  //   '삼성 라이온즈 vs 기아 타이거즈 (광주)',
+  //   'KT 위즈 vs 한화 이글스 (대전)',
+  //   'NC 다이노스 vs 키움 히어로즈 (고척)'
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +56,9 @@ class VisitRecordSelectBody extends StatelessWidget {
             MIconBtn(
               height: 49,
               icon: MIcon.page.record.calendarBlack,
-              text: "2025.06.27",
+              text: selectedDate ?? "날짜 선택",
               textColor: MColor.kLabel.normal,
               onPressed: () {
-                print("날짜 선택됨");
                 // 날짜 선택 모달
                 showModalBottomSheet(
                   backgroundColor: MColor.kBackground.normal,
@@ -47,8 +70,11 @@ class VisitRecordSelectBody extends StatelessWidget {
                         minimumDate: DateTime(2020, 3, 1),
                         maximumDate: DateTime.now(),
                         onDateTimeChanged: (value) {
-                          print("선택된 날짜: $value");
-                          // TODO : 상태 관리
+                          final dateStr =
+                              '${value.year.toString().padLeft(4, '0')}-${value.month.toString().padLeft(2, '0')}-${value.day.toString().padLeft(2, '0')}';
+                          _fetchGames(dateStr);
+                          Navigator.pop(context);
+                          print("선택된 날짜: $dateStr");
                         },
                       ),
                     );
@@ -62,15 +88,32 @@ class VisitRecordSelectBody extends StatelessWidget {
             // 경기 선택 버튼
             MDropdownBtn(
               hintText: '경기',
-              items: games,
-              onChanged: (value) {},
+              items: gameList,
+              value: selectedGame,
+              onChanged: (value) {
+                setState(() {
+                  selectedGame = value;
+                });
+              },
             ),
             Spacer(),
             // 다음 버튼
             MElevatedBtn(
               text: '다음',
               onPressed: () {
-                Navigator.pushNamed(context, "/visit-record/write");
+                if (selectedDate != null && selectedGame != null) {
+                  Navigator.pushNamed(
+                    context,
+                    "/visit-record/write",
+                    arguments: {
+                      "date": selectedDate,
+                      "game": selectedGame,
+                    },
+                  );
+                  // 넘기는 데이터 확인
+                  print("date : $selectedDate");
+                  print("game : $selectedGame");
+                }
               },
             ),
           ],
