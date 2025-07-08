@@ -12,7 +12,8 @@ class UserDetailProfileCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    SessionGVM gvm = ref.read(sessionProvider.notifier);
+    SessionGVM gvm = ref.read(sessionProvider.notifier); // 로그아웃 용도
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,

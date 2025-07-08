@@ -11,7 +11,7 @@ class MypageBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    SessionModel model = ref.read(sessionProvider);
+    SessionModel model = ref.watch(sessionProvider);
 
     if (model == null) {
       return Center(child: CircularProgressIndicator());

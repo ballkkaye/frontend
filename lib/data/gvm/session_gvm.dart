@@ -4,6 +4,7 @@ import 'package:ballkkaye_frontend/data/model/user.dart';
 import 'package:ballkkaye_frontend/data/repository/user_repository.dart';
 import 'package:ballkkaye_frontend/main.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_fm.dart';
+import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_page/user_update_fm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
@@ -90,6 +91,30 @@ class SessionGVM extends Notifier<SessionModel> {
 
     // 4. 페이지 이동
     Navigator.pushNamed(mContext, "/main-holder");
+  }
+
+  // 4. 회원 정보 수정
+  Future<void> update(UserUpdateModel model) async {
+    // 1. 유효성 검사
+
+    // 2. 통신
+    Logger().d("회원 정보 수정 데이터: ${model.toMap()}");
+
+    Map<String, dynamic> data = await UserRepository().update(model.toMap());
+    if (data["status"] != 200) {
+      ScaffoldMessenger.of(mContext).showSnackBar(
+        SnackBar(content: Text("${data["msg"]}")),
+      );
+      return;
+    }
+
+    // 3. 세션 모델 갱신
+    state = SessionModel.fromMap(data["body"]);
+    Logger().d('writeAdditionalInfo : ${state}');
+    Logger().d('writeAdditionalInfo : ${dio.options.headers["Authorization"]}');
+
+    // 4. 페이지 이동
+    Navigator.pop(mContext);
   }
 }
 

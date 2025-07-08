@@ -1,5 +1,4 @@
 import 'package:ballkkaye_frontend/_core/style/m_theme.dart';
-import 'package:ballkkaye_frontend/data/model/user.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_nickname_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_team_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/login_page/login_page.dart';
@@ -89,7 +88,7 @@ class MyApp extends StatelessWidget {
         "/user-match/detail": (context) => UserMatchDetailPage(1),
         "/user-match/list": (context) => const UserMatchListPage(),
         "/user-match/select": (context) => const UserMatchSelectPage(),
-        "/user/detail": (context) => UserDetailPage(User()),
+        "/user/detail": (context) => const UserDetailPage(),
         "/user/update": (context) => const UserUpdatePage(),
         "/mypage": (context) => const MypagePage(),
         "/chat-room/list": (context) => const ChatRoomListPage(),

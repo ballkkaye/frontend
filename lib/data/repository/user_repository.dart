@@ -52,4 +52,29 @@ class UserRepository {
     Logger().d('UserRepository의 writeAdditionalInfo: ${responseBody}');
     return responseBody;
   }
+
+  Future<Map<String, dynamic>> update(Map<String, dynamic> data) async {
+    // Response response = await dio.put("/s/api/users", data: data);
+    // final responseBody = response.data;
+    final responseBody = {
+      "status": 200,
+      "msg": "성공",
+      "body": {
+        "username": "NAVER_j6Ccsr_gsenBwfXBf1wHK5pS9NtEgwBnPXdnEakhEV0",
+        "name": "김주희",
+        "nickname": "jh6",
+        "teamId": 6,
+        "teamName": "삼성 라이온즈",
+        "phoneNumber": "010-3268-9720",
+        "email": "wngml9720@naver.com",
+        "birthDate": "2000-08-26",
+        "gender": "FEMALE",
+        "profileUrl": "https://ssl.pstatic.net/static/pwe/address/img_profile_6.png",
+        "providerType": "NAVER",
+        "userRole": "USER"
+      }
+    };
+    Logger().d('UserRepository의 update: ${responseBody}');
+    return responseBody;
+  }
 }
