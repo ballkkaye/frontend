@@ -130,9 +130,7 @@ class GameCenterRepository {
     };
     return responseBody;
   }
-}
 
-class GameCenterRepository {
   Future<Map<String, dynamic>> getStadiumList(int stadiumId) async {
     // Response response = await dio.get("${/api/stadiums}");
     final responseBody = {
