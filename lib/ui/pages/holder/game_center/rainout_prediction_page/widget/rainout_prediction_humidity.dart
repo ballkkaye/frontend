@@ -4,8 +4,10 @@ import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class RainoutPredictionHumidity extends StatelessWidget {
+  final double humidity;
   const RainoutPredictionHumidity({
     super.key,
+    required this.humidity,
   });
 
   @override
@@ -15,7 +17,7 @@ class RainoutPredictionHumidity extends StatelessWidget {
         MIcon.page.rainout.bHumidity,
         SizedBox(height: 6),
         MText.normal6_5(
-          '습도 73%',
+          '습도 ${humidity}%',
           color: MColor.kLabel.normal,
         ),
       ],
