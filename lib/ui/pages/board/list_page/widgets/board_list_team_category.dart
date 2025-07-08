@@ -17,7 +17,7 @@ class BoardListTeamCategory extends ConsumerWidget {
       return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: SizedBox(
-          height: 80,
+          height: 85,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: teamModel.teams.length + 1,
