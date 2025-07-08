@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_theme.dart';
+import 'package:ballkkaye_frontend/data/model/user.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_nickname_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_team_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/login_page/login_page.dart';
@@ -69,21 +70,18 @@ class MyApp extends StatelessWidget {
         "/home": (context) => const HomePage(),
         "/main-holder": (context) => MainHolder(),
         "/visit-record/list": (context) => const VisitRecordListPage(),
-        "/visit-record/detail": (context) =>
-            const VisitRecordDetailPage(visitRecordId: 10),
+        "/visit-record/detail": (context) => const VisitRecordDetailPage(visitRecordId: 10),
         "/visit-record/select": (context) => VisitRecordSelectPage(),
         "/visit-record/write": (context) => const VisitRecordWritePage(),
         "/visit-record/update": (context) => const VisitRecordUpdatePage(),
         "/game-center/matchup": (context) => const MatchupPage(),
         "/game-center/prediction": (context) => const PredictionPage(),
-        "/game-center/rainout-prediction": (context) =>
-            const RainoutPredictionPage(),
+        "/game-center/rainout-prediction": (context) => const RainoutPredictionPage(),
         "/game-center/ranking": (context) => const RankingPage(),
         "/game-center/today-game": (context) => const TodayGamePage(),
         "/game-center/user-prediction": (context) => const UserPredictionPage(),
         "/board/list": (context) => const BoardListPage(),
-        "/board/detail": (context) =>
-            BoardDetailPage(1), //todo 나중에 리스트에서 받은값 전달하기
+        "/board/detail": (context) => BoardDetailPage(1), //todo 나중에 리스트에서 받은값 전달하기
         "/board/write": (context) => const BoardWritePage(),
         "/board/update": (context) => const BoardUpdatePage(),
         "/user-match/update": (context) => const UserMatchUpdatePage(),
@@ -91,7 +89,7 @@ class MyApp extends StatelessWidget {
         "/user-match/detail": (context) => UserMatchDetailPage(1),
         "/user-match/list": (context) => const UserMatchListPage(),
         "/user-match/select": (context) => const UserMatchSelectPage(),
-        "/user/detail": (context) => const UserDetailPage(),
+        "/user/detail": (context) => UserDetailPage(User()),
         "/user/update": (context) => const UserUpdatePage(),
         "/mypage": (context) => const MypagePage(),
         "/chat-room/list": (context) => const ChatRoomListPage(),
