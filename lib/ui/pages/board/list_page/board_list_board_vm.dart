@@ -7,17 +7,18 @@ import 'package:logger/logger.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 /// 1. 창고 관리자
-final boardListProvider = AutoDisposeNotifierProvider<BoardListVM, BoardListModel?>(() {
-  return BoardListVM();
+final boardListBoardProvider =
+    AutoDisposeNotifierProvider<BoardListBoardVM, BoardListBoardModel?>(() {
+  return BoardListBoardVM();
 });
 
 /// 2. 창고 (상태가 변경되어도, 화면 갱신 안함 - watch 하지마)
-class BoardListVM extends AutoDisposeNotifier<BoardListModel?> {
+class BoardListBoardVM extends AutoDisposeNotifier<BoardListBoardModel?> {
   final mContext = navigatorKey.currentContext!;
   final refreshCtrl = RefreshController();
 
   @override
-  BoardListModel? build() {
+  BoardListBoardModel? build() {
     init();
 
     ref.onDispose(() {
@@ -36,7 +37,7 @@ class BoardListVM extends AutoDisposeNotifier<BoardListModel?> {
       );
       return;
     }
-    state = BoardListModel.fromMap(data["body"]);
+    state = BoardListBoardModel.fromMap(data["body"]);
   }
 
   void notifyUpdate(Board board) {
@@ -52,7 +53,7 @@ class BoardListVM extends AutoDisposeNotifier<BoardListModel?> {
   }
 
   Future<void> getList() async {
-    BoardListModel prevModel = state!;
+    BoardListBoardModel prevModel = state!;
     Map<String, dynamic> data = await BoardRepository().getList();
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
@@ -61,25 +62,25 @@ class BoardListVM extends AutoDisposeNotifier<BoardListModel?> {
       return;
     }
 
-    BoardListModel nextModel = BoardListModel.fromMap(data["body"]);
+    BoardListBoardModel nextModel = BoardListBoardModel.fromMap(data["body"]);
 
     state = nextModel.copyWith(boards: [...prevModel.boards, ...nextModel.boards]);
   }
 }
 
 /// 3. 창고 데이터 타입 (불변 아님)
-class BoardListModel {
+class BoardListBoardModel {
   List<Board> boards;
 
-  BoardListModel(this.boards);
+  BoardListBoardModel(this.boards);
 
-  BoardListModel.fromMap(Map<String, dynamic> data)
+  BoardListBoardModel.fromMap(Map<String, dynamic> data)
       : boards = (data['items'] as List).map((e) => Board.fromMap(e)).toList();
 
-  BoardListModel copyWith({
+  BoardListBoardModel copyWith({
     List<Board>? boards,
   }) {
-    return BoardListModel(
+    return BoardListBoardModel(
       boards ?? this.boards,
     );
   }
