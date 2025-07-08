@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:ballkkaye_frontend/_core/style/m_theme.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_nickname_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_team_page.dart';
@@ -41,10 +39,8 @@ import 'package:intl/date_symbol_data_local.dart';
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
-  print("Current Directory: ${Directory.current.path}");
   await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load();
   await initializeDateFormatting();
   runApp(const ProviderScope(child: MyApp()));
 }

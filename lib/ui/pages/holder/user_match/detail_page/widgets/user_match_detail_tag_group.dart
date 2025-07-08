@@ -21,11 +21,11 @@ class UserMatchDetailTagGroup extends StatelessWidget {
             fillColor: MColor.kFill.normal,
             textColor: MColor.kLabel.neutral),
         MTag(
-            label: formatAgeRange(userMatch.user.ageRange!),
+            label: formatAgeRange(userMatch.age),
             fillColor: MColor.kFill.normal,
             textColor: MColor.kLabel.neutral),
         MTag(
-            label: userMatch.user.teamName,
+            label: userMatch.user.teamName!,
             fillColor: MColor.kFill.normal,
             textColor: MColor.kLabel.neutral),
         Container(
