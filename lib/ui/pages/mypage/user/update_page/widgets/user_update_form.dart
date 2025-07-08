@@ -37,7 +37,7 @@ class UserUpdateForm extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // 프로필 사진 수정 버튼
-                    UserUpdateProfileImgBtn(),
+                    UserUpdateProfileImgBtn(), // TODO : image_picker로 프로필 사진 수정
                     SizedBox(height: 20),
 
                     // 닉네임 수정
@@ -47,8 +47,6 @@ class UserUpdateForm extends ConsumerWidget {
                       hintText: '닉네임',
                       initialValue: '${model.user!.nickname}',
                       onChanged: (value) {
-                        fm.profileUrl(
-                            "https://ssl.pstatic.net/static/pwe/address/img_profile_6.png");
                         fm.nickname(value);
                       },
                     ),
