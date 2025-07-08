@@ -1,12 +1,13 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/data/model/user_match.dart';
 import 'package:flutter/material.dart';
 
 class UserMatchDetailProfile extends StatelessWidget {
-  const UserMatchDetailProfile({
-    super.key,
-  });
+  final UserMatch userMatch;
+
+  const UserMatchDetailProfile(this.userMatch, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,13 +17,20 @@ class UserMatchDetailProfile extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 4),
           child: ClipOval(
             child: Container(
-              width: 31,
-              height: 31,
-              color: Colors.grey[300],
-              child: Align(
-                alignment: Alignment(0, 1),
-                child: MIcon.page.mypage.userDummy,
-              ),
+              width: 40,
+              height: 40,
+              color: MColor.kFill.normal,
+              child: userMatch.user.profileUrl != null && userMatch.user.profileUrl!.isNotEmpty
+                  ? Image.network(
+                      userMatch.user.profileUrl!,
+                      fit: BoxFit.cover,
+                      width: 40,
+                      height: 40,
+                    )
+                  : Align(
+                      alignment: Alignment(0, 1),
+                      child: MIcon.page.mypage.userDummy,
+                    ),
             ),
           ),
         ),
@@ -30,12 +38,12 @@ class UserMatchDetailProfile extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            MText.normal4_6("ssar"),
-            MText.normal6_5("롯데자이언트", color: MColor.kLabel.alternative),
+            MText.normal4_6(userMatch.user.nickname!),
+            MText.normal6_5(userMatch.user.teamName!, color: MColor.kLabel.alternative),
           ],
         ),
         Spacer(),
-        MText.normal7_4('15분전', color: MColor.kLabel.normal),
+        MText.normal7_4(userMatch.relativeTime, color: MColor.kLabel.normal),
       ],
     );
   }

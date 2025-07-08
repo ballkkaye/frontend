@@ -1,53 +1,62 @@
 // rule (copyWith, fromJson, toJson)
-import 'team.dart';
+
+import 'package:ballkkaye_frontend/data/model/reply.dart';
 
 class Board {
-  int boardId;
-  String title;
-  String nickname;
-  String relativeTime;
-  Team team;
-  int likeCount;
-  int replyCount;
+  final int boardId;
+  final String nickname;
+
+  //final String profileImgUrl;
+  final String relativeTime;
+  final String myTeamName;
+  final int teamCategoryId;
+  final String teamCategoryName;
+  final String title;
+  final String content;
+  final bool isOwner;
+  final bool isLike;
+  final int likeCount;
+  final int replyCount;
+
+  //final List<BoardImage> images;
+  final List<Reply> replyItems;
 
   Board({
     required this.boardId,
-    required this.title,
-    required this.nickname,
+    required this.nickname, //todo: 나중에 유저모델에서 받아서 사용
     required this.relativeTime,
-    required this.team,
+    required this.myTeamName,
+    required this.teamCategoryId,
+    required this.teamCategoryName,
+    required this.title,
+    required this.content,
+    required this.isOwner,
+    required this.isLike,
     required this.likeCount,
     required this.replyCount,
+    // required this.images,
+    required this.replyItems,
+    // required this.profileImgUrl,
   });
 
   factory Board.fromMap(Map<String, dynamic> data) {
+    // 복합 데이터(replyItems) 파싱을 factory로 처리해서 가독성과 유지보수성을 높임
     return Board(
       boardId: data['boardId'],
-      title: data['title'],
       nickname: data['nickname'],
+      // profileImgUrl: json['profileImageUrl'], //todo: 나중에 이미지추가할때 주석지워서 사용
       relativeTime: data['relativeTime'],
-      team: Team(
-        teamId: data['teamId'],
-        teamName: data['teamName'],
-        teamLogo: '',
-        teamRank: data['teamRank'] ?? 0,
-      ),
+      myTeamName: data['myTeamName'] ?? '',
+      teamCategoryId: data['teamCategoryId'] ?? 0,
+      teamCategoryName: data['teamCategoryName'] ?? '',
+      title: data['title'],
+      content: data['content'] ?? '',
+      isOwner: data['isOwner'] ?? false,
+      isLike: data['isLike'] ?? false,
       likeCount: data['likeCount'],
       replyCount: data['replyCount'],
+      // images: (json['images'] as List<dynamic>).map((e) => BoardImage.fromMap(e)).toList(), //todo: 나중에 이미지추가할때 주석지워서 사용
+      replyItems: (data['replyItems'] as List<dynamic>?)?.map((e) => Reply.fromMap(e)).toList() ?? [],
     );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'boardId': boardId,
-      'title': title,
-      'nickname': nickname,
-      'relativeTime': relativeTime,
-      'teamId': team.teamId,
-      'teamName': team.teamName,
-      'teamRank': team.teamRank,
-      'likeCount': likeCount,
-      'replyCount': replyCount,
-    };
   }
 }

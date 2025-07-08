@@ -1,6 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/list_page/board_list_board_vm.dart';
-import 'package:ballkkaye_frontend/ui/pages/board/list_page/widgets/borad_list_card.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/list_page/widgets/board_list_card.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/list_page/widgets/borad_list_team_category_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -47,7 +47,7 @@ class _BoardListBodyState extends ConsumerState<BoardListBody> {
                 } else {
                   final team = teamModel.teams[index - 1];
                   return BoardListTeamCategoryItem(
-                    label: team.teamName,
+                    label: team.label,
                     imgUrl: 'assets/images/lotte_emblem_sample.jpg', // todo:나중에 이미지넣기
                     rank: team.teamRank,
                   );

@@ -39,6 +39,7 @@ import 'package:intl/date_symbol_data_local.dart';
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
+  await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load();
   print("==== BASE_URL: ${dotenv.env['BASE_URL']}");
@@ -70,23 +71,26 @@ class MyApp extends StatelessWidget {
         "/home": (context) => const HomePage(),
         "/main-holder": (context) => MainHolder(),
         "/visit-record/list": (context) => const VisitRecordListPage(),
-        "/visit-record/detail": (context) => const VisitRecordDetailPage(),
+        "/visit-record/detail": (context) =>
+            const VisitRecordDetailPage(visitRecordId: 10),
         "/visit-record/select": (context) => VisitRecordSelectPage(),
         "/visit-record/write": (context) => const VisitRecordWritePage(),
         "/visit-record/update": (context) => const VisitRecordUpdatePage(),
         "/game-center/matchup": (context) => const MatchupPage(),
         "/game-center/prediction": (context) => const PredictionPage(),
-        "/game-center/rainout-prediction": (context) => const RainoutPredictionPage(),
+        "/game-center/rainout-prediction": (context) =>
+            const RainoutPredictionPage(),
         "/game-center/ranking": (context) => const RankingPage(),
         "/game-center/today-game": (context) => const TodayGamePage(),
         "/game-center/user-prediction": (context) => const UserPredictionPage(),
         "/board/list": (context) => const BoardListPage(),
-        "/board/detail": (context) => BoardDetailPage(),
+        "/board/detail": (context) =>
+            BoardDetailPage(1), //todo 나중에 리스트에서 받은값 전달하기
         "/board/write": (context) => const BoardWritePage(),
         "/board/update": (context) => const BoardUpdatePage(),
         "/user-match/update": (context) => const UserMatchUpdatePage(),
         "/user-match/write": (context) => const UserMatchWritePage(),
-        "/user-match/detail": (context) => const UserMatchDetailPage(),
+        "/user-match/detail": (context) => UserMatchDetailPage(1),
         "/user-match/list": (context) => const UserMatchListPage(),
         "/user-match/select": (context) => const UserMatchSelectPage(),
         "/user/detail": (context) => const UserDetailPage(),
