@@ -60,20 +60,21 @@ class UserRepository {
       "status": 200,
       "msg": "성공",
       "body": {
-        "username": "ssar123",
-        "name": "쌀",
-        "nickname": "수정한닉네임",
-        "teamId": 5,
-        "phoneNumber": "01011112222",
-        "email": "ssar@nate.com",
-        "birthDate": "1999-09-09",
-        "gender": "MALE",
-        "profileUrl": "https://example.com/images/profile123.png",
-        "providerType": "BALLKKAYE",
+        "username": "NAVER_j6Ccsr_gsenBwfXBf1wHK5pS9NtEgwBnPXdnEakhEV0",
+        "name": "김주희",
+        "nickname": "jh6",
+        "teamId": 6,
+        "teamName": "삼성 라이온즈",
+        "phoneNumber": "010-3268-9720",
+        "email": "wngml9720@naver.com",
+        "birthDate": "2000-08-26",
+        "gender": "FEMALE",
+        "profileUrl": "https://ssl.pstatic.net/static/pwe/address/img_profile_6.png",
+        "providerType": "NAVER",
         "userRole": "USER"
       }
     };
-    Logger().d('UserRepository의 writeAdditionalInfo: ${responseBody}');
+    Logger().d('UserRepository의 update: ${responseBody}');
     return responseBody;
   }
 }

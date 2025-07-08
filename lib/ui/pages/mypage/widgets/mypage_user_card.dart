@@ -1,7 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/data/model/user.dart';
-import 'package:ballkkaye_frontend/ui/pages/mypage/user/detail_page/user_detail_page.dart';
 import 'package:flutter/material.dart';
 
 class MypageUserCard extends StatelessWidget {
@@ -13,7 +12,7 @@ class MypageUserCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (_) => UserDetailPage(user)));
+        Navigator.pushNamed(context, "/user/detail");
       },
       child: Container(
         decoration: BoxDecoration(
