@@ -14,7 +14,7 @@ class MatchupBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final model = ref.watch(MatchupProvider(MatchupParam(gameId: 423, teamId: 2)));
+    final model = ref.watch(matchupProvider(MatchupParam(gameId: 423, teamId: 2)));
 
     if (model == null) {
       return const Center(child: CircularProgressIndicator());
