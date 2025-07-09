@@ -1,7 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/data/mapper/team_mapper.dart';
 import 'package:ballkkaye_frontend/data/model/user_match.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_tag.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +13,6 @@ class UserMatchDetailTagGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      spacing: 8,
       children: [
         MTag(
             label: userMatch.gender,
@@ -26,7 +24,7 @@ class UserMatchDetailTagGroup extends StatelessWidget {
           textColor: MColor.kLabel.neutral,
         ),
         MTag(
-            label: TeamMapper.getName(userMatch.teamId),
+            label: userMatch.teamName,
             fillColor: MColor.kFill.normal,
             textColor: MColor.kLabel.neutral),
         Container(

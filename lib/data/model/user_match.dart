@@ -18,6 +18,7 @@ class UserMatch {
   final String? participationInfo;
   final int? chatRoomId;
   final int? teamId;
+  final String? teamName;
 
   UserMatch({
     this.matchId,
@@ -35,6 +36,7 @@ class UserMatch {
     this.participationInfo,
     this.chatRoomId,
     this.teamId,
+    this.teamName,
   });
 
   UserMatch.fromMap(Map<String, dynamic> data)
@@ -61,7 +63,8 @@ class UserMatch {
         isSameTeam = data['isSameTeam'],
         participationInfo = data['participationInfo'],
         chatRoomId = data['chatRoomId'],
-        teamId = data['teamId'];
+        teamId = data['teamId'],
+        teamName = data['teamName'];
 
   @override
   String toString() {
