@@ -7,8 +7,8 @@ class VisitRecord {
   int awayScore;
   String gameDate;
   String stadiumName;
-  String result;
-  String content;
+  String? result;
+  String? content;
 
   VisitRecord({
     this.imageString,
@@ -19,8 +19,8 @@ class VisitRecord {
     required this.awayScore,
     required this.gameDate,
     required this.stadiumName,
-    required this.result,
-    required this.content,
+    this.result,
+    this.content,
   });
 
   factory VisitRecord.fromMap(Map<String, dynamic> data) {

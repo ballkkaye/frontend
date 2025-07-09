@@ -1,20 +1,16 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/visit_record_list_selected_date_vm.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import '../visit_record_list_selected_date_vm.dart';
-
 class VisitRecordListCalendar extends ConsumerStatefulWidget {
-  const VisitRecordListCalendar({
-    super.key,
-    required this.cellSize,
-    this.onDateSelected,
-  });
+  const VisitRecordListCalendar({super.key, required this.cellSize, this.onDateSelected, this.onMonthChanged});
 
   final double cellSize;
   final ValueChanged<DateTime?>? onDateSelected;
+  final void Function(int year, int month)? onMonthChanged;
 
   @override
   ConsumerState<VisitRecordListCalendar> createState() => _VisitRecordListCalendarState();
@@ -56,7 +52,10 @@ class _VisitRecordListCalendarState extends ConsumerState<VisitRecordListCalenda
           setState(() {
             _focusedDay = focusedDay;
           });
-          ref.read(VisitRecordListselectedDateProvider.notifier).state = null;
+          widget.onMonthChanged?.call(
+            focusedDay.year,
+            focusedDay.month,
+          );
         },
         selectedDayPredicate: (day) => isSameDay(selectedDate, day),
         headerStyle: _headerStyle(),

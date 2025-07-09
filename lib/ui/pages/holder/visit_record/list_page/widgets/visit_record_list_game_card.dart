@@ -1,10 +1,10 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/data/model/visit_record_list.dart';
+import 'package:ballkkaye_frontend/data/model/visit_record.dart';
 import 'package:flutter/material.dart';
 
 class VisitRecordListGameCard extends StatelessWidget {
-  final VisitRecordList record;
+  final VisitRecord record;
 
   const VisitRecordListGameCard({
     super.key,
