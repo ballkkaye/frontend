@@ -26,7 +26,7 @@ class BoardWriteForm extends ConsumerWidget {
   ];
 
   @override
-  Widget build(BuildContext contextm,WidgetRef ref) {
+  Widget build(BuildContext contextm, WidgetRef ref) {
     BoardWriteFM fm = ref.read(boardWriteProvider.notifier);
     BoardWriteModel model = ref.watch(boardWriteProvider);
     BoardListBoardVM vm = ref.read(boardListBoardProvider.notifier);
@@ -39,6 +39,7 @@ class BoardWriteForm extends ConsumerWidget {
             hintText: '팀 선택',
             items: teams,
             onChanged: (value) {
+              fm.teamId(teams.indexOf(value!) + 1);
             },
           ),
           SizedBox(height: 12),
@@ -70,7 +71,7 @@ class BoardWriteForm extends ConsumerWidget {
           MElevatedBtn(
             text: '완료',
             onPressed: () {
-              Navigator.popAndPushNamed(context, "/board/detail");
+              vm.write(model.teamId, model.title, model.content);
             },
           ),
         ],

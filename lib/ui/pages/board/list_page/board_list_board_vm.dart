@@ -7,8 +7,7 @@ import 'package:logger/logger.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 /// 1. 창고 관리자
-final boardListBoardProvider =
-    AutoDisposeNotifierProvider<BoardListBoardVM, BoardListBoardModel?>(() {
+final boardListBoardProvider = AutoDisposeNotifierProvider<BoardListBoardVM, BoardListBoardModel?>(() {
   return BoardListBoardVM();
 });
 
@@ -67,20 +66,20 @@ class BoardListBoardVM extends AutoDisposeNotifier<BoardListBoardModel?> {
     state = nextModel.copyWith(boards: [...prevModel.boards, ...nextModel.boards]);
   }
 
-Future<void> write(String title, String content) async {
-  BoardListBoardModel prevModel = state!;
-  Map<String, dynamic> data = await BoardRepository().write(title, content);
-  if (data["status"] != 200) {
-    ScaffoldMessenger.of(mContext!).showSnackBar(
-      SnackBar(content: Text("게시글 로드 실패 : ${data["msg"]}")),
-    );
-    return;
+  Future<void> write(int teamId, String title, String content) async {
+    // 1. 레포지토리에 함수 호출
+    Map<String, dynamic> data = await BoardRepository().write(teamId, title, content);
+    if (data["status"] != 200) {
+      ScaffoldMessenger.of(mContext!).showSnackBar(
+        SnackBar(content: Text("게시글 쓰기 실패 : ${data["msg"]}")),
+      );
+      return;
+    }
+    Board board = Board.fromMap(data["body"]);
+    List<Board> nextBoards = [board, ...state!.boards];
+    state = state!.copyWith(boards: nextBoards);
+    Navigator.pop(mContext!);
   }
-
-  BoardListBoardModel nextModel = BoardListBoardModel.fromMap(data["body"]);
-
-  state = nextModel.copyWith(boards: [...prevModel.boards, ...nextModel.boards]);
-}
 }
 
 /// 3. 창고 데이터 타입 (불변 아님)
@@ -90,7 +89,7 @@ class BoardListBoardModel {
   BoardListBoardModel(this.boards);
 
   BoardListBoardModel.fromMap(Map<String, dynamic> data)
-      : boards = (data['items'] as List).map((e) => Board.fromMap(e)).toList();
+      : boards = (data['items'] as List<dynamic>?)?.map((e) => Board.fromMap(e)).toList() ?? [];
 
   BoardListBoardModel copyWith({
     List<Board>? boards,

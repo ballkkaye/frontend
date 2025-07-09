@@ -23,6 +23,12 @@ class BoardWriteFM extends Notifier<BoardWriteModel> {
       content: content,
     );
   }
+
+  void teamId(int teamId) {
+    state = state.copyWith(
+      teamId: teamId,
+    );
+  }
 }
 
 /// 3. 창고 데이터 타입
@@ -31,21 +37,26 @@ class BoardWriteModel {
   final String content;
   final int teamId;
 
+  // final List<String> imageUrl;
+
   BoardWriteModel(
-      this.title,
-      this.content,
-      this.teamId,
-      );
+    this.title,
+    this.content,
+    this.teamId,
+    // this.imageUrl,
+  );
 
   BoardWriteModel copyWith({
     String? title,
     String? content,
     int? teamId,
+    // List<String>? imageUrl,
   }) {
     return BoardWriteModel(
       title ?? this.title,
       content ?? this.content,
       teamId ?? this.teamId,
+      // imageUrl ?? this.imageUrl,
     );
   }
 
@@ -53,4 +64,5 @@ class BoardWriteModel {
   String toString() {
     return 'PostWriteModel{title: $title, content: $content, teamId: $teamId}';
   }
+//, imageUrl: $imageUrl
 }
