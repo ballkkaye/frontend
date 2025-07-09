@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/data/model/board.dart';
 import 'package:logger/logger.dart';
 
 class BoardRepository {
@@ -224,6 +225,31 @@ class BoardRepository {
         "nickname": "cos",
         "likeCount": 0,
         "replyCount": 0,
+      }
+    };
+    Logger().d(responseBody);
+    return responseBody;
+  }
+
+  Future<Map<String, dynamic>> updateOne(Board board) async {
+    final responseBody = {
+      "status": 200,
+      "msg": "성공",
+      "body": {
+        "imagesUrl": [
+          {"id": 1, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img001.png"},
+          {"id": 2, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img002.png"},
+          {"id": 3, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/new003.png"}
+        ],
+        "boardId": 12,
+        "title": "수정된 게시글 제목2",
+        "teamId": 3,
+        "content": "이건 수정된 게시글 내용입니다2.",
+        "nickname": "love",
+        "relativeTime": "1분전",
+        "likeCount": 4,
+        "myTeamName": "삼성 라이온즈",
+        "teamCategoryName": "롯데 자이언츠",
       }
     };
     Logger().d(responseBody);
