@@ -2,34 +2,36 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
-class ListFilterDropdownBtn extends StatelessWidget {
+class UserMatchListDropdownBtn<T> extends StatelessWidget {
   final String label;
-  final String selectedValue;
-  final List<String> options;
-  final ValueChanged<String> onChanged;
+  final T? selectedValue;
+  final List<T> options;
+  final String Function(T) getLabel;
+  final ValueChanged<T> onChanged;
 
-  const ListFilterDropdownBtn({
+  const UserMatchListDropdownBtn({
     super.key,
     required this.label,
     required this.selectedValue,
     required this.options,
+    required this.getLabel,
     required this.onChanged,
   });
 
   @override
   Widget build(BuildContext context) {
-    final isSelected = selectedValue != label;
+    final bool isSelected = selectedValue != null;
 
     return Theme(
       data: Theme.of(context).copyWith(
         popupMenuTheme: const PopupMenuThemeData(color: Colors.white),
       ),
-      child: PopupMenuButton<String>(
+      child: PopupMenuButton<T>(
         onSelected: onChanged,
         itemBuilder: (context) => options
-            .map((value) => PopupMenuItem<String>(
+            .map((value) => PopupMenuItem<T>(
                   value: value,
-                  child: MText.normal6_4(value, color: MColor.kLabel.normal),
+                  child: MText.normal6_4(getLabel(value), color: MColor.kLabel.normal),
                 ))
             .toList(),
         offset: const Offset(0, 40),
@@ -48,7 +50,7 @@ class ListFilterDropdownBtn extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               MText.button4_4(
-                selectedValue == '선택 안함' ? label : selectedValue,
+                isSelected ? getLabel(selectedValue!) : label,
                 color: isSelected ? MColor.kPrimary.strong : MColor.kLabel.alternative,
               ),
               const SizedBox(width: 4),

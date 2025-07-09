@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
-final userUpdateTeamProvider =
-    AutoDisposeNotifierProvider<UserUpdateTeamVM, UserUpdateTeamModel?>(() {
-  return UserUpdateTeamVM();
+final userMatchListTeamProvider =
+    AutoDisposeNotifierProvider<UserMatchListTeamVM, UserMatchListTeamModel?>(() {
+  return UserMatchListTeamVM();
 });
 
-class UserUpdateTeamVM extends AutoDisposeNotifier<UserUpdateTeamModel?> {
+class UserMatchListTeamVM extends AutoDisposeNotifier<UserMatchListTeamModel?> {
   final mContext = navigatorKey.currentContext!;
 
   @override
-  UserUpdateTeamModel? build() {
+  UserMatchListTeamModel? build() {
     // 1. 상태 초기화
     init();
 
@@ -36,29 +36,29 @@ class UserUpdateTeamVM extends AutoDisposeNotifier<UserUpdateTeamModel?> {
       return;
     }
 
-    state = UserUpdateTeamModel.fromList(data['body']);
+    state = UserMatchListTeamModel.fromList(data['body']);
   }
 }
 
 // List 형태
-class UserUpdateTeamModel {
+class UserMatchListTeamModel {
   List<Team> teams;
 
-  UserUpdateTeamModel(this.teams);
+  UserMatchListTeamModel(this.teams);
 
-  UserUpdateTeamModel.fromList(List<dynamic> list)
+  UserMatchListTeamModel.fromList(List<dynamic> list)
       : teams = list.map((e) => Team.fromMap(e)).toList();
 
-  UserUpdateTeamModel copyWith({
+  UserMatchListTeamModel copyWith({
     List<Team>? teams,
   }) {
-    return UserUpdateTeamModel(
+    return UserMatchListTeamModel(
       teams ?? this.teams,
     );
   }
 
   @override
   String toString() {
-    return 'UserUpdateTeamModel{teams: $teams}';
+    return 'UserMatchListTeamModel{teams: $teams}';
   }
 }
