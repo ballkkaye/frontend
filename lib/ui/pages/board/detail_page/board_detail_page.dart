@@ -18,7 +18,7 @@ class BoardDetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    BoardDetailModel? boardModel = ref.watch(boardDetailProvider(boardId));
+    BoardDetailBoardModel? boardModel = ref.watch(boardDetailBoardProvider(boardId));
     BoardDetailReplyModel? replyModel = ref.watch(boardDetailReplyProvider(boardId));
     if (boardModel == null || replyModel == null) {
       return Center(child: CircularProgressIndicator());
