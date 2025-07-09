@@ -89,8 +89,8 @@ class BoardListBoardModel {
   BoardListBoardModel(this.boards);
 
   BoardListBoardModel.fromMap(Map<String, dynamic> data)
-      : boards = (data['items'] as List<dynamic>?)?.map((e) => Board.fromMap(e)).toList() ?? [];
-
+      : boards = (data['items'] as List).map((e) => Board.fromMap(e)).toList();
+  
   BoardListBoardModel copyWith({
     List<Board>? boards,
   }) {
