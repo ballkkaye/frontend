@@ -4,8 +4,13 @@ import 'package:ballkkaye_frontend/ui/pages/holder/game_center/rainout_predictio
 import 'package:flutter/material.dart';
 
 class RainoutPredictionRainfall extends StatelessWidget {
+  final double rainAmount;
+  final int hour;
+
   const RainoutPredictionRainfall({
     super.key,
+    required this.rainAmount,
+    required this.hour,
   });
 
   @override
@@ -27,7 +32,7 @@ class RainoutPredictionRainfall extends StatelessWidget {
                 return Row(
                   children: [
                     RainoutPredictionRainfallBox(
-                      value: index == 3 ? 1 : 0,
+                      rainAmount: index == 3 ? 1 : 0,
                       hour: index.toString().padLeft(2, '0'),
                     ),
                     if (index != 23) const SizedBox(width: 2),

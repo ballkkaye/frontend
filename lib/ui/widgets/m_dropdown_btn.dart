@@ -3,23 +3,25 @@ import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
-class MDropdownBtn extends StatelessWidget {
+class MDropdownBtn<T> extends StatelessWidget {
   final String hintText;
-  final List<String> items;
-  final ValueChanged<String?> onChanged;
-  final String? value;
+  final List<T> items;
+  final ValueChanged<T?> onChanged;
+  final T? value;
+  final String Function(T)? itemLabel;
 
   const MDropdownBtn({
     super.key,
     required this.hintText,
     required this.items,
     required this.onChanged,
+    this.itemLabel,
     this.value,
   });
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonFormField2<String>(
+    return DropdownButtonFormField2<T>(
       value: value,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.zero,
@@ -42,9 +44,10 @@ class MDropdownBtn extends StatelessWidget {
       ),
       hint: MText.input1_4(hintText, color: MColor.kLabel.alternative),
       items: items.map((item) {
-        return DropdownMenuItem<String>(
+        return DropdownMenuItem<T>(
           value: item,
-          child: MText.input1_4(item, color: MColor.kLabel.neutral),
+          child: MText.input1_4(itemLabel != null ? itemLabel!(item) : item.toString(),
+              color: MColor.kLabel.neutral),
         );
       }).toList(),
       onChanged: onChanged,

@@ -1,10 +1,13 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/matchup_page/matchup_vm.dart';
 import 'package:flutter/material.dart';
 
 class MatchupChart extends StatelessWidget {
+  final List<Hitter> hitters;
   const MatchupChart({
     super.key,
+    required this.hitters,
   });
 
   @override
@@ -33,6 +36,7 @@ class MatchupChart extends StatelessWidget {
                 MatchupChartColumnList(
                   childMinWidth: childMinWidth,
                   childMaxWidth: childMaxWidth,
+                  hitters: hitters,
                 ),
               ],
             );
@@ -104,117 +108,35 @@ class MatchupChartColumnList extends StatelessWidget {
     super.key,
     required this.childMinWidth,
     required this.childMaxWidth,
+    required this.hitters,
   });
 
   final double childMinWidth;
   final double childMaxWidth;
+  final List<Hitter> hitters;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        // TODO: 통신 받을 때 for문 돌리기
-        MatchupChartColumn(
+    return ListView.builder(
+      itemCount: hitters.length,
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      itemBuilder: (context, index) {
+        final hitter = hitters[index];
+        return MatchupChartColumn(
           childMinWidth: childMinWidth,
           childMaxWidth: childMaxWidth,
-        ),
-        MatchupChartColumn(
-          childMinWidth: childMinWidth,
-          childMaxWidth: childMaxWidth,
-        ),
-        MatchupChartColumn(
-          childMinWidth: childMinWidth,
-          childMaxWidth: childMaxWidth,
-        ),
-        MatchupChartColumn(
-          childMinWidth: childMinWidth,
-          childMaxWidth: childMaxWidth,
-        ),
-        MatchupChartColumn(
-          childMinWidth: childMinWidth,
-          childMaxWidth: childMaxWidth,
-        ),
-        MatchupChartColumn(
-          childMinWidth: childMinWidth,
-          childMaxWidth: childMaxWidth,
-        ),
-        MatchupChartColumn(
-          childMinWidth: childMinWidth,
-          childMaxWidth: childMaxWidth,
-        ),
-        MatchupChartColumn(
-          childMinWidth: childMinWidth,
-          childMaxWidth: childMaxWidth,
-        ),
-        MatchupChartColumn(
-          childMinWidth: childMinWidth,
-          childMaxWidth: childMaxWidth,
-        ),
-        // TODO: 마지막행은 border bottom 없음
-        MatchChartLastColumn(
-          childMinWidth: childMinWidth,
-          childMaxWidth: childMaxWidth,
-        ),
-      ],
-    );
-  }
-}
-
-// 마지막 컬럼
-class MatchChartLastColumn extends StatelessWidget {
-  const MatchChartLastColumn({
-    super.key,
-    required this.childMinWidth,
-    required this.childMaxWidth,
-  });
-
-  final double childMinWidth;
-  final double childMaxWidth;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide.none,
-        ),
-      ),
-      child: Row(
-        children: [
-          MatchupNormalRow(
-            childWidth: childMinWidth,
-            title: '1번',
-          ),
-          MatchupBoldRow(
-            childWidth: childMaxWidth,
-            title: '손호영',
-          ),
-          MatchupNormalRow(
-            childWidth: childMaxWidth,
-            title: '2루수',
-          ),
-          MatchupNormalRow(
-            childWidth: childMinWidth,
-            title: '3타수',
-          ),
-          MatchupNormalRow(
-            childWidth: childMinWidth,
-            title: '0안타',
-          ),
-          MatchupNormalRow(
-            childWidth: childMinWidth,
-            title: '0.000',
-          ),
-          MatchupNormalRow(
-            childWidth: childMinWidth,
-            title: '0.000',
-          ),
-          MatchupNormalRow(
-            childWidth: childMinWidth,
-            title: '12%',
-          ),
-        ],
-      ),
+          hitterOrder: hitter.hitterOrder,
+          hitPredictionPer: hitter.hitPredictionPer,
+          name: hitter.name,
+          position: hitter.position,
+          ab: hitter.ab,
+          h: hitter.h,
+          avg: hitter.avg,
+          ops: hitter.ops,
+          isLast: index == hitters.length - 1, // 마지막인지 확인
+        );
+      },
     );
   }
 }
@@ -223,11 +145,29 @@ class MatchChartLastColumn extends StatelessWidget {
 class MatchupChartColumn extends StatelessWidget {
   final double childMinWidth;
   final double childMaxWidth;
+  final int hitterOrder;
+  final double hitPredictionPer;
+  final String name;
+  final String position;
+  final int ab;
+  final int h;
+  final double avg;
+  final double ops;
+  final bool isLast;
 
   const MatchupChartColumn({
     super.key,
     required this.childMinWidth,
     required this.childMaxWidth,
+    required this.hitterOrder,
+    required this.hitPredictionPer,
+    required this.name,
+    required this.position,
+    required this.ab,
+    required this.h,
+    required this.avg,
+    required this.ops,
+    required this.isLast,
   });
 
   @override
@@ -235,42 +175,42 @@ class MatchupChartColumn extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border(
-          bottom: BorderSide(color: MColor.kLine.normal),
+          bottom: isLast ? BorderSide.none : BorderSide(color: MColor.kLine.normal),
         ),
       ),
       child: Row(
         children: [
           MatchupNormalRow(
             childWidth: childMinWidth,
-            title: '1번',
+            title: '${hitterOrder}번',
           ),
           MatchupBoldRow(
             childWidth: childMaxWidth,
-            title: '손호영',
+            title: name,
           ),
           MatchupNormalRow(
             childWidth: childMaxWidth,
-            title: '2루수',
+            title: position,
           ),
           MatchupNormalRow(
             childWidth: childMinWidth,
-            title: '3타수',
+            title: '${ab}타수',
           ),
           MatchupNormalRow(
             childWidth: childMinWidth,
-            title: '0안타',
+            title: '${h}안타',
           ),
           MatchupNormalRow(
             childWidth: childMinWidth,
-            title: '0.000',
+            title: '${avg}',
           ),
           MatchupNormalRow(
             childWidth: childMinWidth,
-            title: '0.000',
+            title: '${ops}',
           ),
           MatchupNormalRow(
             childWidth: childMinWidth,
-            title: '12%',
+            title: '${hitPredictionPer}%',
           ),
         ],
       ),

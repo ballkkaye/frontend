@@ -4,7 +4,7 @@ class Game {
   final int? id;
   final Team homeTeam;
   final Team awayTeam;
-  final String gameDate;
+  final String? gameDate;
   final String? stadiumName;
 
   Game({

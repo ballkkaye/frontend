@@ -1,16 +1,19 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/data/model/board.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/update_page/widgets/board_update_body.dart';
 import 'package:flutter/material.dart';
 
 class BoardUpdatePage extends StatelessWidget {
-  const BoardUpdatePage({super.key});
+  final Board board;
+
+  const BoardUpdatePage({super.key, required this.board});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appbar(),
-      body: BoardUpdateBody(),
+      body: BoardUpdateBody(board),
     );
   }
 
