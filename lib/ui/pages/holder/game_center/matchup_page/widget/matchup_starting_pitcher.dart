@@ -5,8 +5,23 @@ import 'package:ballkkaye_frontend/ui/pages/holder/game_center/matchup_page/widg
 import 'package:flutter/material.dart';
 
 class MatchupStartingPitcher extends StatelessWidget {
+  final String profileUrl;
+  final String name;
+  final int gameCount;
+  final String result;
+  final double era;
+  final double whip;
+  final int qs;
+
   const MatchupStartingPitcher({
     super.key,
+    required this.profileUrl,
+    required this.name,
+    required this.gameCount,
+    required this.result,
+    required this.era,
+    required this.whip,
+    required this.qs,
   });
 
   @override
@@ -29,7 +44,7 @@ class MatchupStartingPitcher extends StatelessWidget {
                       color: MColor.kFill.normal,
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: MatchupPlayerImage(null),
+                    child: MatchupPlayerImage(profileUrl),
                   ),
                 ),
               ),
@@ -41,11 +56,17 @@ class MatchupStartingPitcher extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     MText.normal4_6(
-                      '선수명',
+                      name,
                       color: MColor.kLabel.normal,
                     ),
                     SizedBox(height: 2),
-                    MatchupPlayerStatList(),
+                    MatchupPlayerStatList(
+                      gameCount: gameCount,
+                      result: result,
+                      era: era,
+                      whip: whip,
+                      qs: qs,
+                    ),
                   ],
                 ),
               ),
