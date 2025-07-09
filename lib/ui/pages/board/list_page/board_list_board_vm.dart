@@ -7,8 +7,7 @@ import 'package:logger/logger.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 /// 1. 창고 관리자
-final boardListBoardProvider =
-    AutoDisposeNotifierProvider<BoardListBoardVM, BoardListBoardModel?>(() {
+final boardListBoardProvider = AutoDisposeNotifierProvider<BoardListBoardVM, BoardListBoardModel?>(() {
   return BoardListBoardVM();
 });
 
@@ -52,6 +51,14 @@ class BoardListBoardVM extends AutoDisposeNotifier<BoardListBoardModel?> {
     state = state!.copyWith(boards: nextBoards);
   }
 
+  void notifyDeleteOne(int boardId) {
+    BoardListBoardModel model = state!;
+
+    model.boards = model.boards.where((p) => p.boardId != boardId).toList();
+
+    state = state!.copyWith(boards: model.boards);
+  }
+
   Future<void> getList() async {
     BoardListBoardModel prevModel = state!;
     Map<String, dynamic> data = await BoardRepository().getList();
@@ -91,7 +98,7 @@ class BoardListBoardModel {
 
   BoardListBoardModel.fromMap(Map<String, dynamic> data)
       : boards = (data['items'] as List).map((e) => Board.fromMap(e)).toList();
-  
+
   BoardListBoardModel copyWith({
     List<Board>? boards,
   }) {

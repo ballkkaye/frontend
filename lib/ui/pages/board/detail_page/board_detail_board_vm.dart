@@ -59,6 +59,19 @@ class BoardDetailBoardVM extends AutoDisposeFamilyNotifier<BoardDetailBoardModel
     // 5. pop
     Navigator.pop(mContext);
   }
+
+  Future<void> deleteOne(int boardId) async {
+    Map<String, dynamic> data = await BoardRepository().deleteOne(boardId);
+    if (data["status"] != 200) {
+      ScaffoldMessenger.of(mContext!).showSnackBar(
+        SnackBar(content: Text("게시글 삭제하기 실패 : ${data["msg"]}")),
+      );
+      return;
+    }
+
+    ref.read(boardListBoardProvider.notifier).notifyDeleteOne(boardId);
+    Navigator.pop(mContext);
+  }
 }
 
 class BoardDetailBoardModel {
