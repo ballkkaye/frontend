@@ -1,5 +1,5 @@
 import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/detail_page/widgets/chat_room_detail_header.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/detail_page/widgets/chat_room_detail_input_field.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/detail_page/widgets/chat_room_detail_input_bar.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/detail_page/widgets/chat_room_detail_message_list.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +18,7 @@ class ChatRoomDetailBody extends StatelessWidget {
         Expanded(
           child: ChatRoomDetailMessageList(),
         ),
-        ChatRoomDetailInputField(),
+        ChatRoomDetailInputBar(),
       ],
     );
   }

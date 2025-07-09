@@ -4,16 +4,18 @@ import 'package:ballkkaye_frontend/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final RainoutPredictionStadiumProvider = AutoDisposeNotifierProvider.family<RainoutPredictionStadiumVM, RainoutPredictionStadiumModel?, int>(() {
+final rainoutPredictionStadiumProvider = AutoDisposeNotifierProvider.family<
+    RainoutPredictionStadiumVM, RainoutPredictionStadiumModel?, int>(() {
   return RainoutPredictionStadiumVM();
 });
 
-class RainoutPredictionStadiumVM extends AutoDisposeFamilyNotifier<RainoutPredictionStadiumModel?, int> {
+class RainoutPredictionStadiumVM
+    extends AutoDisposeFamilyNotifier<RainoutPredictionStadiumModel?, int> {
   final mContext = navigatorKey.currentContext!;
 
   @override
-  RainoutPredictionStadiumModel? build(int stadiumId) {
-    loadStadiumList(stadiumId);
+  RainoutPredictionStadiumModel? build(int chatRoomId) {
+    loadStadiumList(chatRoomId);
     return null;
   }
 

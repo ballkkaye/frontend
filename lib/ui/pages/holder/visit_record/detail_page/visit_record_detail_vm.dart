@@ -13,8 +13,8 @@ class VisitRecordDetailVM extends AutoDisposeFamilyNotifier<VisitRecordDetailMod
   final mContext = navigatorKey.currentContext!;
 
   @override
-  VisitRecordDetailModel? build(int visitRecordId) {
-    init(visitRecordId);
+  VisitRecordDetailModel? build(int chatRoomId) {
+    init(chatRoomId);
 
     return null;
   }
@@ -36,7 +36,8 @@ class VisitRecordDetailModel {
 
   VisitRecordDetailModel(this.visitRecord);
 
-  VisitRecordDetailModel.fromMap(Map<String, dynamic> data) : visitRecord = VisitRecord.fromMap(data);
+  VisitRecordDetailModel.fromMap(Map<String, dynamic> data)
+      : visitRecord = VisitRecord.fromMap(data);
 
   VisitRecordDetailModel copyWith({
     VisitRecord? visitRecord,

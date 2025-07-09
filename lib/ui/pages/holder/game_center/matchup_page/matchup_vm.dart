@@ -4,7 +4,8 @@ import 'package:ballkkaye_frontend/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final matchupProvider = AutoDisposeNotifierProvider.family<MatchupVM, MatchupModel?, MatchupParam>(() {
+final matchupProvider =
+    AutoDisposeNotifierProvider.family<MatchupVM, MatchupModel?, MatchupParam>(() {
   return MatchupVM();
 });
 
@@ -13,10 +14,10 @@ class MatchupVM extends AutoDisposeFamilyNotifier<MatchupModel?, MatchupParam> {
   final mContext = navigatorKey.currentContext!;
 
   @override
-  MatchupModel? build(MatchupParam param) {
+  MatchupModel? build(MatchupParam chatRoomId) {
     // 1. 상태 초기화
     //Future.microtask(() => init(param));
-    init(param);
+    init(chatRoomId);
 
     // 3. 상태 값 세팅
     return null;

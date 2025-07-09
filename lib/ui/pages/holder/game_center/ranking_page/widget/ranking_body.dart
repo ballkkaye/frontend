@@ -12,7 +12,7 @@ class RankingBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final rankings = ref.watch(RankingProvider);
+    final rankings = ref.watch(rankingProvider);
     if (rankings.isEmpty) {
       return CircularProgressIndicator(); // 또는 Center(child: Text("로딩 중"))
     }

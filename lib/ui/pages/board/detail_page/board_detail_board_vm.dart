@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
-final boardDetailProvider = AutoDisposeNotifierProvider.family<BoardDetailVM, BoardDetailModel?, int>(() {
+final boardDetailProvider =
+    AutoDisposeNotifierProvider.family<BoardDetailVM, BoardDetailModel?, int>(() {
   return BoardDetailVM();
 });
 
@@ -13,8 +14,8 @@ class BoardDetailVM extends AutoDisposeFamilyNotifier<BoardDetailModel?, int> {
   final mContext = navigatorKey.currentContext!;
 
   @override
-  BoardDetailModel? build(int boardId) {
-    init(boardId);
+  BoardDetailModel? build(int chatRoomId) {
+    init(chatRoomId);
 
     ref.onDispose(() {
       Logger().d("BoardDetailModel 파괴됨");
