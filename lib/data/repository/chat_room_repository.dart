@@ -16,7 +16,7 @@ class ChatRoomRepository {
           "message": "메세지",
           "messageType": "TALK",
           "isOwner": false,
-          "createdAt": "2025-07-09T02:48:57.882+00:00",
+          "createdAt": "2025-07-08T02:48:57.882+00:00",
           "chatRoomId": 1
         },
         {
@@ -26,7 +26,7 @@ class ChatRoomRepository {
           "message": "메세지",
           "messageType": "TALK",
           "isOwner": true,
-          "createdAt": "2025-07-09T02:48:56.572+00:00",
+          "createdAt": "2025-07-08T02:48:56.572+00:00",
           "chatRoomId": 1
         },
         {
@@ -36,7 +36,7 @@ class ChatRoomRepository {
           "message": "메세지",
           "messageType": "TALK",
           "isOwner": false,
-          "createdAt": "2025-07-09T02:48:52.517+00:00",
+          "createdAt": "2025-07-08T02:48:52.517+00:00",
           "chatRoomId": 1
         },
         {
@@ -156,7 +156,7 @@ class ChatRoomRepository {
           "message": "메세지",
           "messageType": "TALK",
           "isOwner": true,
-          "createdAt": "2025-07-09T02:48:22.073+00:00",
+          "createdAt": "2025-07-10T02:48:22.073+00:00",
           "chatRoomId": 1
         },
         {
@@ -166,7 +166,7 @@ class ChatRoomRepository {
           "message": "메세지",
           "messageType": "TALK",
           "isOwner": true,
-          "createdAt": "2025-07-09T02:48:21.437+00:00",
+          "createdAt": "2025-07-10T02:48:21.437+00:00",
           "chatRoomId": 1
         },
         {
@@ -176,12 +176,12 @@ class ChatRoomRepository {
           "message": "메세지",
           "messageType": "TALK",
           "isOwner": true,
-          "createdAt": "2025-07-09T02:48:20.764+00:00",
+          "createdAt": "2025-07-11T02:48:20.764+00:00",
           "chatRoomId": 1
         }
       ]
     };
-    Logger().d('TeamRepository getList: ${responseBody}');
+    Logger().d('ChatRoomRepository getOne: ${responseBody}');
     return responseBody;
   }
 }
