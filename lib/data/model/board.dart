@@ -60,4 +60,36 @@ class Board {
       replyItems: (data['replyItems'] as List<dynamic>?)?.map((e) => Reply.fromMap(e)).toList() ?? [],
     );
   }
+
+  Board copyWith({
+    int? boardId,
+    String? nickname,
+    String? relativeTime,
+    String? myTeamName,
+    int? teamCategoryId,
+    String? teamCategoryName,
+    String? title,
+    String? content,
+    bool? isOwner,
+    bool? isLike,
+    int? likeCount,
+    int? replyCount,
+    List<Reply>? replyItems,
+  }) {
+    return Board(
+      boardId: boardId ?? this.boardId,
+      nickname: nickname ?? this.nickname,
+      relativeTime: relativeTime ?? this.relativeTime,
+      myTeamName: myTeamName ?? this.myTeamName,
+      teamCategoryId: teamCategoryId ?? this.teamCategoryId,
+      teamCategoryName: teamCategoryName ?? this.teamCategoryName,
+      title: title ?? this.title,
+      content: content ?? this.content,
+      isOwner: isOwner ?? this.isOwner,
+      isLike: isLike ?? this.isLike,
+      likeCount: likeCount ?? this.likeCount,
+      replyCount: replyCount ?? this.replyCount,
+      replyItems: replyItems ?? this.replyItems,
+    );
+  }
 }

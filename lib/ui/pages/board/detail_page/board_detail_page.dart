@@ -5,6 +5,7 @@ import 'package:ballkkaye_frontend/ui/pages/board/detail_page/board_detail_board
 import 'package:ballkkaye_frontend/ui/pages/board/detail_page/board_detail_reply_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/board_detail_body.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/detail_page/widgets/borad_detail_reply_input_bar.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/update_page/board_update_page.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_more_option_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,7 +19,7 @@ class BoardDetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    BoardDetailModel? boardModel = ref.watch(boardDetailProvider(boardId));
+    BoardDetailBoardModel? boardModel = ref.watch(boardDetailBoardProvider(boardId));
     BoardDetailReplyModel? replyModel = ref.watch(boardDetailReplyProvider(boardId));
     if (boardModel == null || replyModel == null) {
       return Center(child: CircularProgressIndicator());
@@ -49,8 +50,13 @@ class BoardDetailPage extends ConsumerWidget {
           child: MMoreOptionBtn(
             icon: MIcon.nav.top.dotHorizontal,
             onUpdate: () {
-              Navigator.popAndPushNamed(context, '/board/update');
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => BoardUpdatePage(board: model.board),
+                  ));
             },
+
             alertTitle: '게시글 삭제',
             alertContent: '게시글을 삭제하시겠습니까?',
             onAlertConfirm: () {},
