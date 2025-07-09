@@ -3,12 +3,12 @@ import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class RainoutPredictionRainfallBox extends StatelessWidget {
-  final int value;
+  final double rainAmount;
   final String hour;
 
   const RainoutPredictionRainfallBox({
     super.key,
-    required this.value,
+    required this.rainAmount,
     required this.hour,
   });
 
@@ -19,11 +19,11 @@ class RainoutPredictionRainfallBox extends StatelessWidget {
         Container(
           width: 34,
           height: 24,
-          color: value == 0 ? MColor.kFill.normal : Color(0x664EE1BB),
+          color: rainAmount == 0 ? MColor.kFill.normal : Color(0x664EE1BB),
           alignment: Alignment.center,
           child: MText.normal8_6(
-            '$value',
-            color: value == 0 ? MColor.kLabel.alternative : MColor.kLabel.normal,
+            '$rainAmount',
+            color: rainAmount == 0 ? MColor.kLabel.alternative : MColor.kLabel.normal,
           ),
         ),
         Container(

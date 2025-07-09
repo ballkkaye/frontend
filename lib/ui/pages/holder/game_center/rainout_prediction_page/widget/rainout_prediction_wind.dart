@@ -4,8 +4,12 @@ import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class RainoutPredictionWind extends StatelessWidget {
+  final String windDirection;
+  final double windSpeed;
   const RainoutPredictionWind({
     super.key,
+    required this.windDirection,
+    required this.windSpeed,
   });
 
   @override
@@ -15,7 +19,7 @@ class RainoutPredictionWind extends StatelessWidget {
         MIcon.page.rainout.bWind,
         SizedBox(height: 6),
         MText.normal6_5(
-          '남서풍 0.4m/s',
+          '${windDirection} ${windSpeed}m/s',
           color: MColor.kLabel.normal,
         ),
       ],

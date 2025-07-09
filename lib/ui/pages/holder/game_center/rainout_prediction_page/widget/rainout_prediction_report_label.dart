@@ -4,8 +4,11 @@ import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class RainoutPredictionReportLabel extends StatelessWidget {
+  final String message;
+
   const RainoutPredictionReportLabel({
     super.key,
+    required this.message,
   });
 
   @override
@@ -28,7 +31,7 @@ class RainoutPredictionReportLabel extends StatelessWidget {
               ),
             ),
             child: MText.label1_5(
-              '우천취소 가능성 높음',
+              message,
               color: MColor.kStatus.negative,
             ),
           ),
