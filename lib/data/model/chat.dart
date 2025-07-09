@@ -17,16 +17,16 @@ class Chat {
     required this.createdAt,
   });
 
-  Chat.fromMap(Map<String, dynamic> map)
-      : messageId = map['messageId'],
+  Chat.fromMap(Map<String, dynamic> data)
+      : messageId = data['messageId'] ?? data['id'],
         user = User(
-          id: map['senderId'],
-          name: map['senderName'],
+          id: data['senderId'],
+          name: data['senderName'],
         ),
-        message = map['message'],
-        messageType = map['messageType'],
-        isOwner = map['isOwner'],
-        createdAt = DateTime.parse(map['createdAt']);
+        message = data['message'],
+        messageType = data['messageType'],
+        isOwner = data['isOwner'] ?? data['isSender'],
+        createdAt = DateTime.parse(data['createdAt']);
 
   @override
   String toString() {

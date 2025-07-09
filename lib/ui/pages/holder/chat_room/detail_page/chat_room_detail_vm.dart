@@ -36,6 +36,53 @@ class ChatRoomDetailVM
 
     state = ChatRoomDetailModel.fromMap(data["body"]);
   }
+
+  Future<void> chat(int chatRoomId, String message) async {
+    Map<String, dynamic> data =
+        await ChatRoomRepository().chat(chatRoomId, message);
+
+    if (data["status"] != 200) {
+      ScaffoldMessenger.of(mContext).showSnackBar(
+        SnackBar(content: Text("채팅 쓰기 실패 : ${data["msg"]}")),
+      );
+      return;
+    }
+
+    // 3. 응답 파싱
+    ChatRoom newChatRoom = ChatRoom.fromMap(data["body"]);
+    final newDate = newChatRoom.chat.createdAt.toLocal();
+    final newDateKey =
+        "${newDate.year}-${newDate.month.toString().padLeft(2, '0')}-${newDate.day.toString().padLeft(2, '0')}";
+
+    // 4. 기존 상태 복사
+    List<dynamic> newList = [...state!.groupedChatList];
+
+    // 5. 날짜 헤더가 이미 있는지 확인
+    final dateIndex = newList.indexWhere((element) => element == newDateKey);
+
+    if (dateIndex != -1) {
+      // 해당 날짜가 이미 있는 경우 → 해당 날짜 다음 위치에 삽입
+      int insertIndex = dateIndex + 1;
+
+      // 다음 날짜 헤더가 나오기 전까지 찾아서 맨 아래에 삽입
+      while (insertIndex < newList.length && newList[insertIndex] is ChatRoom) {
+        final chatRoom = newList[insertIndex] as ChatRoom;
+        final chatDate = chatRoom.chat.createdAt.toLocal();
+        final chatDateKey =
+            "${chatDate.year}-${chatDate.month.toString().padLeft(2, '0')}-${chatDate.day.toString().padLeft(2, '0')}";
+        if (chatDateKey != newDateKey) break;
+        insertIndex++;
+      }
+
+      newList.insert(insertIndex, newChatRoom);
+    } else {
+      // 해당 날짜가 없으면 → 맨 앞에 날짜 헤더 + 채팅 삽입
+      newList.insert(0, newChatRoom);
+      newList.insert(0, newDateKey);
+    }
+
+    state = state!.copyWith(groupedChatList: newList);
+  }
 }
 
 class ChatRoomDetailModel {
@@ -44,12 +91,11 @@ class ChatRoomDetailModel {
   ChatRoomDetailModel(this.groupedChatList);
 
   factory ChatRoomDetailModel.fromMap(List<dynamic> rawList) {
-    // 1. 메시지를 날짜 기준으로 묶기
+    // 메시지 날짜 기준으로 묶기
     Map<String, List<ChatRoom>> grouped = {};
 
     for (final map in rawList) {
-      final date =
-          DateTime.parse(map['createdAt']).toLocal(); // toLocal()로 시간대 보정
+      final date = DateTime.parse(map['createdAt']).toLocal();
       final dateKey =
           "${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
 
@@ -57,16 +103,28 @@ class ChatRoomDetailModel {
       grouped.putIfAbsent(dateKey, () => []).add(chatRoom);
     }
 
-    // 2. 날짜 오름차순으로 정렬 후 날짜 + 메시지 묶기
-    List<dynamic> finalList = [];
     final sortedKeys = grouped.keys.toList()..sort();
 
+    for (final key in sortedKeys) {
+      grouped[key]!
+          .sort((a, b) => a.chat.createdAt.compareTo(b.chat.createdAt));
+    }
+
+    List<dynamic> finalList = [];
     for (final date in sortedKeys) {
-      finalList.add(date); // 날짜 헤더
-      finalList.addAll(grouped[date]!); // 해당 날짜 메시지들
+      finalList.add(date);
+      finalList.addAll(grouped[date]!);
     }
 
     return ChatRoomDetailModel(finalList);
+  }
+
+  ChatRoomDetailModel copyWith({
+    List<dynamic>? groupedChatList,
+  }) {
+    return ChatRoomDetailModel(
+      groupedChatList ?? this.groupedChatList,
+    );
   }
 
   @override
