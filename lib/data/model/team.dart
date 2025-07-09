@@ -1,20 +1,40 @@
 class Team {
   final int? id;
   final String? name;
+  final String? teamLogo;
+  final int? teamRank;
 
   Team({
     this.id,
     this.name,
+    this.teamLogo,
+    this.teamRank,
   });
 
   Team.fromMap(Map<String, dynamic> data)
-      : id = data['teamId'],
-        name = data['teamName'];
+      : id = data['teamId'] ?? 0,
+        name = data['teamName'] ?? '',
+        teamLogo = data['teamLogo'],
+        teamRank = data['teamRank'] ?? 0;
+
+  Team copyWith({
+    int? id,
+    String? name,
+    String? teamLogo,
+    int? teamRank,
+  }) {
+    return Team(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      teamLogo: teamLogo ?? this.teamLogo,
+      teamRank: teamRank ?? this.teamRank,
+    );
+  }
 
   String get label => name ?? '';
 
   @override
   String toString() {
-    return 'Team(id: $id, name: $name)';
+    return 'Team(teamId: $id, teamName: $name, teamLogo: $teamLogo, teamRank: $teamRank)';
   }
 }

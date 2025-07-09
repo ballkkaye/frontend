@@ -16,6 +16,7 @@ class Board {
   final bool isOwner;
   final bool isLike;
   final int likeCount;
+  final int replyCount;
 
   //final List<BoardImage> images;
   final List<Reply> replyItems;
@@ -32,6 +33,7 @@ class Board {
     required this.isOwner,
     required this.isLike,
     required this.likeCount,
+    required this.replyCount,
     // required this.images,
     required this.replyItems,
     // required this.profileImgUrl,
@@ -42,16 +44,18 @@ class Board {
     return Board(
       boardId: data['boardId'],
       nickname: data['nickname'],
+      //todo: 나중에 로그인한계정 닉네임 불러오기
       // profileImgUrl: json['profileImageUrl'], //todo: 나중에 이미지추가할때 주석지워서 사용
       relativeTime: data['relativeTime'],
-      myTeamName: data['myTeamName'],
-      teamCategoryId: data['teamCategoryId'],
-      teamCategoryName: data['teamCategoryName'],
+      myTeamName: data['myTeamName'] ?? '',
+      teamCategoryId: data['teamCategoryId'] ?? 0,
+      teamCategoryName: data['teamCategoryName'] ?? '',
       title: data['title'],
-      content: data['content'],
-      isOwner: data['isOwner'],
-      isLike: data['isLike'],
+      content: data['content'] ?? '',
+      isOwner: data['isOwner'] ?? false,
+      isLike: data['isLike'] ?? false,
       likeCount: data['likeCount'],
+      replyCount: data['replyCount'] ?? 0,
       // images: (json['images'] as List<dynamic>).map((e) => BoardImage.fromMap(e)).toList(), //todo: 나중에 이미지추가할때 주석지워서 사용
       replyItems: (data['replyItems'] as List<dynamic>?)?.map((e) => Reply.fromMap(e)).toList() ?? [],
     );

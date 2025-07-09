@@ -25,15 +25,22 @@ class BoardListTeamCategoryItem extends StatelessWidget {
             Stack(
               children: [
                 CircleAvatar(
-                  backgroundColor:
-                      imgUrl != null ? null : MColor.kPrimary.strong,
+                  backgroundColor: imgUrl != null ? null : MColor.kPrimary.strong,
                   radius: 30,
                   child: imgUrl != null
-                      ? ClipOval(
-                          child: Image.asset(
-                            imgUrl!,
-                            fit: BoxFit.cover,
-                          ),
+                      ? Image.network(
+                    imgUrl!,
+                    width: 60,
+                    height: 60,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Image.asset(
+                        'assets/images/lotte_emblem_sample.jpg', //서버에서 사진추가 다되면 여기코드 제거예정
+                        width: 60,
+                        height: 60,
+                        fit: BoxFit.cover,
+                      );
+                    },
                         )
                       : Text(
                           label[0] + label[1],
@@ -49,8 +56,7 @@ class BoardListTeamCategoryItem extends StatelessWidget {
                     top: 0,
                     right: 0,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 6, vertical: 1),
+                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
                       decoration: BoxDecoration(
                         color: Colors.black,
                         borderRadius: BorderRadius.circular(12),

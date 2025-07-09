@@ -1,11 +1,13 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/ui/pages/board/list_page/widgets/borad_list_body.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/list_page/widgets/board_list_body.dart';
 import 'package:flutter/material.dart';
 
 class BoardListPage extends StatelessWidget {
-  const BoardListPage({super.key});
+  const BoardListPage({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
