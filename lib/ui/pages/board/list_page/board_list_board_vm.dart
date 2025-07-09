@@ -7,7 +7,8 @@ import 'package:logger/logger.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 /// 1. 창고 관리자
-final boardListBoardProvider = AutoDisposeNotifierProvider<BoardListBoardVM, BoardListBoardModel?>(() {
+final boardListBoardProvider =
+    AutoDisposeNotifierProvider<BoardListBoardVM, BoardListBoardModel?>(() {
   return BoardListBoardVM();
 });
 
