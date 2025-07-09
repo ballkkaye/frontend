@@ -12,13 +12,12 @@ class ChatRoomDetailBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 10),
+        SizedBox(height: 10),
         ChatRoomDetailHeader(),
-        const SizedBox(height: 15),
+        SizedBox(height: 15),
         Expanded(
           child: ChatRoomDetailMessageList(),
         ),
-        const Divider(height: 1),
         ChatRoomDetailInputField(),
       ],
     );

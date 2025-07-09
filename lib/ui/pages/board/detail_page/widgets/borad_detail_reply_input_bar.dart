@@ -14,7 +14,7 @@ class BoardDetailReplyInputBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-      color: Colors.white,
+      color: MColor.kFill.normal, // kLabel.disable  kFill.normal
       child: Row(
         children: [
           Expanded(
@@ -23,7 +23,7 @@ class BoardDetailReplyInputBar extends StatelessWidget {
               onChanged: (value) {},
               decoration: InputDecoration(
                 hintText: "댓글을 입력하세요",
-                fillColor: MColor.kLabel.disable,
+                fillColor: MColor.kLabel.white,
                 filled: true,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(30),

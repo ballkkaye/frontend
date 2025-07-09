@@ -40,10 +40,6 @@ class ChatRoomDetailMessageBubble extends StatelessWidget {
               child: MText.normal6_4(
                 message['text']!,
                 color: isMe ? MColor.kLabel.white : MColor.kLabel.normal,
-                // 더보기 버튼을 통해 채팅 전체 화면을 보여주는 화면이 있으면, ...으로 생략할 수 있는 코드.
-                // 현재는 채팅한 전체 내용이 다 보이게 됨.
-                // overflow: TextOverflow.ellipsis,
-                // maxLines: 6,
               ),
             ),
             const SizedBox(width: 2),
