@@ -26,7 +26,7 @@ class BoardDetailBody extends StatelessWidget {
           BoardDetailBoardArea(board),
           // model.board
           Divider(
-            color: MColor.kLabel.disable,
+            color: MColor.kFill.normal,
             thickness: 15,
           ),
           // 댓글 영역

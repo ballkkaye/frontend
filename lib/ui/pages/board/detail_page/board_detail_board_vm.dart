@@ -6,12 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
-final boardDetailBoardProvider =
-    AutoDisposeNotifierProvider.family<BoardDetailBoardVM, BoardDetailBoardModel?, int>(() {
+final boardDetailBoardProvider = AutoDisposeNotifierProvider.family<
+    BoardDetailBoardVM, BoardDetailBoardModel?, int>(() {
   return BoardDetailBoardVM();
 });
 
-class BoardDetailBoardVM extends AutoDisposeFamilyNotifier<BoardDetailBoardModel?, int> {
+class BoardDetailBoardVM
+    extends AutoDisposeFamilyNotifier<BoardDetailBoardModel?, int> {
   final mContext = navigatorKey.currentContext!;
 
   @override
@@ -66,7 +67,8 @@ class BoardDetailBoardModel {
 
   BoardDetailBoardModel(this.board);
 
-  BoardDetailBoardModel.fromMap(Map<String, dynamic> data) : board = Board.fromMap(data);
+  BoardDetailBoardModel.fromMap(Map<String, dynamic> data)
+      : board = Board.fromMap(data);
 
   BoardDetailBoardModel copyWith({
     Board? board,

@@ -3,15 +3,17 @@ import 'package:ballkkaye_frontend/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final RainoutPredictionWeatherProvider = AutoDisposeNotifierProvider.family<RainoutPredictionWeatherVM, RainoutPredictionWeatherModel?, int>(() {
+final rainoutPredictionWeatherProvider = AutoDisposeNotifierProvider.family<
+    RainoutPredictionWeatherVM, RainoutPredictionWeatherModel?, int>(() {
   return RainoutPredictionWeatherVM();
 });
 
-class RainoutPredictionWeatherVM extends AutoDisposeFamilyNotifier<RainoutPredictionWeatherModel?, int> {
+class RainoutPredictionWeatherVM
+    extends AutoDisposeFamilyNotifier<RainoutPredictionWeatherModel?, int> {
   final mContext = navigatorKey.currentContext!;
 
   @override
-  RainoutPredictionWeatherModel? build(int stadiumId) {
+  RainoutPredictionWeatherModel? build(int chatRoomId) {
     // 1. 더미 데이터 먼저 보여줌
     state = RainoutPredictionWeatherModel(
       location: '잠실야구장',
@@ -33,7 +35,7 @@ class RainoutPredictionWeatherVM extends AutoDisposeFamilyNotifier<RainoutPredic
     );
 
     // 2. 이후에 API 호출해서 실제 데이터로 덮어쓰기
-    loadWeather(stadiumId);
+    loadWeather(chatRoomId);
     return state;
   }
 

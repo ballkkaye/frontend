@@ -14,8 +14,8 @@ class BoardDetailReplyVM extends AutoDisposeFamilyNotifier<BoardDetailReplyModel
   final mContext = navigatorKey.currentContext!;
 
   @override
-  BoardDetailReplyModel? build(int boardId) {
-    init(boardId);
+  BoardDetailReplyModel? build(int chatRoomId) {
+    init(chatRoomId);
 
     ref.onDispose(() {
       Logger().d("PostDetailModel 파괴됨");

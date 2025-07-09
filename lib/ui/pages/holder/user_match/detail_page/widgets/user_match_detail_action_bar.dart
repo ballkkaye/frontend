@@ -26,9 +26,7 @@ class UserMatchDetailActionBar extends StatelessWidget {
               child: Text(
                 '현재 ${userMatch.participationInfo}명 참여중',
                 style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                    color: MColor.kLabel.alternative),
+                    fontSize: 12, fontWeight: FontWeight.w400, color: MColor.kLabel.alternative),
               ),
             ),
             SizedBox(width: 12.5),
