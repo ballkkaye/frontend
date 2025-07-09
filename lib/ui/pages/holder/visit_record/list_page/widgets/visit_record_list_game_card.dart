@@ -1,10 +1,14 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/visit_record_list_day_vm.dart';
 import 'package:flutter/material.dart';
 
 class VisitRecordListGameCard extends StatelessWidget {
+  final VisitRecordListDayModel record;
+
   const VisitRecordListGameCard({
     super.key,
+    required this.record,
   });
 
   @override

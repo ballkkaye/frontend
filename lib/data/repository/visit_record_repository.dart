@@ -23,7 +23,7 @@ class VisitRecordRepository {
 
   // 선택된 날짜 직관기록 리스트
   Future<Map<String, dynamic>> getDayGameList(String date) async {
-    // Response response = await dio.get("${/s/api/visitRecords?date={date}}");
+    // Response response = await dio.get("${/s/api/visitRecords}");
     final responseBody = {
       "status": 200,
       "msg": "성공",
@@ -54,8 +54,9 @@ class VisitRecordRepository {
   }
 
   // 선택된 달 직관기록 리스트
-  Future<Map<String, dynamic>> getMonthGameList(String date) async {
-    // Response response = await dio.get("${/s/api/visitRecords?year=2025&month=7}");
+  Future<Map<String, dynamic>> getMonthGameList({required int year, required int month}) async {
+    // Response response = await dio.get("/s/api/visitRecords",
+    // queryParameters: {"year": year, "month": month},);
     final responseBody = {
       "status": 200,
       "msg": "성공",
