@@ -1,16 +1,25 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/data/param/matchup_param.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/matchup_page/matchup_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/matchup_page/widget/matchup_chart.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/matchup_page/widget/matchup_starting_pitcher.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MatchupBody extends StatelessWidget {
+class MatchupBody extends ConsumerWidget {
   const MatchupBody({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final model = ref.watch(matchupProvider(MatchupParam(gameId: 423, teamId: 2)));
+
+    if (model == null) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
     return Padding(
       padding: const EdgeInsets.only(
         top: 22,
@@ -22,7 +31,15 @@ class MatchupBody extends StatelessWidget {
         children: [
           MText.h2('상태팀 선발 투수'),
           SizedBox(height: 12),
-          MatchupStartingPitcher(),
+          MatchupStartingPitcher(
+            profileUrl: model.profileUrl,
+            name: model.name,
+            gameCount: model.gameCount,
+            result: model.result,
+            era: model.era,
+            whip: model.whip,
+            qs: model.qs,
+          ),
           SizedBox(height: 22),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +56,7 @@ class MatchupBody extends StatelessWidget {
                 child: MText.label1_6('2025 상대 전적', color: MColor.kLabel.white),
               ),
               SizedBox(height: 6),
-              MatchupChart(),
+              MatchupChart(hitters: model.hitters),
             ],
           ),
         ],

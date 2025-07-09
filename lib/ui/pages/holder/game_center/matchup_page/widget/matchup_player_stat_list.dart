@@ -3,8 +3,18 @@ import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class MatchupPlayerStatList extends StatelessWidget {
+  final int gameCount;
+  final String result;
+  final double era;
+  final double whip;
+  final int qs;
   const MatchupPlayerStatList({
     super.key,
+    required this.gameCount,
+    required this.result,
+    required this.era,
+    required this.whip,
+    required this.qs,
   });
 
   @override
@@ -18,7 +28,7 @@ class MatchupPlayerStatList extends StatelessWidget {
               title: 'ERA',
             ),
             MatchupStatValue(
-              value: 3.84,
+              value: era,
             ),
           ],
         ),
@@ -28,7 +38,7 @@ class MatchupPlayerStatList extends StatelessWidget {
               title: '경기',
             ),
             MatchupStatValue(
-              value: 14,
+              value: gameCount,
             ),
           ],
         ),
@@ -38,7 +48,7 @@ class MatchupPlayerStatList extends StatelessWidget {
               title: '결과',
             ),
             MatchupStatValue(
-              value: '4승 1패 2무',
+              value: result,
             ),
           ],
         ),
@@ -48,7 +58,7 @@ class MatchupPlayerStatList extends StatelessWidget {
               title: 'QS',
             ),
             MatchupStatValue(
-              value: 6,
+              value: qs,
             ),
           ],
         ),
@@ -58,7 +68,7 @@ class MatchupPlayerStatList extends StatelessWidget {
               title: 'WHIP',
             ),
             MatchupStatValue(
-              value: 1.32,
+              value: whip,
             ),
           ],
         ),
