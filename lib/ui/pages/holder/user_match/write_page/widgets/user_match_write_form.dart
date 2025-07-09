@@ -41,7 +41,8 @@ class UserMatchWriteForm extends StatelessWidget {
                   scale: 0.96,
                   child: Checkbox(
                     value: true,
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap, // 여백 제거
+                    materialTapTargetSize:
+                        MaterialTapTargetSize.shrinkWrap, // 여백 제거
                     visualDensity: VisualDensity.compact,
                     fillColor: WidgetStateProperty.resolveWith((states) {
                       if (states.contains(WidgetState.selected)) {
@@ -56,7 +57,8 @@ class UserMatchWriteForm extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsetsGeometry.directional(bottom: 0),
-                child: MText.label1_5('같은 팀이면 좋겠어요', color: MColor.kPrimary.strong),
+                child: MText.label1_5('같은 팀이면 좋겠어요',
+                    color: MColor.kPrimary.strong),
               )
             ],
           ),
@@ -96,7 +98,7 @@ class UserMatchWriteForm extends StatelessWidget {
           MTextFormField(
             hintText: '제목',
             onChanged: (value) {
-              print(value);
+              // fm.title(value);
             },
           ),
           SizedBox(height: 6),
@@ -105,7 +107,9 @@ class UserMatchWriteForm extends StatelessWidget {
             hintText: '글 내용',
             maxLines: 10,
             isDense: false,
-            onChanged: (value) {},
+            onChanged: (value) {
+              // fm.content(value);
+            },
           ),
           SizedBox(height: 12),
 
@@ -116,7 +120,7 @@ class UserMatchWriteForm extends StatelessWidget {
             hintText: '인원 수',
             keyboardType: TextInputType.number,
             onChanged: (value) {
-              print(value);
+              // fm.maxParticipants(value);
             },
           ),
           SizedBox(height: 12),
@@ -125,6 +129,7 @@ class UserMatchWriteForm extends StatelessWidget {
           MElevatedBtn(
             text: '완료',
             onPressed: () {
+              // vm.write(model.title,model.content,model.maxParticipants);
               Navigator.pushNamed(context, "/user-match/detail");
             },
           ),
