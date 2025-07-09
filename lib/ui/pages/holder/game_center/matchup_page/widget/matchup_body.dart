@@ -1,6 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/data/model/matchup.dart';
+import 'package:ballkkaye_frontend/data/param/matchup_param.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/matchup_page/matchup_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/matchup_page/widget/matchup_chart.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/matchup_page/widget/matchup_starting_pitcher.dart';

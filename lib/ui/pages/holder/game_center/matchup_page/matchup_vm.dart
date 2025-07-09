@@ -1,4 +1,4 @@
-import 'package:ballkkaye_frontend/data/model/matchup.dart';
+import 'package:ballkkaye_frontend/data/param/matchup_param.dart';
 import 'package:ballkkaye_frontend/data/repository/game_center_repository.dart';
 import 'package:ballkkaye_frontend/main.dart';
 import 'package:flutter/material.dart';
