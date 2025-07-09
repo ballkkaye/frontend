@@ -66,6 +66,21 @@ class BoardListBoardVM extends AutoDisposeNotifier<BoardListBoardModel?> {
 
     state = nextModel.copyWith(boards: [...prevModel.boards, ...nextModel.boards]);
   }
+
+  Future<void> write(int teamId, String title, String content) async {
+    // 1. 레포지토리에 함수 호출
+    Map<String, dynamic> data = await BoardRepository().write(teamId, title, content);
+    if (data["status"] != 200) {
+      ScaffoldMessenger.of(mContext!).showSnackBar(
+        SnackBar(content: Text("게시글 쓰기 실패 : ${data["msg"]}")),
+      );
+      return;
+    }
+    Board board = Board.fromMap(data["body"]);
+    List<Board> nextBoards = [board, ...state!.boards];
+    state = state!.copyWith(boards: nextBoards);
+    Navigator.pop(mContext!);
+  }
 }
 
 /// 3. 창고 데이터 타입 (불변 아님)
@@ -76,7 +91,7 @@ class BoardListBoardModel {
 
   BoardListBoardModel.fromMap(Map<String, dynamic> data)
       : boards = (data['items'] as List).map((e) => Board.fromMap(e)).toList();
-
+  
   BoardListBoardModel copyWith({
     List<Board>? boards,
   }) {

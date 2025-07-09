@@ -44,6 +44,7 @@ class Board {
     return Board(
       boardId: data['boardId'],
       nickname: data['nickname'],
+      //todo: 나중에 로그인한계정 닉네임 불러오기
       // profileImgUrl: json['profileImageUrl'], //todo: 나중에 이미지추가할때 주석지워서 사용
       relativeTime: data['relativeTime'],
       myTeamName: data['myTeamName'] ?? '',
