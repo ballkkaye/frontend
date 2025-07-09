@@ -1,9 +1,12 @@
+import 'package:ballkkaye_frontend/data/enum/age.dart';
+import 'package:ballkkaye_frontend/data/enum/gender.dart';
 import 'package:ballkkaye_frontend/data/model/user_match.dart';
 import 'package:ballkkaye_frontend/data/repository/user_match_repository.dart';
 import 'package:ballkkaye_frontend/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 final userMatchListProvider = AutoDisposeNotifierProvider<UserMatchListVM, UserMatchListModel?>(() {
   return UserMatchListVM();
@@ -11,6 +14,7 @@ final userMatchListProvider = AutoDisposeNotifierProvider<UserMatchListVM, UserM
 
 class UserMatchListVM extends AutoDisposeNotifier<UserMatchListModel?> {
   final mContext = navigatorKey.currentContext!;
+  final refreshCtrl = RefreshController();
 
   @override
   UserMatchListModel? build() {
@@ -26,11 +30,45 @@ class UserMatchListVM extends AutoDisposeNotifier<UserMatchListModel?> {
     return null;
   }
 
-  Future<void> init() async {
-    Map<String, dynamic> data = await UserMatchRepository().getList();
+  Future<void> init({int? page}) async {
+    Map<String, dynamic> data = await UserMatchRepository().getList(
+      page: page,
+    );
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
-        SnackBar(content: Text("팀 목록 통신 실패 : ${data["msg"]}")),
+        SnackBar(content: Text("동행글 전체 목록 통신 실패 : ${data["msg"]}")),
+      );
+      return;
+    }
+
+    state = UserMatchListModel.fromMap(data['body']);
+
+    refreshCtrl.refreshCompleted();
+  }
+
+  // 드롭다운버튼으로 조건부 조회
+  Future<void> fetchList({
+    int? page,
+    Gender? gender,
+    Age? age,
+    int? teamId,
+  }) async {
+    Logger().d('📩 fetchList() called with => '
+        'page: $page, '
+        'gender: ${gender?.label}, '
+        'age: ${age?.label}, '
+        'teamId: $teamId');
+
+    Map<String, dynamic> data = await UserMatchRepository().getListByQuery(
+      page: page,
+      gender: gender?.label,
+      age: age?.label,
+      teamId: teamId,
+    );
+
+    if (data["status"] != 200) {
+      ScaffoldMessenger.of(mContext!).showSnackBar(
+        SnackBar(content: Text("동행글 조건부 목록 통신 실패 : ${data["msg"]}")),
       );
       return;
     }

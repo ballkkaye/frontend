@@ -10,20 +10,32 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class UserMatchListFilterArea extends ConsumerStatefulWidget {
   UserMatchListModel? model;
 
-  UserMatchListFilterArea(this.model);
+  UserMatchListFilterArea({
+    super.key,
+    this.model,
+  });
 
   @override
-  ConsumerState<UserMatchListFilterArea> createState() => _UserMatchListFilterAreaState();
+  ConsumerState<UserMatchListFilterArea> createState() => UserMatchListFilterAreaState();
 }
 
-class _UserMatchListFilterAreaState extends ConsumerState<UserMatchListFilterArea> {
+class UserMatchListFilterAreaState extends ConsumerState<UserMatchListFilterArea> {
   Gender? selectedGender;
   Age? selectedAge;
   Team? selectedTeam;
 
+  void resetFilters() {
+    setState(() {
+      selectedGender = null;
+      selectedAge = null;
+      selectedTeam = null;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     UserMatchListTeamModel? teamModel = ref.watch(userMatchListTeamProvider);
+    UserMatchListVM vm = ref.read(userMatchListProvider.notifier);
 
     if (teamModel == null) {
       return Center(child: CircularProgressIndicator());
@@ -39,21 +51,42 @@ class _UserMatchListFilterAreaState extends ConsumerState<UserMatchListFilterAre
               selectedValue: selectedGender,
               options: Gender.values,
               getLabel: (g) => g.label,
-              onChanged: (val) => setState(() => selectedGender = val),
+              onChanged: (val) {
+                setState(() => selectedGender = val);
+                vm.fetchList(
+                  gender: val,
+                  age: selectedAge,
+                  teamId: selectedTeam?.id,
+                );
+              },
             ),
             UserMatchListDropdownBtn<Age>(
               label: '연령대',
               selectedValue: selectedAge,
               options: Age.values,
               getLabel: (a) => a.label,
-              onChanged: (val) => setState(() => selectedAge = val),
+              onChanged: (val) {
+                setState(() => selectedAge = val);
+                vm.fetchList(
+                  gender: selectedGender,
+                  age: val,
+                  teamId: selectedTeam?.id,
+                );
+              },
             ),
             UserMatchListDropdownBtn<Team>(
               label: '응원팀',
               selectedValue: selectedTeam,
               options: teamModel.teams,
               getLabel: (team) => team.label,
-              onChanged: (val) => setState(() => selectedTeam = val),
+              onChanged: (val) {
+                setState(() => selectedTeam = val);
+                vm.fetchList(
+                  gender: selectedGender,
+                  age: selectedAge,
+                  teamId: val.id,
+                );
+              },
             ),
           ],
         ),
