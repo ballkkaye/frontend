@@ -44,7 +44,8 @@ class _PredictionList {
   final Widget rain = SvgPicture.asset('assets/icons/page_prediction_list_rain.svg');
   final Widget ranking = SvgPicture.asset('assets/icons/page_prediction_list_ranking.svg');
   final Widget todayGame = SvgPicture.asset('assets/icons/page_prediction_list_today_game.svg');
-  final Widget userPrediction = SvgPicture.asset('assets/icons/page_prediction_list_user_prediction.svg');
+  final Widget userPrediction =
+      SvgPicture.asset('assets/icons/page_prediction_list_user_prediction.svg');
 }
 
 class _Rainout {
@@ -101,6 +102,7 @@ class _Community {
 
 class _Login {
   final Widget kakaoLogo = SvgPicture.asset('assets/icons/page_login_kakao_logo.svg');
+  final Widget naverLogo = SvgPicture.asset('assets/icons/page_login_naver_logo.svg');
 }
 
 class _UserPrediction {

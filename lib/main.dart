@@ -31,6 +31,7 @@ import 'package:ballkkaye_frontend/ui/pages/mypage/user/detail_page/user_detail_
 import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_page/user_update_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -38,8 +39,7 @@ import 'package:intl/date_symbol_data_local.dart';
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
-  //print("Current Directory: ${Directory.current.path}");
-  //await dotenv.load(fileName: ".env");
+  await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDateFormatting();
   runApp(const ProviderScope(child: MyApp()));
@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
         "/game-center/today-game": (context) => const TodayGamePage(),
         "/game-center/user-prediction": (context) => const UserPredictionPage(),
         "/board/list": (context) => const BoardListPage(),
-        "/board/detail": (context) => BoardDetailPage(),
+        "/board/detail": (context) => BoardDetailPage(1), //todo 나중에 리스트에서 받은값 전달하기
         "/board/write": (context) => const BoardWritePage(),
         "/board/update": (context) => const BoardUpdatePage(),
         "/user-match/update": (context) => const UserMatchUpdatePage(),

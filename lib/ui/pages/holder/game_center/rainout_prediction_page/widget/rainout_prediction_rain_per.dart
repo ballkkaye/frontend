@@ -4,8 +4,10 @@ import 'package:ballkkaye_frontend/ui/pages/holder/game_center/rainout_predictio
 import 'package:flutter/material.dart';
 
 class RainoutPredictionRainPer extends StatelessWidget {
+  final double rainPer;
   const RainoutPredictionRainPer({
     super.key,
+    required this.rainPer,
   });
 
   @override
@@ -26,7 +28,7 @@ class RainoutPredictionRainPer extends StatelessWidget {
               children: List.generate(24, (index) {
                 return Row(
                   children: [
-                    RainoutPredictionRainPerBox(value: index == 3 ? 60 : 0),
+                    RainoutPredictionRainPerBox(rainPer: index == 3 ? 60 : 0),
                     if (index != 23) const SizedBox(width: 2),
                   ],
                 );
