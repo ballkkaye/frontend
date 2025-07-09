@@ -4,7 +4,6 @@ import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_team_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/login_page/login_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/detail_page/board_detail_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/list_page/board_list_page.dart';
-import 'package:ballkkaye_frontend/ui/pages/board/update_page/board_update_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/write_page/board_write_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/detail_page/chat_room_detail_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/list_page/chat_room_list_page.dart';
@@ -82,7 +81,7 @@ class MyApp extends StatelessWidget {
         "/board/list": (context) => const BoardListPage(),
         "/board/detail": (context) => BoardDetailPage(1), //todo 나중에 리스트에서 받은값 전달하기
         "/board/write": (context) => const BoardWritePage(),
-        "/board/update": (context) => const BoardUpdatePage(),
+        // "/board/update": (context) => BoardUpdatePage(),
         "/user-match/update": (context) => const UserMatchUpdatePage(),
         "/user-match/write": (context) => const UserMatchWritePage(),
         "/user-match/detail": (context) => UserMatchDetailPage(1),

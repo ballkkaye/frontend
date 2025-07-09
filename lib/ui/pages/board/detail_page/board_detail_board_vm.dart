@@ -57,7 +57,7 @@ class BoardDetailBoardVM extends AutoDisposeFamilyNotifier<BoardDetailBoardModel
     ref.read(boardListBoardProvider.notifier).notifyUpdate(updatedBoard);
 
     // 5. pop
-    Navigator.pop(mContext);
+    Navigator.pop(mContext, updatedBoard);
   }
 }
 

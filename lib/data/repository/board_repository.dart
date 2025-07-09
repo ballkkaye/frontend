@@ -242,9 +242,14 @@ class BoardRepository {
           {"id": 3, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/new003.png"}
         ],
         "boardId": 12,
-        "title": "수정된 게시글 제목",
+        "title": "수정된 게시글 제목2",
         "teamId": 3,
-        "content": "이건 수정된 게시글 내용입니다."
+        "content": "이건 수정된 게시글 내용입니다2.",
+        "nickname": "love",
+        "relativeTime": "1분전",
+        "likeCount": 4,
+        "myTeamName": "삼성 라이온즈",
+        "teamCategoryName": "롯데 자이언츠",
       }
     };
     Logger().d(responseBody);

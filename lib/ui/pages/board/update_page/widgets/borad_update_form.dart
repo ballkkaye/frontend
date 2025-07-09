@@ -36,7 +36,10 @@ class BoardUpdateForm extends ConsumerWidget {
             hintText: '팀 선택',
             items: teams,
             value: selectedTeam, // TODO : 기존에 작성된 팀 불러오기
-            onChanged: (value) {},
+            onChanged: (value) {
+              teamCategoryId:
+              teams.indexOf(value!) + 1;
+            },
           ),
           SizedBox(height: 12),
           // 제목
@@ -71,7 +74,7 @@ class BoardUpdateForm extends ConsumerWidget {
           MElevatedBtn(
             text: '수정',
             onPressed: () {
-              Navigator.pop(context);
+              vm.updateOne(board);
             },
           ),
         ],
