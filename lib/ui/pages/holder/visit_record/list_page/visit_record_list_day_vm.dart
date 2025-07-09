@@ -1,17 +1,18 @@
+import 'package:ballkkaye_frontend/data/model/visit_record_list.dart';
 import 'package:ballkkaye_frontend/data/repository/visit_record_repository.dart';
 import 'package:ballkkaye_frontend/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final VisitRecordListDayProvider = AutoDisposeNotifierProvider.family<VisitRecordListDayVM, List<VisitRecordListDayModel>?, String>(() {
+final VisitRecordListDayProvider = AutoDisposeNotifierProvider.family<VisitRecordListDayVM, List<VisitRecordList>?, String>(() {
   return VisitRecordListDayVM();
 });
 
-class VisitRecordListDayVM extends AutoDisposeFamilyNotifier<List<VisitRecordListDayModel>?, String> {
+class VisitRecordListDayVM extends AutoDisposeFamilyNotifier<List<VisitRecordList>?, String> {
   final mContext = navigatorKey.currentContext!;
 
   @override
-  List<VisitRecordListDayModel>? build(String date) {
+  List<VisitRecordList>? build(String date) {
     // 1. 상태 초기화
     loadListDay(date);
 
@@ -29,18 +30,24 @@ class VisitRecordListDayVM extends AutoDisposeFamilyNotifier<List<VisitRecordLis
     }
     final List<dynamic> rawList = body["body"];
     final list = rawList.map((e) => VisitRecordListDayModel.fromMap(e)).toList();
-
     state = list;
   }
 }
 
-class VisitRecordListDayModel {
+class VisitRecordListDayModel implements VisitRecordList {
+  @override
   final int id;
+  @override
   final String homeTeamName;
+  @override
   final String awayTeamName;
+  @override
   final int homeScore;
+  @override
   final int awayScore;
+  @override
   final String gameDate;
+  @override
   final String stadiumName;
 
   VisitRecordListDayModel({

@@ -29,24 +29,22 @@ class VisitRecordRepository {
       "msg": "성공",
       "body": [
         {
-          {
-            "id": 2,
-            "homeTeamName": "키움",
-            "awayTeamName": "KIA",
-            "homeScore": 2,
-            "awayScore": 0,
-            "gameDate": "2025.07.03",
-            "stadiumName": "고척스카이돔",
-          },
-          {
-            "id": 1,
-            "homeTeamName": "두산",
-            "awayTeamName": "SSG",
-            "homeScore": 3,
-            "awayScore": 5,
-            "gameDate": "2025.07.03",
-            "stadiumName": "잠실야구장",
-          }
+          "id": 2,
+          "homeTeamName": "키움",
+          "awayTeamName": "KIA",
+          "homeScore": 2,
+          "awayScore": 0,
+          "gameDate": "2025.07.03",
+          "stadiumName": "고척스카이돔",
+        },
+        {
+          "id": 1,
+          "homeTeamName": "두산",
+          "awayTeamName": "SSG",
+          "homeScore": 3,
+          "awayScore": 5,
+          "gameDate": "2025.07.03",
+          "stadiumName": "잠실야구장",
         }
       ]
     };
@@ -62,33 +60,31 @@ class VisitRecordRepository {
       "msg": "성공",
       "body": [
         {
-          {
-            "id": 10,
-            "homeTeamName": "두산",
-            "awayTeamName": "SSG",
-            "homeScore": 3,
-            "awayScore": 5,
-            "gameDate": "2025.07.05",
-            "stadiumName": "잠실아구장",
-          },
-          {
-            "id": 2,
-            "homeTeamName": "키움",
-            "awayTeamName": "KIA",
-            "homeScore": 2,
-            "awayScore": 0,
-            "gameDate": "2025.07.03",
-            "stadiumName": "고척스카이돔",
-          },
-          {
-            "id": 1,
-            "homeTeamName": "두산",
-            "awayTeamName": "SSG",
-            "homeScore": 3,
-            "awayScore": 5,
-            "gameDate": "2025.07.03",
-            "stadiumName": "잠실야구장",
-          }
+          "id": 10,
+          "homeTeamName": "두산",
+          "awayTeamName": "SSG",
+          "homeScore": 3,
+          "awayScore": 5,
+          "gameDate": "2025.07.05",
+          "stadiumName": "잠실아구장",
+        },
+        {
+          "id": 2,
+          "homeTeamName": "키움",
+          "awayTeamName": "KIA",
+          "homeScore": 2,
+          "awayScore": 0,
+          "gameDate": "2025.07.03",
+          "stadiumName": "고척스카이돔",
+        },
+        {
+          "id": 1,
+          "homeTeamName": "두산",
+          "awayTeamName": "SSG",
+          "homeScore": 3,
+          "awayScore": 5,
+          "gameDate": "2025.07.03",
+          "stadiumName": "잠실야구장",
         }
       ]
     };

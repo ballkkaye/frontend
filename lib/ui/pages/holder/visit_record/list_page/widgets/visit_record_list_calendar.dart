@@ -1,23 +1,38 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class VisitRecordListCalendar extends StatefulWidget {
-  const VisitRecordListCalendar({super.key, required this.cellSize});
+import '../visit_record_list_selected_date_vm.dart';
+
+class VisitRecordListCalendar extends ConsumerStatefulWidget {
+  const VisitRecordListCalendar({
+    super.key,
+    required this.cellSize,
+    this.onDateSelected,
+  });
 
   final double cellSize;
+  final ValueChanged<DateTime?>? onDateSelected;
 
   @override
-  State<VisitRecordListCalendar> createState() => _VisitRecordListCalendarState();
+  ConsumerState<VisitRecordListCalendar> createState() => _VisitRecordListCalendarState();
 }
 
-class _VisitRecordListCalendarState extends State<VisitRecordListCalendar> {
-  DateTime _focusedDay = DateTime.now();
-  DateTime? _selectedDay;
+class _VisitRecordListCalendarState extends ConsumerState<VisitRecordListCalendar> {
+  late DateTime _focusedDay;
+
+  @override
+  void initState() {
+    super.initState();
+    _focusedDay = DateTime.now();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final selectedDate = ref.watch(VisitRecordListselectedDateProvider);
+    //final focusedDay = selectedDate ?? DateTime.now();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: TableCalendar(
@@ -28,17 +43,22 @@ class _VisitRecordListCalendarState extends State<VisitRecordListCalendar> {
         locale: 'ko_KR',
         focusedDay: _focusedDay,
         firstDay: DateTime(2020, 3, 1),
-        lastDay: DateTime(_focusedDay.year, _focusedDay.month + 1, 0),
+        lastDay: DateTime(DateTime.now().year, DateTime.now().month + 1, 0),
         onDaySelected: (selectedDay, focusedDay) {
+          if (selectedDay.isAfter(DateTime.now())) return;
+          ref.read(VisitRecordListselectedDateProvider.notifier).state = selectedDay;
           setState(() {
-            if (DateTime(selectedDay.year, selectedDay.month, selectedDay.day)
-                .isAfter(DateTime(focusedDay.year, focusedDay.month, focusedDay.day)))
-              return; // 오늘 이후 날짜 선택 차단
-            _selectedDay = selectedDay;
             _focusedDay = focusedDay;
           });
+          widget.onDateSelected?.call(selectedDay);
         },
-        selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+        onPageChanged: (focusedDay) {
+          setState(() {
+            _focusedDay = focusedDay;
+          });
+          ref.read(VisitRecordListselectedDateProvider.notifier).state = null;
+        },
+        selectedDayPredicate: (day) => isSameDay(selectedDate, day),
         headerStyle: _headerStyle(),
         daysOfWeekStyle: _daysOfWeekStyle(),
         calendarStyle: _calendarStyle(),
@@ -47,7 +67,7 @@ class _VisitRecordListCalendarState extends State<VisitRecordListCalendar> {
     );
   }
 
-  // 캘린더 헤더 스타일 지정
+// 캘린더 헤더 스타일 지정
   HeaderStyle _headerStyle() {
     return HeaderStyle(
       titleCentered: true,
@@ -58,7 +78,7 @@ class _VisitRecordListCalendarState extends State<VisitRecordListCalendar> {
     );
   }
 
-  // 캘린더 요일(일~토) 스타일 지정
+// 캘린더 요일(일~토) 스타일 지정
   DaysOfWeekStyle _daysOfWeekStyle() {
     return DaysOfWeekStyle(
       weekdayStyle: TextStyle(fontSize: 16, color: MColor.kLabel.neutral),
@@ -66,7 +86,7 @@ class _VisitRecordListCalendarState extends State<VisitRecordListCalendar> {
     );
   }
 
-  // 캘린더 내부 스타일 지정
+// 캘린더 내부 스타일 지정
   CalendarStyle _calendarStyle() {
     return CalendarStyle(
       outsideDaysVisible: false,
@@ -78,7 +98,7 @@ class _VisitRecordListCalendarState extends State<VisitRecordListCalendar> {
     );
   }
 
-  // 선택된 날짜 BoxDecoration
+// 선택된 날짜 BoxDecoration
   CalendarBuilders<dynamic> _calendarBuilders() {
     return CalendarBuilders(
       selectedBuilder: (context, date, _) {

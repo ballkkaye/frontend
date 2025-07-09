@@ -1,18 +1,18 @@
-import 'package:ballkkaye_frontend/data/model/visit_record.dart';
+import 'package:ballkkaye_frontend/data/model/visit_record_list.dart';
+import 'package:ballkkaye_frontend/data/param/visit_record_param.dart';
 import 'package:ballkkaye_frontend/data/repository/visit_record_repository.dart';
 import 'package:ballkkaye_frontend/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final VisitRecordListMonthProvider = AutoDisposeNotifierProvider.family<VisitRecordListMonthVM, VisitRecordListMonthModel?, VisitRecordParam>(() {
-  return VisitRecordListMonthVM();
-});
+final VisitRecordListMonthProvider =
+    AutoDisposeNotifierProvider.family<VisitRecordListMonthVM, List<VisitRecordList>?, VisitRecordParam>(VisitRecordListMonthVM.new);
 
-class VisitRecordListMonthVM extends AutoDisposeFamilyNotifier<VisitRecordListMonthModel?, VisitRecordParam> {
+class VisitRecordListMonthVM extends AutoDisposeFamilyNotifier<List<VisitRecordList>?, VisitRecordParam> {
   final mContext = navigatorKey.currentContext!;
 
   @override
-  VisitRecordListMonthModel? build(VisitRecordParam param) {
+  List<VisitRecordList>? build(VisitRecordParam param) {
     // 1. 상태 초기화
     //Future.microtask(() => init(param));
     loadListMonth(param);
@@ -32,17 +32,26 @@ class VisitRecordListMonthVM extends AutoDisposeFamilyNotifier<VisitRecordListMo
       );
       return;
     }
-    state = VisitRecordListMonthModel.fromMap(body["body"]);
+    final List<dynamic> rawList = body["body"];
+    final list = rawList.map((e) => VisitRecordListMonthModel.fromMap(e)).toList();
+    state = list;
   }
 }
 
-class VisitRecordListMonthModel {
+class VisitRecordListMonthModel implements VisitRecordList {
+  @override
   final int id;
+  @override
   final String homeTeamName;
+  @override
   final String awayTeamName;
+  @override
   final int homeScore;
+  @override
   final int awayScore;
+  @override
   final String gameDate;
+  @override
   final String stadiumName;
 
   VisitRecordListMonthModel({
