@@ -1,5 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/data/mapper/team_mapper.dart';
 import 'package:ballkkaye_frontend/data/model/user_match.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/detail_page/user_match_detail_page.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_tag.dart';
@@ -29,7 +30,7 @@ class UserMatchListCard extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => UserMatchDetailPage(userMatch.matchId)),
+              MaterialPageRoute(builder: (_) => UserMatchDetailPage(userMatch.matchId!)),
             );
           },
           child: Padding(
@@ -67,7 +68,6 @@ class UserMatchListCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Wrap(
-                          spacing: 5,
                           children: [
                             MTag(
                                 label: userMatch.gender,
@@ -78,7 +78,7 @@ class UserMatchListCard extends StatelessWidget {
                                 fillColor: MColor.kFill.normal,
                                 textColor: MColor.kLabel.neutral),
                             MTag(
-                                label: '${userMatch.user.teamName}', // TODO : 희망 응원팀으로 변경,
+                                label: TeamMapper.getName(userMatch.teamId), // TODO : 희망 응원팀으로 변경,
                                 fillColor: MColor.kFill.normal,
                                 textColor: MColor.kLabel.neutral),
                           ],

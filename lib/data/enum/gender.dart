@@ -1,7 +1,7 @@
 enum Gender {
   MALE("남성"),
   FEMALE("여성"),
-  NONE("무관");
+  NONE("성별 무관");
 
   final String label;
 

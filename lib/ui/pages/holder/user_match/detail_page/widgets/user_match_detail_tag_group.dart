@@ -1,7 +1,7 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/_core/utils/m_util.dart';
+import 'package:ballkkaye_frontend/data/mapper/team_mapper.dart';
 import 'package:ballkkaye_frontend/data/model/user_match.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_tag.dart';
 import 'package:flutter/material.dart';
@@ -21,11 +21,12 @@ class UserMatchDetailTagGroup extends StatelessWidget {
             fillColor: MColor.kFill.normal,
             textColor: MColor.kLabel.neutral),
         MTag(
-            label: formatAgeRange(userMatch.age!),
-            fillColor: MColor.kFill.normal,
-            textColor: MColor.kLabel.neutral),
+          label: userMatch.age,
+          fillColor: MColor.kFill.normal,
+          textColor: MColor.kLabel.neutral,
+        ),
         MTag(
-            label: userMatch.user.teamName!, // TODO : 희망 응원팀으로 변경
+            label: TeamMapper.getName(userMatch.teamId),
             fillColor: MColor.kFill.normal,
             textColor: MColor.kLabel.neutral),
         Container(

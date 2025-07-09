@@ -45,44 +45,64 @@ class UserMatchRepository {
         "selectedTimeName": null,
         "matches": [
           {
-            "participationInfo": "1/6",
+            "participationInfo": "1/4",
             "relativeTime": "방금",
-            "gameTitle": "두산 베어스 vs SSG 랜더스",
-            "title": "같이 직관 가실 분 구해요!",
-            "gender": "여성",
-            "age": "20~30대",
-            "isSameTeam": true,
-            "matchId": 4
+            "homeTeamName": "SSG 랜더스",
+            "awayTeamName": "삼성 라이온즈",
+            "title": "야구 직관 같이 가실 분~",
+            "gender": "무관",
+            "age": "연령 무관",
+            "isSameTeam": false,
+            "matchId": 7,
+            "teamId": 7
           },
           {
-            "participationInfo": "1/6",
+            "participationInfo": "1/4",
             "relativeTime": "방금",
-            "gameTitle": "두산 베어스 vs SSG 랜더스",
-            "title": "같이 직관 가실 분 구해요!",
-            "gender": "여성",
-            "age": "20~30대",
-            "isSameTeam": true,
-            "matchId": 3
+            "homeTeamName": "SSG 랜더스",
+            "awayTeamName": "삼성 라이온즈",
+            "title": "야구 직관 같이 가실 분~",
+            "gender": "무관",
+            "age": "연령 무관",
+            "isSameTeam": false,
+            "matchId": 6,
+            "teamId": 6
           },
           {
-            "participationInfo": "1/6",
+            "participationInfo": "1/4",
             "relativeTime": "방금",
-            "gameTitle": "두산 베어스 vs SSG 랜더스",
-            "title": "같이 직관 가실 분 구해요!",
-            "gender": "여성",
-            "age": "20~30대",
-            "isSameTeam": true,
-            "matchId": 2
+            "homeTeamName": "SSG 랜더스",
+            "awayTeamName": "삼성 라이온즈",
+            "title": "야구 직관 같이 가실 분~",
+            "gender": "무관",
+            "age": "연령 무관",
+            "isSameTeam": false,
+            "matchId": 5,
+            "teamId": 5
           },
           {
-            "participationInfo": "1/6",
+            "participationInfo": "1/4",
             "relativeTime": "방금",
-            "gameTitle": "두산 베어스 vs SSG 랜더스",
-            "title": "같이 직관 가실 분 구해요!",
-            "gender": "여성",
-            "age": "20~30대",
-            "isSameTeam": true,
-            "matchId": 1
+            "homeTeamName": "SSG 랜더스",
+            "awayTeamName": "삼성 라이온즈",
+            "title": "야구 직관 같이 가실 분~",
+            "gender": "무관",
+            "age": "연령 무관",
+            "isSameTeam": false,
+            "matchId": 4,
+            "teamId": 4
+          },
+          {
+            "participationInfo": "1/4",
+            "relativeTime": "방금",
+            "homeTeamName": "SSG 랜더스",
+            "awayTeamName": "삼성 라이온즈",
+            "title": "야구 직관 같이 가실 분~",
+            "gender": "무관",
+            "age": "연령 무관",
+            "isSameTeam": false,
+            "matchId": 3,
+            "teamId": 3
           }
         ]
       }

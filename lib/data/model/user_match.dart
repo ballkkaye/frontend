@@ -3,7 +3,7 @@ import 'package:ballkkaye_frontend/data/model/team.dart';
 import 'package:ballkkaye_frontend/data/model/user.dart';
 
 class UserMatch {
-  final int matchId;
+  final int? matchId;
   final bool? isOwner;
   final String? relativeTime;
   final int? likeCount;
@@ -11,28 +11,30 @@ class UserMatch {
   final Game game;
   final User user;
   final String title;
-  final String content;
+  final String? content;
   final String? gender;
   final String? age;
   final bool? isSameTeam;
   final String? participationInfo;
   final int? chatRoomId;
+  final int? teamId;
 
   UserMatch({
-    required this.matchId,
-    required this.isOwner,
-    required this.relativeTime,
-    required this.likeCount,
-    required this.isLike,
+    this.matchId,
+    this.isOwner,
+    this.relativeTime,
+    this.likeCount,
+    this.isLike,
     required this.game,
     required this.user,
     required this.title,
-    required this.content,
-    required this.gender,
-    required this.age,
-    required this.isSameTeam,
-    required this.participationInfo,
-    required this.chatRoomId,
+    this.content,
+    this.gender,
+    this.age,
+    this.isSameTeam,
+    this.participationInfo,
+    this.chatRoomId,
+    this.teamId,
   });
 
   UserMatch.fromMap(Map<String, dynamic> data)
@@ -58,7 +60,8 @@ class UserMatch {
         age = data['age'],
         isSameTeam = data['isSameTeam'],
         participationInfo = data['participationInfo'],
-        chatRoomId = data['chatRoomId'];
+        chatRoomId = data['chatRoomId'],
+        teamId = data['teamId'];
 
   @override
   String toString() {
