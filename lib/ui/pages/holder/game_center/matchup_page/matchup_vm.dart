@@ -4,7 +4,8 @@ import 'package:ballkkaye_frontend/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final matchupProvider = AutoDisposeNotifierProvider.family<MatchupVM, MatchupModel?, MatchupParam>(() {
+final matchupProvider =
+    AutoDisposeNotifierProvider.family<MatchupVM, MatchupModel?, MatchupParam>(() {
   return MatchupVM();
 });
 

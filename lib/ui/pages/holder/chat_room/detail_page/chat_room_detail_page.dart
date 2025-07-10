@@ -8,14 +8,16 @@ import 'package:flutter/material.dart';
 import 'widgets/chat_room_detail_body.dart';
 
 class ChatRoomDetailPage extends StatelessWidget {
-  const ChatRoomDetailPage({super.key});
+  int chatRoomId;
+
+  ChatRoomDetailPage(this.chatRoomId);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: _appbar(context),
-      body: ChatRoomDetailBody(),
+      body: ChatRoomDetailBody(chatRoomId),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 50),
         child: FloatingActionButton(onPressed: () {

@@ -5,12 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
-final boardDetailReplyProvider =
-    AutoDisposeNotifierProvider.family<BoardDetailReplyVM, BoardDetailReplyModel?, int>(() {
+final boardDetailReplyProvider = AutoDisposeNotifierProvider.family<
+    BoardDetailReplyVM, BoardDetailReplyModel?, int>(() {
   return BoardDetailReplyVM();
 });
 
-class BoardDetailReplyVM extends AutoDisposeFamilyNotifier<BoardDetailReplyModel?, int> {
+class BoardDetailReplyVM
+    extends AutoDisposeFamilyNotifier<BoardDetailReplyModel?, int> {
   final mContext = navigatorKey.currentContext!;
 
   @override
@@ -44,7 +45,9 @@ class BoardDetailReplyModel {
 
   factory BoardDetailReplyModel.fromMap(Map<String, dynamic> data) {
     return BoardDetailReplyModel(
-      (data['replyItems'] as List<dynamic>).map((e) => Reply.fromMap(e)).toList(),
+      (data['replyItems'] as List<dynamic>)
+          .map((e) => Reply.fromMap(e))
+          .toList(),
     );
   }
 
