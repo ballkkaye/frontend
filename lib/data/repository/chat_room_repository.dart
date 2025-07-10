@@ -16,7 +16,7 @@ class ChatRoomRepository {
           "message": "메세지17",
           "messageType": "TALK",
           "isOwner": false,
-          "createdAt": "2025-07-11T02:48:57.882+00:00",
+          "createdAt": "2025-07-10T02:48:57.882+00:00",
           "chatRoomId": 1
         },
         {
@@ -26,7 +26,7 @@ class ChatRoomRepository {
           "message": "메세지16",
           "messageType": "TALK",
           "isOwner": true,
-          "createdAt": "2025-07-11T02:48:56.572+00:00",
+          "createdAt": "2025-07-10T02:48:56.572+00:00",
           "chatRoomId": 1
         },
         {
@@ -86,7 +86,7 @@ class ChatRoomRepository {
           "message": "메세지10",
           "messageType": "TALK",
           "isOwner": false,
-          "createdAt": "2025-07-09T02:48:47.360+00:00",
+          "createdAt": "2025-07-08T02:48:47.360+00:00",
           "chatRoomId": 1
         },
         {
@@ -96,7 +96,7 @@ class ChatRoomRepository {
           "message": "메세지9",
           "messageType": "TALK",
           "isOwner": false,
-          "createdAt": "2025-07-09T02:48:46.594+00:00",
+          "createdAt": "2025-07-08T02:48:46.594+00:00",
           "chatRoomId": 1
         },
         {
@@ -106,7 +106,7 @@ class ChatRoomRepository {
           "message": "메세지8",
           "messageType": "TALK",
           "isOwner": false,
-          "createdAt": "2025-07-09T02:48:45.753+00:00",
+          "createdAt": "2025-07-08T02:48:45.753+00:00",
           "chatRoomId": 1
         },
         {
@@ -116,17 +116,17 @@ class ChatRoomRepository {
           "message": "cos님이 입장하셨습니다.",
           "messageType": "ENTER",
           "isOwner": false,
-          "createdAt": "2025-07-09T02:48:39.831+00:00",
+          "createdAt": "2025-07-08T02:48:39.831+00:00",
           "chatRoomId": 1
         },
         {
           "messageId": 6,
           "senderId": 1,
           "senderName": "ssar",
-          "message": "메세지",
-          "messageType": "TALK6",
+          "message": "메세지6",
+          "messageType": "TALK",
           "isOwner": true,
-          "createdAt": "2025-07-09T02:48:24.495+00:00",
+          "createdAt": "2025-07-07T02:48:24.495+00:00",
           "chatRoomId": 1
         },
         {
@@ -136,7 +136,7 @@ class ChatRoomRepository {
           "message": "메세지5",
           "messageType": "TALK",
           "isOwner": true,
-          "createdAt": "2025-07-09T02:48:23.746+00:00",
+          "createdAt": "2025-07-07T02:48:23.746+00:00",
           "chatRoomId": 1
         },
         {
@@ -146,7 +146,7 @@ class ChatRoomRepository {
           "message": "메세지4",
           "messageType": "TALK",
           "isOwner": true,
-          "createdAt": "2025-07-08T02:48:23.062+00:00",
+          "createdAt": "2025-07-07T02:48:23.062+00:00",
           "chatRoomId": 1
         },
         {
@@ -156,7 +156,7 @@ class ChatRoomRepository {
           "message": "메세지3",
           "messageType": "TALK",
           "isOwner": true,
-          "createdAt": "2025-07-08T02:48:22.073+00:00",
+          "createdAt": "2025-07-06T02:48:22.073+00:00",
           "chatRoomId": 1
         },
         {
@@ -166,7 +166,7 @@ class ChatRoomRepository {
           "message": "메세지2",
           "messageType": "TALK",
           "isOwner": true,
-          "createdAt": "2025-07-08T02:48:21.437+00:00",
+          "createdAt": "2025-07-06T02:48:21.437+00:00",
           "chatRoomId": 1
         },
         {
@@ -176,7 +176,7 @@ class ChatRoomRepository {
           "message": "메세지1",
           "messageType": "TALK",
           "isOwner": true,
-          "createdAt": "2025-07-08T02:48:20.764+00:00",
+          "createdAt": "2025-07-06T02:48:20.764+00:00",
           "chatRoomId": 1
         }
       ]
@@ -194,18 +194,14 @@ class ChatRoomRepository {
     // });
     // final responseBody = response.data;
     final responseBody = {
-      "status": 200,
-      "msg": "성공",
-      "body": {
-        "messageId": 18,
-        "senderId": 2,
-        "senderName": "cos",
-        "message": "메세지18",
-        "messageType": "TALK",
-        "isSender": true,
-        "createdAt": "2025-07-11T02:50:57.882+00:00",
-        "chatRoomId": 1
-      }
+      "messageId": 18,
+      "senderId": 2,
+      "senderName": "cos",
+      "message": "hi",
+      "messageType": "TALK",
+      "isSender": true,
+      "createdAt": "2025-07-10T02:50:57.882+00:00",
+      "chatRoomId": 1
     };
 
     Logger().d('ChatRoomRepository chat: ${responseBody}');
