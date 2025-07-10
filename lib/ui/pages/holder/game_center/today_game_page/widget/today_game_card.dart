@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/data/enum/game_status.dart';
 import 'package:ballkkaye_frontend/data/model/game.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/today_game_page/widget/today_game_card_content.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/today_game_page/widget/today_game_ticket_btn.dart';
@@ -23,15 +24,14 @@ class TodayGameCard extends StatelessWidget {
           child: Column(
             children: [
               TodayGameCardContent(
-                rightPhotoUrl: game.homeTeam.teamLogo,
-                leftPhotoUrl: game.awayTeam.teamLogo,
-                gameState: game.gameStatus ?? '경기 예정',
-                stadium: game.stadiumName ?? '',
-                gameTime: _parseTime(game.gameTime),
-                broadcastInfo: game.broadcastChannel ?? '',
-                leftPitcher: game.homePitcherName ?? '',
-                rightPitcher: game.awayPitcherName ?? '',
-              ),
+                  rightPhotoUrl: game.homeTeam.teamLogo,
+                  leftPhotoUrl: game.awayTeam.teamLogo,
+                  gameState: game.gameStatus?.label ?? '경기 예정',
+                  stadium: game.stadiumShortName ?? '',
+                  gameTime: _parseTime(game.gameTime),
+                  broadcastInfo: game.broadcastChannel ?? '',
+                  leftPitcher: game.homePitcherName ?? '',
+                  rightPitcher: game.awayPitcherName ?? ''),
               TodayGameTicketBtn(ticketUrl: game.ticketLink ?? ''),
             ],
           ),

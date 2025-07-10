@@ -14,7 +14,7 @@ class TodayGameLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: gameState == '경기예정'
+        color: gameState == '경기 예정'
             ? MColor.kStatus.cautionary
             : gameState == '경기중'
                 ? MColor.kStatus.positive

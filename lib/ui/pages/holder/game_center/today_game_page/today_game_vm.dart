@@ -22,7 +22,7 @@ class TodayGameVM extends AutoDisposeNotifier<TodayGameModel?> {
 
     ref.onDispose(() {
       refreshCtrl.dispose();
-      Logger().d("PostListVM 파괴됨");
+      Logger().d("todayGameVM 파괴됨");
     });
 
     return null;
@@ -32,7 +32,7 @@ class TodayGameVM extends AutoDisposeNotifier<TodayGameModel?> {
     Map<String, dynamic> data = await GameCenterRepository().getTodayGame();
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
-        SnackBar(content: Text("오늘의 경기 목록보기 실패 : ${data["msg"]}")),
+        SnackBar(content: Text("오늘의 경기 조회 실패 : ${data["msg"]}")),
       );
       return;
     }
@@ -56,7 +56,7 @@ class TodayGameVM extends AutoDisposeNotifier<TodayGameModel?> {
     Map<String, dynamic> data = await GameCenterRepository().getTodayGame();
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
-        SnackBar(content: Text("게시글 로드 실패 : ${data["msg"]}")),
+        SnackBar(content: Text("오늘의 경기 로드 실패 : ${data["msg"]}")),
       );
       return;
     }
@@ -78,9 +78,6 @@ class TodayGameModel {
       list.map((e) => Game.fromMap(e as Map<String, dynamic>)).toList(),
     );
   }
-
-  TodayGameModel.fromMap(Map<String, dynamic> data)
-      : games = (data['items'] as List).map((e) => Game.fromMap(e)).toList();
 
   TodayGameModel copyWith({
     List<Game>? games,

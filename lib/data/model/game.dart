@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/data/enum/game_status.dart';
 import 'package:ballkkaye_frontend/data/model/team.dart';
 
 class Game {
@@ -7,7 +8,8 @@ class Game {
   final String? gameDate;
   final String? gameTime;
   final String? stadiumName;
-  final String? gameStatus;
+  final String? stadiumShortName;
+  final GameStatus? gameStatus;
   final String? broadcastChannel;
   final String? ticketLink;
   final String? homePitcherName;
@@ -17,10 +19,11 @@ class Game {
     this.id,
     required this.homeTeam,
     required this.awayTeam,
+    this.gameStatus,
     this.gameDate,
     this.gameTime,
     this.stadiumName,
-    this.gameStatus,
+    this.stadiumShortName,
     this.broadcastChannel,
     this.ticketLink,
     this.homePitcherName,
@@ -47,11 +50,42 @@ class Game {
       gameDate: map['gameDate'],
       gameTime: map['gameTime'],
       stadiumName: map['stadiumName'],
-      gameStatus: map['gameStatus'],
+      stadiumShortName: map['stadiumShortName'],
+      gameStatus: GameStatusExtension.fromString(map['gameStatus']),
       broadcastChannel: map['broadcastChannel'],
       ticketLink: map['ticketLink'],
       homePitcherName: map['homePitcherName'],
       awayPitcherName: map['awayPitcherName'],
+    );
+  }
+
+  Game copyWith({
+    int? id,
+    Team? homeTeam,
+    Team? awayTeam,
+    String? gameDate,
+    GameStatus? gameStatus,
+    String? stadiumName,
+    String? stadiumShortName,
+    String? broadcastChannel,
+    String? homePitcherName,
+    String? awayPitcherName,
+    String? ticketLink,
+    String? gameTime,
+  }) {
+    return Game(
+      id: id ?? this.id,
+      homeTeam: homeTeam ?? this.homeTeam,
+      awayTeam: awayTeam ?? this.awayTeam,
+      gameDate: gameDate ?? this.gameDate,
+      gameStatus: gameStatus ?? this.gameStatus,
+      stadiumName: stadiumName ?? this.stadiumName,
+      stadiumShortName: stadiumShortName ?? this.stadiumShortName,
+      broadcastChannel: broadcastChannel ?? this.broadcastChannel,
+      homePitcherName: homePitcherName ?? this.homePitcherName,
+      awayPitcherName: awayPitcherName ?? this.awayPitcherName,
+      ticketLink: ticketLink ?? this.ticketLink,
+      gameTime: gameTime ?? this.gameTime,
     );
   }
 
