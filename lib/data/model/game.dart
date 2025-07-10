@@ -30,34 +30,31 @@ class Game {
     this.awayPitcherName,
   });
 
-  factory Game.fromMap(Map<String, dynamic> map) {
-    return Game(
-      id: map['gameId'] ?? map['id'],
-      homeTeam: map['homeTeam'] != null
-          ? Team.fromMap(map['homeTeam'])
-          : Team(
-              id: -1,
-              name: '',
-              teamLogo: map['homeTeamLogoUrl'] ?? '',
-            ),
-      awayTeam: map['awayTeam'] != null
-          ? Team.fromMap(map['awayTeam'])
-          : Team(
-              id: -1,
-              name: '',
-              teamLogo: map['awayTeamLogoUrl'] ?? '',
-            ),
-      gameDate: map['gameDate'],
-      gameTime: map['gameTime'],
-      stadiumName: map['stadiumName'],
-      stadiumShortName: map['stadiumShortName'],
-      gameStatus: GameStatusExtension.fromString(map['gameStatus']),
-      broadcastChannel: map['broadcastChannel'],
-      ticketLink: map['ticketLink'],
-      homePitcherName: map['homePitcherName'],
-      awayPitcherName: map['awayPitcherName'],
-    );
-  }
+  Game.fromMap(Map<String, dynamic> map)
+      : id = map['gameId'] ?? map['id'],
+        homeTeam = map['homeTeam'] != null
+            ? Team.fromMap(map['homeTeam'])
+            : Team(
+                id: map['homeTeamId'],
+                name: map['homeTeamName'],
+                teamLogo: map['homeTeamLogoUrl'],
+              ),
+        awayTeam = map['awayTeam'] != null
+            ? Team.fromMap(map['awayTeam'])
+            : Team(
+                id: map['awayTeamId'],
+                name: map['awayTeamName'],
+                teamLogo: map['awayTeamLogoUrl'],
+              ),
+        gameDate = map['gameDate'],
+        gameTime = map['gameTime'],
+        stadiumName = map['stadiumName'],
+        stadiumShortName = map['stadiumShortName'],
+        gameStatus = GameStatusExtension.fromString(map['gameStatus']),
+        broadcastChannel = map['broadcastChannel'],
+        ticketLink = map['ticketLink'],
+        homePitcherName = map['homePitcherName'],
+        awayPitcherName = map['awayPitcherName'];
 
   Game copyWith({
     int? id,
