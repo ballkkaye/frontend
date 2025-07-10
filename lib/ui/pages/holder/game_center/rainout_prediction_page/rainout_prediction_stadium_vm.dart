@@ -14,8 +14,8 @@ class RainoutPredictionStadiumVM
   final mContext = navigatorKey.currentContext!;
 
   @override
-  RainoutPredictionStadiumModel? build(int chatRoomId) {
-    loadStadiumList(chatRoomId);
+  RainoutPredictionStadiumModel? build(int stadiumId) {
+    loadStadiumList(stadiumId);
     return null;
   }
 
