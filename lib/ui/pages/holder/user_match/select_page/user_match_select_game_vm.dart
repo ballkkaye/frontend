@@ -49,7 +49,10 @@ class UserMatchSelectGameModel {
 
   UserMatchSelectGameModel.fromMap(Map<String, dynamic> data)
       : selectedDate = data['selectedDate'],
-        games = data['games'][0]['items'].map((e) => Game.fromMap(e)).toList();
+        games = (data['games'][0]['items'] as List)
+            .cast<Map<String, dynamic>>()
+            .map((e) => Game.fromGameData(e))
+            .toList();
 
   UserMatchSelectGameModel copyWith({
     List<Game>? games,
@@ -59,6 +62,15 @@ class UserMatchSelectGameModel {
       games: games ?? this.games,
       selectedDate: selectedDate ?? this.selectedDate,
     );
+  }
+
+  List<Map<String, dynamic>> formatGameList() {
+    return games.map((g) {
+      return {
+        'gameId': g.id,
+        'game': '${g.awayTeam.fullName} vs ${g.homeTeam.fullName} (${g.stadiumShotrName})',
+      };
+    }).toList();
   }
 
   @override

@@ -1,9 +1,8 @@
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/_core/utils/m_util.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/select_page/user_match_select_date_vm.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/select_page/widgets/user_match_select_dropdown_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_date_select_btn.dart';
-import 'package:ballkkaye_frontend/ui/widgets/m_dropdown_btn.dart';
-import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
@@ -65,19 +64,7 @@ class _UserMatchSelectBodyState extends ConsumerState<UserMatchSelectBody> {
               MText.h3_6("경기 선택"),
               SizedBox(height: 10),
               // 경기 선택 버튼
-              MDropdownBtn(
-                hintText: '경기',
-                items: games,
-                onChanged: (value) {},
-              ),
-              Spacer(),
-              // 다음 버튼
-              MElevatedBtn(
-                text: '다음',
-                onPressed: () {
-                  Navigator.pushNamed(context, "/user-match/write");
-                },
-              ),
+              UserMatchSelectDropdownBtn(date: selectedDate),
             ],
           ),
         ),

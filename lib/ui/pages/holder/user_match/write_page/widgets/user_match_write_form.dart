@@ -1,5 +1,7 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/data/enum/age.dart';
+import 'package:ballkkaye_frontend/data/model/game.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_dropdown_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_tag.dart';
@@ -8,14 +10,13 @@ import 'package:ballkkaye_frontend/ui/widgets/m_toggle_btn.dart';
 import 'package:flutter/material.dart';
 
 class UserMatchWriteForm extends StatelessWidget {
-  const UserMatchWriteForm({
-    super.key,
-  });
+  Game selectedGame;
+
+  UserMatchWriteForm({super.key, required this.selectedGame});
 
   @override
   Widget build(BuildContext context) {
     List<String> genders = ['남성', '여성', '무관'];
-    List<String> ages = ['10대 이상', '20대 이상', '30대 이상', '40대 이상', '50대 이상'];
     List<String> teams = ['롯데 자이언츠', '한화 이글스']; // 해당 경기의 두 팀 중 하나 선택
     return Form(
       child: Column(
@@ -24,7 +25,8 @@ class UserMatchWriteForm extends StatelessWidget {
           // 경기 일정 태그
           Center(
             child: MTag(
-              label: '2025.07.02 한화 이글스 vs 롯데 자이언츠 (사직)',
+              label:
+                  '${selectedGame.gameDate} ${selectedGame.awayTeam.fullName} vs ${selectedGame.homeTeam.fullName} (${selectedGame.stadiumShotrName})',
               fillColor: MColor.kFill.normal,
               textColor: MColor.kLabel.normal,
             ),
@@ -41,8 +43,7 @@ class UserMatchWriteForm extends StatelessWidget {
                   scale: 0.96,
                   child: Checkbox(
                     value: true,
-                    materialTapTargetSize:
-                        MaterialTapTargetSize.shrinkWrap, // 여백 제거
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap, // 여백 제거
                     visualDensity: VisualDensity.compact,
                     fillColor: WidgetStateProperty.resolveWith((states) {
                       if (states.contains(WidgetState.selected)) {
@@ -57,8 +58,7 @@ class UserMatchWriteForm extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsetsGeometry.directional(bottom: 0),
-                child: MText.label1_5('같은 팀이면 좋겠어요',
-                    color: MColor.kPrimary.strong),
+                child: MText.label1_5('같은 팀이면 좋겠어요', color: MColor.kPrimary.strong),
               )
             ],
           ),
@@ -75,7 +75,8 @@ class UserMatchWriteForm extends StatelessWidget {
           SizedBox(height: 6),
           MDropdownBtn(
             hintText: '연령',
-            items: ages,
+            items: Age.values,
+            itemLabel: (a) => a.label,
             onChanged: (value) {},
           ),
           SizedBox(height: 12),

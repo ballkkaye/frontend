@@ -19,7 +19,6 @@ import 'package:ballkkaye_frontend/ui/pages/holder/user_match/detail_page/user_m
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/user_match_list_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/select_page/user_match_select_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/update_page/user_match_update_page.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/user_match/write_page/user_match_write_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/detail_page/visit_record_detail_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/visit_record_list_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/select_page/visit_record_select_page.dart';
@@ -83,7 +82,7 @@ class MyApp extends StatelessWidget {
         "/board/write": (context) => const BoardWritePage(),
         // "/board/update": (context) => BoardUpdatePage(), // 동적데이터 받기 어려워서 MaterialPageRoute 사용
         "/user-match/update": (context) => const UserMatchUpdatePage(),
-        "/user-match/write": (context) => const UserMatchWritePage(),
+        // "/user-match/write": (context) => const UserMatchWritePage(),
         "/user-match/detail": (context) => UserMatchDetailPage(1),
         "/user-match/list": (context) => const UserMatchListPage(),
         "/user-match/select": (context) => const UserMatchSelectPage(),

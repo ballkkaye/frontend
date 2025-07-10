@@ -2,66 +2,130 @@ import 'package:logger/logger.dart';
 
 class GameRepository {
   Future<Map<String, dynamic>> getList(String date) async {
+    Logger().d('GameRepository의 getList의 date: ${date}');
     // Response response = await dio.get("/s/api/games", queryParameters: {"date": date});
     // final responseBody = response.data;
-    final responseBody = {
-      "status": 200,
-      "msg": "성공",
-      "body": {
-        "games": [
-          {
-            "gameDate": "2025.07.02",
-            "items": [
-              {
-                "gameId": 425,
-                "homeTeamId": 9,
-                "homeTeamFullName": "NC 다이노스",
-                "homeTeamShortName": "NC",
-                "homeTeamScore": 3,
-                "awayTeamId": 7,
-                "awayTeamFullName": "롯데 자이언츠",
-                "awayTeamShortName": "롯데",
-                "awayTeamScore": 5,
-                "stadiumFullName": "창원 NC파크",
-                "stadiumShortName": "창원",
-                "gameDate": "2025.07.02"
-              },
-              {
-                "gameId": 426,
-                "homeTeamId": 10,
-                "homeTeamFullName": "KT 위즈",
-                "homeTeamShortName": "KT",
-                "homeTeamScore": 5,
-                "awayTeamId": 1,
-                "awayTeamFullName": "LG 트윈스",
-                "awayTeamShortName": "LG",
-                "awayTeamScore": 5,
-                "stadiumFullName": "수원 KT위즈파크",
-                "stadiumShortName": "수원",
-                "gameDate": "2025.07.02"
-              },
-              {
-                "gameId": 427,
-                "homeTeamId": 3,
-                "homeTeamFullName": "키움 히어로즈",
-                "homeTeamShortName": "키움",
-                "homeTeamScore": 2,
-                "awayTeamId": 5,
-                "awayTeamFullName": "KIA 타이거즈",
-                "awayTeamShortName": "KIA",
-                "awayTeamScore": 0,
-                "stadiumFullName": "고척스카이돔",
-                "stadiumShortName": "고척",
-                "gameDate": "2025.07.02"
-              }
-            ]
-          }
-        ],
-        "selectedDate": "2025-07-02"
-      }
-    };
-    Logger().d('GameRepository의 getList: ${responseBody}');
-    return responseBody;
+    if (date.startsWith("2025-07-10")) {
+      final responseBody = {
+        "status": 200,
+        "msg": "성공",
+        "body": {
+          "games": [
+            {
+              "gameDate": "2025.07.10",
+              "items": [
+                {
+                  "gameId": 425,
+                  "homeTeamId": 9,
+                  "homeTeamFullName": "NC 다이노스10",
+                  "homeTeamShortName": "NC",
+                  "homeTeamScore": 3,
+                  "awayTeamId": 7,
+                  "awayTeamFullName": "롯데 자이언츠10",
+                  "awayTeamShortName": "롯데",
+                  "awayTeamScore": 5,
+                  "stadiumFullName": "창원 NC파크",
+                  "stadiumShortName": "창원10",
+                  "gameDate": "2025.07.10"
+                },
+                {
+                  "gameId": 426,
+                  "homeTeamId": 10,
+                  "homeTeamFullName": "KT 위즈10",
+                  "homeTeamShortName": "KT",
+                  "homeTeamScore": 5,
+                  "awayTeamId": 1,
+                  "awayTeamFullName": "LG 트윈스10",
+                  "awayTeamShortName": "LG",
+                  "awayTeamScore": 5,
+                  "stadiumFullName": "수원 KT위즈파크",
+                  "stadiumShortName": "수원10",
+                  "gameDate": "2025.07.10"
+                },
+                {
+                  "gameId": 427,
+                  "homeTeamId": 3,
+                  "homeTeamFullName": "키움 히어로즈10",
+                  "homeTeamShortName": "키움",
+                  "homeTeamScore": 2,
+                  "awayTeamId": 5,
+                  "awayTeamFullName": "KIA 타이거즈10",
+                  "awayTeamShortName": "KIA",
+                  "awayTeamScore": 0,
+                  "stadiumFullName": "고척스카이돔",
+                  "stadiumShortName": "고척10",
+                  "gameDate": "2025.07.10"
+                }
+              ]
+            }
+          ],
+          "selectedDate": "2025-07-10"
+        }
+      };
+      Logger().d('GameRepository의 getList: ${responseBody}');
+      return responseBody;
+    } else if (date.startsWith("2025-07-13")) {
+      final responseBody = {
+        "status": 200,
+        "msg": "성공",
+        "body": {
+          "games": [
+            {
+              "gameDate": "2025.07.13",
+              "items": [
+                {
+                  "gameId": 425,
+                  "homeTeamId": 9,
+                  "homeTeamFullName": "NC 다이노스13",
+                  "homeTeamShortName": "NC",
+                  "homeTeamScore": 3,
+                  "awayTeamId": 7,
+                  "awayTeamFullName": "롯데 자이언츠13",
+                  "awayTeamShortName": "롯데",
+                  "awayTeamScore": 5,
+                  "stadiumFullName": "창원 NC파크",
+                  "stadiumShortName": "창원13",
+                  "gameDate": "2025.07.13"
+                },
+                {
+                  "gameId": 426,
+                  "homeTeamId": 10,
+                  "homeTeamFullName": "KT 위즈13",
+                  "homeTeamShortName": "KT",
+                  "homeTeamScore": 5,
+                  "awayTeamId": 1,
+                  "awayTeamFullName": "LG 트윈스13",
+                  "awayTeamShortName": "LG",
+                  "awayTeamScore": 5,
+                  "stadiumFullName": "수원 KT위즈파크",
+                  "stadiumShortName": "수원13",
+                  "gameDate": "2025.07.13"
+                },
+                {
+                  "gameId": 427,
+                  "homeTeamId": 3,
+                  "homeTeamFullName": "키움 히어로즈13",
+                  "homeTeamShortName": "키움",
+                  "homeTeamScore": 2,
+                  "awayTeamId": 5,
+                  "awayTeamFullName": "KIA 타이거즈13",
+                  "awayTeamShortName": "KIA",
+                  "awayTeamScore": 0,
+                  "stadiumFullName": "고척스카이돔",
+                  "stadiumShortName": "고척13",
+                  "gameDate": "2025.07.13"
+                }
+              ]
+            }
+          ],
+          "selectedDate": "2025-07-13"
+        }
+      };
+      Logger().d('GameRepository의 getList: ${responseBody}');
+      return responseBody;
+    } else {
+      return {"status": 400, "msg": "해당 날짜에 대한 경기 데이터 없음", "body": {}};
+    }
   }
 
   Future<Map<String, dynamic>> getAvailableDateList() async {
