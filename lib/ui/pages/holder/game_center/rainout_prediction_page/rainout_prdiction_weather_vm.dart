@@ -13,7 +13,7 @@ class RainoutPredictionWeatherVM
   final mContext = navigatorKey.currentContext!;
 
   @override
-  RainoutPredictionWeatherModel? build(int chatRoomId) {
+  RainoutPredictionWeatherModel? build(int stadiumId) {
     // 1. 더미 데이터 먼저 보여줌
     state = RainoutPredictionWeatherModel(
       location: '잠실야구장',
@@ -35,7 +35,7 @@ class RainoutPredictionWeatherVM
     );
 
     // 2. 이후에 API 호출해서 실제 데이터로 덮어쓰기
-    loadWeather(chatRoomId);
+    loadWeather(stadiumId);
     return state;
   }
 
