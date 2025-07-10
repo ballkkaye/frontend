@@ -9,6 +9,7 @@ class MDropdownBtn<T> extends StatelessWidget {
   final ValueChanged<T?> onChanged;
   final T? value;
   final String Function(T)? itemLabel;
+  final bool enabled;
 
   const MDropdownBtn({
     super.key,
@@ -17,10 +18,12 @@ class MDropdownBtn<T> extends StatelessWidget {
     required this.onChanged,
     this.itemLabel,
     this.value,
+    this.enabled = true,
   });
 
   @override
   Widget build(BuildContext context) {
+    final bool enabled = items.isNotEmpty;
     return DropdownButtonFormField2<T>(
       value: value,
       decoration: InputDecoration(
@@ -46,11 +49,10 @@ class MDropdownBtn<T> extends StatelessWidget {
       items: items.map((item) {
         return DropdownMenuItem<T>(
           value: item,
-          child: MText.input1_4(itemLabel != null ? itemLabel!(item) : item.toString(),
-              color: MColor.kLabel.neutral),
+          child: MText.input1_4(itemLabel != null ? itemLabel!(item) : item.toString(), color: MColor.kLabel.neutral),
         );
       }).toList(),
-      onChanged: onChanged,
+      onChanged: enabled ? onChanged : null,
     );
   }
 }

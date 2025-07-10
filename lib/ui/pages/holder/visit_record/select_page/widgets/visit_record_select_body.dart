@@ -9,30 +9,8 @@ import 'package:ballkkaye_frontend/ui/widgets/m_icon_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class VisitRecordSelectBody extends ConsumerStatefulWidget {
+class VisitRecordSelectBody extends ConsumerWidget {
   VisitRecordSelectBody({super.key});
-
-  @override
-  ConsumerState<VisitRecordSelectBody> createState() => _VisitRecordSelectBodyState();
-}
-
-class _VisitRecordSelectBodyState extends ConsumerState<VisitRecordSelectBody> {
-  String? selectedDate;
-  List<String> gameList = [];
-  String? selectedGame;
-
-  void _fetchGames(String date) async {
-    setState(() {
-      selectedDate = date;
-    });
-
-    final model = await ref.read(visitRecordSelectProvider(date).notifier).getModel(date);
-    if (model != null) {
-      setState(() {
-        gameList = model.records.map((e) => '${e.homeTeamFullName} vs ${e.awayTeamFullName} (${e.stadiumShortName})').toList();
-      });
-    }
-  }
 
   // List<String> games = [
   //   '두산 베어스 vs 롯데 자이언츠 (사직)',
@@ -43,7 +21,16 @@ class _VisitRecordSelectBodyState extends ConsumerState<VisitRecordSelectBody> {
   // ];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(visitRecordSelectProvider);
+    final vm = ref.read(visitRecordSelectProvider.notifier);
+
+    final labelToGameIdMap = {
+      for (var e in state.gameList ?? []) '${e.awayTeamFullName} vs ${e.homeTeamFullName} (${e.stadiumShortName})': e.gameId.toString(),
+    };
+
+    print("게임 리스트: ${state.gameList}");
+
     return Padding(
       padding: EdgeInsetsGeometry.symmetric(vertical: 22, horizontal: 16),
       child: Form(
@@ -56,9 +43,10 @@ class _VisitRecordSelectBodyState extends ConsumerState<VisitRecordSelectBody> {
             MIconBtn(
               height: 49,
               icon: MIcon.page.record.calendarBlack,
-              text: selectedDate ?? "날짜 선택",
+              text: state.selectedDate ?? "날짜 선택",
               textColor: MColor.kLabel.normal,
               onPressed: () {
+                print("날짜 선택됨");
                 // 날짜 선택 모달
                 showModalBottomSheet(
                   backgroundColor: MColor.kBackground.normal,
@@ -70,11 +58,13 @@ class _VisitRecordSelectBodyState extends ConsumerState<VisitRecordSelectBody> {
                         minimumDate: DateTime(2020, 3, 1),
                         maximumDate: DateTime.now(),
                         onDateTimeChanged: (value) {
+                          print("선택된 날짜: $value");
+                          // TODO.1 : 상태갱신 및 경기목록 조회ㅏ
                           final dateStr =
                               '${value.year.toString().padLeft(4, '0')}-${value.month.toString().padLeft(2, '0')}-${value.day.toString().padLeft(2, '0')}';
-                          _fetchGames(dateStr);
+                          vm.updateSelectedDate(dateStr);
+                          vm.loadHasGameDay(dateStr.substring(0, 7));
                           Navigator.pop(context);
-                          print("선택된 날짜: $dateStr");
                         },
                       ),
                     );
@@ -88,32 +78,27 @@ class _VisitRecordSelectBodyState extends ConsumerState<VisitRecordSelectBody> {
             // 경기 선택 버튼
             MDropdownBtn(
               hintText: '경기',
-              items: gameList,
-              value: selectedGame,
-              onChanged: (value) {
-                setState(() {
-                  selectedGame = value;
-                });
+              items: labelToGameIdMap.keys.toList(), // 보이지 않는 gameId와 게임 정보 함께 들고옴.
+              onChanged: (label) {
+                if (label != null) {
+                  final gameIdStr = labelToGameIdMap[label];
+                  final selectedGameId = int.tryParse(gameIdStr ?? '');
+                  print('🟡 선택된 gameId: $selectedGameId');
+                  if (selectedGameId != null) {
+                    vm.updateSelectedGame(selectedGameId, label);
+                  }
+                }
               },
+              enabled: (state.gameList?.isNotEmpty ?? false),
             ),
             Spacer(),
             // 다음 버튼
             MElevatedBtn(
               text: '다음',
               onPressed: () {
-                if (selectedDate != null && selectedGame != null) {
-                  Navigator.pushNamed(
-                    context,
-                    "/visit-record/write",
-                    arguments: {
-                      "date": selectedDate,
-                      "game": selectedGame,
-                    },
-                  );
-                  // 넘기는 데이터 확인
-                  print("date : $selectedDate");
-                  print("game : $selectedGame");
-                }
+                final selectedGameId = state.selectedGameId;
+                Navigator.pushNamed(context, "/visit-record/write", arguments: selectedGameId);
+                print('🟡 넘어가는 값: $selectedGameId');
               },
             ),
           ],

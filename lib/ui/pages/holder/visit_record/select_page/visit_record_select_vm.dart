@@ -1,75 +1,135 @@
+import 'package:ballkkaye_frontend/_core/utils/m_util.dart';
 import 'package:ballkkaye_frontend/data/repository/visit_record_repository.dart';
 import 'package:ballkkaye_frontend/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final visitRecordSelectProvider = AutoDisposeNotifierProvider.family<VisitRecordSelectVM, VisitRecordSelectModel?, String>(
-  () => VisitRecordSelectVM(),
+// 두가지 데이터 상태를 각각 업데이트 하기 위한 상태관리 class
+class VisitRecordSelectState {
+  final String? selectedDate;
+  final String? selectedGame;
+  final int? selectedGameId;
+  final List<VisitRecordGame>? gameList;
+  final List<VisitRecordHasGameDay>? hasGameDayList;
+
+  VisitRecordSelectState({
+    this.selectedDate,
+    this.selectedGame,
+    this.selectedGameId,
+    this.gameList,
+    this.hasGameDayList,
+  });
+
+  VisitRecordSelectState copyWith({
+    String? selectedDate,
+    String? selectedGame,
+    int? selectedGameId,
+    List<VisitRecordGame>? gameList,
+    List<VisitRecordHasGameDay>? hasGameDayList,
+  }) {
+    return VisitRecordSelectState(
+      selectedDate: selectedDate ?? this.selectedDate,
+      selectedGame: selectedGame ?? this.selectedGame,
+      selectedGameId: selectedGameId ?? this.selectedGameId,
+      gameList: gameList ?? this.gameList,
+      hasGameDayList: hasGameDayList ?? this.hasGameDayList,
+    );
+  }
+}
+
+final visitRecordSelectProvider = AutoDisposeNotifierProvider<VisitRecordSelectVM, VisitRecordSelectState>(
+  VisitRecordSelectVM.new,
 );
 
-class VisitRecordSelectVM extends AutoDisposeFamilyNotifier<VisitRecordSelectModel?, String> {
+class VisitRecordSelectVM extends AutoDisposeNotifier<VisitRecordSelectState> {
   final mContext = navigatorKey.currentContext!;
 
   @override
-  VisitRecordSelectModel? build(String date) {
-    init(date);
-    return null;
+  VisitRecordSelectState build() => VisitRecordSelectState();
+
+  void updateSelectedDate(String date) {
+    state = state.copyWith(selectedDate: date);
+    loadGameList(date); // 날짜에 따른 경기 목록 비동기 호출
   }
 
-  Future<void> init(String date) async {
-    final body = await VisitRecordRepository().getSelectGame(date);
+  void updateSelectedGame(int gameId, String label) {
+    state = state.copyWith(
+      selectedGameId: gameId, // 🔥 중요
+      selectedGame: label,
+    );
+  }
+
+  Future<void> loadGameList(String date) async {
+    final body = await VisitRecordRepository().getGameList(date);
+    final games = body["body"]["games"];
+    final formattedDate = formatToDotDate(date);
+    final matchedList = games.where((g) => g["gameDate"].toString().startsWith(formattedDate)).toList();
 
     if (body["status"] != 200) {
       ScaffoldMessenger.of(mContext).showSnackBar(
-        SnackBar(content: Text("경기 가져오기 실패 : ${body["msg"]}")),
+        SnackBar(content: Text("경기 목록 조회 실패: ${body['errorMessage']}")),
       );
       return;
     }
 
-    final bodyData = body["body"] as Map<String, dynamic>;
-    state = VisitRecordSelectModel.fromMap(bodyData);
+    if (matchedList.isEmpty) {
+      print("❌ 해당 날짜에 경기가 없습니다.");
+      state = state.copyWith(gameList: []);
+      return;
+    }
+
+    final matched = matchedList.first;
+    final items = matched["items"];
+    final list = (items as List).map((e) => VisitRecordGame.fromMap(e)).toList();
+
+    state = state.copyWith(gameList: list);
   }
 
-  Future<VisitRecordSelectModel?> getModel(String date) async {
-    await init(date);
-    return state;
+  Future<void> loadHasGameDay(String yearMonth) async {
+    final body = await VisitRecordRepository().getHasGameDay(yearMonth);
+    if (body["status"] != 200) {
+      ScaffoldMessenger.of(mContext).showSnackBar(
+        SnackBar(content: Text("경기 유무 확인 실패: ${body['errorMessage']}")),
+      );
+      return;
+    }
+
+    final list = (body["body"] as List).map((e) => VisitRecordHasGameDay.fromMap(e)).toList();
+
+    state = state.copyWith(hasGameDayList: list);
+  }
+
+  // 날짜에 경기가 있는지 판별해주는 메서드
+  bool isGameAvailableOnSelectedDate() {
+    if (state.selectedDate == null || state.hasGameDayList == null) return false;
+
+    final parts = state.selectedDate!.split('-'); // [yyyy, MM, dd]
+    if (parts.length != 3) return false;
+
+    final year = parts[0];
+    final month = parts[1];
+    final day = parts[2];
+
+    final yearData = state.hasGameDayList!.firstWhere(
+      (y) => y.year == year,
+      orElse: () => VisitRecordHasGameDay(year: year, monthDTO: []),
+    );
+
+    final monthData = yearData.monthDTO.firstWhere(
+      (m) => m.month == month,
+      orElse: () => MonthDTO(month: month, day: []),
+    );
+
+    final dayData = monthData.day.firstWhere(
+      (d) => d.day == day,
+      orElse: () => DayDTO(day: day, isHaveGame: false),
+    );
+
+    return dayData.isHaveGame;
   }
 }
 
-class VisitRecordSelectModel {
-  final List<VisitRecord> records;
-
-  VisitRecordSelectModel(this.records);
-
-  factory VisitRecordSelectModel.fromMap(Map<String, dynamic> data) {
-    final games = data["games"] as List<dynamic>;
-
-    if (games.isEmpty) {
-      return VisitRecordSelectModel([]);
-    }
-
-    final items = games.first["items"] as List<dynamic>?;
-
-    if (items == null || items.isEmpty) {
-      return VisitRecordSelectModel([]);
-    }
-
-    final records = items.map((e) => VisitRecord.fromMap(e)).toList();
-
-    return VisitRecordSelectModel(records);
-  }
-
-  VisitRecordSelectModel copyWith({
-    List<VisitRecord>? records,
-  }) {
-    return VisitRecordSelectModel(records ?? this.records);
-  }
-
-  @override
-  String toString() => 'VisitRecordSelectModel(records: $records)';
-}
-
-class VisitRecord {
+class VisitRecordGame {
   final int gameId;
   final String homeTeamFullName;
   final String homeTeamShortName;
@@ -81,7 +141,7 @@ class VisitRecord {
   final String stadiumShortName;
   final String gameDate;
 
-  VisitRecord({
+  VisitRecordGame({
     required this.gameId,
     required this.homeTeamFullName,
     required this.homeTeamShortName,
@@ -94,8 +154,10 @@ class VisitRecord {
     required this.gameDate,
   });
 
-  factory VisitRecord.fromMap(Map<String, dynamic> map) {
-    return VisitRecord(
+  String get gameName => '$awayTeamFullName vs $homeTeamFullName ($stadiumShortName)';
+
+  factory VisitRecordGame.fromMap(Map<String, dynamic> map) {
+    return VisitRecordGame(
       gameId: map['gameId'],
       homeTeamFullName: map['homeTeamFullName'],
       homeTeamShortName: map['homeTeamShortName'],
@@ -110,5 +172,60 @@ class VisitRecord {
   }
 
   @override
-  String toString() => 'VisitRecord(gameId: $gameId)';
+  String toString() => 'VisitRecordGame(gameId: $gameId)';
+}
+
+class VisitRecordHasGameDay {
+  final String year;
+  final List<MonthDTO> monthDTO;
+
+  VisitRecordHasGameDay({
+    required this.year,
+    required this.monthDTO,
+  });
+
+  factory VisitRecordHasGameDay.fromMap(Map<String, dynamic> map) {
+    return VisitRecordHasGameDay(
+      year: map['year'],
+      monthDTO: List<MonthDTO>.from(
+        (map['monthDTO'] as List).map((e) => MonthDTO.fromMap(e)),
+      ),
+    );
+  }
+}
+
+class MonthDTO {
+  final String month;
+  final List<DayDTO> day;
+
+  MonthDTO({
+    required this.month,
+    required this.day,
+  });
+
+  factory MonthDTO.fromMap(Map<String, dynamic> map) {
+    return MonthDTO(
+      month: map['month'],
+      day: List<DayDTO>.from(
+        (map['day'] as List).map((e) => DayDTO.fromMap(e)),
+      ),
+    );
+  }
+}
+
+class DayDTO {
+  final String day;
+  final bool isHaveGame;
+
+  DayDTO({
+    required this.day,
+    required this.isHaveGame,
+  });
+
+  factory DayDTO.fromMap(Map<String, dynamic> map) {
+    return DayDTO(
+      day: map['day'],
+      isHaveGame: map['isHaveGame'],
+    );
+  }
 }

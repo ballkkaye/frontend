@@ -1,4 +1,5 @@
 class VisitRecordRepository {
+  // 직관기록 상세보기 조회
   Future<Map<String, dynamic>> getOne(int visitRecordId) async {
     // Response response = await dio.get("${/s/api/visitRecords/{id}/detail}");
     final responseBody = {
@@ -20,15 +21,16 @@ class VisitRecordRepository {
     return responseBody;
   }
 
-  Future<Map<String, dynamic>> getSelectGame(String date) async {
-    // Response response = await dio.get("${/s/api/games?date=date}");
+  // select 경기 리스트 조회
+  Future<Map<String, dynamic>> getGameList(String date) async {
+    // Response response = await dio.get("${/s/api/games}");
     final responseBody = {
-      "status": 200,
+      "status": 100,
       "msg": "성공",
       "body": {
         "games": [
           {
-            "gameDate": date,
+            "gameDate": "2025.07.10",
             "items": [
               {
                 "gameId": 425,
@@ -40,7 +42,7 @@ class VisitRecordRepository {
                 "awayTeamScore": 5,
                 "stadiumFullName": "창원 NC파크",
                 "stadiumShortName": "창원",
-                "gameDate": date,
+                "gameDate": "2025.07.02"
               },
               {
                 "gameId": 426,
@@ -52,7 +54,7 @@ class VisitRecordRepository {
                 "awayTeamScore": 5,
                 "stadiumFullName": "수원 KT위즈파크",
                 "stadiumShortName": "수원",
-                "gameDate": date,
+                "gameDate": "2025.07.02"
               },
               {
                 "gameId": 427,
@@ -64,13 +66,39 @@ class VisitRecordRepository {
                 "awayTeamScore": 0,
                 "stadiumFullName": "고척스카이돔",
                 "stadiumShortName": "고척",
-                "gameDate": date,
+                "gameDate": "2025.07.02"
               }
             ]
           }
         ],
-        "selectedDate": date,
+        "selectedDate": "2025-07-10"
       }
+    };
+    return responseBody;
+  }
+
+  // select 경기가 있는 날짜 조회
+  Future<Map<String, dynamic>> getHasGameDay(String date) async {
+    // Response response = await dio.get("${/s/api/games/dates}");
+    final responseBody = {
+      "status": 200,
+      "msg": "성공",
+      "body": [
+        {
+          "year": "2025",
+          "monthDTO": [
+            {
+              "month": "07",
+              "day": [
+                {"day": "02", "isHaveGame": true},
+                {"day": "03", "isHaveGame": true},
+                {"day": "04", "isHaveGame": true},
+                {"day": "05", "isHaveGame": true}
+              ]
+            }
+          ]
+        }
+      ]
     };
     return responseBody;
   }
