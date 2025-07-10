@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/_core/utils/m_socket.dart';
 import 'package:ballkkaye_frontend/data/model/chat_room.dart';
 import 'package:ballkkaye_frontend/data/repository/chat_room_repository.dart';
 import 'package:ballkkaye_frontend/main.dart';
@@ -5,12 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
-final chatRoomDetailProvider =
-    AutoDisposeNotifierProvider.family<ChatRoomDetailVM, ChatRoomDetailModel?, int>(() {
+final chatRoomDetailProvider = AutoDisposeNotifierProvider.family<
+    ChatRoomDetailVM, ChatRoomDetailModel?, int>(() {
   return ChatRoomDetailVM();
 });
 
-class ChatRoomDetailVM extends AutoDisposeFamilyNotifier<ChatRoomDetailModel?, int> {
+class ChatRoomDetailVM
+    extends AutoDisposeFamilyNotifier<ChatRoomDetailModel?, int> {
   final mContext = navigatorKey.currentContext!;
 
   @override
@@ -36,39 +38,69 @@ class ChatRoomDetailVM extends AutoDisposeFamilyNotifier<ChatRoomDetailModel?, i
     state = ChatRoomDetailModel.fromMap(data["body"]);
   }
 
+  /// 메시지 중복 여부 체크
+  bool _isDuplicate(ChatRoom newMsg) {
+    return state?.groupedChatList.any((item) {
+          if (item is ChatRoom) {
+            return item.chat.message == newMsg.chat.message &&
+                item.chat.user.id == newMsg.chat.user.id &&
+                item.chat.createdAt == newMsg.chat.createdAt;
+          }
+          return false;
+        }) ??
+        false;
+  }
+
+  /// 수신된 채팅 메시지 현재 채팅 목록 상태에 추가
+  void addMessage(ChatRoom newMsg) {
+    if (_isDuplicate(newMsg)) {
+      Logger().d("중복 메시지 감지됨. 추가하지 않음.");
+      return;
+    }
+
+    final newDate = newMsg.chat.createdAt.toLocal();
+    final newDateString =
+        "${newDate.year}-${newDate.month.toString().padLeft(2, '0')}-${newDate.day.toString().padLeft(2, '0')}";
+
+    final lastDate = state?.groupedChatList.reversed
+        .firstWhere((e) => e is ChatRoom, orElse: () => null)
+        ?.chat
+        .createdAt
+        ?.toLocal();
+    final lastDateString = lastDate != null
+        ? "${lastDate.year}-${lastDate.month.toString().padLeft(2, '0')}-${lastDate.day.toString().padLeft(2, '0')}"
+        : "";
+
+    List<dynamic> newList = [...state!.groupedChatList];
+
+    if (newDateString == lastDateString) {
+      newList.add(newMsg);
+    } else {
+      newList.add(newDateString);
+      newList.add(newMsg);
+    }
+
+    state = state!.copyWith(groupedChatList: newList);
+  }
+
+  // 채팅
   Future<void> chat(int chatRoomId, String message) async {
     try {
-      Map<String, dynamic> data = await ChatRoomRepository().chat(chatRoomId, message);
+      ChatRoom newChatRoom =
+          await MSocket(ref).sendMessage(chatRoomId, message);
 
-      // 단일 메시지 Map → ChatRoom
-      ChatRoom newChatRoom = ChatRoom.fromMap(data);
-
-      // 채팅 리스트 상태 갱신
-      DateTime lastDate =
-          state!.groupedChatList.reversed.firstWhere((e) => e is ChatRoom).chat.createdAt.toLocal();
-      DateTime newDate = newChatRoom.chat.createdAt.toLocal();
-
-      String lastDateString =
-          "${lastDate.year}-${lastDate.month.toString().padLeft(2, '0')}-${lastDate.day.toString().padLeft(2, '0')}";
-      String newDateString =
-          "${newDate.year}-${newDate.month.toString().padLeft(2, '0')}-${newDate.day.toString().padLeft(2, '0')}";
-
-      List<dynamic> newList = [...state!.groupedChatList];
-
-      if (lastDateString == newDateString) {
-        newList.add(newChatRoom);
-      } else {
-        newList.add(newDateString);
-        newList.add(newChatRoom);
-      }
-
-      state = state!.copyWith(groupedChatList: newList);
+      addMessage(newChatRoom);
     } catch (e) {
+      // 실패 알림
       ScaffoldMessenger.of(mContext).showSnackBar(
-        SnackBar(content: Text("채팅 쓰기 실패: ${e.toString()}")),
+        SnackBar(content: Text("채팅 전송 실패: ${e.toString()}")),
       );
     }
   }
+
+  // 채팅방 퇴장
+
+  // 채팅방 삭제
 }
 
 class ChatRoomDetailModel {
@@ -77,6 +109,10 @@ class ChatRoomDetailModel {
   ChatRoomDetailModel(this.groupedChatList);
 
   factory ChatRoomDetailModel.fromMap(List<dynamic> rawList) {
+    if (rawList.isEmpty || rawList.any((e) => e is! Map)) {
+      return ChatRoomDetailModel([]);
+    }
+
     // 메시지 날짜 기준으로 묶기
     Map<String, List<ChatRoom>> grouped = {};
 
@@ -92,7 +128,8 @@ class ChatRoomDetailModel {
     final sortedKeys = grouped.keys.toList()..sort();
 
     for (final key in sortedKeys) {
-      grouped[key]!.sort((a, b) => a.chat.createdAt.compareTo(b.chat.createdAt));
+      grouped[key]!
+          .sort((a, b) => a.chat.createdAt.compareTo(b.chat.createdAt));
     }
 
     List<dynamic> finalList = [];
