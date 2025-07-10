@@ -14,10 +14,10 @@ class MatchupVM extends AutoDisposeFamilyNotifier<MatchupModel?, MatchupParam> {
   final mContext = navigatorKey.currentContext!;
 
   @override
-  MatchupModel? build(MatchupParam chatRoomId) {
+  MatchupModel? build(MatchupParam param) {
     // 1. 상태 초기화
     //Future.microtask(() => init(param));
-    init(chatRoomId);
+    init(param);
 
     // 3. 상태 값 세팅
     return null;
