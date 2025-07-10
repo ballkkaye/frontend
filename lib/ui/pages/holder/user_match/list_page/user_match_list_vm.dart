@@ -3,6 +3,7 @@ import 'package:ballkkaye_frontend/data/enum/gender.dart';
 import 'package:ballkkaye_frontend/data/model/user_match.dart';
 import 'package:ballkkaye_frontend/data/repository/user_match_repository.dart';
 import 'package:ballkkaye_frontend/main.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/detail_page/user_match_detail_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/write_page/user_match_write_fm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -89,17 +90,16 @@ class UserMatchListVM extends AutoDisposeNotifier<UserMatchListModel?> {
       return;
     }
 
-    // 응답은 단일 UserMatch 형태
     final newMatch = UserMatch.fromMap(data["body"]);
 
-    // 기존 목록에서 새 글 추가
     List<UserMatch> nextMatches = [newMatch, ...?state?.userMatches];
 
-    // 상태 갱신
     state = state?.copyWith(userMatches: nextMatches) ??
         UserMatchListModel(null, null, null, null, [newMatch]);
 
-    Navigator.pop(mContext); // 글 작성 후 뒤로
+    Navigator.pop(mContext);
+    Navigator.push(
+        mContext, MaterialPageRoute(builder: (context) => UserMatchDetailPage(newMatch.matchId!)));
   }
 }
 
