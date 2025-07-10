@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/utils/m_socket.dart';
+import 'package:ballkkaye_frontend/data/gvm/session_gvm.dart';
 import 'package:ballkkaye_frontend/data/model/chat_room.dart';
 import 'package:ballkkaye_frontend/data/repository/chat_room_repository.dart';
 import 'package:ballkkaye_frontend/main.dart';
@@ -99,8 +100,63 @@ class ChatRoomDetailVM
   }
 
   // 채팅방 퇴장
+  Future<void> exit(int chatRoomId) async {
+    // userId 가져오기
+    SessionModel model = ref.read(sessionProvider);
+    final userId = model.user?.id;
+    if (userId == null) {
+      Logger().e("사용자 정보 없음: 퇴장 불가");
+      ScaffoldMessenger.of(mContext).showSnackBar(
+        SnackBar(content: Text("로그인 정보가 없어 채팅방을 나갈 수 없습니다.")),
+      );
+      return;
+    }
+
+    // 퇴장
+    Map<String, dynamic> data = await ChatRoomRepository().exit(userId);
+    if (data["status"] != 200) {
+      ScaffoldMessenger.of(mContext!).showSnackBar(
+        SnackBar(content: Text("채팅방 퇴장 실패 : ${data["msg"]}")),
+      );
+      return;
+    }
+
+    // 웹소켓 연결 해제
+    try {
+      MSocket(ref).disconnect(chatRoomId);
+    } catch (e) {
+      Logger().e("WebSocket 연결 해제 실패: $e");
+
+      ScaffoldMessenger.of(mContext).showSnackBar(
+        SnackBar(content: Text("채팅방 연결 해제 중 문제가 발생했어요. 잠시 후 다시 시도해 주세요.")),
+      );
+    }
+
+    Navigator.pop(mContext);
+  }
 
   // 채팅방 삭제
+  Future<void> deleteOne(int chatRoomId) async {
+    Map<String, dynamic> data =
+        await ChatRoomRepository().deleteOne(chatRoomId);
+    if (data["status"] != 200) {
+      ScaffoldMessenger.of(mContext!).showSnackBar(
+        SnackBar(content: Text("채팅방 삭제 실패 : ${data["msg"]}")),
+      );
+      return;
+    }
+    try {
+      MSocket(ref).disconnect(chatRoomId);
+    } catch (e) {
+      Logger().e("WebSocket 연결 해제 실패: $e");
+
+      ScaffoldMessenger.of(mContext).showSnackBar(
+        SnackBar(content: Text("채팅방 연결 해제 중 문제가 발생했어요. 잠시 후 다시 시도해 주세요.")),
+      );
+    }
+
+    Navigator.pop(mContext);
+  }
 }
 
 class ChatRoomDetailModel {

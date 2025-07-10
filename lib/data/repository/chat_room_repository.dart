@@ -185,26 +185,31 @@ class ChatRoomRepository {
     return responseBody;
   }
 
-  // 채팅
-  Future<Map<String, dynamic>> chat(int chatRoomId, String message) async {
-    // Response response = await dio.get("/pub/chat/send", queryParameters: {
-    //   "chatRoomId": chatRoomId,
-    //   "message": message,
-    //   "messageType": "TEXT"
-    // });
+  // 채팅방 퇴장
+  Future<Map<String, dynamic>> exit(int userId) async {
+    // Response response = await dio.delete("/s/api/chatrooms/user/$userId");
     // final responseBody = response.data;
     final responseBody = {
-      "messageId": 18,
-      "senderId": 2,
-      "senderName": "cos",
-      "message": "hi",
-      "messageType": "TALK",
-      "isSender": true,
-      "createdAt": "2025-07-10T02:50:57.882+00:00",
-      "chatRoomId": 1
+      "status": 200,
+      "msg": "성공",
+      "body": {"deleteStatus": "삭제됨"}
     };
 
-    Logger().d('ChatRoomRepository chat: ${responseBody}');
+    Logger().d('ChatRoomRepository getOne: ${responseBody}');
+    return responseBody;
+  }
+
+  // 채팅방 삭제
+  Future<Map<String, dynamic>> deleteOne(int chatRoomId) async {
+    // Response response = await dio.delete("/s/api/chatrooms/$chatRoomId");
+    // final responseBody = response.data;
+    final responseBody = {
+      "status": 200,
+      "msg": "성공",
+      "body": {"deleteStatus": "DELETED"}
+    };
+
+    Logger().d('ChatRoomRepository deleteOne: ${responseBody}');
     return responseBody;
   }
 }

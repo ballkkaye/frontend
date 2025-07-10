@@ -2,6 +2,7 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/_core/utils/m_socket.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/detail_page/chat_room_detail_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/list_page/chat_room_list_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/widgets/chat_room_leave_btn.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +17,11 @@ class ChatRoomDetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ChatRoomDetailVM vm = ref.read(chatRoomDetailProvider(chatRoomId).notifier);
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      appBar: _appbar(context, ref),
+      appBar: _appbar(context, ref, vm),
       body: ChatRoomDetailBody(chatRoomId),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 50),
@@ -32,7 +35,7 @@ class ChatRoomDetailPage extends ConsumerWidget {
     );
   }
 
-  AppBar _appbar(BuildContext context, WidgetRef ref) {
+  AppBar _appbar(BuildContext context, WidgetRef ref, ChatRoomDetailVM vm) {
     return AppBar(
       centerTitle: true,
       title: MText.h1('직관같이갑시다', color: MColor.kLabel.normal),
@@ -43,12 +46,12 @@ class ChatRoomDetailPage extends ConsumerWidget {
           icon: MIcon.nav.top.dotHorizontal,
           onConfirm: () async {
             MSocket(ref as Ref).disconnect(chatRoomId);
-            if (isOwner) {
-              await ChatRoomRepository().delete(chatRoomId);
+            if (true) {
+              // TODO : isOwner 이걸 어디서 가져오지? -> 동행글 상세에서 넘어올 수도 있고/ 채팅방 목록에서 넘어올 수도 있는데 (동행글 작성자 id == 세션 유저 id)?
+              vm.deleteOne(chatRoomId);
             } else {
-              await ChatRoomRepository().leave(chatRoomId);
+              vm.exit(chatRoomId);
             }
-            print("detail에서 채팅방 나감");
           },
         ),
       ],
