@@ -546,4 +546,87 @@ class GameCenterRepository {
     };
     return responseBody;
   }
+
+  // 승리예측 조회
+  Future<Map<String, dynamic>> getPrediction() async {
+    final responseBody = {
+      "status": 200,
+      "msg": "성공",
+      "body": [
+        {
+          "gameId": 423,
+          "homeTeamId": 1,
+          "homeTeamName": "두산 베어스",
+          "awayTeamId": 2,
+          "awayTeamName": "SSG 랜더스",
+          "homePitcherName": "콜어빈",
+          "awayPitcherName": "김건우",
+          "homePitcherProfileUrl": "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/55257.png",
+          "awayPitcherProfileUrl": "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/51867.png",
+          "homePredictionScore": 4.2,
+          "awayPredictionScore": 3.9,
+          "totalPredictionScore": 8.1,
+          "homeWinPercent": 52.0,
+          "awayWinPercent": 48.0
+        },
+        {
+          "gameId": 424,
+          "homeTeamName": "삼성 라이온즈",
+          "awayTeamName": "한화 이글스",
+          "homePitcherName": "가라비토",
+          "awayPitcherName": "문동주",
+          "homePitcherProfileUrl": "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/55460.png",
+          "awayPitcherProfileUrl": "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/52701.png",
+          "homePredictionScore": 3.7,
+          "awayPredictionScore": 3.8,
+          "totalPredictionScore": 7.5,
+          "homeWinPercent": 49.2,
+          "awayWinPercent": 50.8
+        },
+        {
+          "gameId": 425,
+          "homeTeamName": "NC 다이노스",
+          "awayTeamName": "롯데 자이언츠",
+          "homePitcherName": "최성영",
+          "awayPitcherName": "감보아",
+          "homePitcherProfileUrl": "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/66920.png",
+          "awayPitcherProfileUrl": "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/55532.png",
+          "homePredictionScore": 4.5,
+          "awayPredictionScore": 3.6,
+          "totalPredictionScore": 8.1,
+          "homeWinPercent": 55.6,
+          "awayWinPercent": 44.4
+        },
+        {
+          "gameId": 426,
+          "homeTeamName": "KT 위즈",
+          "awayTeamName": "LG 트윈스",
+          "homePitcherName": "소형준",
+          "awayPitcherName": "임찬규",
+          "homePitcherProfileUrl": "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/50030.png",
+          "awayPitcherProfileUrl": "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/61101.png",
+          "homePredictionScore": 3.8,
+          "awayPredictionScore": 3.8,
+          "totalPredictionScore": 7.6,
+          "homeWinPercent": 50.0,
+          "awayWinPercent": 50.0
+        },
+        {
+          "gameId": 427,
+          "homeTeamName": "키움 히어로즈",
+          "awayTeamName": "KIA 타이거즈",
+          "homePitcherName": "하영민",
+          "awayPitcherName": "김건국",
+          "homePitcherProfileUrl": "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/64350.png",
+          "awayPitcherProfileUrl": "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/76225.png",
+          "homePredictionScore": 3.5,
+          "awayPredictionScore": 3.9,
+          "totalPredictionScore": 7.4,
+          "homeWinPercent": 47.6,
+          "awayWinPercent": 52.4
+        }
+      ]
+    };
+    return responseBody;
+  }
 }

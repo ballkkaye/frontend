@@ -1,15 +1,23 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/prediction_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/widget/prediction_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PredictionBody extends StatelessWidget {
+class PredictionBody extends ConsumerWidget {
   const PredictionBody({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final model = ref.watch(PredictionProvider);
+
+    if (model == null) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
     return ListView(children: [
       Padding(
         padding: EdgeInsets.only(
@@ -26,12 +34,9 @@ class PredictionBody extends StatelessWidget {
             ),
             SizedBox(height: 12),
             Column(
-              children: [
-                // 카드
-                PredictionCard(),
-                PredictionCard(),
-                PredictionCard(),
-              ],
+              children: model.games.map((game) {
+                return PredictionCard(predictionGame: game); // game 넘기기
+              }).toList(),
             ),
           ],
         ),
