@@ -1,23 +1,42 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/data/enum/age.dart';
+import 'package:ballkkaye_frontend/data/enum/gender.dart';
 import 'package:ballkkaye_frontend/data/model/game.dart';
+import 'package:ballkkaye_frontend/data/model/team.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/write_page/user_match_write_fm.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_dropdown_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_tag.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_text_form_field.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_toggle_btn.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 
-class UserMatchWriteForm extends StatelessWidget {
+class UserMatchWriteForm extends ConsumerStatefulWidget {
   Game selectedGame;
 
   UserMatchWriteForm({super.key, required this.selectedGame});
 
   @override
+  ConsumerState<UserMatchWriteForm> createState() => _UserMatchWriteFormState();
+}
+
+class _UserMatchWriteFormState extends ConsumerState<UserMatchWriteForm> {
+  String selectedGenderLabel = "";
+  bool _isSameTeam = false;
+
+  @override
   Widget build(BuildContext context) {
-    List<String> genders = ['남성', '여성', '무관'];
-    List<String> teams = ['롯데 자이언츠', '한화 이글스']; // 해당 경기의 두 팀 중 하나 선택
+    UserMatchWriteFM fm = ref.read(userMatchWriteProvider.notifier);
+
+    List<Team> teamOptions = [
+      widget.selectedGame.homeTeam,
+      widget.selectedGame.awayTeam,
+    ];
+
+    Team? selectedTeam;
     return Form(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,7 +45,7 @@ class UserMatchWriteForm extends StatelessWidget {
           Center(
             child: MTag(
               label:
-                  '${selectedGame.gameDate} ${selectedGame.awayTeam.fullName} vs ${selectedGame.homeTeam.fullName} (${selectedGame.stadiumShotrName})',
+                  '${widget.selectedGame.gameDate} ${widget.selectedGame.awayTeam.fullName} vs ${widget.selectedGame.homeTeam.fullName} (${widget.selectedGame.stadiumShotrName})',
               fillColor: MColor.kFill.normal,
               textColor: MColor.kLabel.normal,
             ),
@@ -42,16 +61,22 @@ class UserMatchWriteForm extends StatelessWidget {
                 child: Transform.scale(
                   scale: 0.96,
                   child: Checkbox(
-                    value: true,
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap, // 여백 제거
+                    value: _isSameTeam,
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     visualDensity: VisualDensity.compact,
                     fillColor: WidgetStateProperty.resolveWith((states) {
                       if (states.contains(WidgetState.selected)) {
-                        return MColor.kPrimary.strong; // 체크된 상태일 때 박스 색
+                        return MColor.kPrimary.strong;
                       }
                     }),
                     onChanged: (value) {
-                      print(value);
+                      if (value != null) {
+                        setState(() {
+                          _isSameTeam = value;
+                        });
+                        fm.isSameTeam(value);
+                        Logger().d("같은 팀이면 좋겠어요 선택: $_isSameTeam");
+                      }
                     },
                   ),
                 ),
@@ -63,10 +88,20 @@ class UserMatchWriteForm extends StatelessWidget {
             ],
           ),
           SizedBox(height: 6),
-          MDropdownBtn(
+          MDropdownBtn<Team>(
             hintText: '응원팀',
-            items: teams,
-            onChanged: (value) {},
+            items: teamOptions,
+            itemLabel: (team) => team.fullName ?? '',
+            value: selectedTeam,
+            onChanged: (team) {
+              if (team != null && team.teamId != null) {
+                fm.teamId(team.teamId!);
+                setState(() {
+                  selectedTeam = team;
+                });
+                Logger().d("응원팀 선택: ${team.fullName}, ID: ${team.teamId}");
+              }
+            },
           ),
           SizedBox(height: 12),
 
@@ -77,7 +112,12 @@ class UserMatchWriteForm extends StatelessWidget {
             hintText: '연령',
             items: Age.values,
             itemLabel: (a) => a.label,
-            onChanged: (value) {},
+            onChanged: (value) {
+              if (value != null) {
+                fm.preferredAge(value.name);
+                Logger().d("연령 버튼 선택 : ${value.name}");
+              }
+            },
           ),
           SizedBox(height: 12),
 
@@ -85,12 +125,17 @@ class UserMatchWriteForm extends StatelessWidget {
           MText.h3_6('희망 성별', color: MColor.kLabel.normal),
           SizedBox(height: 6),
           MToggleBtn(
-            options: genders,
-            selectedValue: '여성', // TODO: 나중에는 없앤다 지금은 선택된게 보이도록 하기 위함
-            onSelected: (value) {
-              print(value);
+            options: Gender.values.map((g) => g.label).toList(),
+            selectedValue: selectedGenderLabel,
+            onSelected: (label) {
+              fm.preferredGender(Gender.fromLabel(label).name);
+              setState(() {
+                selectedGenderLabel = label;
+              });
+              Logger().d("성별 버튼 선택 : ${Gender.fromLabel(label).name}");
             },
           ),
+
           SizedBox(height: 12),
 
           // 동행글 제목
@@ -99,7 +144,8 @@ class UserMatchWriteForm extends StatelessWidget {
           MTextFormField(
             hintText: '제목',
             onChanged: (value) {
-              // fm.title(value);
+              fm.title(value);
+              Logger().d("제목 : ${value}");
             },
           ),
           SizedBox(height: 6),
@@ -109,7 +155,8 @@ class UserMatchWriteForm extends StatelessWidget {
             maxLines: 10,
             isDense: false,
             onChanged: (value) {
-              // fm.content(value);
+              fm.content(value);
+              Logger().d("내용 : ${value}");
             },
           ),
           SizedBox(height: 12),
@@ -121,7 +168,11 @@ class UserMatchWriteForm extends StatelessWidget {
             hintText: '인원 수',
             keyboardType: TextInputType.number,
             onChanged: (value) {
-              // fm.maxParticipants(value);
+              final parsed = int.tryParse(value);
+              if (parsed != null) {
+                fm.maxParticipants(parsed);
+                Logger().d("채팅방 인원 : ${parsed}");
+              }
             },
           ),
           SizedBox(height: 12),

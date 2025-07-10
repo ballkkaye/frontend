@@ -40,7 +40,7 @@ class UserMatch {
   });
 
   UserMatch.fromMap(Map<String, dynamic> data)
-      : matchId = data['matchId'],
+      : matchId = data['matchId'] ?? data['id'],
         isOwner = data['isOwner'],
         relativeTime = data['relativeTime'],
         likeCount = data['likeCount'],

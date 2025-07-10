@@ -1,3 +1,5 @@
+import 'package:ballkkaye_frontend/_core/utils/m_http.dart';
+import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 
 class UserMatchRepository {
@@ -1095,6 +1097,42 @@ class UserMatchRepository {
       },
     };
 
+    Logger().d(responseBody);
+    return responseBody;
+  }
+
+  Future<Map<String, dynamic>> write(Map<String, dynamic> data) async {
+    Response response = await dio.post("/s/api/matches", data: data);
+    // final responseBody = response.data;
+    final responseBody = {
+      "status": 200,
+      "msg": "성공",
+      "body": {
+        "chatRoom": {
+          "id": 4,
+          "gameId": 423,
+          "homeTeamName": "두산 베어스",
+          "awayTeamName": "SSG 랜더스",
+          "matchTitle": "두산 베어스 vs SSG 랜더스",
+          "preferredTeamId": 3,
+          "preferredTeamName": "키움 히어로즈",
+          "maxParticipants": 6,
+          "preferredGender": "여성",
+          "preferredAge": "20~30대",
+          "isSameTeam": true,
+          "createdAt": "2025-07-04 12:10"
+        },
+        "match": {
+          "id": 4,
+          "userNickname": "ssar",
+          "userTeamName": "LG 트윈스",
+          "chatRoomId": 4,
+          "title": "같이 직관 가실 분 구해요!",
+          "content": "잠실 경기 보러 갈 분 구합니다. 같은 팀 팬이면 더 좋아요!",
+          "createdAt": "2025-07-04 12:10"
+        }
+      }
+    };
     Logger().d(responseBody);
     return responseBody;
   }

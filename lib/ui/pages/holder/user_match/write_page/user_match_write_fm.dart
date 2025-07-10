@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final userMatchWriteProvider =
-    NotifierProvider<UserMatchWriteFM, UserMatchWriteModel>(() {
+final userMatchWriteProvider = NotifierProvider<UserMatchWriteFM, UserMatchWriteModel>(() {
   return UserMatchWriteFM();
 });
 
@@ -80,6 +79,19 @@ class UserMatchWriteModel {
     this.content,
     this.isSameTeam,
   );
+
+  Map<String, dynamic> toMap() {
+    return {
+      'gameId': gameId,
+      'teamId': teamId,
+      'maxParticipants': maxParticipants,
+      'preferredGender': preferredGender,
+      'preferredAge': preferredAge,
+      'title': title,
+      'content': content,
+      'isSameTeam': isSameTeam,
+    };
+  }
 
   UserMatchWriteModel copyWith({
     int? gameId,
