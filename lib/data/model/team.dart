@@ -4,7 +4,7 @@ class Team {
   final String? teamLogo;
   final int? teamRank;
 
-  // 경기 관련 속성
+  // Game 관련 속성
   final String? fullName;
   final String? shortName;
   final int? score;
@@ -19,7 +19,6 @@ class Team {
     this.score,
   });
 
-  /// 일반 API (teamId 기반) 용도
   Team.fromMap(Map<String, dynamic> data)
       : teamId = data['teamId'],
         teamName = data['teamName'],
@@ -29,12 +28,13 @@ class Team {
         shortName = null,
         score = null;
 
-  /// 경기(Game)용 팀 생성자 (fullName, shortName, score 기반)
+  // Game 용도 팀 생성자 (fullName, shortName, score 기반)
   Team.fromGameData({
+    required int teamId,
     required String fullName,
-    required String shortName,
+    String? shortName,
     required int score,
-  })  : teamId = null,
+  })  : teamId = teamId,
         teamName = shortName,
         teamLogo = null,
         teamRank = null,

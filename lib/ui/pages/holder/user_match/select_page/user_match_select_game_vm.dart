@@ -5,21 +5,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
-final userMatchGameProvider = AutoDisposeNotifierProvider.family<
-    UserMatchGameVM, UserMatchGameModel?, String>(() {
-  return UserMatchGameVM();
+final userMatchSelectGameProvider =
+    AutoDisposeNotifierProvider.family<UserMatchSelectGameVM, UserMatchSelectGameModel?, String>(
+        () {
+  return UserMatchSelectGameVM();
 });
 
-class UserMatchGameVM
-    extends AutoDisposeFamilyNotifier<UserMatchGameModel?, String> {
+class UserMatchSelectGameVM extends AutoDisposeFamilyNotifier<UserMatchSelectGameModel?, String> {
   final mContext = navigatorKey.currentContext!;
 
   @override
-  UserMatchGameModel? build(String date) {
+  UserMatchSelectGameModel? build(String date) {
     init(date);
 
     ref.onDispose(() {
-      Logger().d("UserMatchGameVM 파괴됨");
+      Logger().d("UserMatchSelectGameVM 파괴됨");
     });
 
     return null;
@@ -29,33 +29,33 @@ class UserMatchGameVM
     Map<String, dynamic> data = await GameRepository().getList(date);
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
-        SnackBar(content: Text("동행 상세보기 실패 : ${data["msg"]}")),
+        SnackBar(content: Text("동행글 작성 전 경기 선택 통신 실패 : ${data["msg"]}")),
       );
       return;
     }
 
-    state = UserMatchGameModel.fromMap(data["body"]);
+    state = UserMatchSelectGameModel.fromMap(data["body"]);
   }
 }
 
-class UserMatchGameModel {
+class UserMatchSelectGameModel {
   final List<Game> games;
   final String selectedDate;
 
-  UserMatchGameModel({
+  UserMatchSelectGameModel({
     required this.games,
     required this.selectedDate,
   });
 
-  UserMatchGameModel.fromMap(Map<String, dynamic> data)
+  UserMatchSelectGameModel.fromMap(Map<String, dynamic> data)
       : selectedDate = data['selectedDate'],
         games = data['games'][0]['items'].map((e) => Game.fromMap(e)).toList();
 
-  UserMatchGameModel copyWith({
+  UserMatchSelectGameModel copyWith({
     List<Game>? games,
     String? selectedDate,
   }) {
-    return UserMatchGameModel(
+    return UserMatchSelectGameModel(
       games: games ?? this.games,
       selectedDate: selectedDate ?? this.selectedDate,
     );
@@ -63,6 +63,6 @@ class UserMatchGameModel {
 
   @override
   String toString() {
-    return 'UserMatchGameModel{games: $games, selectedDate: $selectedDate}';
+    return 'UserMatchSelectGameModel{games: $games, selectedDate: $selectedDate}';
   }
 }
