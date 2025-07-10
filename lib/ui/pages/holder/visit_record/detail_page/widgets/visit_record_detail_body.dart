@@ -34,7 +34,7 @@ class VisitRecordDetailBody extends ConsumerWidget {
               children: [
                 VisitRecordDetailGame(visitRecord: model.visitRecord),
                 SizedBox(height: 19),
-                VisitRecordDetailImg(),
+                VisitRecordDetailImg(visitRecord: model.visitRecord),
                 SizedBox(height: 19),
                 VisitRecordDetailContent(visitRecord: model.visitRecord),
               ],

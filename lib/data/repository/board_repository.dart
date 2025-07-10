@@ -255,4 +255,14 @@ class BoardRepository {
     Logger().d(responseBody);
     return responseBody;
   }
+
+  Future<Map<String, dynamic>> deleteOne(int boardId) async {
+    final responseBody = {
+      "status": 200,
+      "msg": "성공",
+      "body": {"deleteStatus": "삭제됨"}
+    };
+    Logger().d(responseBody);
+    return responseBody;
+  }
 }
