@@ -5,7 +5,6 @@ import 'package:ballkkaye_frontend/ui/pages/auth/login_page/login_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/detail_page/board_detail_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/list_page/board_list_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/write_page/board_write_page.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/detail_page/chat_room_detail_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/list_page/chat_room_list_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/matchup_page/matchup_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/prediction_page.dart';
@@ -89,7 +88,7 @@ class MyApp extends StatelessWidget {
         "/user/update": (context) => const UserUpdatePage(),
         "/mypage": (context) => const MypagePage(),
         "/chat-room/list": (context) => const ChatRoomListPage(),
-        "/chat-room/detail": (context) => const ChatRoomDetailPage(),
+        // "/chat-room/detail": (context) => const ChatRoomDetailPage(),
       },
     );
   }

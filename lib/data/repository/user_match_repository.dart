@@ -1107,7 +1107,7 @@ class UserMatchRepository {
       "msg": "성공",
       "body": {
         "chatRoom": {
-          "id": 4,
+          "id": 1,
           "gameId": 423,
           "homeTeamName": "두산 베어스",
           "awayTeamName": "SSG 랜더스",

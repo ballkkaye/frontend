@@ -8,8 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ChatRoomDetailMessageList extends ConsumerWidget {
-  ChatRoomDetailMessageList({super.key});
-  int chatRoomId = 1;
+  int chatRoomId;
+
+  ChatRoomDetailMessageList(this.chatRoomId);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -61,8 +62,7 @@ class ChatRoomDetailMessageList extends ConsumerWidget {
                     ChatRoomDetailMessageProfile(), //userProfileImg: item.chat.user.profileUrl!
                     SizedBox(width: 10),
                   ],
-                  ChatRoomDetailMessageBubble(
-                      model.groupedChatList[index].chat),
+                  ChatRoomDetailMessageBubble(model.groupedChatList[index].chat),
                 ],
               ),
             );

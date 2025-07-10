@@ -4,9 +4,9 @@ import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/detail_page/widgets
 import 'package:flutter/material.dart';
 
 class ChatRoomDetailBody extends StatelessWidget {
-  ChatRoomDetailBody({
-    super.key,
-  });
+  int chatRoomId;
+
+  ChatRoomDetailBody(this.chatRoomId);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class ChatRoomDetailBody extends StatelessWidget {
         ChatRoomDetailHeader(),
         SizedBox(height: 15),
         Expanded(
-          child: ChatRoomDetailMessageList(),
+          child: ChatRoomDetailMessageList(chatRoomId),
         ),
         ChatRoomDetailInputBar(),
       ],

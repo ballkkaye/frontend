@@ -4,7 +4,7 @@ import 'package:ballkkaye_frontend/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final VisitRecordDetailProvider =
+final visitRecordDetailProvider =
     AutoDisposeNotifierProvider.family<VisitRecordDetailVM, VisitRecordDetailModel?, int>(() {
   return VisitRecordDetailVM();
 });
