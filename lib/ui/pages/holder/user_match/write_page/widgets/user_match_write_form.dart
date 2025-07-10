@@ -4,6 +4,7 @@ import 'package:ballkkaye_frontend/data/enum/age.dart';
 import 'package:ballkkaye_frontend/data/enum/gender.dart';
 import 'package:ballkkaye_frontend/data/model/game.dart';
 import 'package:ballkkaye_frontend/data/model/team.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/user_match_list_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/write_page/user_match_write_fm.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_dropdown_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
@@ -30,6 +31,8 @@ class _UserMatchWriteFormState extends ConsumerState<UserMatchWriteForm> {
   @override
   Widget build(BuildContext context) {
     UserMatchWriteFM fm = ref.read(userMatchWriteProvider.notifier);
+    UserMatchWriteModel writeModel = ref.watch(userMatchWriteProvider);
+    UserMatchListVM vm = ref.read(userMatchListProvider.notifier);
 
     List<Team> teamOptions = [
       widget.selectedGame.homeTeam,
@@ -181,8 +184,7 @@ class _UserMatchWriteFormState extends ConsumerState<UserMatchWriteForm> {
           MElevatedBtn(
             text: '완료',
             onPressed: () {
-              // vm.write(model.title,model.content,model.maxParticipants);
-              Navigator.pushNamed(context, "/user-match/detail");
+              vm.write(writeModel);
             },
           ),
         ],

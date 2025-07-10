@@ -90,7 +90,7 @@ class UserMatchListVM extends AutoDisposeNotifier<UserMatchListModel?> {
       return;
     }
 
-    final newMatch = UserMatch.fromMap(data["body"]);
+    final newMatch = UserMatch.fromMap(data["body"]["match"]);
 
     List<UserMatch> nextMatches = [newMatch, ...?state?.userMatches];
 
