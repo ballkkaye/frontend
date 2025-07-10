@@ -46,8 +46,8 @@ class UserMatch {
         likeCount = data['likeCount'],
         isLike = data['isLike'],
         game = Game(
-          homeTeam: Team(name: data['homeTeamName']),
-          awayTeam: Team(name: data['awayTeamName']),
+          homeTeam: Team(teamName: data['homeTeamName']),
+          awayTeam: Team(teamName: data['awayTeamName']),
           gameDate: data['gameDate'],
           stadiumName: data['stadiumName'],
         ),
