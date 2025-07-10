@@ -1,31 +1,13 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/data/model/game.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/today_game_page/widget/today_game_card_content.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/today_game_page/widget/today_game_ticket_btn.dart';
 import 'package:flutter/material.dart';
 
 class TodayGameCard extends StatelessWidget {
-  final String? leftPhotoUrl;
-  final String? rightPhotoUrl;
-  final String gameState;
-  final String stadium;
-  final TimeOfDay gameTime;
-  final String broadcastInfo;
-  final String leftPitcher;
-  final String rightPitcher;
-  final String ticketUrl;
+  final Game game;
 
-  const TodayGameCard({
-    super.key,
-    this.leftPhotoUrl,
-    this.rightPhotoUrl,
-    required this.gameState,
-    required this.stadium,
-    required this.gameTime,
-    required this.broadcastInfo,
-    required this.leftPitcher,
-    required this.rightPitcher,
-    required this.ticketUrl,
-  });
+  const TodayGameCard({super.key, required this.game});
 
   @override
   Widget build(BuildContext context) {
@@ -41,21 +23,27 @@ class TodayGameCard extends StatelessWidget {
           child: Column(
             children: [
               TodayGameCardContent(
-                rightPhotoUrl: rightPhotoUrl,
-                leftPhotoUrl: leftPhotoUrl,
-                gameState: gameState,
-                stadium: stadium,
-                gameTime: gameTime,
-                broadcastInfo: broadcastInfo,
-                leftPitcher: leftPitcher,
-                rightPitcher: leftPitcher,
+                rightPhotoUrl: game.homeTeam.teamLogo,
+                leftPhotoUrl: game.awayTeam.teamLogo,
+                gameState: game.gameStatus ?? '경기 예정',
+                stadium: game.stadiumName ?? '',
+                gameTime: _parseTime(game.gameTime),
+                broadcastInfo: game.broadcastChannel ?? '',
+                leftPitcher: game.homePitcherName ?? '',
+                rightPitcher: game.awayPitcherName ?? '',
               ),
-              TodayGameTicketBtn(ticketUrl: ticketUrl),
+              TodayGameTicketBtn(ticketUrl: game.ticketLink ?? ''),
             ],
           ),
         ),
         SizedBox(height: 10),
       ],
     );
+  }
+
+  TimeOfDay _parseTime(String? timeStr) {
+    if (timeStr == null || !timeStr.contains(':')) return const TimeOfDay(hour: 0, minute: 0);
+    final parts = timeStr.split(':');
+    return TimeOfDay(hour: int.parse(parts[0]), minute: int.parse(parts[1]));
   }
 }
