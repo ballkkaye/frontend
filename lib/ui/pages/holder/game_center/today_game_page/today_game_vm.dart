@@ -39,17 +39,18 @@ class TodayGameVM extends AutoDisposeNotifier<TodayGameModel?> {
     state = TodayGameModel.fromList(data["body"]);
   }
 
-  Future<void> getList() async {
-    Map<String, dynamic> data = await GameCenterRepository().getTodayGame();
-    if (data["status"] != 200) {
-      ScaffoldMessenger.of(mContext!).showSnackBar(
-        SnackBar(content: Text("오늘의 경기 로드 실패 : ${data["msg"]}")),
-      );
-      return;
-    }
-
-    state = TodayGameModel.fromList(data["body"]);
-  }
+// todo : 날짜전환시 화면수정
+// Future<void> getByDate() async {
+//   Map<String, dynamic> data = await GameCenterRepository().getTodayGame();
+//   if (data["status"] != 200) {
+//     ScaffoldMessenger.of(mContext!).showSnackBar(
+//       SnackBar(content: Text("오늘의 경기 로드 실패 : ${data["msg"]}")),
+//     );
+//     return;
+//   }
+//
+//   state = TodayGameModel.fromList(data["body"]);
+// }
 }
 
 /// 3. 창고 데이터 타입 (불변 아님)
@@ -63,7 +64,7 @@ class TodayGameModel {
       list.map((e) => Game.fromMap(e as Map<String, dynamic>)).toList(),
     );
   }
-  
+
   @override
   String toString() {
     return 'TodayGameModel{games: $games}';
