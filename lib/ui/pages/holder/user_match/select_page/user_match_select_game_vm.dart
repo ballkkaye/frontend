@@ -6,8 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
 final userMatchSelectGameProvider =
-    AutoDisposeNotifierProvider.family<UserMatchSelectGameVM, UserMatchSelectGameModel?, String>(
-        () {
+    AutoDisposeNotifierProvider.family<UserMatchSelectGameVM, UserMatchSelectGameModel?, String>(() {
   return UserMatchSelectGameVM();
 });
 
@@ -49,10 +48,8 @@ class UserMatchSelectGameModel {
 
   UserMatchSelectGameModel.fromMap(Map<String, dynamic> data)
       : selectedDate = data['selectedDate'],
-        games = (data['games'][0]['items'] as List)
-            .cast<Map<String, dynamic>>()
-            .map((e) => Game.fromGameData(e))
-            .toList();
+        games =
+            (data['games'][0]['items'] as List).cast<Map<String, dynamic>>().map((e) => Game.fromGameData(e)).toList();
 
   UserMatchSelectGameModel copyWith({
     List<Game>? games,
@@ -68,7 +65,7 @@ class UserMatchSelectGameModel {
     return games.map((g) {
       return {
         'gameId': g.id,
-        'game': '${g.awayTeam.fullName} vs ${g.homeTeam.fullName} (${g.stadiumShotrName})',
+        'game': '${g.awayTeam.fullName} vs ${g.homeTeam.fullName} (${g.stadiumShortName})',
       };
     }).toList();
   }

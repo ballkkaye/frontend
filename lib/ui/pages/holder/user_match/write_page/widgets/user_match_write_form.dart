@@ -48,7 +48,7 @@ class _UserMatchWriteFormState extends ConsumerState<UserMatchWriteForm> {
           Center(
             child: MTag(
               label:
-                  '${widget.selectedGame.gameDate} ${widget.selectedGame.awayTeam.fullName} vs ${widget.selectedGame.homeTeam.fullName} (${widget.selectedGame.stadiumShotrName})',
+                  '${widget.selectedGame.gameDate} ${widget.selectedGame.awayTeam.fullName} vs ${widget.selectedGame.homeTeam.fullName} (${widget.selectedGame.stadiumShortName})',
               fillColor: MColor.kFill.normal,
               textColor: MColor.kLabel.normal,
             ),
