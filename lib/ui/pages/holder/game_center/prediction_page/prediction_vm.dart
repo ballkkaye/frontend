@@ -38,18 +38,6 @@ class PredictionVM extends AutoDisposeNotifier<PredictionModel?> {
     }
     state = PredictionModel.fromList(data["body"]);
   }
-
-  Future<void> getList() async {
-    PredictionModel prevModel = state!;
-    Map<String, dynamic> data = await GameCenterRepository().getPrediction();
-    if (data["status"] != 200) {
-      ScaffoldMessenger.of(mContext!).showSnackBar(
-        SnackBar(content: Text("오늘의 경기 로드 실패 : ${data["msg"]}")),
-      );
-      return;
-    }
-    state = PredictionModel.fromList(data["body"]);
-  }
 }
 
 class PredictionGame {
