@@ -629,4 +629,79 @@ class GameCenterRepository {
     };
     return responseBody;
   }
+
+  // 나의승부예측 진입
+  Future<Map<String, dynamic>> getUserPrediction() async {
+    final responseBody = {
+      "status": 200,
+      "msg": "성공",
+      "body": [
+        {
+          "gameId": 423,
+          "gameTime": "19:00",
+          "homeTeam": {
+            "teamId": 2,
+            "teamName": "두산 베어스",
+            "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/0/09/Doosan_Bears.png"
+          },
+          "awayTeam": {
+            "teamId": 4,
+            "teamName": "SSG 랜더스",
+            "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/0/02/SSG_Landers.png"
+          },
+          "homeVoteRate": 0,
+          "awayVoteRate": 0
+        },
+        {
+          "gameId": 425,
+          "gameTime": "20:00",
+          "homeTeam": {
+            "teamId": 9,
+            "teamName": "NC 다이노스",
+            "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/b/bd/NC_Dinos.png"
+          },
+          "awayTeam": {
+            "teamId": 7,
+            "teamName": "롯데 자이언츠",
+            "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/9/91/Lotte_Giants.png"
+          },
+          "homeVoteRate": 0,
+          "awayVoteRate": 0
+        },
+        {
+          "gameId": 426,
+          "gameTime": "18:00",
+          "homeTeam": {
+            "teamId": 10,
+            "teamName": "KT 위즈",
+            "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/b/b3/KT_Wiz.png"
+          },
+          "awayTeam": {
+            "teamId": 1,
+            "teamName": "LG 트윈스",
+            "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/4/4f/LG_Twins.png"
+          },
+          "homeVoteRate": 0,
+          "awayVoteRate": 0
+        },
+        {
+          "gameId": 427,
+          "gameTime": "19:30",
+          "homeTeam": {
+            "teamId": 3,
+            "teamName": "키움 히어로즈",
+            "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/5/52/Kiwoom_Heroes.png"
+          },
+          "awayTeam": {
+            "teamId": 5,
+            "teamName": "KIA 타이거즈",
+            "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/6/6e/KIA_Tigers.png"
+          },
+          "homeVoteRate": 0,
+          "awayVoteRate": 0
+        }
+      ]
+    };
+    return responseBody;
+  }
 }
