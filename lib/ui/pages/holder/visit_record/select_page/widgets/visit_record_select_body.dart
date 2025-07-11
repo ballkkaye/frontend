@@ -1,6 +1,7 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/_core/utils/m_util.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/select_page/visit_record_select_vm.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_date_picker.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_dropdown_btn.dart';
@@ -22,7 +23,6 @@ class VisitRecordSelectBody extends ConsumerWidget {
     };
 
     print("게임 리스트: ${state.gameList}");
-
     return Padding(
       padding: EdgeInsetsGeometry.symmetric(vertical: 22, horizontal: 16),
       child: Form(
@@ -52,10 +52,8 @@ class VisitRecordSelectBody extends ConsumerWidget {
                         onDateTimeChanged: (value) {
                           print("선택된 날짜: $value");
                           // TODO.1 : 상태갱신 및 경기목록 조회ㅏ
-                          final dateStr =
-                              '${value.year.toString().padLeft(4, '0')}-${value.month.toString().padLeft(2, '0')}-${value.day.toString().padLeft(2, '0')}';
-                          vm.updateSelectedDate(dateStr);
-                          vm.loadHasGameDay(dateStr.substring(0, 7));
+                          vm.updateSelectedDate(formatDateToYMD(value));
+                          vm.loadHasGameDay(formatDateToYMD(value));
                           Navigator.pop(context);
                         },
                       ),

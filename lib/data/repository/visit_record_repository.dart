@@ -100,7 +100,7 @@ class VisitRecordRepository {
       "body": {
         "games": [
           {
-            "gameDate": "2025.07.10",
+            "gameDate": "2025.07.11",
             "items": [
               {
                 "gameId": 425,
@@ -112,7 +112,7 @@ class VisitRecordRepository {
                 "awayTeamScore": 5,
                 "stadiumFullName": "창원 NC파크",
                 "stadiumShortName": "창원",
-                "gameDate": "2025.07.02"
+                "gameDate": "2025.07.11"
               },
               {
                 "gameId": 426,
@@ -124,7 +124,7 @@ class VisitRecordRepository {
                 "awayTeamScore": 5,
                 "stadiumFullName": "수원 KT위즈파크",
                 "stadiumShortName": "수원",
-                "gameDate": "2025.07.02"
+                "gameDate": "2025.07.11"
               },
               {
                 "gameId": 427,
@@ -136,12 +136,12 @@ class VisitRecordRepository {
                 "awayTeamScore": 0,
                 "stadiumFullName": "고척스카이돔",
                 "stadiumShortName": "고척",
-                "gameDate": "2025.07.02"
+                "gameDate": "2025.07.11"
               }
             ]
           }
         ],
-        "selectedDate": "2025-07-10"
+        "selectedDate": "2025-07-11"
       }
     };
     return responseBody;
