@@ -11,9 +11,9 @@ class TodayGameBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final todayGameState = ref.watch(todayGameProvider);
+    final todayGameModel = ref.watch(todayGameProvider);
 
-    if (todayGameState == null) {
+    if (todayGameModel == null) {
       return const Center(child: CircularProgressIndicator());
     }
     return ListView(
@@ -24,7 +24,7 @@ class TodayGameBody extends ConsumerWidget {
           child: TodayGameCalender(),
         ),
         SizedBox(height: 10),
-        ...todayGameState.games.map((game) => TodayGameCard(game: game)).toList(),
+        ...todayGameModel.games.map((game) => TodayGameCard(game: game)).toList(),
       ],
     );
   }
