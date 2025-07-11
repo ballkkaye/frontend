@@ -30,7 +30,7 @@ class UserPredictionBody extends ConsumerWidget {
               SizedBox(height: 12),
               MElevatedBtn(
                 text: '예측하기',
-                isEnabled: false,
+                isEnabled: true,
                 onPressed: () {}, //isEnabled = false
               ),
             ],
