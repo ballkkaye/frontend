@@ -51,7 +51,7 @@ class ChatRoomListItem extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => ChatRoomDetailPage()),
+              MaterialPageRoute(builder: (_) => ChatRoomDetailPage(1)), // TODO : chatRoomId 전달
             );
           },
         ),

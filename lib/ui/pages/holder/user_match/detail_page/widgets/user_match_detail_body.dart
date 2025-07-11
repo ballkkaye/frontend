@@ -15,7 +15,7 @@ class UserMatchDetailBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    UserMatchDetailModel? model = ref.watch(UserMatchDetailProvider(userMatchId));
+    UserMatchDetailModel? model = ref.watch(userMatchDetailProvider(userMatchId));
 
     if (model == null) {
       return Center(child: CircularProgressIndicator());

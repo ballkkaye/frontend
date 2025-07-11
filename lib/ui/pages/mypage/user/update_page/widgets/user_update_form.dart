@@ -18,7 +18,8 @@ class UserUpdateForm extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    UserUpdateTeamModel? userUpdateTeamModel = ref.watch(userUpdateTeamProvider);
+    UserUpdateTeamModel? userUpdateTeamModel =
+        ref.watch(userUpdateTeamProvider);
     UserUpdateFM fm = ref.read(userUpdateProvider.notifier);
     UserUpdateModel userUpdateModel = ref.watch(userUpdateProvider);
     SessionGVM gvm = ref.watch(sessionProvider.notifier);
@@ -32,7 +33,8 @@ class UserUpdateForm extends ConsumerWidget {
           children: [
             Card(
               child: Padding(
-                padding: EdgeInsetsGeometry.directional(start: 14, end: 14, top: 30, bottom: 14),
+                padding: EdgeInsetsGeometry.directional(
+                    start: 14, end: 14, top: 30, bottom: 14),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -60,9 +62,9 @@ class UserUpdateForm extends ConsumerWidget {
                       items: userUpdateTeamModel.teams,
                       itemLabel: (team) => team.label,
                       onChanged: (team) {
-                        if (team != null && team.id != null) {
-                          fm.teamId(team.id!);
-                          Logger().d("유저 수정 - 선택된 teamId: ${team.id}");
+                        if (team != null && team.teamId != null) {
+                          fm.teamId(team.teamId!);
+                          Logger().d("유저 수정 - 선택된 teamId: ${team.teamId}");
                         }
                       },
                     ),
