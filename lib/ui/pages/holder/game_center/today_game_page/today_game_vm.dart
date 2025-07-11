@@ -38,7 +38,7 @@ class TodayGameVM extends AutoDisposeNotifier<TodayGameModel?> {
     }
     state = TodayGameModel.fromList(data["body"]);
   }
-  
+
   Future<void> getList() async {
     TodayGameModel prevModel = state!;
     Map<String, dynamic> data = await GameCenterRepository().getTodayGame();
