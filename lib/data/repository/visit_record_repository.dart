@@ -6,7 +6,7 @@ class VisitRecordRepository {
       "status": 200,
       "msg": "성공",
       "body": {
-        "imageString": [],
+        "imageString": "https://example.com/visit-photo.jpg",
         "id": 1,
         "homeTeamName": "두산",
         "awayTeamName": "SSG",
@@ -52,7 +52,8 @@ class VisitRecordRepository {
   }
 
   // 선택된 달 직관기록 리스트
-  Future<Map<String, dynamic>> getMonthGameList({required int year, required int month}) async {
+  Future<Map<String, dynamic>> getMonthGameList(
+      {required int year, required int month}) async {
     // Response response = await dio.get("/s/api/visitRecords",
     // queryParameters: {"year": year, "month": month},);
     final responseBody = {
@@ -95,12 +96,12 @@ class VisitRecordRepository {
   Future<Map<String, dynamic>> getGameList(String date) async {
     // Response response = await dio.get("${/s/api/games}");
     final responseBody = {
-      "status": 100,
+      "status": 200,
       "msg": "성공",
       "body": {
         "games": [
           {
-            "gameDate": "2025.07.11",
+            "gameDate": "2025.07.12",
             "items": [
               {
                 "gameId": 425,
@@ -112,7 +113,7 @@ class VisitRecordRepository {
                 "awayTeamScore": 5,
                 "stadiumFullName": "창원 NC파크",
                 "stadiumShortName": "창원",
-                "gameDate": "2025.07.11"
+                "gameDate": "2025.07.12"
               },
               {
                 "gameId": 426,
@@ -124,7 +125,7 @@ class VisitRecordRepository {
                 "awayTeamScore": 5,
                 "stadiumFullName": "수원 KT위즈파크",
                 "stadiumShortName": "수원",
-                "gameDate": "2025.07.11"
+                "gameDate": "2025.07.12"
               },
               {
                 "gameId": 427,
@@ -136,12 +137,12 @@ class VisitRecordRepository {
                 "awayTeamScore": 0,
                 "stadiumFullName": "고척스카이돔",
                 "stadiumShortName": "고척",
-                "gameDate": "2025.07.11"
+                "gameDate": "2025.07.12"
               }
             ]
           }
         ],
-        "selectedDate": "2025-07-11"
+        "selectedDate": "2025-07-12"
       }
     };
     return responseBody;

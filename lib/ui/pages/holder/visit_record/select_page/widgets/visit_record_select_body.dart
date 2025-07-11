@@ -19,8 +19,10 @@ class VisitRecordSelectBody extends ConsumerWidget {
     final state = ref.watch(visitRecordSelectProvider);
     final vm = ref.read(visitRecordSelectProvider.notifier);
 
-    final labelToGameIdMap = {
-      for (var e in state.gameList ?? []) '${e.awayTeamFullName} vs ${e.homeTeamFullName} (${e.stadiumShortName})': e.gameId.toString(),
+    final labelToGameMap = {
+      for (var e in state.gameList ?? [])
+        '${e.awayTeamFullName} vs ${e.homeTeamFullName} (${e.stadiumShortName})':
+            e,
     };
 
     print("게임 리스트: ${state.gameList}");
@@ -69,14 +71,14 @@ class VisitRecordSelectBody extends ConsumerWidget {
             // 경기 선택 버튼
             MDropdownBtn(
               hintText: '경기',
-              items: labelToGameMap.keys.toList(), // 보이지 않는 gameId와 게임 정보 함께 들고옴.
+              items:
+                  labelToGameMap.keys.toList(), // 보이지 않는 gameId와 게임 정보 함께 들고옴.
               onChanged: (label) {
                 if (label != null) {
-                  final gameIdStr = labelToGameMap[label];
-                  final selectedGame = VisitRecord;
-                  print('🟡 선택된 gameId: $selectedGame');
-                  if (selectedGame != null) {
-                    vm.updateSelectedGame(selectedGame, label);
+                  final selectedInfo = labelToGameMap[label];
+                  print('🟡 선택된 gameId: $selectedInfo');
+                  if (selectedInfo != null) {
+                    vm.updateSelectedGame(selectedInfo, label);
                   }
                 }
               },
@@ -87,14 +89,15 @@ class VisitRecordSelectBody extends ConsumerWidget {
             MElevatedBtn(
               text: '다음',
               onPressed: () {
-                final selectedGame = VisitRecord;
+                final selectedGame = state.selectedGameInfo;
                 if (selectedGame == null) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text('경기를 선택해주세요')),
                   );
                   return;
                 }
-                Navigator.pushNamed(context, "/visit-record/write", arguments: selectedGame);
+                Navigator.pushNamed(context, "/visit-record/write",
+                    arguments: selectedGame);
                 print('🟡 넘어가는 값: $selectedGame');
               },
             )

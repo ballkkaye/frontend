@@ -17,8 +17,10 @@ class VisitRecordListGameCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(context, "/visit-record/detail", arguments: record.gameId);
-          print("게임아이디 : ${record.gameId}");
+          print("레코드가 무엇이냐 : ${record}");
+          Navigator.pushNamed(context, "/visit-record/detail",
+              arguments: record.id);
+          print("게임아이디 : ${record.id}");
         },
         child: Container(
           decoration: BoxDecoration(
@@ -31,24 +33,30 @@ class VisitRecordListGameCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                MText.normal1_7("${record.awayScore}", color: MColor.kLabel.disable),
+                MText.normal1_7("${record.awayScore}",
+                    color: MColor.kLabel.disable),
                 Column(
                   children: [
                     Row(
                       children: [
-                        MText.h1(record.awayTeamName, color: MColor.kLabel.normal),
+                        MText.h1(record.awayTeamName,
+                            color: MColor.kLabel.normal),
                         SizedBox(width: 16),
                         MText.normal7_6("vs", color: MColor.kLabel.alternative),
                         SizedBox(width: 16),
-                        MText.h1(record.homeTeamName, color: MColor.kLabel.normal),
+                        MText.h1(record.homeTeamName,
+                            color: MColor.kLabel.normal),
                       ],
                     ),
                     SizedBox(height: 8),
-                    MText.normal8_5(record.gameDate, color: MColor.kLabel.alternative),
-                    MText.normal8_5(record.stadiumName, color: MColor.kLabel.alternative),
+                    MText.normal8_5(record.gameDate,
+                        color: MColor.kLabel.alternative),
+                    MText.normal8_5(record.stadiumName,
+                        color: MColor.kLabel.alternative),
                   ],
                 ),
-                MText.normal1_7("${record.homeScore}", color: MColor.kPrimary.strong),
+                MText.normal1_7("${record.homeScore}",
+                    color: MColor.kPrimary.strong),
               ],
             ),
           ),

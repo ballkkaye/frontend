@@ -4,40 +4,30 @@ import 'package:ballkkaye_frontend/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final visitRecordDetailProvider = AutoDisposeNotifierProvider.family<VisitRecordDetailVM, VisitRecordDetailModel?, int>(() {
+final visitRecordDetailProvider =
+    AutoDisposeNotifierProvider.family<VisitRecordDetailVM, VisitRecord?, int>(
+        () {
   return VisitRecordDetailVM();
 });
 
-class VisitRecordDetailVM extends AutoDisposeFamilyNotifier<VisitRecordDetailModel?, int> {
+class VisitRecordDetailVM extends AutoDisposeFamilyNotifier<VisitRecord?, int> {
   final mContext = navigatorKey.currentContext!;
 
   @override
-  VisitRecordDetailModel? build(int visitRecordId) {
-    init(visitRecordId);
+  VisitRecord? build(int id) {
+    init(id);
 
     return null;
   }
 
-  Future<void> init(int visitRecordId) async {
-    Map<String, dynamic> body = await VisitRecordRepository().getOne(visitRecordId);
+  Future<void> init(int id) async {
+    Map<String, dynamic> body = await VisitRecordRepository().getOne(id);
     if (body["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
         SnackBar(content: Text("게시글 상세보기 실패 : ${body["msg"]}")),
       );
       return;
     }
-    state = VisitRecordDetailModel.fromMap(body["body"]);
-  }
-}
-
-class VisitRecordDetailModel {
-  VisitRecord visitRecord;
-
-  VisitRecordDetailModel(this.visitRecord);
-
-  VisitRecordDetailModel.fromMap(Map<String, dynamic> data) : visitRecord = VisitRecord.fromMap(data);
-
-  VisitRecordDetailModel copyWith(VisitRecord? visitRecord) {
-    return VisitRecordDetailModel(visitRecord ?? this.visitRecord);
+    state = VisitRecord.fromMap(body["body"]);
   }
 }
