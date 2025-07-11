@@ -40,7 +40,6 @@ class TodayGameVM extends AutoDisposeNotifier<TodayGameModel?> {
   }
 
   Future<void> getList() async {
-    TodayGameModel prevModel = state!;
     Map<String, dynamic> data = await GameCenterRepository().getTodayGame();
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
