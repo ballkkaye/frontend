@@ -40,7 +40,6 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
   }
 
   Future<void> getList() async {
-    UserPredictionModel prevModel = state!;
     Map<String, dynamic> data = await GameCenterRepository().getUserPrediction();
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
@@ -53,28 +52,46 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
   }
 }
 
+class UserPredictionGame {
+  final Game game;
+  final int? userChoiceTeamId;
+  final String predictionStatus;
+  final double homeVoteRate;
+  final double awayVoteRate;
+
+  UserPredictionGame({
+    required this.game,
+    required this.userChoiceTeamId,
+    required this.predictionStatus,
+    required this.homeVoteRate,
+    required this.awayVoteRate,
+  });
+
+  factory UserPredictionGame.fromMap(Map<String, dynamic> map) {
+    return UserPredictionGame(
+      game: Game.fromMap(map),
+      userChoiceTeamId: map['userChoiceTeamId'],
+      predictionStatus: map['predictionStatus'] ?? 'WAITING',
+      homeVoteRate: (map['homeVoteRate'] as num).toDouble(),
+      awayVoteRate: (map['awayVoteRate'] as num).toDouble(),
+    );
+  }
+}
+
 /// 3. 창고 데이터 타입 (불변 아님)
 class UserPredictionModel {
-  List<Game> games;
+  List<UserPredictionGame> games;
 
   UserPredictionModel(this.games);
 
   factory UserPredictionModel.fromList(List<dynamic> list) {
     return UserPredictionModel(
-      list.map((e) => Game.fromMap(e as Map<String, dynamic>)).toList(),
-    );
-  }
-
-  UserPredictionModel copyWith({
-    List<Game>? games,
-  }) {
-    return UserPredictionModel(
-      games ?? this.games,
+      list.map((e) => UserPredictionGame.fromMap(e as Map<String, dynamic>)).toList(),
     );
   }
 
   @override
   String toString() {
-    return 'TodayGameModel{games: $games}';
+    return 'UserPredictionModel{games: $games}';
   }
 }

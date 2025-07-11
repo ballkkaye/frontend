@@ -649,8 +649,8 @@ class GameCenterRepository {
             "teamName": "SSG 랜더스",
             "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/0/02/SSG_Landers.png"
           },
-          "homeVoteRate": 0,
-          "awayVoteRate": 0
+          "homeVoteRate": 50,
+          "awayVoteRate": 50
         },
         {
           "gameId": 425,
@@ -665,8 +665,8 @@ class GameCenterRepository {
             "teamName": "롯데 자이언츠",
             "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/9/91/Lotte_Giants.png"
           },
-          "homeVoteRate": 0,
-          "awayVoteRate": 0
+          "homeVoteRate": 50,
+          "awayVoteRate": 50
         },
         {
           "gameId": 426,
@@ -681,8 +681,8 @@ class GameCenterRepository {
             "teamName": "LG 트윈스",
             "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/4/4f/LG_Twins.png"
           },
-          "homeVoteRate": 0,
-          "awayVoteRate": 0
+          "homeVoteRate": 50,
+          "awayVoteRate": 50
         },
         {
           "gameId": 427,
@@ -697,8 +697,8 @@ class GameCenterRepository {
             "teamName": "KIA 타이거즈",
             "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/6/6e/KIA_Tigers.png"
           },
-          "homeVoteRate": 0,
-          "awayVoteRate": 0
+          "homeVoteRate": 50,
+          "awayVoteRate": 50
         }
       ]
     };
