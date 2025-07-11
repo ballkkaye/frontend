@@ -43,7 +43,7 @@ class UserMatchDetailProfile extends StatelessWidget {
           ],
         ),
         Spacer(),
-        MText.normal7_4(userMatch.relativeTime, color: MColor.kLabel.normal),
+        MText.normal7_4(userMatch.relativeTime!, color: MColor.kLabel.normal),
       ],
     );
   }

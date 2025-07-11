@@ -1,7 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart' show MColor;
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/user_match/write_page/user_match_write_page.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_more_option_btn.dart';
 import 'package:flutter/material.dart';
 
@@ -17,15 +16,15 @@ class UserMatchDetailPage extends StatelessWidget {
     return Scaffold(
       appBar: _appbar(context),
       body: UserMatchDetailBody(userMatchId),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 210),
-        child: FloatingActionButton(onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => UserMatchWritePage()),
-          );
-        }),
-      ),
+      // floatingActionButton: Padding(
+      //   padding: const EdgeInsets.only(bottom: 210),
+      //   child: FloatingActionButton(onPressed: () {
+      //     Navigator.push(
+      //       context,
+      //       MaterialPageRoute(builder: (_) => UserMatchWritePage()),
+      //     );
+      //   }),
+      // ),
     );
   }
 

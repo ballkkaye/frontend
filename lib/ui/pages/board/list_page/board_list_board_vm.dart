@@ -7,8 +7,7 @@ import 'package:logger/logger.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 /// 1. 창고 관리자
-final boardListBoardProvider =
-    AutoDisposeNotifierProvider<BoardListBoardVM, BoardListBoardModel?>(() {
+final boardListBoardProvider = AutoDisposeNotifierProvider<BoardListBoardVM, BoardListBoardModel?>(() {
   return BoardListBoardVM();
 });
 
@@ -52,6 +51,14 @@ class BoardListBoardVM extends AutoDisposeNotifier<BoardListBoardModel?> {
     state = state!.copyWith(boards: nextBoards);
   }
 
+  void notifyDeleteOne(int boardId) {
+    BoardListBoardModel model = state!;
+
+    model.boards = model.boards.where((p) => p.boardId != boardId).toList();
+
+    state = state!.copyWith(boards: model.boards);
+  }
+
   Future<void> getList() async {
     BoardListBoardModel prevModel = state!;
     Map<String, dynamic> data = await BoardRepository().getList();
@@ -65,6 +72,21 @@ class BoardListBoardVM extends AutoDisposeNotifier<BoardListBoardModel?> {
     BoardListBoardModel nextModel = BoardListBoardModel.fromMap(data["body"]);
 
     state = nextModel.copyWith(boards: [...prevModel.boards, ...nextModel.boards]);
+  }
+
+  Future<void> write(int teamId, String title, String content) async {
+    // 1. 레포지토리에 함수 호출
+    Map<String, dynamic> data = await BoardRepository().write(teamId, title, content);
+    if (data["status"] != 200) {
+      ScaffoldMessenger.of(mContext!).showSnackBar(
+        SnackBar(content: Text("게시글 쓰기 실패 : ${data["msg"]}")),
+      );
+      return;
+    }
+    Board board = Board.fromMap(data["body"]);
+    List<Board> nextBoards = [board, ...state!.boards];
+    state = state!.copyWith(boards: nextBoards);
+    Navigator.pop(mContext!);
   }
 }
 

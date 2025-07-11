@@ -19,10 +19,11 @@ class UserMatchDetailMatchCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          UserMatchDetailMatchRow(label: '경기 일정', value: game.gameDate),
+          UserMatchDetailMatchRow(label: '경기 일정', value: game.gameDate!),
           SizedBox(height: 4),
           UserMatchDetailMatchRow(
-              label: '경기', value: '${game.awayTeam.name} vs ${game.homeTeam.name}'),
+              label: '경기',
+              value: '${game.awayTeam.teamName} vs ${game.homeTeam.teamName}'),
           SizedBox(height: 4),
           UserMatchDetailMatchRow(label: '경기장', value: '${game.stadiumName}'),
         ],

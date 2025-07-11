@@ -5,13 +5,12 @@ DateTime get today => DateTime(
       DateTime.now().day,
     );
 
-/// 주어진 나이 문자열("20~30대")을 "20대 이상" 형태로 변환
-String formatAgeRange(String ageRange) {
-  final match = RegExp(r'^(\d{1,2})~\d{1,2}대$').firstMatch(ageRange);
-  if (match != null) {
-    final startAge = match.group(1);
-    return '${startAge}대 이상';
-  } else {
-    return ageRange; // 형식이 맞지 않으면 원본 반환
-  }
+/// DateTime → "yyyy-MM-dd" 문자열로 반환 (시, 분, 초 제거)
+String formatDateToStr(DateTime dateTime) {
+  DateTime date = DateTime(dateTime.year, dateTime.month, dateTime.day);
+  String year = date.year.toString();
+  String month = date.month.toString().padLeft(2, '0');
+  String day = date.day.toString().padLeft(2, '0');
+
+  return "$year-$month-$day";
 }

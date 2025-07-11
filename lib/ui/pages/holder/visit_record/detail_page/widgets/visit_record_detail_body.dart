@@ -16,7 +16,7 @@ class VisitRecordDetailBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    VisitRecordDetailModel? model = ref.watch(VisitRecordDetailProvider(visitRecordId));
+    VisitRecordDetailModel? model = ref.watch(visitRecordDetailProvider(visitRecordId));
     if (model == null) {
       return Center(child: CircularProgressIndicator());
     } else {
@@ -34,7 +34,7 @@ class VisitRecordDetailBody extends ConsumerWidget {
               children: [
                 VisitRecordDetailGame(visitRecord: model.visitRecord),
                 SizedBox(height: 19),
-                VisitRecordDetailImg(),
+                VisitRecordDetailImg(visitRecord: model.visitRecord),
                 SizedBox(height: 19),
                 VisitRecordDetailContent(visitRecord: model.visitRecord),
               ],

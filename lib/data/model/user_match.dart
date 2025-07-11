@@ -3,44 +3,51 @@ import 'package:ballkkaye_frontend/data/model/team.dart';
 import 'package:ballkkaye_frontend/data/model/user.dart';
 
 class UserMatch {
-  final bool isOwner;
-  final String relativeTime;
-  final int likeCount;
-  final bool isLike;
+  final int? matchId;
+  final bool? isOwner;
+  final String? relativeTime;
+  final int? likeCount;
+  final bool? isLike;
   final Game game;
   final User user;
   final String title;
-  final String content;
-  final String gender;
-  final String age;
-  final bool isSameTeam;
-  final String participationInfo;
-  final int chatRoomId;
+  final String? content;
+  final String? gender;
+  final String? age;
+  final bool? isSameTeam;
+  final String? participationInfo;
+  final int? chatRoomId;
+  final int? teamId;
+  final String? teamName;
 
   UserMatch({
-    required this.isOwner,
-    required this.relativeTime,
-    required this.likeCount,
-    required this.isLike,
+    this.matchId,
+    this.isOwner,
+    this.relativeTime,
+    this.likeCount,
+    this.isLike,
     required this.game,
     required this.user,
     required this.title,
-    required this.content,
-    required this.gender,
-    required this.age,
-    required this.isSameTeam,
-    required this.participationInfo,
-    required this.chatRoomId,
+    this.content,
+    this.gender,
+    this.age,
+    this.isSameTeam,
+    this.participationInfo,
+    this.chatRoomId,
+    this.teamId,
+    this.teamName,
   });
 
   UserMatch.fromMap(Map<String, dynamic> data)
-      : isOwner = data['isOwner'],
+      : matchId = data['matchId'] ?? data['id'],
+        isOwner = data['isOwner'],
         relativeTime = data['relativeTime'],
         likeCount = data['likeCount'],
         isLike = data['isLike'],
         game = Game(
-          homeTeam: Team(name: data['homeTeamName']),
-          awayTeam: Team(name: data['awayTeamName']),
+          homeTeam: Team(teamName: data['homeTeamName']),
+          awayTeam: Team(teamName: data['awayTeamName']),
           gameDate: data['gameDate'],
           stadiumName: data['stadiumName'],
         ),
@@ -55,7 +62,9 @@ class UserMatch {
         age = data['age'],
         isSameTeam = data['isSameTeam'],
         participationInfo = data['participationInfo'],
-        chatRoomId = data['chatRoomId'];
+        chatRoomId = data['chatRoomId'],
+        teamId = data['teamId'],
+        teamName = data['teamName'];
 
   @override
   String toString() {

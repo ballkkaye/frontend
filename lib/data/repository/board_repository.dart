@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/data/model/board.dart';
 import 'package:logger/logger.dart';
 
 class BoardRepository {
@@ -202,6 +203,64 @@ class BoardRepository {
           }
         ]
       }
+    };
+    Logger().d(responseBody);
+    return responseBody;
+  }
+
+  Future<Map<String, dynamic>> write(int teamId, String title, String content) async {
+    final responseBody = {
+      "status": 200,
+      "msg": "성공",
+      "body": {
+        "imagesUrl": [
+          {"id": 1, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img001.png"},
+          {"id": 2, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img002.png"}
+        ],
+        "boardId": 12,
+        "title": "새로운 게시글 제목",
+        "teamId": 2,
+        "content": "이것은 게시글 본문입니다.",
+        "relativeTime": "방금",
+        "nickname": "cos",
+        "likeCount": 0,
+        "replyCount": 0,
+      }
+    };
+    Logger().d(responseBody);
+    return responseBody;
+  }
+
+  Future<Map<String, dynamic>> updateOne(Board board) async {
+    final responseBody = {
+      "status": 200,
+      "msg": "성공",
+      "body": {
+        "imagesUrl": [
+          {"id": 1, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img001.png"},
+          {"id": 2, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img002.png"},
+          {"id": 3, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/new003.png"}
+        ],
+        "boardId": 12,
+        "title": "수정된 게시글 제목2",
+        "teamId": 3,
+        "content": "이건 수정된 게시글 내용입니다2.",
+        "nickname": "love",
+        "relativeTime": "1분전",
+        "likeCount": 4,
+        "myTeamName": "삼성 라이온즈",
+        "teamCategoryName": "롯데 자이언츠",
+      }
+    };
+    Logger().d(responseBody);
+    return responseBody;
+  }
+
+  Future<Map<String, dynamic>> deleteOne(int boardId) async {
+    final responseBody = {
+      "status": 200,
+      "msg": "성공",
+      "body": {"deleteStatus": "삭제됨"}
     };
     Logger().d(responseBody);
     return responseBody;

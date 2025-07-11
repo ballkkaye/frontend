@@ -3,11 +3,13 @@ import 'package:ballkkaye_frontend/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final RainoutPredictionWeatherProvider = AutoDisposeNotifierProvider.family<RainoutPredictionWeatherVM, RainoutPredictionWeatherModel?, int>(() {
+final rainoutPredictionWeatherProvider = AutoDisposeNotifierProvider.family<
+    RainoutPredictionWeatherVM, RainoutPredictionWeatherModel?, int>(() {
   return RainoutPredictionWeatherVM();
 });
 
-class RainoutPredictionWeatherVM extends AutoDisposeFamilyNotifier<RainoutPredictionWeatherModel?, int> {
+class RainoutPredictionWeatherVM
+    extends AutoDisposeFamilyNotifier<RainoutPredictionWeatherModel?, int> {
   final mContext = navigatorKey.currentContext!;
 
   @override

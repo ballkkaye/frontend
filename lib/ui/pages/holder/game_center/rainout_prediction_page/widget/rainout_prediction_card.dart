@@ -21,7 +21,7 @@ class RainoutPredictionCard extends ConsumerWidget {
     final effectiveStadiumId = stadiumId ?? 1;
 
     final weatherModel = ref.watch(
-      RainoutPredictionWeatherProvider(effectiveStadiumId),
+      rainoutPredictionWeatherProvider(effectiveStadiumId),
     );
 
     if (weatherModel == null) {

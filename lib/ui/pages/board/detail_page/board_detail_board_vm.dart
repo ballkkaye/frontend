@@ -1,23 +1,26 @@
 import 'package:ballkkaye_frontend/data/model/board.dart';
 import 'package:ballkkaye_frontend/data/repository/board_repository.dart';
 import 'package:ballkkaye_frontend/main.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/list_page/board_list_board_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
-final boardDetailProvider = AutoDisposeNotifierProvider.family<BoardDetailVM, BoardDetailModel?, int>(() {
-  return BoardDetailVM();
+final boardDetailBoardProvider = AutoDisposeNotifierProvider.family<
+    BoardDetailBoardVM, BoardDetailBoardModel?, int>(() {
+  return BoardDetailBoardVM();
 });
 
-class BoardDetailVM extends AutoDisposeFamilyNotifier<BoardDetailModel?, int> {
+class BoardDetailBoardVM
+    extends AutoDisposeFamilyNotifier<BoardDetailBoardModel?, int> {
   final mContext = navigatorKey.currentContext!;
 
   @override
-  BoardDetailModel? build(int boardId) {
+  BoardDetailBoardModel? build(int boardId) {
     init(boardId);
 
     ref.onDispose(() {
-      Logger().d("BoardDetailModel 파괴됨");
+      Logger().d("BoardDetailBoardModel 파괴됨");
     });
 
     return null;
@@ -32,21 +35,58 @@ class BoardDetailVM extends AutoDisposeFamilyNotifier<BoardDetailModel?, int> {
       return;
     }
 
-    state = BoardDetailModel.fromMap(data["body"]);
+    state = BoardDetailBoardModel.fromMap(data["body"]);
+  }
+
+  Future<void> updateOne(Board board) async {
+    // 1. 통신
+    Map<String, dynamic> data = await BoardRepository().updateOne(board);
+    if (data["status"] != 200) {
+      ScaffoldMessenger.of(mContext!).showSnackBar(
+        SnackBar(content: Text("게시글 수정하기 실패 : ${data["msg"]}")),
+      );
+      return;
+    }
+
+    // 2. 파싱
+    Board updatedBoard = Board.fromMap(data["body"]);
+
+    // 3. 상태갱신 (detail)
+    state = state!.copyWith(board: updatedBoard);
+
+    // 4. 상태갱신 (list -> notify)
+    ref.read(boardListBoardProvider.notifier).notifyUpdate(updatedBoard);
+
+    // 5. pop
+    Navigator.pop(mContext);
+  }
+
+  Future<void> deleteOne(int boardId) async {
+    Map<String, dynamic> data = await BoardRepository().deleteOne(boardId);
+    if (data["status"] != 200) {
+      ScaffoldMessenger.of(mContext!).showSnackBar(
+        SnackBar(content: Text("게시글 삭제하기 실패 : ${data["msg"]}")),
+      );
+      return;
+    }
+
+    ref.read(boardListBoardProvider.notifier).notifyDeleteOne(boardId);
+    Navigator.pop(mContext);
   }
 }
 
-class BoardDetailModel {
+class BoardDetailBoardModel {
   Board board;
 
-  BoardDetailModel(this.board);
+  BoardDetailBoardModel(this.board);
 
-  BoardDetailModel.fromMap(Map<String, dynamic> data) : board = Board.fromMap(data);
+  BoardDetailBoardModel.fromMap(Map<String, dynamic> data)
+      : board = Board.fromMap(data);
 
-  BoardDetailModel copyWith({
+  BoardDetailBoardModel copyWith({
     Board? board,
   }) {
-    return BoardDetailModel(board ?? this.board);
+    return BoardDetailBoardModel(board ?? this.board);
   }
 
   @override
