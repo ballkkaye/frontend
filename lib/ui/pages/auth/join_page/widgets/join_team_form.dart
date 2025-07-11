@@ -35,9 +35,9 @@ class JoinTeamForm extends ConsumerWidget {
               items: joinTeamModel.teams,
               itemLabel: (team) => team.label,
               onChanged: (team) {
-                if (team != null && team.id != null) {
-                  fm.teamId(team.id!);
-                  Logger().d("선택된 teamId: ${team.id}");
+                if (team != null && team.teamId != null) {
+                  fm.teamId(team.teamId!);
+                  Logger().d("선택된 teamId: ${team.teamId}");
                 }
               },
             ),

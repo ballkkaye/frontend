@@ -16,7 +16,7 @@ class VisitRecordDetailBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    VisitRecordDetailModel? model = ref.watch(VisitRecordDetailProvider(visitRecordId));
+    VisitRecordDetailModel? model = ref.watch(visitRecordDetailProvider(visitRecordId));
     if (model == null) {
       return Center(child: CircularProgressIndicator());
     } else {

@@ -30,64 +30,53 @@ class Game {
     this.awayPitcherName,
   });
 
-  factory Game.fromMap(Map<String, dynamic> map) {
-    return Game(
-      id: map['gameId'] ?? map['id'],
-      homeTeam: map['homeTeam'] != null
-          ? Team.fromMap(map['homeTeam'])
-          : Team(
-              id: -1,
-              name: '',
-              teamLogo: map['homeTeamLogoUrl'] ?? '',
-            ),
-      awayTeam: map['awayTeam'] != null
-          ? Team.fromMap(map['awayTeam'])
-          : Team(
-              id: -1,
-              name: '',
-              teamLogo: map['awayTeamLogoUrl'] ?? '',
-            ),
-      gameDate: map['gameDate'],
-      gameTime: map['gameTime'],
-      stadiumName: map['stadiumName'],
-      stadiumShortName: map['stadiumShortName'],
-      gameStatus: GameStatusExtension.fromString(map['gameStatus']),
-      broadcastChannel: map['broadcastChannel'],
-      ticketLink: map['ticketLink'],
-      homePitcherName: map['homePitcherName'],
-      awayPitcherName: map['awayPitcherName'],
-    );
-  }
+  Game.fromMap(Map<String, dynamic> map)
+      : id = map['gameId'] ?? map['id'],
+        homeTeam = map['homeTeam'] != null
+            ? Team.fromMap(map['homeTeam'])
+            : Team(
+                teamId: map['homeTeamId'],
+                fullName: map['homeTeamName'],
+                teamLogo: map['homeTeamLogoUrl'],
+              ),
+        awayTeam = map['awayTeam'] != null
+            ? Team.fromMap(map['awayTeam'])
+            : Team(
+                teamId: map['awayTeamId'],
+                fullName: map['awayTeamName'],
+                teamLogo: map['awayTeamLogoUrl'],
+              ),
+        gameDate = map['gameDate'],
+        gameTime = map['gameTime'],
+        stadiumName = map['stadiumName'],
+        stadiumShortName = map['stadiumShortName'],
+        gameStatus = GameStatusExtension.fromString(map['gameStatus']),
+        broadcastChannel = map['broadcastChannel'],
+        ticketLink = map['ticketLink'],
+        homePitcherName = map['homePitcherName'],
+        awayPitcherName = map['awayPitcherName'];
 
-  Game copyWith({
-    int? id,
-    Team? homeTeam,
-    Team? awayTeam,
-    String? gameDate,
-    GameStatus? gameStatus,
-    String? stadiumName,
-    String? stadiumShortName,
-    String? broadcastChannel,
-    String? homePitcherName,
-    String? awayPitcherName,
-    String? ticketLink,
-    String? gameTime,
-  }) {
-    return Game(
-      id: id ?? this.id,
-      homeTeam: homeTeam ?? this.homeTeam,
-      awayTeam: awayTeam ?? this.awayTeam,
-      gameDate: gameDate ?? this.gameDate,
-      gameStatus: gameStatus ?? this.gameStatus,
-      stadiumName: stadiumName ?? this.stadiumName,
-      stadiumShortName: stadiumShortName ?? this.stadiumShortName,
-      broadcastChannel: broadcastChannel ?? this.broadcastChannel,
-      homePitcherName: homePitcherName ?? this.homePitcherName,
-      awayPitcherName: awayPitcherName ?? this.awayPitcherName,
-      ticketLink: ticketLink ?? this.ticketLink,
-      gameTime: gameTime ?? this.gameTime,
-    );
-  }
+  Game.fromGameData(Map<String, dynamic> data)
+      : id = data['gameId'],
+        homeTeam = Team.fromGameData(
+          teamId: data['homeTeamId'],
+          fullName: data['homeTeamFullName'],
+          score: data['homeTeamScore'],
+        ),
+        awayTeam = Team.fromGameData(
+          teamId: data['awayTeamId'],
+          fullName: data['awayTeamFullName'],
+          score: data['awayTeamScore'],
+        ),
+        gameDate = data['gameDate'],
+        stadiumName = data['stadiumFullName'],
+        stadiumShortName = data['stadiumShortName'],
+        gameTime = data['gameTime'],
+        gameStatus = GameStatusExtension.fromString(data['gameStatus']),
+        broadcastChannel = data['broadcastChannel'],
+        ticketLink = data['ticketLink'],
+        homePitcherName = data['homePitcherName'],
+        awayPitcherName = data['awayPitcherName'];
 
   @override
   String toString() {

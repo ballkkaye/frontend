@@ -3,7 +3,7 @@ import 'package:ballkkaye_frontend/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final RankingProvider = AutoDisposeNotifierProvider<RankingVM, List<RankingModel>>(
+final rankingProvider = AutoDisposeNotifierProvider<RankingVM, List<RankingModel>>(
   RankingVM.new,
 );
 

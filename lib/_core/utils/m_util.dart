@@ -4,3 +4,13 @@ DateTime get today => DateTime(
       DateTime.now().month,
       DateTime.now().day,
     );
+
+/// DateTime → "yyyy-MM-dd" 문자열로 반환 (시, 분, 초 제거)
+String formatDateToStr(DateTime dateTime) {
+  DateTime date = DateTime(dateTime.year, dateTime.month, dateTime.day);
+  String year = date.year.toString();
+  String month = date.month.toString().padLeft(2, '0');
+  String day = date.day.toString().padLeft(2, '0');
+
+  return "$year-$month-$day";
+}

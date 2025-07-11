@@ -48,10 +48,7 @@ class PredictionVM extends AutoDisposeNotifier<PredictionModel?> {
       );
       return;
     }
-
-    PredictionModel nextModel = PredictionModel.fromList(data["body"]);
-
-    state = nextModel.copyWith(games: [...prevModel.games, ...nextModel.games]);
+    state = PredictionModel.fromList(data["body"]);
   }
 }
 

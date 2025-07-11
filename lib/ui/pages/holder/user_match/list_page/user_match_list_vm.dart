@@ -3,6 +3,8 @@ import 'package:ballkkaye_frontend/data/enum/gender.dart';
 import 'package:ballkkaye_frontend/data/model/user_match.dart';
 import 'package:ballkkaye_frontend/data/repository/user_match_repository.dart';
 import 'package:ballkkaye_frontend/main.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/detail_page/user_match_detail_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/write_page/user_match_write_fm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
@@ -74,6 +76,30 @@ class UserMatchListVM extends AutoDisposeNotifier<UserMatchListModel?> {
     }
 
     state = UserMatchListModel.fromMap(data['body']);
+  }
+
+  Future<void> write(UserMatchWriteModel model) async {
+    Logger().d("글쓰기 요청 : ${model.toMap()}");
+
+    Map<String, dynamic> data = await UserMatchRepository().write(model.toMap());
+
+    if (data["status"] != 200) {
+      ScaffoldMessenger.of(mContext).showSnackBar(
+        SnackBar(content: Text("동행글 쓰기 실패 : ${data["msg"]}")),
+      );
+      return;
+    }
+
+    final newMatch = UserMatch.fromMap(data["body"]["match"]);
+
+    List<UserMatch> nextMatches = [newMatch, ...?state?.userMatches];
+
+    state = state?.copyWith(userMatches: nextMatches) ??
+        UserMatchListModel(null, null, null, null, [newMatch]);
+
+    Navigator.pop(mContext);
+    Navigator.push(
+        mContext, MaterialPageRoute(builder: (context) => UserMatchDetailPage(newMatch.matchId!)));
   }
 }
 

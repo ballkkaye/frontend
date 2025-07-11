@@ -16,10 +16,12 @@ class UserMatchListFilterArea extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<UserMatchListFilterArea> createState() => UserMatchListFilterAreaState();
+  ConsumerState<UserMatchListFilterArea> createState() =>
+      UserMatchListFilterAreaState();
 }
 
-class UserMatchListFilterAreaState extends ConsumerState<UserMatchListFilterArea> {
+class UserMatchListFilterAreaState
+    extends ConsumerState<UserMatchListFilterArea> {
   Gender? selectedGender;
   Age? selectedAge;
   Team? selectedTeam;
@@ -56,7 +58,7 @@ class UserMatchListFilterAreaState extends ConsumerState<UserMatchListFilterArea
                 vm.fetchList(
                   gender: val,
                   age: selectedAge,
-                  teamId: selectedTeam?.id,
+                  teamId: selectedTeam?.teamId,
                 );
               },
             ),
@@ -70,7 +72,7 @@ class UserMatchListFilterAreaState extends ConsumerState<UserMatchListFilterArea
                 vm.fetchList(
                   gender: selectedGender,
                   age: val,
-                  teamId: selectedTeam?.id,
+                  teamId: selectedTeam?.teamId,
                 );
               },
             ),
@@ -84,7 +86,7 @@ class UserMatchListFilterAreaState extends ConsumerState<UserMatchListFilterArea
                 vm.fetchList(
                   gender: selectedGender,
                   age: selectedAge,
-                  teamId: val.id,
+                  teamId: val.teamId,
                 );
               },
             ),
