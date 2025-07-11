@@ -38,19 +38,7 @@ class TodayGameVM extends AutoDisposeNotifier<TodayGameModel?> {
     }
     state = TodayGameModel.fromList(data["body"]);
   }
-
-  void notifyUpdate(Game game) {
-    List<Game> nextgames = state!.games.map((p) {
-      if (p.id == game.id) {
-        return game;
-      } else {
-        return p;
-      }
-    }).toList();
-
-    state = state!.copyWith(games: nextgames);
-  }
-
+  
   Future<void> getList() async {
     TodayGameModel prevModel = state!;
     Map<String, dynamic> data = await GameCenterRepository().getTodayGame();

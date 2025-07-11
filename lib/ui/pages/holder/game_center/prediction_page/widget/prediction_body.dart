@@ -12,7 +12,7 @@ class PredictionBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final model = ref.watch(PredictionProvider);
+    final model = ref.watch(predictionProvider);
 
     if (model == null) {
       return const Center(child: CircularProgressIndicator());

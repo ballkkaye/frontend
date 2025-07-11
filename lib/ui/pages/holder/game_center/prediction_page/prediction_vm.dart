@@ -7,7 +7,7 @@ import 'package:logger/logger.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 /// 1. 창고 관리자
-final PredictionProvider = AutoDisposeNotifierProvider<PredictionVM, PredictionModel?>(() {
+final predictionProvider = AutoDisposeNotifierProvider<PredictionVM, PredictionModel?>(() {
   return PredictionVM();
 });
 
@@ -37,18 +37,6 @@ class PredictionVM extends AutoDisposeNotifier<PredictionModel?> {
       return;
     }
     state = PredictionModel.fromList(data["body"]);
-  }
-
-  void notifyUpdate(PredictionGame updatedGame) {
-    List<PredictionGame> nextgames = state!.games.map((p) {
-      if (p.game.id == updatedGame.game.id) {
-        return updatedGame;
-      } else {
-        return p;
-      }
-    }).toList();
-
-    state = state!.copyWith(games: nextgames);
   }
 
   Future<void> getList() async {
