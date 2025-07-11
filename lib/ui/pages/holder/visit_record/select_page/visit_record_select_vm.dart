@@ -54,7 +54,7 @@ class VisitRecordSelectVM extends AutoDisposeNotifier<VisitRecordSelectState> {
 
   void updateSelectedGame(int gameId, String label) {
     state = state.copyWith(
-      selectedGameId: gameId, // 🔥 중요
+      selectedGameId: gameId,
       selectedGame: label,
     );
   }
@@ -73,7 +73,7 @@ class VisitRecordSelectVM extends AutoDisposeNotifier<VisitRecordSelectState> {
     }
 
     if (matchedList.isEmpty) {
-      print("❌ 해당 날짜에 경기가 없습니다.");
+      print("해당 날짜에 경기가 없습니다.");
       state = state.copyWith(gameList: []);
       return;
     }
