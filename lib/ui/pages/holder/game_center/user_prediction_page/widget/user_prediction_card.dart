@@ -4,7 +4,7 @@ import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_p
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/widget/user_prediction_vote_group.dart';
 import 'package:flutter/material.dart';
 
-class UserPredictionCard extends StatelessWidget {
+class UserPredictionCard extends StatefulWidget {
   final String leftTeamName;
   final String rightTeamName;
   final int leftScore;
@@ -27,6 +27,25 @@ class UserPredictionCard extends StatelessWidget {
   });
 
   @override
+  State<UserPredictionCard> createState() => _UserPredictionCardState();
+}
+
+class _UserPredictionCardState extends State<UserPredictionCard> {
+  int? _selectedTeam; // 0 = 왼쪽, 1 = 오른쪽
+
+  void _selectLeft() {
+    setState(() {
+      _selectedTeam = 0;
+    });
+  }
+
+  void _selectRight() {
+    setState(() {
+      _selectedTeam = 1;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -40,18 +59,30 @@ class UserPredictionCard extends StatelessWidget {
           child: Column(
             children: [
               UserPredictionTimeGroup(
-                hour: startHour,
-                minute: startMinute,
+                hour: widget.startHour,
+                minute: widget.startMinute,
               ),
               UserPredictionScoreGroup(
-                leftTeamName: leftTeamName,
-                leftScore: leftScore,
-                rightTeamName: rightTeamName,
-                rightScore: rightScore,
+                leftTeamName: widget.leftTeamName,
+                leftScore: widget.leftScore,
+                rightTeamName: widget.rightTeamName,
+                rightScore: widget.rightScore,
+                isLeftSelected: _selectedTeam == 0,
+                isRightSelected: _selectedTeam == 1,
+                onTapLeft: () {
+                  setState(() {
+                    _selectedTeam = 0;
+                  });
+                },
+                onTapRight: () {
+                  setState(() {
+                    _selectedTeam = 1;
+                  });
+                },
               ),
               UserPredictionVoteGroup(
-                leftPercent: leftPercent,
-                rightPercent: rightPercent,
+                leftPercent: widget.leftPercent,
+                rightPercent: widget.rightPercent,
               ),
             ],
           ),

@@ -10,12 +10,20 @@ class UserPredictionScoreGroup extends StatelessWidget {
     required this.leftScore,
     required this.rightTeamName,
     required this.rightScore,
+    required this.isLeftSelected,
+    required this.isRightSelected,
+    required this.onTapLeft,
+    required this.onTapRight,
   });
 
   final String leftTeamName;
   final int leftScore;
   final String rightTeamName;
   final int rightScore;
+  final bool isLeftSelected;
+  final bool isRightSelected;
+  final VoidCallback onTapLeft;
+  final VoidCallback onTapRight;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +33,8 @@ class UserPredictionScoreGroup extends StatelessWidget {
         UserPredictionLeftTeam(
           teamName: leftTeamName,
           score: leftScore,
+          isSelected: isLeftSelected,
+          onTap: onTapLeft,
         ),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 12.5),
@@ -36,6 +46,8 @@ class UserPredictionScoreGroup extends StatelessWidget {
         UserPredictionRightTeam(
           teamName: rightTeamName,
           score: rightScore,
+          isSelected: isRightSelected,
+          onTap: onTapRight,
         ),
       ],
     );
