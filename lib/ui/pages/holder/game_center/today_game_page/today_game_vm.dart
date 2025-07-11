@@ -63,15 +63,7 @@ class TodayGameModel {
       list.map((e) => Game.fromMap(e as Map<String, dynamic>)).toList(),
     );
   }
-
-  TodayGameModel copyWith({
-    List<Game>? games,
-  }) {
-    return TodayGameModel(
-      games ?? this.games,
-    );
-  }
-
+  
   @override
   String toString() {
     return 'TodayGameModel{games: $games}';
