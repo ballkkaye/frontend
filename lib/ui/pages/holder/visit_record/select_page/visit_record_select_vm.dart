@@ -64,18 +64,14 @@ class VisitRecordSelectVM extends AutoDisposeNotifier<VisitRecordSelectState> {
     final games = body["body"]["games"];
     final formattedDate = formatToDotDate(date);
     final matchedList = games.where((g) => g["gameDate"].toString().startsWith(formattedDate)).toList();
-
     if (body["status"] != 200) {
       ScaffoldMessenger.of(mContext).showSnackBar(
         SnackBar(content: Text("경기 목록 조회 실패: ${body['errorMessage']}")),
       );
-      return;
     }
-
     if (matchedList.isEmpty) {
       print("해당 날짜에 경기가 없습니다.");
       state = state.copyWith(gameList: []);
-      return;
     }
 
     final matched = matchedList.first;
@@ -83,6 +79,8 @@ class VisitRecordSelectVM extends AutoDisposeNotifier<VisitRecordSelectState> {
     final list = (items as List).map((e) => VisitRecordGame.fromMap(e)).toList();
 
     state = state.copyWith(gameList: list);
+    print("${list}");
+    return;
   }
 
   Future<void> loadHasGameDay(String yearMonth) async {
@@ -124,7 +122,6 @@ class VisitRecordSelectVM extends AutoDisposeNotifier<VisitRecordSelectState> {
       (d) => d.day == day,
       orElse: () => DayDTO(day: day, isHaveGame: false),
     );
-
     return dayData.isHaveGame;
   }
 }
