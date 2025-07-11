@@ -49,9 +49,7 @@ class TodayGameVM extends AutoDisposeNotifier<TodayGameModel?> {
       return;
     }
 
-    TodayGameModel nextModel = TodayGameModel.fromList(data["body"]);
-
-    state = nextModel.copyWith(games: [...prevModel.games, ...nextModel.games]);
+    state = TodayGameModel.fromList(data["body"]);
   }
 }
 
