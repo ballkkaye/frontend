@@ -25,7 +25,7 @@ class BoardDetailPage extends ConsumerWidget {
       return Center(child: CircularProgressIndicator());
     } else {
       return Scaffold(
-        appBar: _appbar(context, boardModel),
+        appBar: _appbar(context, boardModel, ref),
         body: BoardDetailBody(
           board: boardModel.board,
           replies: replyModel.replies,
@@ -37,7 +37,8 @@ class BoardDetailPage extends ConsumerWidget {
     }
   }
 
-  AppBar _appbar(BuildContext context, model) {
+  AppBar _appbar(BuildContext context, model, ref) {
+    BoardDetailBoardVM vm = ref.read(boardDetailBoardProvider(boardId).notifier);
     return AppBar(
       centerTitle: true,
       title: MText.h1('커뮤니티', color: MColor.kLabel.normal),
@@ -59,7 +60,9 @@ class BoardDetailPage extends ConsumerWidget {
 
             alertTitle: '게시글 삭제',
             alertContent: '게시글을 삭제하시겠습니까?',
-            onAlertConfirm: () {},
+            onAlertConfirm: () {
+              vm.deleteOne(boardId);
+            },
             // 다이얼로그 닫힌 뒤 동작
             onAlertCancel: () {},
             // 다이얼로그 닫힌 뒤 동작

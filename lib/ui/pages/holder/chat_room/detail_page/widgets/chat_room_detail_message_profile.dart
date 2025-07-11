@@ -2,9 +2,11 @@ import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:flutter/material.dart';
 
 class ChatRoomDetailMessageProfile extends StatelessWidget {
-  final String user;
+  // final String? userProfileImg;
 
-  const ChatRoomDetailMessageProfile({super.key, required this.user});
+  const ChatRoomDetailMessageProfile({
+    super.key,
+  }); //this.userProfileImg
 
   @override
   Widget build(BuildContext context) {

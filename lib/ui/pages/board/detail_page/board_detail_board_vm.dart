@@ -6,12 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
-final boardDetailBoardProvider =
-    AutoDisposeNotifierProvider.family<BoardDetailBoardVM, BoardDetailBoardModel?, int>(() {
+final boardDetailBoardProvider = AutoDisposeNotifierProvider.family<
+    BoardDetailBoardVM, BoardDetailBoardModel?, int>(() {
   return BoardDetailBoardVM();
 });
 
-class BoardDetailBoardVM extends AutoDisposeFamilyNotifier<BoardDetailBoardModel?, int> {
+class BoardDetailBoardVM
+    extends AutoDisposeFamilyNotifier<BoardDetailBoardModel?, int> {
   final mContext = navigatorKey.currentContext!;
 
   @override
@@ -59,6 +60,19 @@ class BoardDetailBoardVM extends AutoDisposeFamilyNotifier<BoardDetailBoardModel
     // 5. pop
     Navigator.pop(mContext);
   }
+
+  Future<void> deleteOne(int boardId) async {
+    Map<String, dynamic> data = await BoardRepository().deleteOne(boardId);
+    if (data["status"] != 200) {
+      ScaffoldMessenger.of(mContext!).showSnackBar(
+        SnackBar(content: Text("게시글 삭제하기 실패 : ${data["msg"]}")),
+      );
+      return;
+    }
+
+    ref.read(boardListBoardProvider.notifier).notifyDeleteOne(boardId);
+    Navigator.pop(mContext);
+  }
 }
 
 class BoardDetailBoardModel {
@@ -66,7 +80,8 @@ class BoardDetailBoardModel {
 
   BoardDetailBoardModel(this.board);
 
-  BoardDetailBoardModel.fromMap(Map<String, dynamic> data) : board = Board.fromMap(data);
+  BoardDetailBoardModel.fromMap(Map<String, dynamic> data)
+      : board = Board.fromMap(data);
 
   BoardDetailBoardModel copyWith({
     Board? board,
