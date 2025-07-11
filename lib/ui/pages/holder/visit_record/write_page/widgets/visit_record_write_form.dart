@@ -1,17 +1,40 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
+import 'package:ballkkaye_frontend/_core/utils/m_img.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/widgets/visit_record_game.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/widgets/visit_record_img_thumbnail.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_icon_btn.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_img_action_sheet.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_text_form_field.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_toggle_btn.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:image_picker/image_picker.dart';
 
-class VisitRecordWriteForm extends StatelessWidget {
+class VisitRecordWriteForm extends StatefulWidget {
   const VisitRecordWriteForm({
     super.key,
   });
+
+  @override
+  State<VisitRecordWriteForm> createState() => _VisitRecordWriteFormState();
+}
+
+class _VisitRecordWriteFormState extends State<VisitRecordWriteForm> {
+  XFile? imageFile;
+  String? uploadedUrl;
+  String? selectedResult;
+
+  Future<void> pickAndUploadImg(ImageSource source) async {
+    final result = await MImg.pickAndUploadImg(source);
+    if (result != null) {
+      setState(() {
+        imageFile = result.file;
+        uploadedUrl = result.url;
+      });
+      print("✅ 업로드 완료: ${result.url}");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,20 +52,27 @@ class VisitRecordWriteForm extends StatelessWidget {
             icon: MIcon.page.record.camera,
             text: '사진 첨부하기',
             onPressed: () {
-              // TODO : image_picker 사용해서 이미지 첨부하기 기능 구현
+              showCupertinoModalPopup(
+                context: context,
+                builder: (context) => MImgActionSheet(
+                  onCamera: () {
+                    Navigator.pop(context);
+                    pickAndUploadImg(ImageSource.camera);
+                  },
+                  onGallery: () {
+                    Navigator.pop(context);
+                    pickAndUploadImg(ImageSource.gallery);
+                  },
+                ),
+              );
             },
             textColor: MColor.kLabel.alternative,
           ),
           SizedBox(height: 20),
-          Visibility(
-            visible: hasImage,
-            child: Column(
-              children: [
-                VisitRecordThumbnail(),
-                SizedBox(height: 20),
-              ],
-            ),
-          ),
+          if (uploadedUrl != null) ...[
+            VisitRecordThumbnail(imageUrl: uploadedUrl!),
+            SizedBox(height: 20),
+          ],
           // 승 무 패 선택 버튼
           MToggleBtn(
             options: results,
