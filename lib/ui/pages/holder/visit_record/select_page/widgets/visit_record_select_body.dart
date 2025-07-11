@@ -23,7 +23,6 @@ class VisitRecordSelectBody extends ConsumerWidget {
     };
 
     print("게임 리스트: ${state.gameList}");
-
     return Padding(
       padding: EdgeInsetsGeometry.symmetric(vertical: 22, horizontal: 16),
       child: Form(
