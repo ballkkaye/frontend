@@ -16,14 +16,17 @@ class UserPredictionCardList extends StatelessWidget {
     return Column(
       children: games.map((g) {
         // 예측 카드 위젯 생성
+        final game = g.game;
+        final home = game.homeTeam;
+        final away = game.awayTeam;
         final time = parseHourMinute(g.game.gameTime);
         return Column(
           children: [
             UserPredictionCard(
-              leftTeamName: g.game.homeTeam.teamName!,
-              rightTeamName: g.game.awayTeam.teamName!,
-              leftScore: g.game.homeTeam.score ?? 0,
-              rightScore: g.game.awayTeam.score ?? 0,
+              leftTeamName: home.teamName!,
+              rightTeamName: away.teamName!,
+              leftScore: home.score ?? 0,
+              rightScore: away.score ?? 0,
               leftPercent: g.homeVoteRate,
               rightPercent: g.awayVoteRate,
               startHour: time['hour']!,
