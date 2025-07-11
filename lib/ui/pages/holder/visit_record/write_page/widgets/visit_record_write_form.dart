@@ -1,7 +1,8 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/widgets/visit_record_game.dart';
+import 'package:ballkkaye_frontend/data/model/visit_record.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/widgets/visit_record_img_thumbnail.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widgets/visit_record_write_game_card.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_icon_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_text_form_field.dart';
@@ -9,8 +10,11 @@ import 'package:ballkkaye_frontend/ui/widgets/m_toggle_btn.dart';
 import 'package:flutter/material.dart';
 
 class VisitRecordWriteForm extends StatelessWidget {
+  final VisitRecord selectedGame;
+
   const VisitRecordWriteForm({
     super.key,
+    required this.selectedGame,
   });
 
   @override
@@ -21,7 +25,7 @@ class VisitRecordWriteForm extends StatelessWidget {
       child: Column(
         children: [
           // 경기 카드
-          VisitRecordGame(),
+          VisitRecordWriteGameCard(selectedGame: selectedGame),
           SizedBox(height: 20),
           // 사진 첨부 버튼
           MIconBtn(

@@ -17,7 +17,8 @@ class VisitRecordListGameCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(context, '/visit-record/detail');
+          Navigator.pushNamed(context, "/visit-record/detail", arguments: record.gameId);
+          print("게임아이디 : ${record.gameId}");
         },
         child: Container(
           decoration: BoxDecoration(

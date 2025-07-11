@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_theme.dart';
+import 'package:ballkkaye_frontend/data/model/visit_record.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_nickname_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_team_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/login_page/login_page.dart';
@@ -65,9 +66,16 @@ class MyApp extends StatelessWidget {
         "/home": (context) => const HomePage(),
         "/main-holder": (context) => MainHolder(),
         "/visit-record/list": (context) => const VisitRecordListPage(),
-        "/visit-record/detail": (context) => const VisitRecordDetailPage(visitRecordId: 10),
+        "/visit-record/detail": (context) {
+          final visitRecordId = ModalRoute.of(context)!.settings.arguments as int;
+          return VisitRecordDetailPage(visitRecordId: visitRecordId);
+        },
         "/visit-record/select": (context) => VisitRecordSelectPage(),
-        "/visit-record/write": (context) => const VisitRecordWritePage(),
+        //"/visit-record/write": (context) => const VisitRecordWritePage(),
+        "/visit-record/write": (context) {
+          final selectedGame = ModalRoute.of(context)!.settings.arguments as VisitRecord;
+          return VisitRecordWritePage(selectedGame: selectedGame);
+        },
         "/visit-record/update": (context) => const VisitRecordUpdatePage(),
         "/game-center/matchup": (context) => const MatchupPage(),
         "/game-center/prediction": (context) => const PredictionPage(),

@@ -1,6 +1,8 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/_core/utils/m_util.dart';
+import 'package:ballkkaye_frontend/data/model/visit_record.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/select_page/visit_record_select_vm.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_date_picker.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_dropdown_btn.dart';
@@ -22,7 +24,6 @@ class VisitRecordSelectBody extends ConsumerWidget {
     };
 
     print("게임 리스트: ${state.gameList}");
-
     return Padding(
       padding: EdgeInsetsGeometry.symmetric(vertical: 22, horizontal: 16),
       child: Form(
@@ -52,10 +53,8 @@ class VisitRecordSelectBody extends ConsumerWidget {
                         onDateTimeChanged: (value) {
                           print("선택된 날짜: $value");
                           // TODO.1 : 상태갱신 및 경기목록 조회ㅏ
-                          final dateStr =
-                              '${value.year.toString().padLeft(4, '0')}-${value.month.toString().padLeft(2, '0')}-${value.day.toString().padLeft(2, '0')}';
-                          vm.updateSelectedDate(dateStr);
-                          vm.loadHasGameDay(dateStr.substring(0, 7));
+                          vm.updateSelectedDate(formatDateToYMD(value));
+                          vm.loadHasGameDay(formatDateToYMD(value));
                           Navigator.pop(context);
                         },
                       ),
@@ -70,14 +69,14 @@ class VisitRecordSelectBody extends ConsumerWidget {
             // 경기 선택 버튼
             MDropdownBtn(
               hintText: '경기',
-              items: labelToGameIdMap.keys.toList(), // 보이지 않는 gameId와 게임 정보 함께 들고옴.
+              items: labelToGameMap.keys.toList(), // 보이지 않는 gameId와 게임 정보 함께 들고옴.
               onChanged: (label) {
                 if (label != null) {
-                  final gameIdStr = labelToGameIdMap[label];
-                  final selectedGameId = int.tryParse(gameIdStr ?? '');
-                  print('🟡 선택된 gameId: $selectedGameId');
-                  if (selectedGameId != null) {
-                    vm.updateSelectedGame(selectedGameId, label);
+                  final gameIdStr = labelToGameMap[label];
+                  final selectedGame = VisitRecord;
+                  print('🟡 선택된 gameId: $selectedGame');
+                  if (selectedGame != null) {
+                    vm.updateSelectedGame(selectedGame, label);
                   }
                 }
               },
@@ -88,11 +87,17 @@ class VisitRecordSelectBody extends ConsumerWidget {
             MElevatedBtn(
               text: '다음',
               onPressed: () {
-                final selectedGameId = state.selectedGameId;
-                Navigator.pushNamed(context, "/visit-record/write", arguments: selectedGameId);
-                print('🟡 넘어가는 값: $selectedGameId');
+                final selectedGame = VisitRecord;
+                if (selectedGame == null) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('경기를 선택해주세요')),
+                  );
+                  return;
+                }
+                Navigator.pushNamed(context, "/visit-record/write", arguments: selectedGame);
+                print('🟡 넘어가는 값: $selectedGame');
               },
-            ),
+            )
           ],
         ),
       ),
