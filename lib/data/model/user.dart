@@ -37,8 +37,8 @@ class User {
   });
 
   User.fromMap(Map<String, dynamic> data)
-      : id = data['id'],
-        nickname = data['nickname'],
+      : id = data['id'] ?? data['userId'] ?? data['senderId'],
+        nickname = data['nickname'] ?? data['senderName'],
         birthDate = data['birthDate'],
         ageRange = data['ageRange'],
         gender = data['gender'],

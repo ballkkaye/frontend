@@ -6,7 +6,7 @@ class Game {
   final Team awayTeam;
   final String? gameDate;
   final String? stadiumName;
-  final String? stadiumShotrName;
+  final String? stadiumShortName;
 
   Game({
     this.id,
@@ -14,7 +14,7 @@ class Game {
     required this.awayTeam,
     required this.gameDate,
     this.stadiumName,
-    this.stadiumShotrName,
+    this.stadiumShortName,
   });
 
   Game.fromMap(Map<String, dynamic> data)
@@ -23,23 +23,23 @@ class Game {
         awayTeam = Team.fromMap(data['awayTeam']),
         gameDate = data['gameDate'],
         stadiumName = data['stadiumName'],
-        stadiumShotrName = null;
+        stadiumShortName = null;
 
   Game.fromGameData(Map<String, dynamic> data)
       : id = data['gameId'],
         homeTeam = Team.fromGameData(
           teamId: data['homeTeamId'],
           fullName: data['homeTeamFullName'],
-          score: data['homeTeamScore'],
+          score: data['homeTeamScore'] ?? 0,
         ),
         awayTeam = Team.fromGameData(
           teamId: data['awayTeamId'],
           fullName: data['awayTeamFullName'],
-          score: data['awayTeamScore'],
+          score: data['awayTeamScore'] ?? 0,
         ),
         gameDate = data['gameDate'],
         stadiumName = data['stadiumFullName'],
-        stadiumShotrName = data['stadiumShortName'];
+        stadiumShortName = data['stadiumShortName'];
 
   @override
   String toString() {

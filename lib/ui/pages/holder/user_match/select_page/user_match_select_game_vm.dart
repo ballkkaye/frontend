@@ -68,7 +68,7 @@ class UserMatchSelectGameModel {
     return games.map((g) {
       return {
         'gameId': g.id,
-        'game': '${g.awayTeam.fullName} vs ${g.homeTeam.fullName} (${g.stadiumShotrName})',
+        'game': '${g.awayTeam.fullName} vs ${g.homeTeam.fullName} (${g.stadiumShortName})',
       };
     }).toList();
   }

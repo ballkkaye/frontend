@@ -26,6 +26,8 @@ class SessionGVM extends Notifier<SessionModel> {
 
     // 2. 통신
     Map<String, dynamic> data = await UserRepository().oauthLogin(accessToken);
+    Logger().d("user: $data");
+
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext).showSnackBar(
         SnackBar(content: Text("${data["msg"]}")),
@@ -40,7 +42,9 @@ class SessionGVM extends Notifier<SessionModel> {
     await saveAccessToken(user.accessToken);
 
     // 5. 세션 모델 갱신 (현재 isLogin = false 상태)
+    Logger().d(data["body"]);
     state = SessionModel.fromMap(data["body"]);
+    Logger().d('oauthLogin : ${state}');
 
     // 6. dio의 header에 토큰 세팅
     dio.options.headers["Authorization"] = "Bearer ${user.accessToken}";
@@ -77,6 +81,8 @@ class SessionGVM extends Notifier<SessionModel> {
     Logger().d("추가정보 요청 데이터: ${model.toMap()}");
 
     Map<String, dynamic> data = await UserRepository().writeAdditionalInfo(model.toMap());
+    Logger().d("writeAdditionalInfo user: $data");
+
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext).showSnackBar(
         SnackBar(content: Text("${data["msg"]}")),
@@ -85,6 +91,7 @@ class SessionGVM extends Notifier<SessionModel> {
     }
 
     // 3. 세션 모델 갱신 (현재 isLogin = false 상태)
+    Logger().d(data["body"]);
     state = SessionModel.fromMap(data["body"]);
     Logger().d('writeAdditionalInfo : ${state}');
     Logger().d('writeAdditionalInfo : ${dio.options.headers["Authorization"]}');
@@ -101,6 +108,7 @@ class SessionGVM extends Notifier<SessionModel> {
     Logger().d("회원 정보 수정 데이터: ${model.toMap()}");
 
     Map<String, dynamic> data = await UserRepository().update(model.toMap());
+
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext).showSnackBar(
         SnackBar(content: Text("${data["msg"]}")),
@@ -109,6 +117,7 @@ class SessionGVM extends Notifier<SessionModel> {
     }
 
     // 3. 세션 모델 갱신
+    Logger().d(data["body"]);
     state = SessionModel.fromMap(data["body"]);
     Logger().d('writeAdditionalInfo : ${state}');
     Logger().d('writeAdditionalInfo : ${dio.options.headers["Authorization"]}');

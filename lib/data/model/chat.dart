@@ -26,7 +26,7 @@ class Chat {
         message = data['message'],
         messageType = data['messageType'],
         isOwner = data['isOwner'] ?? data['isSender'],
-        createdAt = DateTime.parse(data['createdAt']);
+        createdAt = data['createdAt'] != null ? DateTime.parse(data['createdAt']) : DateTime.now();
 
   @override
   String toString() {

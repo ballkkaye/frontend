@@ -7,13 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
-final chatRoomDetailProvider = AutoDisposeNotifierProvider.family<
-    ChatRoomDetailVM, ChatRoomDetailModel?, int>(() {
+final chatRoomDetailProvider =
+    AutoDisposeNotifierProvider.family<ChatRoomDetailVM, ChatRoomDetailModel?, int>(() {
   return ChatRoomDetailVM();
 });
 
-class ChatRoomDetailVM
-    extends AutoDisposeFamilyNotifier<ChatRoomDetailModel?, int> {
+class ChatRoomDetailVM extends AutoDisposeFamilyNotifier<ChatRoomDetailModel?, int> {
   final mContext = navigatorKey.currentContext!;
 
   @override
@@ -37,6 +36,7 @@ class ChatRoomDetailVM
     }
 
     state = ChatRoomDetailModel.fromMap(data["body"]);
+    Logger().d("init의 state: $state");
   }
 
   /// 메시지 중복 여부 체크
@@ -73,6 +73,7 @@ class ChatRoomDetailVM
         : "";
 
     List<dynamic> newList = [...state!.groupedChatList];
+    Logger().d("addMessage의 newList: $newList");
 
     if (newDateString == lastDateString) {
       newList.add(newMsg);
@@ -87,15 +88,12 @@ class ChatRoomDetailVM
   // 채팅
   Future<void> chat(int chatRoomId, String message) async {
     try {
-      ChatRoom newChatRoom =
-          await MSocket(ref).sendMessage(chatRoomId, message);
-
+      ChatRoom newChatRoom = await MSocket(ref).sendMessage(chatRoomId, message);
+      Logger().i("📩 메시지 전송 결과: $newChatRoom");
       addMessage(newChatRoom);
     } catch (e) {
       // 실패 알림
-      ScaffoldMessenger.of(mContext).showSnackBar(
-        SnackBar(content: Text("채팅 전송 실패: ${e.toString()}")),
-      );
+      Logger().e("채팅 전송 실패: ${e.toString()}");
     }
   }
 
@@ -137,8 +135,7 @@ class ChatRoomDetailVM
 
   // 채팅방 삭제
   Future<void> deleteOne(int chatRoomId) async {
-    Map<String, dynamic> data =
-        await ChatRoomRepository().deleteOne(chatRoomId);
+    Map<String, dynamic> data = await ChatRoomRepository().deleteOne(chatRoomId);
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
         SnackBar(content: Text("채팅방 삭제 실패 : ${data["msg"]}")),
@@ -184,8 +181,7 @@ class ChatRoomDetailModel {
     final sortedKeys = grouped.keys.toList()..sort();
 
     for (final key in sortedKeys) {
-      grouped[key]!
-          .sort((a, b) => a.chat.createdAt.compareTo(b.chat.createdAt));
+      grouped[key]!.sort((a, b) => a.chat.createdAt.compareTo(b.chat.createdAt));
     }
 
     List<dynamic> finalList = [];

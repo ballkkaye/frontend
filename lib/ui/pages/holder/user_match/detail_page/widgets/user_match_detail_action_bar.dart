@@ -6,6 +6,7 @@ import 'package:ballkkaye_frontend/data/model/user_match.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/detail_page/chat_room_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 
 class UserMatchDetailActionBar extends ConsumerWidget {
   final UserMatch userMatch;
@@ -29,23 +30,21 @@ class UserMatchDetailActionBar extends ConsumerWidget {
               child: Text(
                 '현재 ${userMatch.participationInfo}명 참여중',
                 style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                    color: MColor.kLabel.alternative),
+                    fontSize: 12, fontWeight: FontWeight.w400, color: MColor.kLabel.alternative),
               ),
             ),
             SizedBox(width: 12.5),
             ElevatedButton(
               onPressed: () {
+                Logger().d(userMatch.chatRoomId);
                 // 웹소켓 연결
-                MSocket(ref as Ref).connectWebSocket(userMatch.chatRoomId!);
-
+                MSocket(ref).connectWebSocket(userMatch.chatRoomId!);
+                Logger().d("웹소켓 연결됨");
                 // 채팅 방으로 이동
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            ChatRoomDetailPage(userMatch.chatRoomId!)));
+                        builder: (context) => ChatRoomDetailPage(userMatch.chatRoomId!)));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: MColor.kPrimary.strong,

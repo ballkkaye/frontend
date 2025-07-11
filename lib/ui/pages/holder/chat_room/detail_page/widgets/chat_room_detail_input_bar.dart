@@ -8,12 +8,10 @@ class ChatRoomDetailInputBar extends ConsumerStatefulWidget {
   const ChatRoomDetailInputBar({super.key});
 
   @override
-  ConsumerState<ChatRoomDetailInputBar> createState() =>
-      _ChatRoomDetailInputBarState();
+  ConsumerState<ChatRoomDetailInputBar> createState() => _ChatRoomDetailInputBarState();
 }
 
-class _ChatRoomDetailInputBarState
-    extends ConsumerState<ChatRoomDetailInputBar> {
+class _ChatRoomDetailInputBarState extends ConsumerState<ChatRoomDetailInputBar> {
   final int chatRoomId = 1;
   final TextEditingController _chatController = TextEditingController();
 
@@ -62,8 +60,7 @@ class _ChatRoomDetailInputBarState
                   borderRadius: BorderRadius.circular(24),
                   borderSide: BorderSide.none,
                 ),
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               ),
             ),
           ),
