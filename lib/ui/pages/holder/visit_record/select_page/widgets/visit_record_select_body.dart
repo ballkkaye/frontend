@@ -12,14 +12,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class VisitRecordSelectBody extends ConsumerWidget {
   VisitRecordSelectBody({super.key});
 
-  // List<String> games = [
-  //   '두산 베어스 vs 롯데 자이언츠 (사직)',
-  //   'SSG 랜더스 vs LG 트윈스 (잠실)',
-  //   '삼성 라이온즈 vs 기아 타이거즈 (광주)',
-  //   'KT 위즈 vs 한화 이글스 (대전)',
-  //   'NC 다이노스 vs 키움 히어로즈 (고척)'
-  // ];
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(visitRecordSelectProvider);
