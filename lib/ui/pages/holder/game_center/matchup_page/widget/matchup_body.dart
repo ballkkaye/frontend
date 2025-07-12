@@ -26,24 +26,23 @@ class MatchupBody extends ConsumerWidget {
         left: 16,
         right: 16,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: ListView(
         children: [
-          MText.h2('상태팀 선발 투수'),
-          SizedBox(height: 12),
-          MatchupStartingPitcher(
-            profileUrl: model.profileUrl,
-            name: model.name,
-            gameCount: model.gameCount,
-            result: model.result,
-            era: model.era,
-            whip: model.whip,
-            qs: model.qs,
-          ),
-          SizedBox(height: 22),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              MText.h2('상대팀 선발 투수'),
+              SizedBox(height: 12),
+              MatchupStartingPitcher(
+                profileUrl: model.profileUrl,
+                name: model.name,
+                gameCount: model.gameCount,
+                result: model.result,
+                era: model.era,
+                whip: model.whip,
+                qs: model.qs,
+              ),
+              SizedBox(height: 22),
               Container(
                 decoration: BoxDecoration(
                   color: MColor.kPrimary.strong,
@@ -56,9 +55,9 @@ class MatchupBody extends ConsumerWidget {
                 child: MText.label1_6('2025 상대 전적', color: MColor.kLabel.white),
               ),
               SizedBox(height: 6),
-              MatchupChart(hitters: model.hitters),
             ],
           ),
+          MatchupChart(hitters: model.hitters),
         ],
       ),
     );
