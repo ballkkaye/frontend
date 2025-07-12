@@ -26,6 +26,7 @@ import 'package:ballkkaye_frontend/ui/pages/mypage/mypage_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/mypage/user/detail_page/user_detail_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_page/user_update_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/splash/splash_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -37,6 +38,7 @@ GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 void main() async {
   await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await initializeDateFormatting();
   runApp(const ProviderScope(child: MyApp()));
 }
@@ -65,18 +67,21 @@ class MyApp extends StatelessWidget {
         "/home": (context) => const HomePage(),
         "/main-holder": (context) => MainHolder(),
         "/visit-record/list": (context) => const VisitRecordListPage(),
-        "/visit-record/detail": (context) => const VisitRecordDetailPage(visitRecordId: 10),
+        "/visit-record/detail": (context) =>
+            const VisitRecordDetailPage(visitRecordId: 10),
         "/visit-record/select": (context) => VisitRecordSelectPage(),
         "/visit-record/write": (context) => const VisitRecordWritePage(),
         "/visit-record/update": (context) => const VisitRecordUpdatePage(),
         "/game-center/matchup": (context) => const MatchupPage(),
         "/game-center/prediction": (context) => const PredictionPage(),
-        "/game-center/rainout-prediction": (context) => const RainoutPredictionPage(),
+        "/game-center/rainout-prediction": (context) =>
+            const RainoutPredictionPage(),
         "/game-center/ranking": (context) => const RankingPage(),
         "/game-center/today-game": (context) => const TodayGamePage(),
         "/game-center/user-prediction": (context) => const UserPredictionPage(),
         "/board/list": (context) => const BoardListPage(),
-        "/board/detail": (context) => BoardDetailPage(13), //todo 나중에 리스트에서 받은값 전달하기
+        "/board/detail": (context) =>
+            BoardDetailPage(13), //todo 나중에 리스트에서 받은값 전달하기
         "/board/write": (context) => const BoardWritePage(),
         // "/board/update": (context) => BoardUpdatePage(), // 동적데이터 받기 어려워서 MaterialPageRoute 사용
         "/user-match/update": (context) => const UserMatchUpdatePage(),

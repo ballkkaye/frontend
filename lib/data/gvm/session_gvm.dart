@@ -7,6 +7,7 @@ import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_fm.dart';
 import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_page/user_update_fm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:logger/logger.dart';
 
 final sessionProvider = NotifierProvider<SessionGVM, SessionModel>(() {
@@ -22,10 +23,18 @@ class SessionGVM extends Notifier<SessionModel> {
 
   // 1. 로그인
   Future<void> oauthLogin(String accessToken) async {
-    // 1. 유효성 검사 (oauth 로그인 생략)
+    // 1. fcm 토큰 준비
+    String? fcmToken = await FlutterSecureStorage().read(key: 'fcmToken');
+    Logger().e("FCM Token: $fcmToken");
+
+    if (fcmToken == null) {
+      Logger().e("FCM 토큰 없음");
+      return;
+    }
 
     // 2. 통신
-    Map<String, dynamic> data = await UserRepository().oauthLogin(accessToken);
+    Map<String, dynamic> data =
+        await UserRepository().oauthLogin(accessToken, fcmToken);
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext).showSnackBar(
         SnackBar(content: Text("${data["msg"]}")),
@@ -76,7 +85,8 @@ class SessionGVM extends Notifier<SessionModel> {
     // 2. 통신
     Logger().d("추가정보 요청 데이터: ${model.toMap()}");
 
-    Map<String, dynamic> data = await UserRepository().writeAdditionalInfo(model.toMap());
+    Map<String, dynamic> data =
+        await UserRepository().writeAdditionalInfo(model.toMap());
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext).showSnackBar(
         SnackBar(content: Text("${data["msg"]}")),
