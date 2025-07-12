@@ -28,6 +28,7 @@ import 'package:ballkkaye_frontend/ui/pages/mypage/user/detail_page/user_detail_
 import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_page/user_update_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/splash/splash_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -42,6 +43,7 @@ void main() async {
   await Firebase.initializeApp();
   await initializeDateFormatting();
   await MFcm.initFcmToken();
+  FirebaseMessaging.instance.getInitialMessage();
   runApp(const ProviderScope(child: MyApp()));
 }
 
