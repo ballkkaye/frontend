@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 
 class UserPredictionCardList extends StatelessWidget {
   final List<UserPredictionGame> games;
+  final void Function(int gameId, int teamId) onSelectTeam;
 
   const UserPredictionCardList({
     super.key,
     required this.games,
+    required this.onSelectTeam,
   });
 
   @override
@@ -23,6 +25,12 @@ class UserPredictionCardList extends StatelessWidget {
         return Column(
           children: [
             UserPredictionCard(
+              gameId: game.id,
+              leftTeamId: home.teamId!,
+              rightTeamId: away.teamId!,
+              selectedTeamId: g.userChoiceTeamId,
+
+
               leftTeamName: home.teamName!,
               rightTeamName: away.teamName!,
               leftScore: home.score ?? 0,
@@ -31,6 +39,10 @@ class UserPredictionCardList extends StatelessWidget {
               rightPercent: g.awayVoteRate,
               startHour: time['hour']!,
               startMinute: time['minute']!,
+              predictionStatus: g.predictionStatus,
+              gameStatus: g.game.gameStatus,
+              onTapLeft: () => onSelectTeam(game.id!, home.teamId!),
+              onTapRight: () => onSelectTeam(game.id!, away.teamId!),
             ),
           ],
         );

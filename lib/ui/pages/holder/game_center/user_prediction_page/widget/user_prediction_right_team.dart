@@ -7,7 +7,7 @@ class UserPredictionRightTeam extends StatelessWidget {
   final String teamName;
   final int score;
   final bool isSelected;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   const UserPredictionRightTeam({
     super.key,
@@ -25,7 +25,8 @@ class UserPredictionRightTeam extends StatelessWidget {
         onTap: onTap,
         child: Container(
           decoration: BoxDecoration(
-            color: isSelected ? MColor.kBackground.alternative : MColor.kBackground.normal,
+            color: isSelected ? MColor.kLabel.neutral : MColor.kBackground.normal,
+            //todo : 집컴터에 MColor.kBackground.alternative(연회색) 흰색으로 나와서 임시로 바꿈
             border: Border(
               left: BorderSide(
                 color: MColor.kLine.normal,
