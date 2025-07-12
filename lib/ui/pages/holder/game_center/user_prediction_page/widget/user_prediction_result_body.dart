@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'user_prediction_card_list.dart';
 
+
+//경기후 승부예측 결과
 class UserPredictionResultBody extends ConsumerWidget {
   const UserPredictionResultBody({super.key});
 
@@ -12,7 +14,6 @@ class UserPredictionResultBody extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final model = ref.watch(userPredictionProvider);
     final vm = ref.read(userPredictionProvider.notifier);
-
     if (model == null) return const Center(child: CircularProgressIndicator());
 
     final bool isEnabled = !vm.isSubmitted;
@@ -21,7 +22,7 @@ class UserPredictionResultBody extends ConsumerWidget {
       children: [
         UserPredictionCardList(
           games: model.games,
-          onSelectTeam: (_, __) {}, // ❌ 선택 불가
+          onSelectTeam: (_, __) {}, // 선택 불가
         ),
         SizedBox(height: 12),
         MElevatedBtn(
