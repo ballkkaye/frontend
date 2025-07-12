@@ -5,15 +5,14 @@ import 'package:logger/logger.dart';
 class MFcm {
   /// FCM 토큰 발급 및 저장
   static Future<void> initFcmToken() async {
-    final messaging = FirebaseMessaging.instance;
-    final token = await messaging.getToken();
-    Logger().i("FCM token 발급됨: $token");
+    final token = await FirebaseMessaging.instance.getToken();
+    Logger().d("FCM token 발급됨: $token");
 
     if (token != null) {
       Logger().d('FCM Token: $token');
       saveFcmToken(token);
     } else {
-      Logger().w("FCM Token X : $token");
+      Logger().w("FCM Token 발급 안됨 : $token");
     }
 
     FirebaseMessaging.instance.onTokenRefresh.listen((newToken) async {
