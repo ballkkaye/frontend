@@ -76,7 +76,7 @@ class UserPredictionCard extends StatelessWidget {
                 isRightSelected: selectedTeamId == rightTeamId,
                 onTapLeft: canSelect ? onTapLeft : null,
                 onTapRight: canSelect ? onTapRight : null,
-                predictionStatus: showResult ? predictionStatus : null, // ✅ 결과 있을 때만
+                predictionStatus: predictionStatus,
                 gameStatus: gameStatus,
               ),
               UserPredictionVoteGroup(

@@ -36,17 +36,6 @@ class UserPredictionScoreGroup extends StatelessWidget {
   Widget build(BuildContext context) {
     final bool showResult = gameStatus == GameStatus.completed;
 
-    String? winStatus;
-    if (showResult) {
-      if (leftScore > rightScore) {
-        winStatus = "LEFT_WIN";
-      } else if (rightScore > leftScore) {
-        winStatus = "RIGHT_WIN";
-      } else {
-        winStatus = "TIE";
-      }
-    }
-
     Widget resultIcon = const SizedBox.shrink();
     if (showResult) {
       if (predictionStatus == "CORRECT") {
@@ -70,17 +59,7 @@ class UserPredictionScoreGroup extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              resultIcon, // ✅ 예측 결과 아이콘
-              const SizedBox(height: 4),
-              if (winStatus != null)
-                Text(
-                  winStatus == "TIE"
-                      ? "무승부"
-                      : winStatus == "LEFT_WIN"
-                      ? "승"
-                      : "패",
-                  style: const TextStyle(fontSize: 12, color: Colors.black54),
-                ),
+              resultIcon,
             ],
           ),
         ),

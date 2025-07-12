@@ -150,7 +150,7 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
   }
 
   Future<void> fetchMyPredictionAndSet() async {
-    final response = await GameCenterRepository().getMyPrediction();
+    final response = await GameCenterRepository().getMyPredictionTest();
 
     if (response["status"] == 200) {
       setPredictionData(response["body"]);
