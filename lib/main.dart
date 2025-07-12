@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_theme.dart';
+import 'package:ballkkaye_frontend/_core/utils/m_fcm.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_nickname_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_team_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/login_page/login_page.dart';
@@ -40,6 +41,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await initializeDateFormatting();
+  await MFcm.initFcmToken();
   runApp(const ProviderScope(child: MyApp()));
 }
 

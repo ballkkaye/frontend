@@ -25,7 +25,7 @@ class SessionGVM extends Notifier<SessionModel> {
   Future<void> oauthLogin(String accessToken) async {
     // 1. fcm 토큰 준비
     String? fcmToken = await FlutterSecureStorage().read(key: 'fcmToken');
-    Logger().e("FCM Token: $fcmToken");
+    Logger().d("FCM Token: $fcmToken");
 
     if (fcmToken == null) {
       Logger().e("FCM 토큰 없음");

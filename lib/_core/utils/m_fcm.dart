@@ -7,10 +7,13 @@ class MFcm {
   static Future<void> initFcmToken() async {
     final messaging = FirebaseMessaging.instance;
     final token = await messaging.getToken();
+    Logger().i("FCM token 발급됨: $token");
 
     if (token != null) {
       Logger().d('FCM Token: $token');
       saveFcmToken(token);
+    } else {
+      Logger().w("FCM Token X : $token");
     }
 
     FirebaseMessaging.instance.onTokenRefresh.listen((newToken) async {
