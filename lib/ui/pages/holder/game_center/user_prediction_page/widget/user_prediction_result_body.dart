@@ -48,7 +48,7 @@ class UserPredictionResultBody extends ConsumerWidget {
               }
 
 
-              // ✅ 서버 전송 실행!
+              // 서버 전송 실행!
               vm.submitPredictions().then((_) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('예측이 완료되었습니다.')),

@@ -46,7 +46,6 @@ class UserPredictionScoreGroup extends StatelessWidget {
     }
 
     return Row(
-      //crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         UserPredictionLeftTeam(
           teamName: leftTeamName,
