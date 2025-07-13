@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "665285990201",
+    "project_id": "ballkkaye-d03fb",
+    "storage_bucket": "ballkkaye-d03fb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:665285990201:android:17dd18e0b0b5975a6b7ae8",
+        "android_client_info": {
+          "package_name": "com.example.ballkkaye_frontend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbamPqi5_lePwm6VHKgsbuejLDxJwEkqg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

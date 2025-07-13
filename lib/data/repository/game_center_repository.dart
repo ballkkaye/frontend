@@ -629,7 +629,6 @@ class GameCenterRepository {
     };
     return responseBody;
   }
-
   // 나의승부예측 진입
   Future<Map<String, dynamic>> getUserPrediction() async {
     final responseBody = {

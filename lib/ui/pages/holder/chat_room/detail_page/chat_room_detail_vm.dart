@@ -5,12 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
-final chatRoomDetailProvider =
-    AutoDisposeNotifierProvider.family<ChatRoomDetailVM, ChatRoomDetailModel?, int>(() {
+final chatRoomDetailProvider = AutoDisposeNotifierProvider.family<
+    ChatRoomDetailVM, ChatRoomDetailModel?, int>(() {
   return ChatRoomDetailVM();
 });
 
-class ChatRoomDetailVM extends AutoDisposeFamilyNotifier<ChatRoomDetailModel?, int> {
+class ChatRoomDetailVM
+    extends AutoDisposeFamilyNotifier<ChatRoomDetailModel?, int> {
   final mContext = navigatorKey.currentContext!;
 
   @override
@@ -36,39 +37,39 @@ class ChatRoomDetailVM extends AutoDisposeFamilyNotifier<ChatRoomDetailModel?, i
     state = ChatRoomDetailModel.fromMap(data["body"]);
   }
 
-  Future<void> chat(int chatRoomId, String message) async {
-    try {
-      Map<String, dynamic> data = await ChatRoomRepository().chat(chatRoomId, message);
-
-      // 단일 메시지 Map → ChatRoom
-      ChatRoom newChatRoom = ChatRoom.fromMap(data);
-
-      // 채팅 리스트 상태 갱신
-      DateTime lastDate =
-          state!.groupedChatList.reversed.firstWhere((e) => e is ChatRoom).chat.createdAt.toLocal();
-      DateTime newDate = newChatRoom.chat.createdAt.toLocal();
-
-      String lastDateString =
-          "${lastDate.year}-${lastDate.month.toString().padLeft(2, '0')}-${lastDate.day.toString().padLeft(2, '0')}";
-      String newDateString =
-          "${newDate.year}-${newDate.month.toString().padLeft(2, '0')}-${newDate.day.toString().padLeft(2, '0')}";
-
-      List<dynamic> newList = [...state!.groupedChatList];
-
-      if (lastDateString == newDateString) {
-        newList.add(newChatRoom);
-      } else {
-        newList.add(newDateString);
-        newList.add(newChatRoom);
-      }
-
-      state = state!.copyWith(groupedChatList: newList);
-    } catch (e) {
-      ScaffoldMessenger.of(mContext).showSnackBar(
-        SnackBar(content: Text("채팅 쓰기 실패: ${e.toString()}")),
-      );
-    }
-  }
+  // Future<void> chat(int chatRoomId, String message) async {
+  //   try {
+  //     Map<String, dynamic> data = await ChatRoomRepository().chat(chatRoomId, message);
+  //
+  //     // 단일 메시지 Map → ChatRoom
+  //     ChatRoom newChatRoom = ChatRoom.fromMap(data);
+  //
+  //     // 채팅 리스트 상태 갱신
+  //     DateTime lastDate =
+  //         state!.groupedChatList.reversed.firstWhere((e) => e is ChatRoom).chat.createdAt.toLocal();
+  //     DateTime newDate = newChatRoom.chat.createdAt.toLocal();
+  //
+  //     String lastDateString =
+  //         "${lastDate.year}-${lastDate.month.toString().padLeft(2, '0')}-${lastDate.day.toString().padLeft(2, '0')}";
+  //     String newDateString =
+  //         "${newDate.year}-${newDate.month.toString().padLeft(2, '0')}-${newDate.day.toString().padLeft(2, '0')}";
+  //
+  //     List<dynamic> newList = [...state!.groupedChatList];
+  //
+  //     if (lastDateString == newDateString) {
+  //       newList.add(newChatRoom);
+  //     } else {
+  //       newList.add(newDateString);
+  //       newList.add(newChatRoom);
+  //     }
+  //
+  //     state = state!.copyWith(groupedChatList: newList);
+  //   } catch (e) {
+  //     ScaffoldMessenger.of(mContext).showSnackBar(
+  //       SnackBar(content: Text("채팅 쓰기 실패: ${e.toString()}")),
+  //     );
+  //   }
+  // }
 }
 
 class ChatRoomDetailModel {
@@ -92,7 +93,8 @@ class ChatRoomDetailModel {
     final sortedKeys = grouped.keys.toList()..sort();
 
     for (final key in sortedKeys) {
-      grouped[key]!.sort((a, b) => a.chat.createdAt.compareTo(b.chat.createdAt));
+      grouped[key]!
+          .sort((a, b) => a.chat!.createdAt.compareTo(b.chat!.createdAt));
     }
 
     List<dynamic> finalList = [];
