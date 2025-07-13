@@ -65,18 +65,18 @@ class PredictionGame {
     this.awayWinPercent,
   });
 
-  factory PredictionGame.fromMap(Map<String, dynamic> map) {
+  factory PredictionGame.fromMap(Map<String, dynamic> data) {
     return PredictionGame(
-      game: Game.fromMap(map),
-      homeTeamName: map['homeTeamName'],
-      awayTeamName: map['awayTeamName'],
-      homePitcherProfileUrl: map['homePitcherProfileUrl'],
-      awayPitcherProfileUrl: map['awayPitcherProfileUrl'],
-      homePredictionScore: (map['homePredictionScore'] as num?)?.toDouble(),
-      awayPredictionScore: (map['awayPredictionScore'] as num?)?.toDouble(),
-      totalPredictionScore: (map['totalPredictionScore'] as num?)?.toDouble(),
-      homeWinPercent: (map['homeWinPercent'] as num?)?.toDouble(),
-      awayWinPercent: (map['awayWinPercent'] as num?)?.toDouble(),
+      game: Game.fromMap(data),
+      homeTeamName: data['homeTeamName'],
+      awayTeamName: data['awayTeamName'],
+      homePitcherProfileUrl: data['homePitcherProfileUrl'],
+      awayPitcherProfileUrl: data['awayPitcherProfileUrl'],
+      homePredictionScore: (data['homePredictionScore'] as num?)?.toDouble(),
+      awayPredictionScore: (data['awayPredictionScore'] as num?)?.toDouble(),
+      totalPredictionScore: (data['totalPredictionScore'] as num?)?.toDouble(),
+      homeWinPercent: (data['homeWinPercent'] as num?)?.toDouble(),
+      awayWinPercent: (data['awayWinPercent'] as num?)?.toDouble(),
     );
   }
 }
