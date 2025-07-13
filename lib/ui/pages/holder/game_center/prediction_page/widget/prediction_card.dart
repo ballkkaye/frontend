@@ -1,14 +1,15 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/prediction_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/widget/prediction_bar_graph_title.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/widget/prediction_graph_value.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/widget/prediction_player_image.dart';
 import 'package:flutter/material.dart';
 
 class PredictionCard extends StatelessWidget {
-  const PredictionCard({
-    super.key,
-  });
+  final PredictionGame predictionGame;
+
+  const PredictionCard({super.key, required this.predictionGame});
 
   @override
   Widget build(BuildContext context) {
@@ -46,12 +47,12 @@ class PredictionCard extends StatelessWidget {
                                   horizontal: 4,
                                   vertical: 2,
                                 ),
-                                child: MText.label2_7('팀명', color: MColor.kLabel.white),
+                                child: MText.label2_7(predictionGame.homeTeamName ?? '', color: MColor.kLabel.white),
                               ),
                             ),
                             SizedBox(width: 2),
                             // 선수명
-                            MText.normal6_4('선수명', color: MColor.kLabel.normal),
+                            MText.normal6_4(predictionGame.game.homePitcherName ?? '', color: MColor.kLabel.normal),
                           ],
                         ),
                         // 여백
@@ -122,12 +123,12 @@ class PredictionCard extends StatelessWidget {
                                   horizontal: 4,
                                   vertical: 2,
                                 ),
-                                child: MText.label2_7('팀명', color: MColor.kLabel.white),
+                                child: MText.label2_7(predictionGame.awayTeamName ?? '', color: MColor.kLabel.white),
                               ),
                             ),
                             SizedBox(width: 2),
                             // 선수명
-                            MText.normal6_4('선수명', color: MColor.kLabel.normal),
+                            MText.normal6_4(predictionGame.game.awayPitcherName ?? '', color: MColor.kLabel.normal),
                           ],
                         ),
                         // 여백
@@ -187,10 +188,12 @@ class PredictionCard extends StatelessWidget {
                         title: '예상득점',
                         showTotalLabel: true,
                         totalScore: '양팀 득점 합계',
-                        totalScoreValue: 7.7,
+                        totalScoreValue: predictionGame.totalPredictionScore,
                       ),
                       SizedBox(height: 6),
-                      PredictionGraphValue(leftScore: 3.2, rightScore: 4.5),
+                      PredictionGraphValue(
+                          leftScore: predictionGame.homePredictionScore ?? 0,
+                          rightScore: predictionGame.awayPredictionScore ?? 0),
                     ],
                   ),
                   SizedBox(height: 12),
@@ -201,7 +204,9 @@ class PredictionCard extends StatelessWidget {
                         showTotalLabel: false,
                       ),
                       SizedBox(height: 6),
-                      PredictionGraphValue(leftScore: 42.8, rightScore: 57.2),
+                      PredictionGraphValue(
+                          leftScore: predictionGame.homeWinPercent ?? 0,
+                          rightScore: predictionGame.awayWinPercent ?? 0),
                     ],
                   ),
                 ],
