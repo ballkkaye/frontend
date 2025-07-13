@@ -1,3 +1,5 @@
+import 'package:ballkkaye_frontend/_core/utils/m_http.dart';
+import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 
 class ChatRoomRepository {
@@ -187,7 +189,7 @@ class ChatRoomRepository {
 
   // 채팅방 목록
   Future<Map<String, dynamic>> getList() async {
-    // Response response = await dio.get("/s/api/chatrooms");
+    Response response = await dio.get("/s/api/chatrooms");
     // final responseBody = response.data;
     final responseBody = {
       "status": 200,
