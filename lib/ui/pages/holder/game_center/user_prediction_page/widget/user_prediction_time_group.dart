@@ -1,6 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/_core/utils/m_time.dart';
+import 'package:ballkkaye_frontend/_core/utils/m_util.dart';
 import 'package:flutter/material.dart';
 
 class UserPredictionTimeGroup extends StatelessWidget {

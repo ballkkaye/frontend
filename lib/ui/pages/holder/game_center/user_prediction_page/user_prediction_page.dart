@@ -24,17 +24,17 @@ class _UserPredictionPageState extends ConsumerState<UserPredictionPage> {
     return Scaffold(
       appBar: AppBar(title: const Text("나의 승부예측")),
       body: showResult
-          ? const UserPredictionResultBody() // ✅ 결과 화면
-          : const UserPredictionBody(),      // ✅ 예측 화면
+          ? const UserPredictionResultBody() // 경기후 예측 화면
+          : const UserPredictionBody(),      // 경기전 예측 화면
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           vm.fetchMyPredictionAndSet();
           setState(() {
-            showResult = true;     // ✅ 화면 전환
+            showResult = true;     //화면 전환
           });
         },
-        child: const Icon(Icons.flag),
+        child: const Icon(Icons.access_time),
         tooltip: "경기 결과 보기",
       ),
     );

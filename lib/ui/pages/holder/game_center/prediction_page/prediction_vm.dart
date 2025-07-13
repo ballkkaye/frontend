@@ -38,18 +38,6 @@ class PredictionVM extends AutoDisposeNotifier<PredictionModel?> {
     }
     state = PredictionModel.fromList(data["body"]);
   }
-
-  Future<void> getList() async {
-    PredictionModel prevModel = state!;
-    Map<String, dynamic> data = await GameCenterRepository().getPrediction();
-    if (data["status"] != 200) {
-      ScaffoldMessenger.of(mContext!).showSnackBar(
-        SnackBar(content: Text("오늘의 경기 로드 실패 : ${data["msg"]}")),
-      );
-      return;
-    }
-    state = PredictionModel.fromList(data["body"]);
-  }
 }
 
 class PredictionGame {
@@ -77,18 +65,18 @@ class PredictionGame {
     this.awayWinPercent,
   });
 
-  factory PredictionGame.fromMap(Map<String, dynamic> map) {
+  factory PredictionGame.fromMap(Map<String, dynamic> data) {
     return PredictionGame(
-      game: Game.fromMap(map),
-      homeTeamName: map['homeTeamName'],
-      awayTeamName: map['awayTeamName'],
-      homePitcherProfileUrl: map['homePitcherProfileUrl'],
-      awayPitcherProfileUrl: map['awayPitcherProfileUrl'],
-      homePredictionScore: (map['homePredictionScore'] as num?)?.toDouble(),
-      awayPredictionScore: (map['awayPredictionScore'] as num?)?.toDouble(),
-      totalPredictionScore: (map['totalPredictionScore'] as num?)?.toDouble(),
-      homeWinPercent: (map['homeWinPercent'] as num?)?.toDouble(),
-      awayWinPercent: (map['awayWinPercent'] as num?)?.toDouble(),
+      game: Game.fromMap(data),
+      homeTeamName: data['homeTeamName'],
+      awayTeamName: data['awayTeamName'],
+      homePitcherProfileUrl: data['homePitcherProfileUrl'],
+      awayPitcherProfileUrl: data['awayPitcherProfileUrl'],
+      homePredictionScore: (data['homePredictionScore'] as num?)?.toDouble(),
+      awayPredictionScore: (data['awayPredictionScore'] as num?)?.toDouble(),
+      totalPredictionScore: (data['totalPredictionScore'] as num?)?.toDouble(),
+      homeWinPercent: (data['homeWinPercent'] as num?)?.toDouble(),
+      awayWinPercent: (data['awayWinPercent'] as num?)?.toDouble(),
     );
   }
 }
@@ -101,14 +89,6 @@ class PredictionModel {
   factory PredictionModel.fromList(List<dynamic> list) {
     return PredictionModel(
       list.map((e) => PredictionGame.fromMap(e)).toList(),
-    );
-  }
-
-  PredictionModel copyWith({
-    List<PredictionGame>? games,
-  }) {
-    return PredictionModel(
-      games ?? this.games,
     );
   }
 
