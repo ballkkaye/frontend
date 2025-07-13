@@ -48,7 +48,7 @@ class UserMatch {
         game = Game(
           homeTeam: Team(teamName: data['homeTeamName']),
           awayTeam: Team(teamName: data['awayTeamName']),
-          gameDate: data['gameDate'],
+          gameDate: data['gameDate']?.replaceAll('.', '-'),
           stadiumName: data['stadiumName'],
         ),
         user = User(

@@ -57,7 +57,7 @@ class Game {
         awayPitcherName = map['awayPitcherName'];
 
   Game.fromGameData(Map<String, dynamic> data)
-      : id = data['gameId'],
+      : id = data['gameId'] ?? data['id'],
         homeTeam = Team.fromGameData(
           teamId: data['homeTeamId'],
           fullName: data['homeTeamFullName'],

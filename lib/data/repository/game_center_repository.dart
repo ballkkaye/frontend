@@ -6,133 +6,133 @@ class GameCenterRepository {
   // 팀순위 조회
   Future<Map<String, dynamic>> getRanking() async {
     Response response = await dio.get('/s/api/today/team-records');
-    final responseBody = response.data;
-    // final responseBody = {
-    //   "status": 200,
-    //   "msg": "성공",
-    //   "body": [
-    //     {
-    //       "teamName": "한화 이글스",
-    //       "gap": 0.0,
-    //       "winGame": 46,
-    //       "loseGame": 33,
-    //       "tieGame": 1,
-    //       "totalGame": 80,
-    //       "winRate": 0.582,
-    //       "teamRank": 1,
-    //       "recentTenGame": "4승0무6패",
-    //       "streak": "1패"
-    //     },
-    //     {
-    //       "teamName": "LG 트윈스",
-    //       "gap": 1.0,
-    //       "winGame": 45,
-    //       "loseGame": 34,
-    //       "tieGame": 2,
-    //       "totalGame": 81,
-    //       "winRate": 0.57,
-    //       "teamRank": 2,
-    //       "recentTenGame": "4승0무6패",
-    //       "streak": "1패"
-    //     },
-    //     {
-    //       "teamName": "롯데 자이언츠",
-    //       "gap": 2.0,
-    //       "winGame": 44,
-    //       "loseGame": 35,
-    //       "tieGame": 3,
-    //       "totalGame": 82,
-    //       "winRate": 0.557,
-    //       "teamRank": 3,
-    //       "recentTenGame": "6승0무4패",
-    //       "streak": "1승"
-    //     },
-    //     {
-    //       "teamName": "KIA 타이거즈",
-    //       "gap": 3.5,
-    //       "winGame": 42,
-    //       "loseGame": 36,
-    //       "tieGame": 3,
-    //       "totalGame": 81,
-    //       "winRate": 0.538,
-    //       "teamRank": 4,
-    //       "recentTenGame": "5승2무3패",
-    //       "streak": "1패"
-    //     },
-    //     {
-    //       "teamName": "SSG 랜더스",
-    //       "gap": 5.0,
-    //       "winGame": 40,
-    //       "loseGame": 37,
-    //       "tieGame": 3,
-    //       "totalGame": 80,
-    //       "winRate": 0.519,
-    //       "teamRank": 5,
-    //       "recentTenGame": "5승1무4패",
-    //       "streak": "1승"
-    //     },
-    //     {
-    //       "teamName": "KT 위즈",
-    //       "gap": 5.0,
-    //       "winGame": 41,
-    //       "loseGame": 38,
-    //       "tieGame": 3,
-    //       "totalGame": 82,
-    //       "winRate": 0.519,
-    //       "teamRank": 6,
-    //       "recentTenGame": "5승0무5패",
-    //       "streak": "1승"
-    //     },
-    //     {
-    //       "teamName": "삼성 라이온즈",
-    //       "gap": 6.5,
-    //       "winGame": 40,
-    //       "loseGame": 40,
-    //       "tieGame": 1,
-    //       "totalGame": 81,
-    //       "winRate": 0.5,
-    //       "teamRank": 7,
-    //       "recentTenGame": "2승0무8패",
-    //       "streak": "1패"
-    //     },
-    //     {
-    //       "teamName": "NC 다이노스",
-    //       "gap": 7.5,
-    //       "winGame": 36,
-    //       "loseGame": 38,
-    //       "tieGame": 4,
-    //       "totalGame": 78,
-    //       "winRate": 0.486,
-    //       "teamRank": 8,
-    //       "recentTenGame": "6승0무4패",
-    //       "streak": "1승"
-    //     },
-    //     {
-    //       "teamName": "두산 베어스",
-    //       "gap": 13.5,
-    //       "winGame": 32,
-    //       "loseGame": 46,
-    //       "tieGame": 3,
-    //       "totalGame": 81,
-    //       "winRate": 0.41,
-    //       "teamRank": 9,
-    //       "recentTenGame": "5승0무5패",
-    //       "streak": "1승"
-    //     },
-    //     {
-    //       "teamName": "키움 히어로즈",
-    //       "gap": 21.0,
-    //       "winGame": 26,
-    //       "loseGame": 55,
-    //       "tieGame": 3,
-    //       "totalGame": 84,
-    //       "winRate": 0.321,
-    //       "teamRank": 10,
-    //       "recentTenGame": "5승1무4패",
-    //       "streak": "1패"
-    //     }
-    //   ]
-    // };
+    // final responseBody = response.data;
+    final responseBody = {
+      "status": 200,
+      "msg": "성공",
+      "body": [
+        {
+          "teamName": "한화 이글스",
+          "gap": 0.0,
+          "winGame": 46,
+          "loseGame": 33,
+          "tieGame": 1,
+          "totalGame": 80,
+          "winRate": 0.582,
+          "teamRank": 1,
+          "recentTenGame": "4승0무6패",
+          "streak": "1패"
+        },
+        {
+          "teamName": "LG 트윈스",
+          "gap": 1.0,
+          "winGame": 45,
+          "loseGame": 34,
+          "tieGame": 2,
+          "totalGame": 81,
+          "winRate": 0.57,
+          "teamRank": 2,
+          "recentTenGame": "4승0무6패",
+          "streak": "1패"
+        },
+        {
+          "teamName": "롯데 자이언츠",
+          "gap": 2.0,
+          "winGame": 44,
+          "loseGame": 35,
+          "tieGame": 3,
+          "totalGame": 82,
+          "winRate": 0.557,
+          "teamRank": 3,
+          "recentTenGame": "6승0무4패",
+          "streak": "1승"
+        },
+        {
+          "teamName": "KIA 타이거즈",
+          "gap": 3.5,
+          "winGame": 42,
+          "loseGame": 36,
+          "tieGame": 3,
+          "totalGame": 81,
+          "winRate": 0.538,
+          "teamRank": 4,
+          "recentTenGame": "5승2무3패",
+          "streak": "1패"
+        },
+        {
+          "teamName": "SSG 랜더스",
+          "gap": 5.0,
+          "winGame": 40,
+          "loseGame": 37,
+          "tieGame": 3,
+          "totalGame": 80,
+          "winRate": 0.519,
+          "teamRank": 5,
+          "recentTenGame": "5승1무4패",
+          "streak": "1승"
+        },
+        {
+          "teamName": "KT 위즈",
+          "gap": 5.0,
+          "winGame": 41,
+          "loseGame": 38,
+          "tieGame": 3,
+          "totalGame": 82,
+          "winRate": 0.519,
+          "teamRank": 6,
+          "recentTenGame": "5승0무5패",
+          "streak": "1승"
+        },
+        {
+          "teamName": "삼성 라이온즈",
+          "gap": 6.5,
+          "winGame": 40,
+          "loseGame": 40,
+          "tieGame": 1,
+          "totalGame": 81,
+          "winRate": 0.5,
+          "teamRank": 7,
+          "recentTenGame": "2승0무8패",
+          "streak": "1패"
+        },
+        {
+          "teamName": "NC 다이노스",
+          "gap": 7.5,
+          "winGame": 36,
+          "loseGame": 38,
+          "tieGame": 4,
+          "totalGame": 78,
+          "winRate": 0.486,
+          "teamRank": 8,
+          "recentTenGame": "6승0무4패",
+          "streak": "1승"
+        },
+        {
+          "teamName": "두산 베어스",
+          "gap": 13.5,
+          "winGame": 32,
+          "loseGame": 46,
+          "tieGame": 3,
+          "totalGame": 81,
+          "winRate": 0.41,
+          "teamRank": 9,
+          "recentTenGame": "5승0무5패",
+          "streak": "1승"
+        },
+        {
+          "teamName": "키움 히어로즈",
+          "gap": 21.0,
+          "winGame": 26,
+          "loseGame": 55,
+          "tieGame": 3,
+          "totalGame": 84,
+          "winRate": 0.321,
+          "teamRank": 10,
+          "recentTenGame": "5승1무4패",
+          "streak": "1패"
+        }
+      ]
+    };
     Logger().d('GameCenterRepository getRanking: $responseBody');
     return responseBody;
   }
@@ -370,124 +370,124 @@ class GameCenterRepository {
       "/api/today/hitter-lineup",
       queryParameters: {"gameId": gameId, "teamId": teamId},
     );
-    final responseBody = response.data;
-    // final responseBody = {
-    //   "status": 200,
-    //   "msg": "성공",
-    //   "body": {
-    //     "gameId": 423,
-    //     "season": 2025,
-    //     "hitters": [
-    //       {
-    //         "hitPredictionPer": 29.1,
-    //         "teamId": 2,
-    //         "hitterOrder": 1,
-    //         "name": "홍성우",
-    //         "position": "1루수",
-    //         "ab": 3,
-    //         "h": 1,
-    //         "avg": 0.333,
-    //         "ops": 0.821
-    //       },
-    //       {
-    //         "hitPredictionPer": 34.3,
-    //         "teamId": 2,
-    //         "hitterOrder": 2,
-    //         "name": "박정호",
-    //         "position": "2루수",
-    //         "ab": 4,
-    //         "h": 2,
-    //         "avg": 0.5,
-    //         "ops": 0.92
-    //       },
-    //       {
-    //         "hitPredictionPer": 31.6,
-    //         "teamId": 2,
-    //         "hitterOrder": 3,
-    //         "name": "이재원",
-    //         "position": "3루수",
-    //         "ab": 2,
-    //         "h": 1,
-    //         "avg": 0.5,
-    //         "ops": 0.85
-    //       },
-    //       {
-    //         "hitPredictionPer": 21.3,
-    //         "teamId": 2,
-    //         "hitterOrder": 4,
-    //         "name": "정우영",
-    //         "position": "유격수",
-    //         "ab": 3,
-    //         "h": 0,
-    //         "avg": 0.0,
-    //         "ops": 0.65
-    //       },
-    //       {
-    //         "hitPredictionPer": 36.5,
-    //         "teamId": 2,
-    //         "hitterOrder": 5,
-    //         "name": "최재훈",
-    //         "position": "좌익수",
-    //         "ab": 3,
-    //         "h": 2,
-    //         "avg": 0.667,
-    //         "ops": 0.94
-    //       },
-    //       {
-    //         "hitPredictionPer": 27.3,
-    //         "teamId": 2,
-    //         "hitterOrder": 6,
-    //         "name": "김재현",
-    //         "position": "중견수",
-    //         "ab": 4,
-    //         "h": 1,
-    //         "avg": 0.25,
-    //         "ops": 0.77
-    //       },
-    //       {
-    //         "hitPredictionPer": 31.7,
-    //         "teamId": 2,
-    //         "hitterOrder": 7,
-    //         "name": "류지혁",
-    //         "position": "우익수",
-    //         "ab": 2,
-    //         "h": 1,
-    //         "avg": 0.5,
-    //         "ops": 0.865
-    //       },
-    //       {
-    //         "hitPredictionPer": 27.0,
-    //         "teamId": 2,
-    //         "hitterOrder": 8,
-    //         "name": "한지민",
-    //         "position": "포수",
-    //         "ab": 3,
-    //         "h": 1,
-    //         "avg": 0.333,
-    //         "ops": 0.745
-    //       },
-    //       {
-    //         "hitPredictionPer": 20.9,
-    //         "teamId": 2,
-    //         "hitterOrder": 9,
-    //         "name": "노성현",
-    //         "position": "지명타자",
-    //         "ab": 3,
-    //         "h": 0,
-    //         "avg": 0.0,
-    //         "ops": 0.68
-    //       }
-    //     ],
-    //     "profileUrl":
-    //         "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/51867.png",
-    //     "name": "김건우",
-    //     "gameCount": 27,
-    //     "result": "2승 3패",
-    //     "era": 4.58,
-    //     "whip": 1.53,
-    //     "qs": 0
-    //   }
-    // };
+    // final responseBody = response.data;
+    final responseBody = {
+      "status": 200,
+      "msg": "성공",
+      "body": {
+        "gameId": 423,
+        "season": 2025,
+        "hitters": [
+          {
+            "hitPredictionPer": 29.1,
+            "teamId": 2,
+            "hitterOrder": 1,
+            "name": "홍성우",
+            "position": "1루수",
+            "ab": 3,
+            "h": 1,
+            "avg": 0.333,
+            "ops": 0.821
+          },
+          {
+            "hitPredictionPer": 34.3,
+            "teamId": 2,
+            "hitterOrder": 2,
+            "name": "박정호",
+            "position": "2루수",
+            "ab": 4,
+            "h": 2,
+            "avg": 0.5,
+            "ops": 0.92
+          },
+          {
+            "hitPredictionPer": 31.6,
+            "teamId": 2,
+            "hitterOrder": 3,
+            "name": "이재원",
+            "position": "3루수",
+            "ab": 2,
+            "h": 1,
+            "avg": 0.5,
+            "ops": 0.85
+          },
+          {
+            "hitPredictionPer": 21.3,
+            "teamId": 2,
+            "hitterOrder": 4,
+            "name": "정우영",
+            "position": "유격수",
+            "ab": 3,
+            "h": 0,
+            "avg": 0.0,
+            "ops": 0.65
+          },
+          {
+            "hitPredictionPer": 36.5,
+            "teamId": 2,
+            "hitterOrder": 5,
+            "name": "최재훈",
+            "position": "좌익수",
+            "ab": 3,
+            "h": 2,
+            "avg": 0.667,
+            "ops": 0.94
+          },
+          {
+            "hitPredictionPer": 27.3,
+            "teamId": 2,
+            "hitterOrder": 6,
+            "name": "김재현",
+            "position": "중견수",
+            "ab": 4,
+            "h": 1,
+            "avg": 0.25,
+            "ops": 0.77
+          },
+          {
+            "hitPredictionPer": 31.7,
+            "teamId": 2,
+            "hitterOrder": 7,
+            "name": "류지혁",
+            "position": "우익수",
+            "ab": 2,
+            "h": 1,
+            "avg": 0.5,
+            "ops": 0.865
+          },
+          {
+            "hitPredictionPer": 27.0,
+            "teamId": 2,
+            "hitterOrder": 8,
+            "name": "한지민",
+            "position": "포수",
+            "ab": 3,
+            "h": 1,
+            "avg": 0.333,
+            "ops": 0.745
+          },
+          {
+            "hitPredictionPer": 20.9,
+            "teamId": 2,
+            "hitterOrder": 9,
+            "name": "노성현",
+            "position": "지명타자",
+            "ab": 3,
+            "h": 0,
+            "avg": 0.0,
+            "ops": 0.68
+          }
+        ],
+        "profileUrl":
+            "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/51867.png",
+        "name": "김건우",
+        "gameCount": 27,
+        "result": "2승 3패",
+        "era": 4.58,
+        "whip": 1.53,
+        "qs": 0
+      }
+    };
     Logger().d('GameCenterRepository getMatchup: $responseBody');
     return responseBody;
   }
@@ -495,85 +495,85 @@ class GameCenterRepository {
   // 오늘의 경기 조회
   Future<Map<String, dynamic>> getTodayGame() async {
     Response response = await dio.get("/s/api/today-games");
-    final responseBody = response.data;
-    // final responseBody = {
-    //   "status": 200,
-    //   "msg": "성공",
-    //   "body": [
-    //     {
-    //       "gameId": 423,
-    //       "gameStatus": "SCHEDULED",
-    //       "gameTime": "18:30",
-    //       "stadiumShortName": "잠실",
-    //       "broadcastChannel": "MS_T",
-    //       "homePitcherName": "콜어빈",
-    //       "homeTeamLogoUrl":
-    //           "https://upload.wikimedia.org/wikipedia/ko/0/09/Doosan_Bears.png",
-    //       "awayPitcherName": "김건우",
-    //       "awayTeamLogoUrl":
-    //           "https://upload.wikimedia.org/wikipedia/ko/0/02/SSG_Landers.png",
-    //       "ticketLink":
-    //           "https://ticket.interpark.com/Contents/Sports/GoodsInfo?SportsCode=07001&TeamCode=PB004"
-    //     },
-    //     {
-    //       "gameId": 424,
-    //       "gameStatus": "SCHEDULED",
-    //       "gameTime": "18:30",
-    //       "stadiumShortName": "대구",
-    //       "broadcastChannel": "KN_T",
-    //       "homePitcherName": "가라비토",
-    //       "homeTeamLogoUrl":
-    //           "https://upload.wikimedia.org/wikipedia/ko/9/95/Samsung_Lions.png",
-    //       "awayPitcherName": "문동주",
-    //       "awayTeamLogoUrl":
-    //           "https://upload.wikimedia.org/wikipedia/ko/9/99/Hanwha_Eagles.png",
-    //       "ticketLink": "https://www.ticketlink.co.kr/sports#reservation"
-    //     },
-    //     {
-    //       "gameId": 425,
-    //       "gameStatus": "SCHEDULED",
-    //       "gameTime": "18:30",
-    //       "stadiumShortName": "창원",
-    //       "broadcastChannel": "SS_T",
-    //       "homePitcherName": "최성영",
-    //       "homeTeamLogoUrl":
-    //           "https://upload.wikimedia.org/wikipedia/ko/b/bd/NC_Dinos.png",
-    //       "awayPitcherName": "감보아",
-    //       "awayTeamLogoUrl":
-    //           "https://upload.wikimedia.org/wikipedia/ko/9/91/Lotte_Giants.png",
-    //       "ticketLink": "https://ticket.ncdinos.com/login"
-    //     },
-    //     {
-    //       "gameId": 426,
-    //       "gameStatus": "SCHEDULED",
-    //       "gameTime": "18:30",
-    //       "stadiumShortName": "수원",
-    //       "broadcastChannel": "SPO_T",
-    //       "homePitcherName": "소형준",
-    //       "homeTeamLogoUrl":
-    //           "https://upload.wikimedia.org/wikipedia/ko/b/b3/KT_Wiz.png",
-    //       "awayPitcherName": "임찬규",
-    //       "awayTeamLogoUrl":
-    //           "https://upload.wikimedia.org/wikipedia/ko/4/4f/LG_Twins.png",
-    //       "ticketLink": "https://www.ktwiz.co.kr/ticket/reservation"
-    //     },
-    //     {
-    //       "gameId": 427,
-    //       "gameStatus": "SCHEDULED",
-    //       "gameTime": "18:30",
-    //       "stadiumShortName": "고척",
-    //       "broadcastChannel": "SPO_2T",
-    //       "homePitcherName": "하영민",
-    //       "homeTeamLogoUrl":
-    //           "https://upload.wikimedia.org/wikipedia/ko/5/52/Kiwoom_Heroes.png",
-    //       "awayPitcherName": "김건국",
-    //       "awayTeamLogoUrl":
-    //           "https://upload.wikimedia.org/wikipedia/ko/6/6e/KIA_Tigers.png",
-    //       "ticketLink":
-    //           "https://ticket.interpark.com/Contents/Sports/GoodsInfo?SportsCode=07001&TeamCode=PB003"
-    //     }
-    //   ]
-    // };
+    // final responseBody = response.data;
+    final responseBody = {
+      "status": 200,
+      "msg": "성공",
+      "body": [
+        {
+          "gameId": 423,
+          "gameStatus": "SCHEDULED",
+          "gameTime": "18:30",
+          "stadiumShortName": "잠실",
+          "broadcastChannel": "MS_T",
+          "homePitcherName": "콜어빈",
+          "homeTeamLogoUrl":
+              "https://upload.wikimedia.org/wikipedia/ko/0/09/Doosan_Bears.png",
+          "awayPitcherName": "김건우",
+          "awayTeamLogoUrl":
+              "https://upload.wikimedia.org/wikipedia/ko/0/02/SSG_Landers.png",
+          "ticketLink":
+              "https://ticket.interpark.com/Contents/Sports/GoodsInfo?SportsCode=07001&TeamCode=PB004"
+        },
+        {
+          "gameId": 424,
+          "gameStatus": "SCHEDULED",
+          "gameTime": "18:30",
+          "stadiumShortName": "대구",
+          "broadcastChannel": "KN_T",
+          "homePitcherName": "가라비토",
+          "homeTeamLogoUrl":
+              "https://upload.wikimedia.org/wikipedia/ko/9/95/Samsung_Lions.png",
+          "awayPitcherName": "문동주",
+          "awayTeamLogoUrl":
+              "https://upload.wikimedia.org/wikipedia/ko/9/99/Hanwha_Eagles.png",
+          "ticketLink": "https://www.ticketlink.co.kr/sports#reservation"
+        },
+        {
+          "gameId": 425,
+          "gameStatus": "SCHEDULED",
+          "gameTime": "18:30",
+          "stadiumShortName": "창원",
+          "broadcastChannel": "SS_T",
+          "homePitcherName": "최성영",
+          "homeTeamLogoUrl":
+              "https://upload.wikimedia.org/wikipedia/ko/b/bd/NC_Dinos.png",
+          "awayPitcherName": "감보아",
+          "awayTeamLogoUrl":
+              "https://upload.wikimedia.org/wikipedia/ko/9/91/Lotte_Giants.png",
+          "ticketLink": "https://ticket.ncdinos.com/login"
+        },
+        {
+          "gameId": 426,
+          "gameStatus": "SCHEDULED",
+          "gameTime": "18:30",
+          "stadiumShortName": "수원",
+          "broadcastChannel": "SPO_T",
+          "homePitcherName": "소형준",
+          "homeTeamLogoUrl":
+              "https://upload.wikimedia.org/wikipedia/ko/b/b3/KT_Wiz.png",
+          "awayPitcherName": "임찬규",
+          "awayTeamLogoUrl":
+              "https://upload.wikimedia.org/wikipedia/ko/4/4f/LG_Twins.png",
+          "ticketLink": "https://www.ktwiz.co.kr/ticket/reservation"
+        },
+        {
+          "gameId": 427,
+          "gameStatus": "SCHEDULED",
+          "gameTime": "18:30",
+          "stadiumShortName": "고척",
+          "broadcastChannel": "SPO_2T",
+          "homePitcherName": "하영민",
+          "homeTeamLogoUrl":
+              "https://upload.wikimedia.org/wikipedia/ko/5/52/Kiwoom_Heroes.png",
+          "awayPitcherName": "김건국",
+          "awayTeamLogoUrl":
+              "https://upload.wikimedia.org/wikipedia/ko/6/6e/KIA_Tigers.png",
+          "ticketLink":
+              "https://ticket.interpark.com/Contents/Sports/GoodsInfo?SportsCode=07001&TeamCode=PB003"
+        }
+      ]
+    };
     Logger().d('GameCenterRepository getTodayGame: $responseBody');
     return responseBody;
   }
@@ -581,95 +581,95 @@ class GameCenterRepository {
   // 승리예측 조회
   Future<Map<String, dynamic>> getPrediction() async {
     Response response = await dio.get("/s/api/today-games/prediction");
-    final responseBody = response.data;
-    // final responseBody = {
-    //   "status": 200,
-    //   "msg": "성공",
-    //   "body": [
-    //     {
-    //       "gameId": 423,
-    //       "homeTeamId": 1,
-    //       "homeTeamName": "두산 베어스",
-    //       "awayTeamId": 2,
-    //       "awayTeamName": "SSG 랜더스",
-    //       "homePitcherName": "콜어빈",
-    //       "awayPitcherName": "김건우",
-    //       "homePitcherProfileUrl":
-    //           "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/55257.png",
-    //       "awayPitcherProfileUrl":
-    //           "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/51867.png",
-    //       "homePredictionScore": 4.2,
-    //       "awayPredictionScore": 3.9,
-    //       "totalPredictionScore": 8.1,
-    //       "homeWinPercent": 52.0,
-    //       "awayWinPercent": 48.0
-    //     },
-    //     {
-    //       "gameId": 424,
-    //       "homeTeamName": "삼성 라이온즈",
-    //       "awayTeamName": "한화 이글스",
-    //       "homePitcherName": "가라비토",
-    //       "awayPitcherName": "문동주",
-    //       "homePitcherProfileUrl":
-    //           "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/55460.png",
-    //       "awayPitcherProfileUrl":
-    //           "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/52701.png",
-    //       "homePredictionScore": 3.7,
-    //       "awayPredictionScore": 3.8,
-    //       "totalPredictionScore": 7.5,
-    //       "homeWinPercent": 49.2,
-    //       "awayWinPercent": 50.8
-    //     },
-    //     {
-    //       "gameId": 425,
-    //       "homeTeamName": "NC 다이노스",
-    //       "awayTeamName": "롯데 자이언츠",
-    //       "homePitcherName": "최성영",
-    //       "awayPitcherName": "감보아",
-    //       "homePitcherProfileUrl":
-    //           "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/66920.png",
-    //       "awayPitcherProfileUrl":
-    //           "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/55532.png",
-    //       "homePredictionScore": 4.5,
-    //       "awayPredictionScore": 3.6,
-    //       "totalPredictionScore": 8.1,
-    //       "homeWinPercent": 55.6,
-    //       "awayWinPercent": 44.4
-    //     },
-    //     {
-    //       "gameId": 426,
-    //       "homeTeamName": "KT 위즈",
-    //       "awayTeamName": "LG 트윈스",
-    //       "homePitcherName": "소형준",
-    //       "awayPitcherName": "임찬규",
-    //       "homePitcherProfileUrl":
-    //           "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/50030.png",
-    //       "awayPitcherProfileUrl":
-    //           "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/61101.png",
-    //       "homePredictionScore": 3.8,
-    //       "awayPredictionScore": 3.8,
-    //       "totalPredictionScore": 7.6,
-    //       "homeWinPercent": 50.0,
-    //       "awayWinPercent": 50.0
-    //     },
-    //     {
-    //       "gameId": 427,
-    //       "homeTeamName": "키움 히어로즈",
-    //       "awayTeamName": "KIA 타이거즈",
-    //       "homePitcherName": "하영민",
-    //       "awayPitcherName": "김건국",
-    //       "homePitcherProfileUrl":
-    //           "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/64350.png",
-    //       "awayPitcherProfileUrl":
-    //           "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/76225.png",
-    //       "homePredictionScore": 3.5,
-    //       "awayPredictionScore": 3.9,
-    //       "totalPredictionScore": 7.4,
-    //       "homeWinPercent": 47.6,
-    //       "awayWinPercent": 52.4
-    //     }
-    //   ]
-    // };
+    // final responseBody = response.data;
+    final responseBody = {
+      "status": 200,
+      "msg": "성공",
+      "body": [
+        {
+          "gameId": 423,
+          "homeTeamId": 1,
+          "homeTeamName": "두산 베어스",
+          "awayTeamId": 2,
+          "awayTeamName": "SSG 랜더스",
+          "homePitcherName": "콜어빈",
+          "awayPitcherName": "김건우",
+          "homePitcherProfileUrl":
+              "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/55257.png",
+          "awayPitcherProfileUrl":
+              "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/51867.png",
+          "homePredictionScore": 4.2,
+          "awayPredictionScore": 3.9,
+          "totalPredictionScore": 8.1,
+          "homeWinPercent": 52.0,
+          "awayWinPercent": 48.0
+        },
+        {
+          "gameId": 424,
+          "homeTeamName": "삼성 라이온즈",
+          "awayTeamName": "한화 이글스",
+          "homePitcherName": "가라비토",
+          "awayPitcherName": "문동주",
+          "homePitcherProfileUrl":
+              "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/55460.png",
+          "awayPitcherProfileUrl":
+              "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/52701.png",
+          "homePredictionScore": 3.7,
+          "awayPredictionScore": 3.8,
+          "totalPredictionScore": 7.5,
+          "homeWinPercent": 49.2,
+          "awayWinPercent": 50.8
+        },
+        {
+          "gameId": 425,
+          "homeTeamName": "NC 다이노스",
+          "awayTeamName": "롯데 자이언츠",
+          "homePitcherName": "최성영",
+          "awayPitcherName": "감보아",
+          "homePitcherProfileUrl":
+              "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/66920.png",
+          "awayPitcherProfileUrl":
+              "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/55532.png",
+          "homePredictionScore": 4.5,
+          "awayPredictionScore": 3.6,
+          "totalPredictionScore": 8.1,
+          "homeWinPercent": 55.6,
+          "awayWinPercent": 44.4
+        },
+        {
+          "gameId": 426,
+          "homeTeamName": "KT 위즈",
+          "awayTeamName": "LG 트윈스",
+          "homePitcherName": "소형준",
+          "awayPitcherName": "임찬규",
+          "homePitcherProfileUrl":
+              "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/50030.png",
+          "awayPitcherProfileUrl":
+              "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/61101.png",
+          "homePredictionScore": 3.8,
+          "awayPredictionScore": 3.8,
+          "totalPredictionScore": 7.6,
+          "homeWinPercent": 50.0,
+          "awayWinPercent": 50.0
+        },
+        {
+          "gameId": 427,
+          "homeTeamName": "키움 히어로즈",
+          "awayTeamName": "KIA 타이거즈",
+          "homePitcherName": "하영민",
+          "awayPitcherName": "김건국",
+          "homePitcherProfileUrl":
+              "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/64350.png",
+          "awayPitcherProfileUrl":
+              "https://6ptotvmi5753.edge.naverncp.com/KBO_IMAGE/person/kbo/2025/76225.png",
+          "homePredictionScore": 3.5,
+          "awayPredictionScore": 3.9,
+          "totalPredictionScore": 7.4,
+          "homeWinPercent": 47.6,
+          "awayWinPercent": 52.4
+        }
+      ]
+    };
     Logger().d('GameCenterRepository getPrediction: $responseBody');
     return responseBody;
   }

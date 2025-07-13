@@ -14,7 +14,8 @@ class UserMatchSelectDropdownBtn extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    UserMatchSelectGameModel? gameModel = ref.watch(userMatchSelectGameProvider(date));
+    UserMatchSelectGameModel? gameModel =
+        ref.watch(userMatchSelectGameProvider(date));
     UserMatchWriteFM fm = ref.read(userMatchWriteProvider.notifier);
     int? selectedGameId;
 
@@ -39,16 +40,18 @@ class UserMatchSelectDropdownBtn extends ConsumerWidget {
             }
           },
         ),
-        SizedBox(height: 540),
+        SizedBox(height: 450),
         MElevatedBtn(
           text: '다음',
           onPressed: () {
             if (selectedGameId != null) {
-              final Game selectedGame = gameModel.games.firstWhere((g) => g.id == selectedGameId);
+              final Game selectedGame =
+                  gameModel.games.firstWhere((g) => g.id == selectedGameId);
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => UserMatchWritePage(selectedGame: selectedGame),
+                  builder: (context) =>
+                      UserMatchWritePage(selectedGame: selectedGame),
                 ),
               );
             } else {

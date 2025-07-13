@@ -6,8 +6,9 @@ class UserRepository {
   Future<Map<String, dynamic>> oauthLogin(
       String accessToken, String fcmToken) async {
     Logger().d("fcmToken: $fcmToken");
-    Response response = await dio.post("/oauth/login",
-        data: {"accessToken": accessToken, "fcmToken": fcmToken});
+    Response response = await dio.post("/oauth/login", data: {
+      "accessToken": accessToken
+    }); // , "fcmToken": fcmToken TODO : 잠깐 빼둔거니까 다시 넣기
     final responseBody = response.data;
     // final responseBody = {
     //   "status": 200,
