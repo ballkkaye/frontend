@@ -30,7 +30,7 @@ class _HomeTodayGameSliderState extends State<HomeTodayGameSlider> {
           CarouselSlider(
             carouselController: _carouselSliderController,
             options: CarouselOptions(
-              height: 242,
+              height: 248,
               enableInfiniteScroll: true,
               onPageChanged: (index, reason) {
                 setState(() {
