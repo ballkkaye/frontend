@@ -1,15 +1,18 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/data/model/visit_record.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/visit_record_list_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/widgets/visit_record_img_thumbnail.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/visit_record_write_fm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widgets/visit_record_write_game_card.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_icon_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_text_form_field.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_toggle_btn.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class VisitRecordWriteForm extends StatelessWidget {
+class VisitRecordWriteForm extends ConsumerWidget {
   final VisitRecord selectedGame;
 
   const VisitRecordWriteForm({
@@ -18,7 +21,10 @@ class VisitRecordWriteForm extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final writeModel = ref.read(visitRecordWriteProvider.notifier);
+    final listModel = ref.read(visitRecordListProvider.notifier);
+
     bool hasImage = true;
     List<String> results = ['승', '무', '패'];
     return Form(
@@ -51,7 +57,7 @@ class VisitRecordWriteForm extends StatelessWidget {
           MToggleBtn(
             options: results,
             onSelected: (value) {
-              print(value);
+              writeModel.result(value);
             },
           ),
           SizedBox(height: 20),
@@ -60,7 +66,9 @@ class VisitRecordWriteForm extends StatelessWidget {
             hintText: "경기 기록을 자유롭게 적어주세요",
             maxLines: 6,
             maxLength: 1000,
-            onChanged: (value) {},
+            onChanged: (value) {
+              writeModel.content(value);
+            },
             keyboardType: TextInputType.text,
           ),
           Spacer(),
@@ -68,7 +76,21 @@ class VisitRecordWriteForm extends StatelessWidget {
           MElevatedBtn(
             text: '완료',
             onPressed: () {
-              Navigator.pop(context);
+              writeModel.gameId(selectedGame.gameId!);
+              writeModel.teamId; // TODO: 유저 정보 받을 수 있을 때
+
+              final writeProvider = ref.read(visitRecordWriteProvider);
+
+              print("📦 작성 모델: $writeProvider");
+              print("  - 게임 ID: ${writeProvider.gameId}");
+              print("  - 팀 ID: ${writeProvider.teamId}");
+              print("  - 결과: ${writeProvider.result}");
+              print("  - 내용: ${writeProvider.content}");
+              print("  - 이미지 URL: ${writeProvider.imgUrl}");
+
+              // 4. 작성 요청
+              listModel.writeVisitRecord(writeProvider);
+
               Navigator.pop(context);
             },
           ),

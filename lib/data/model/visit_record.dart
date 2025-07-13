@@ -1,3 +1,5 @@
+import 'package:ballkkaye_frontend/data/model/user.dart';
+
 class VisitRecord {
   int? id;
   int? gameId;
@@ -16,6 +18,8 @@ class VisitRecord {
   String? imgUrl;
   String? deleteStatus;
   String? selectedDate;
+  User? user;
+  int? teamId;
 
   VisitRecord({
     this.id,
@@ -35,28 +39,14 @@ class VisitRecord {
     this.imgUrl,
     this.deleteStatus,
     this.selectedDate,
+    this.user,
+    this.teamId,
   });
 
   String get gameName =>
       '$awayTeamFullName vs $homeTeamFullName ($stadiumShortName)';
 
   factory VisitRecord.fromMap(Map<String, dynamic> data) {
-    // print('✅ fromMap data: $data');
-    //
-    // print("✅ id type: ${data['id'].runtimeType}");
-    // print("✅ gameId type: ${data['gameId'].runtimeType}");
-    // print("✅ imageString type: ${data['imageString'].runtimeType}");
-    // print("✅ homeTeamName type: ${data['homeTeamName'].runtimeType}");
-    // print("✅ awayTeamName type: ${data['awayTeamName'].runtimeType}");
-    // print("✅ homeScore type: ${data['homeScore'].runtimeType}");
-    // print("✅ awayScore type: ${data['awayScore'].runtimeType}");
-    // print("✅ gameDate type: ${data['gameDate'].runtimeType}");
-    // print("✅ stadiumName type: ${data['stadiumName'].runtimeType}");
-    // print("✅ result type: ${data['result'].runtimeType}");
-    // print("✅ content type: ${data['content'].runtimeType}");
-    // print("✅ imgUrl type: ${data['imgUrl'].runtimeType}");
-    // print("✅ deleteStatus type: ${data['deleteStatus'].runtimeType}");
-    // print("✅ selectedDate type: ${data['selectedDate'].runtimeType}");
     return VisitRecord(
       id: data['id'] ?? 0,
       gameId: data['gameId'] ?? 0,
@@ -75,6 +65,9 @@ class VisitRecord {
       imgUrl: data['imgUrl'] ?? '',
       deleteStatus: data['deleteStatus'] ?? '',
       selectedDate: data['selectedDate'] ?? '',
+      user: User(
+        teamId: data['teamId'],
+      ),
     );
   }
 }
