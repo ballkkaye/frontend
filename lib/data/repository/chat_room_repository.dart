@@ -185,26 +185,35 @@ class ChatRoomRepository {
     return responseBody;
   }
 
-  // 채팅
-  Future<Map<String, dynamic>> chat(int chatRoomId, String message) async {
-    // Response response = await dio.get("/pub/chat/send", queryParameters: {
-    //   "chatRoomId": chatRoomId,
-    //   "message": message,
-    //   "messageType": "TEXT"
-    // });
+  // 채팅방 목록
+  Future<Map<String, dynamic>> getList() async {
+    // Response response = await dio.get("/s/api/chatrooms");
     // final responseBody = response.data;
     final responseBody = {
-      "messageId": 18,
-      "senderId": 2,
-      "senderName": "cos",
-      "message": "hi",
-      "messageType": "TALK",
-      "isSender": true,
-      "createdAt": "2025-07-10T02:50:57.882+00:00",
-      "chatRoomId": 1
+      "status": 200,
+      "msg": "성공",
+      "body": [
+        {
+          "chatRoomId": 1,
+          "chatRoomTitle": "매치 제목입니다.",
+          "relativeTime": "3분 전",
+          "content": "채팅창 1에 유저 5가 보낸 메세지",
+          "userProfileImgs": [
+            {
+              "imgUrl":
+                  "https://images.mypetlife.co.kr/content/uploads/2019/05/09153922/adorable-animal-animal-photography-225406-scaled-1536x1022.jpg",
+              "userId": 1,
+              "nickName": "ssar"
+            },
+            {"imgUrl": "/img/profile.png", "userId": 2, "nickName": "cos"},
+            {"imgUrl": "/img/profile.png", "userId": 3, "nickName": "love"},
+            {"imgUrl": "/img/profile.png", "userId": 4, "nickName": "haha"},
+            {"imgUrl": "/img/profile.png", "userId": 5, "nickName": "harim"}
+          ]
+        }
+      ]
     };
-
-    Logger().d('ChatRoomRepository chat: ${responseBody}');
+    Logger().d('ChatRoomRepository getList: ${responseBody}');
     return responseBody;
   }
 }

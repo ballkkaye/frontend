@@ -38,12 +38,12 @@ class User {
       this.fcmToken});
 
   User.fromMap(Map<String, dynamic> data)
-      : id = data['id'],
+      : id = data['id'] ?? data['userId'],
         nickname = data['nickname'],
         birthDate = data['birthDate'],
         ageRange = data['ageRange'],
         gender = data['gender'],
-        profileUrl = data['profileUrl'],
+        profileUrl = data['profileUrl'] ?? data['imgUrl'],
         teamId = data['teamId'],
         teamName = data['teamName'],
         accessToken = data['accessToken'],
