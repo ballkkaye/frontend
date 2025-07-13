@@ -1,9 +1,13 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/data/model/board.dart';
 import 'package:flutter/material.dart';
 
 class HomeBoardContent extends StatelessWidget {
+  final Board board;
+
   const HomeBoardContent({
     super.key,
+    required this.board,
   });
 
   @override
@@ -18,7 +22,7 @@ class HomeBoardContent extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '타이틀길게길게길게길게길게길게길게길게길게',
+            board.title,
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -29,7 +33,7 @@ class HomeBoardContent extends StatelessWidget {
               ),
               SizedBox(height: 8),
               Text(
-                '게시글길게길게길게길게길게길게길게길게길게길게길게길게',
+                board.content,
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
@@ -42,7 +46,7 @@ class HomeBoardContent extends StatelessWidget {
           ),
         ),
         Text(
-          '16분전',
+          board.relativeTime,
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w400,

@@ -92,7 +92,6 @@ class PredictionModel {
     );
   }
 
-
   @override
   String toString() {
     return 'PredictionModel{games: $games}';

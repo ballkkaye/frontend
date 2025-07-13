@@ -1,11 +1,16 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/data/model/game.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/prediction_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/home/widget/home_prdiction_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class HomePredictionSlider extends StatefulWidget {
+  final List<PredictionGame> games;
+
   const HomePredictionSlider({
     super.key,
+    required this.games,
   });
 
   @override
@@ -32,12 +37,12 @@ class _HomePredictionSliderState extends State<HomePredictionSlider> {
                 });
               },
             ),
-            items: List.generate(5, (index) {
+            items: widget.games.map((game) {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
-                child: HomePredictionCard(),
+                child: HomePredictionCard(predictionGame: game),
               );
-            }),
+            }).toList(),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

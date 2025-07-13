@@ -7,12 +7,12 @@ class HomeTodayGameCard extends StatelessWidget {
   final String? leftPhotoUrl;
   final String? rightPhotoUrl;
   final String gameState;
-  final String stadium;
+  final String? stadium;
   final TimeOfDay gameTime;
-  final String broadcastInfo;
-  final String leftPitcher;
-  final String rightPitcher;
-  final String ticketUrl;
+  final String? broadcastInfo;
+  final String? leftPitcher;
+  final String? rightPitcher;
+  final String? ticketUrl;
 
   const HomeTodayGameCard({
     super.key,
@@ -44,11 +44,11 @@ class HomeTodayGameCard extends StatelessWidget {
             rightPhotoUrl: rightPhotoUrl,
             leftPhotoUrl: leftPhotoUrl,
             gameState: gameState,
-            stadium: stadium,
+            stadium: stadium ?? '',
             gameTime: gameTime,
-            broadcastInfo: broadcastInfo,
-            leftPitcher: leftPitcher,
-            rightPitcher: leftPitcher,
+            broadcastInfo: broadcastInfo ?? '',
+            leftPitcher: leftPitcher ?? '',
+            rightPitcher: rightPitcher ?? '',
           ),
           TodayGameTicketBtn(ticketUrl: ticketUrl),
         ],
