@@ -82,7 +82,7 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
   Future<void> submitPredictions() async {
     final jsonList = toJsonList();
 
-    Logger().i("🟡 서버 전송 직전 JSON: $jsonList");
+    Logger().i("서버 전송 직전 JSON: $jsonList");
 
     if (jsonList.isEmpty) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
@@ -91,10 +91,10 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
       return;
     }
 
-    // 1단계: 서버에 전송
+    // 1단계: 서버에 JSON 전송
     final response = await GameCenterRepository().sendPrediction(jsonList);
 
-    Logger().i("🟢 예측 저장 응답: $response");
+    Logger().i("예측 저장 응답: $response");
 
     if (response["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
@@ -106,7 +106,7 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
     // 2단계: 예측 상태를 다시 받아옴
     final result = await GameCenterRepository().getMyPrediction();
 
-    Logger().i("🟢 예측 결과 재조회 응답: $result");
+    Logger().i("예측 결과 재조회 응답: $result");
 
     if (result["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
@@ -117,7 +117,7 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
     setPredictionData(result["body"]);
     isSubmitted = true;
 
-    Logger().i("🟢 상태 반영 완료!");
+    Logger().i("상태 반영 완료!");
 
     ScaffoldMessenger.of(mContext!).showSnackBar(
       const SnackBar(content: Text("예측이 완료되었습니다.")),
@@ -127,41 +127,41 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
   /// 5. 서버에서 받아온 최신 상태 반영
   void setPredictionData(List<dynamic> data) {
 
-    Logger().i("📥 setPredictionData 호출됨. data 길이: ${data.length}");
+    Logger().i("setPredictionData 호출됨. data 길이: ${data.length}");
     final parsed = data.map((e) => UserPredictionGame.fromMap(e)).toList();
 
-    Logger().i("📥 파싱된 모델 예시: ${parsed.first.userChoiceTeamId}, ${parsed.first.predictionStatus}");
+    Logger().i("파싱된 모델 예시: ${parsed.first.userChoiceTeamId}, ${parsed.first.predictionStatus}");
     state = UserPredictionModel(parsed);
   }
 
-  /// 6. 선택 초기화 (선택 해제용)
-  void clearSelections() {
-    final clearedGames = state!.games.map((g) {
-      return UserPredictionGame(
-        game: g.game,
-        userChoiceTeamId: null,
-        predictionStatus: g.predictionStatus,
-        homeVoteRate: g.homeVoteRate,
-        awayVoteRate: g.awayVoteRate,
-      );
-    }).toList();
-
-    state = UserPredictionModel(clearedGames);
-  }
-
-  Future<void> fetchMyPredictionAndSet() async {
+  /// 6. 경기후 내가 선택한 예측상태 반영
+  Future<void> getAfterGamePrediction() async {
     final response = await GameCenterRepository().getMyPredictionTest();
 
-    if (response["status"] == 200) {
-      setPredictionData(response["body"]);
-      isSubmitted = true; // ✅ 실제 예측 결과 받았으니 비활성화
-    } else {
+    if (response["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
         SnackBar(content: Text("예측 결과 불러오기 실패: ${response["msg"]}")),
       );
+    } else {
+      setPredictionData(response["body"]);
+      isSubmitted = true; //  실제 예측 결과 받았으니 비활성화
     }
   }
 
+  /// 7. 선택 초기화 (선택 해제용) 다음날 새로 팀 새로 선택해야하는경우에 사용
+  // void clearSelections() {
+  //   final clearedGames = state!.games.map((g) {
+  //     return UserPredictionGame(
+  //       game: g.game,
+  //       userChoiceTeamId: null,
+  //       predictionStatus: g.predictionStatus,
+  //       homeVoteRate: g.homeVoteRate,
+  //       awayVoteRate: g.awayVoteRate,
+  //     );
+  //   }).toList();
+  //
+  //   state = UserPredictionModel(clearedGames);
+  // }
 }
 
 class UserPredictionGame {

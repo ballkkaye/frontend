@@ -29,7 +29,7 @@ class _UserPredictionPageState extends ConsumerState<UserPredictionPage> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          vm.fetchMyPredictionAndSet();
+          vm.getAfterGamePrediction();
           setState(() {
             showResult = true;     //화면 전환
           });
