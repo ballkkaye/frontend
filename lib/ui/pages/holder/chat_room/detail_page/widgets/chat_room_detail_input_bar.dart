@@ -29,7 +29,7 @@ class _ChatRoomDetailInputBarState
 
     print("보낸 메시지: $msg");
 
-    vm.chat(chatRoomId, msg);
+    //vm.chat(chatRoomId, msg);
     _chatController.clear();
   }
 
