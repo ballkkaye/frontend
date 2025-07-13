@@ -8,6 +8,7 @@ class User {
   final int? teamId;
   final String? teamName;
   final String? accessToken;
+  final String? fcmToken;
 
   final String? username;
   final String? name;
@@ -17,24 +18,24 @@ class User {
   final String? userRole;
   final bool? isNewUser;
 
-  User({
-    this.id,
-    this.nickname,
-    this.birthDate,
-    this.ageRange,
-    this.gender,
-    this.profileUrl,
-    this.teamId,
-    this.teamName,
-    this.accessToken,
-    this.username,
-    this.name,
-    this.phoneNumber,
-    this.email,
-    this.providerType,
-    this.userRole,
-    this.isNewUser,
-  });
+  User(
+      {this.id,
+      this.nickname,
+      this.birthDate,
+      this.ageRange,
+      this.gender,
+      this.profileUrl,
+      this.teamId,
+      this.teamName,
+      this.accessToken,
+      this.username,
+      this.name,
+      this.phoneNumber,
+      this.email,
+      this.providerType,
+      this.userRole,
+      this.isNewUser,
+      this.fcmToken});
 
   User.fromMap(Map<String, dynamic> data)
       : id = data['id'],
@@ -52,7 +53,8 @@ class User {
         email = data['email'],
         providerType = data['providerType'],
         userRole = data['userRole'],
-        isNewUser = data['isNewUser'];
+        isNewUser = data['isNewUser'],
+        fcmToken = data['fcmToken'];
 
   @override
   String toString() {
