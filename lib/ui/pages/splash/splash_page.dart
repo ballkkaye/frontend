@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/utils/m_fcm.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -64,18 +65,39 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MColor.kPrimary.alternative,
-      body: Center(
-        child: Lottie.asset(
-          'assets/animation/splash_logo.json',
-          repeat: false,
-          animate: true,
-          fit: BoxFit.cover,
-          onLoaded: (composition) {
-            _animationDuration = composition.duration;
-            _isAnimationLoaded = true;
-            _tryNavigate();
-          },
-        ),
+      body: Stack(
+        children: [
+          Center(
+            child: Lottie.asset(
+              'assets/animation/splash_logo.json',
+              repeat: false,
+              animate: true,
+              fit: BoxFit.cover,
+              onLoaded: (composition) {
+                _animationDuration = composition.duration;
+                _isAnimationLoaded = true;
+                _tryNavigate();
+              },
+            ),
+          ),
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.transparent,
+                    Color(0xFF4EE1BB),
+                    Color(0xFF4EE1BB).withOpacity(0.97),
+                    Color(0xFF45CFAA),
+                  ],
+                  stops: const [0.0, 0.8, 1.0],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
