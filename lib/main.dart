@@ -64,8 +64,16 @@ class MyApp extends StatelessWidget {
         "/main-holder": (context) => MainHolder(),
         "/visit-record/list": (context) => const VisitRecordListPage(),
         "/visit-record/detail": (context) => const VisitRecordDetailPage(visitRecordId: 10),
+        "/visit-record/detail": (context) {
+          final visitRecordId = ModalRoute.of(context)!.settings.arguments as int;
+          return VisitRecordDetailPage(visitRecordId: visitRecordId);
+        },
         "/visit-record/select": (context) => VisitRecordSelectPage(),
-        "/visit-record/write": (context) => const VisitRecordWritePage(),
+        //"/visit-record/write": (context) => const VisitRecordWritePage(),
+        "/visit-record/write": (context) {
+          final VisitRecord selectedGame = ModalRoute.of(context)!.settings.arguments as VisitRecord;
+          return VisitRecordWritePage(selectedGame: selectedGame);
+        },
         "/visit-record/update": (context) => const VisitRecordUpdatePage(),
         "/game-center/matchup": (context) => const MatchupPage(),
         "/game-center/prediction": (context) => const PredictionPage(),

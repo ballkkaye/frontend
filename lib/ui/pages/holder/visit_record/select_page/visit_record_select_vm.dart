@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/utils/m_util.dart';
+import 'package:ballkkaye_frontend/data/model/visit_record.dart';
 import 'package:ballkkaye_frontend/data/repository/visit_record_repository.dart';
 import 'package:ballkkaye_frontend/main.dart';
 import 'package:flutter/material.dart';
@@ -8,14 +9,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class VisitRecordSelectState {
   final String? selectedDate;
   final String? selectedGame;
-  final int? selectedGameId;
-  final List<VisitRecordGame>? gameList;
+  final VisitRecord? selectedGameInfo;
+  final List<VisitRecord>? gameList;
   final List<VisitRecordHasGameDay>? hasGameDayList;
 
   VisitRecordSelectState({
     this.selectedDate,
     this.selectedGame,
-    this.selectedGameId,
+    this.selectedGameInfo,
     this.gameList,
     this.hasGameDayList,
   });
@@ -23,21 +24,22 @@ class VisitRecordSelectState {
   VisitRecordSelectState copyWith({
     String? selectedDate,
     String? selectedGame,
-    int? selectedGameId,
-    List<VisitRecordGame>? gameList,
+    VisitRecord? selectedGameInfo,
+    List<VisitRecord>? gameList,
     List<VisitRecordHasGameDay>? hasGameDayList,
   }) {
     return VisitRecordSelectState(
       selectedDate: selectedDate ?? this.selectedDate,
       selectedGame: selectedGame ?? this.selectedGame,
-      selectedGameId: selectedGameId ?? this.selectedGameId,
+      selectedGameInfo: selectedGameInfo ?? this.selectedGameInfo,
       gameList: gameList ?? this.gameList,
       hasGameDayList: hasGameDayList ?? this.hasGameDayList,
     );
   }
 }
 
-final visitRecordSelectProvider = AutoDisposeNotifierProvider<VisitRecordSelectVM, VisitRecordSelectState>(
+final visitRecordSelectProvider =
+    AutoDisposeNotifierProvider<VisitRecordSelectVM, VisitRecordSelectState>(
   VisitRecordSelectVM.new,
 );
 
@@ -52,18 +54,15 @@ class VisitRecordSelectVM extends AutoDisposeNotifier<VisitRecordSelectState> {
     loadGameList(date); // 날짜에 따른 경기 목록 비동기 호출
   }
 
-  void updateSelectedGame(int gameId, String label) {
+  void updateSelectedGame(VisitRecord selectedinfo, String label) {
     state = state.copyWith(
-      selectedGameId: gameId,
+      selectedGameInfo: selectedinfo,
       selectedGame: label,
     );
   }
 
   Future<void> loadGameList(String date) async {
     final body = await VisitRecordRepository().getGameList(date);
-    final games = body["body"]["games"];
-    final formattedDate = formatToDotDate(date);
-    final matchedList = games.where((g) => g["gameDate"].toString().startsWith(formattedDate)).toList();
 
     if (body["status"] != 200) {
       ScaffoldMessenger.of(mContext).showSnackBar(
@@ -71,14 +70,20 @@ class VisitRecordSelectVM extends AutoDisposeNotifier<VisitRecordSelectState> {
       );
     }
 
-    if (matchedList.isEmpty) {
-      print("해당 날짜에 경기가 없습니다.");
+    final formattedDate = formatToDotDate(date);
+    final games = List<Map<String, dynamic>>.from(body["body"]["games"]);
+
+    final matchedGroup = games.firstWhere(
+      (g) => g["gameDate"] == formattedDate,
+      orElse: () => {},
+    );
+
+    if (matchedGroup.isEmpty) {
       state = state.copyWith(gameList: []);
     }
 
-    final matched = matchedList.first;
-    final items = matched["items"];
-    final list = (items as List).map((e) => VisitRecordGame.fromMap(e)).toList();
+    final items = List<Map<String, dynamic>>.from(matchedGroup["items"] ?? []);
+    final list = items.map((e) => VisitRecord.fromMap(e)).toList();
 
     state = state.copyWith(gameList: list);
     print("${list}");
@@ -94,14 +99,17 @@ class VisitRecordSelectVM extends AutoDisposeNotifier<VisitRecordSelectState> {
       return;
     }
 
-    final list = (body["body"] as List).map((e) => VisitRecordHasGameDay.fromMap(e)).toList();
+    final list = (body["body"] as List)
+        .map((e) => VisitRecordHasGameDay.fromMap(e))
+        .toList();
 
     state = state.copyWith(hasGameDayList: list);
   }
 
   // 날짜에 경기가 있는지 판별해주는 메서드
   bool isGameAvailableOnSelectedDate() {
-    if (state.selectedDate == null || state.hasGameDayList == null) return false;
+    if (state.selectedDate == null || state.hasGameDayList == null)
+      return false;
 
     final parts = state.selectedDate!.split('-'); // [yyyy, MM, dd]
     if (parts.length != 3) return false;
@@ -127,52 +135,6 @@ class VisitRecordSelectVM extends AutoDisposeNotifier<VisitRecordSelectState> {
 
     return dayData.isHaveGame;
   }
-}
-
-class VisitRecordGame {
-  final int gameId;
-  final String homeTeamFullName;
-  final String homeTeamShortName;
-  final int homeTeamScore;
-  final String awayTeamFullName;
-  final String awayTeamShortName;
-  final int awayTeamScore;
-  final String stadiumFullName;
-  final String stadiumShortName;
-  final String gameDate;
-
-  VisitRecordGame({
-    required this.gameId,
-    required this.homeTeamFullName,
-    required this.homeTeamShortName,
-    required this.homeTeamScore,
-    required this.awayTeamFullName,
-    required this.awayTeamShortName,
-    required this.awayTeamScore,
-    required this.stadiumFullName,
-    required this.stadiumShortName,
-    required this.gameDate,
-  });
-
-  String get gameName => '$awayTeamFullName vs $homeTeamFullName ($stadiumShortName)';
-
-  factory VisitRecordGame.fromMap(Map<String, dynamic> map) {
-    return VisitRecordGame(
-      gameId: map['gameId'],
-      homeTeamFullName: map['homeTeamFullName'],
-      homeTeamShortName: map['homeTeamShortName'],
-      homeTeamScore: map['homeTeamScore'],
-      awayTeamFullName: map['awayTeamFullName'],
-      awayTeamShortName: map['awayTeamShortName'],
-      awayTeamScore: map['awayTeamScore'],
-      stadiumFullName: map['stadiumFullName'],
-      stadiumShortName: map['stadiumShortName'],
-      gameDate: map['gameDate'],
-    );
-  }
-
-  @override
-  String toString() => 'VisitRecordGame(gameId: $gameId)';
 }
 
 class VisitRecordHasGameDay {

@@ -1,10 +1,10 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/data/model/visit_record.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/visit_record_list_vm.dart';
 import 'package:flutter/material.dart';
 
 class VisitRecordListGameCard extends StatelessWidget {
-  final VisitRecord record;
+  final VisitRecordListModel record;
 
   const VisitRecordListGameCard({
     super.key,
@@ -17,7 +17,9 @@ class VisitRecordListGameCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(context, '/visit-record/detail');
+          print("레코드가 무엇이냐 : ${record}");
+          Navigator.pushNamed(context, "/visit-record/detail", arguments: record.id);
+          print("직관기록 ID : ${record.id}");
         },
         child: Container(
           decoration: BoxDecoration(
@@ -35,16 +37,16 @@ class VisitRecordListGameCard extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        MText.h1(record.awayTeamName, color: MColor.kLabel.normal),
+                        MText.h1(record.awayTeamName?.toString() ?? "-", color: MColor.kLabel.normal),
                         SizedBox(width: 16),
                         MText.normal7_6("vs", color: MColor.kLabel.alternative),
                         SizedBox(width: 16),
-                        MText.h1(record.homeTeamName, color: MColor.kLabel.normal),
+                        MText.h1(record.homeTeamName?.toString() ?? "-", color: MColor.kLabel.normal),
                       ],
                     ),
                     SizedBox(height: 8),
-                    MText.normal8_5(record.gameDate, color: MColor.kLabel.alternative),
-                    MText.normal8_5(record.stadiumName, color: MColor.kLabel.alternative),
+                    MText.normal8_5(record.gameDate?.toString() ?? "-", color: MColor.kLabel.alternative),
+                    MText.normal8_5(record.stadiumName?.toString() ?? "-", color: MColor.kLabel.alternative),
                   ],
                 ),
                 MText.normal1_7("${record.homeScore}", color: MColor.kPrimary.strong),
