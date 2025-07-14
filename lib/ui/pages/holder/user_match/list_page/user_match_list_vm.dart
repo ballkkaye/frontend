@@ -169,21 +169,23 @@ class UserMatchListModel {
   bool isLast;
 
   UserMatchListModel(
-      this.selectedGender,
-      this.selectedAge,
-      this.selectedTeamId,
-      this.selectedTimeName,
-      this.userMatches, {
-        required this.pageNumber,
-        required this.isLast,
-      });
+    this.selectedGender,
+    this.selectedAge,
+    this.selectedTeamId,
+    this.selectedTimeName,
+    this.userMatches, {
+    required this.pageNumber,
+    required this.isLast,
+  });
 
-  UserMatchListModel.fromMap(Map<String, dynamic> data, {int page = 0, bool isLast = false})
+  UserMatchListModel.fromMap(Map<String, dynamic> data,
+      {int page = 0, bool isLast = false})
       : selectedGender = data['selectedGender'],
         selectedAge = data['selectedAge'],
         selectedTeamId = data['selectedTeamId'],
         selectedTimeName = data['selectedTimeName'],
-        userMatches = (data['matches'] as List).map((e) => UserMatch.fromMap(e)).toList(),
+        userMatches =
+            (data['matches'] as List).map((e) => UserMatch.fromMap(e)).toList(),
         pageNumber = page,
         isLast = isLast;
 
@@ -212,4 +214,3 @@ class UserMatchListModel {
     return 'UserMatchListModel{selectedGender: $selectedGender, selectedAge: $selectedAge, selectedTeamId: $selectedTeamId, selectedTimeName: $selectedTimeName, userMatches: $userMatches, pageNumber: $pageNumber, isLast: $isLast}';
   }
 }
-
