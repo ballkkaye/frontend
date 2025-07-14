@@ -4,6 +4,8 @@ import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/select_page/widg
 import 'package:flutter/material.dart';
 
 class VisitRecordSelectPage extends StatelessWidget {
+  VisitRecordSelectPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

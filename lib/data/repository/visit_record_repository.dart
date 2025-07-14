@@ -1,3 +1,5 @@
+import 'package:logger/logger.dart';
+
 class VisitRecordRepository {
   // 상세보기 조회
   Future<Map<String, dynamic>> getOne(int visitRecordId) async {
@@ -6,7 +8,7 @@ class VisitRecordRepository {
       "status": 200,
       "msg": "성공",
       "body": {
-        "imageString": [],
+        "imageString": "https://example.com/visit-photo.jpg",
         "id": 1,
         "homeTeamName": "두산",
         "awayTeamName": "SSG",
@@ -95,12 +97,12 @@ class VisitRecordRepository {
   Future<Map<String, dynamic>> getGameList(String date) async {
     // Response response = await dio.get("${/s/api/games}");
     final responseBody = {
-      "status": 100,
+      "status": 200,
       "msg": "성공",
       "body": {
         "games": [
           {
-            "gameDate": "2025.07.11",
+            "gameDate": "2025.07.14",
             "items": [
               {
                 "gameId": 425,
@@ -112,7 +114,7 @@ class VisitRecordRepository {
                 "awayTeamScore": 5,
                 "stadiumFullName": "창원 NC파크",
                 "stadiumShortName": "창원",
-                "gameDate": "2025.07.11"
+                "gameDate": "2025.07.14"
               },
               {
                 "gameId": 426,
@@ -124,7 +126,7 @@ class VisitRecordRepository {
                 "awayTeamScore": 5,
                 "stadiumFullName": "수원 KT위즈파크",
                 "stadiumShortName": "수원",
-                "gameDate": "2025.07.11"
+                "gameDate": "2025.07.14"
               },
               {
                 "gameId": 427,
@@ -136,12 +138,12 @@ class VisitRecordRepository {
                 "awayTeamScore": 0,
                 "stadiumFullName": "고척스카이돔",
                 "stadiumShortName": "고척",
-                "gameDate": "2025.07.11"
+                "gameDate": "2025.07.14"
               }
             ]
           }
         ],
-        "selectedDate": "2025-07-11"
+        "selectedDate": "2025-07-14"
       }
     };
     return responseBody;
@@ -170,6 +172,42 @@ class VisitRecordRepository {
         }
       ]
     };
+    return responseBody;
+  }
+
+  Future<Map<String, dynamic>> write(Map<String, dynamic> data) async {
+    // Response response = await dio.post("/s/api/visit-records", data: data);
+    // final responseBody = response.data;
+    final responseBody = {
+      "status": 200,
+      "msg": "성공",
+      "body": {
+        "id": 4,
+        "homeTeamName": "두산",
+        "awayTeamName": "SSG",
+        "homeScore": 3,
+        "awayScore": 5,
+        "gameDate": "2025.07.05",
+        "stadiumName": "잠실야구장",
+        "result": "승",
+        "content": "응원 열심히 했고, 분위기 최고였어요!",
+        "imgUrl": "https://example.com/visit-photo.jpg",
+        "deleteStatus": "정상"
+      }
+    };
+    Logger().d(responseBody);
+    return responseBody;
+  }
+
+  Future<Map<String, dynamic>> deleteOne(int id) async {
+    // Response response = await dio.delete("/api/post/${id}");
+    // final responseBody = response.data;
+    final responseBody = {
+      "status": 200,
+      "msg": "성공",
+      "body": {"deleteStatus": "삭제됨"}
+    };
+    Logger().d(responseBody);
     return responseBody;
   }
 }

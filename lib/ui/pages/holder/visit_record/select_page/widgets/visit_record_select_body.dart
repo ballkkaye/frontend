@@ -2,6 +2,7 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/_core/utils/m_util.dart';
+import 'package:ballkkaye_frontend/data/model/visit_record.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/select_page/visit_record_select_vm.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_date_picker.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_dropdown_btn.dart';
@@ -18,8 +19,10 @@ class VisitRecordSelectBody extends ConsumerWidget {
     final state = ref.watch(visitRecordSelectProvider);
     final vm = ref.read(visitRecordSelectProvider.notifier);
 
-    final labelToGameIdMap = {
-      for (var e in state.gameList ?? []) '${e.awayTeamFullName} vs ${e.homeTeamFullName} (${e.stadiumShortName})': e.gameId.toString(),
+    final labelToGameMap = {
+      for (var e in state.gameList ?? [])
+        '${e.awayTeamFullName} vs ${e.homeTeamFullName} (${e.stadiumShortName})':
+            e,
     };
 
     print("게임 리스트: ${state.gameList}");
@@ -68,14 +71,14 @@ class VisitRecordSelectBody extends ConsumerWidget {
             // 경기 선택 버튼
             MDropdownBtn(
               hintText: '경기',
-              items: labelToGameIdMap.keys.toList(), // 보이지 않는 gameId와 게임 정보 함께 들고옴.
+              items:
+                  labelToGameMap.keys.toList(), // 보이지 않는 gameId와 게임 정보 함께 들고옴.
               onChanged: (label) {
                 if (label != null) {
-                  final gameIdStr = labelToGameIdMap[label];
-                  final selectedGameId = int.tryParse(gameIdStr ?? '');
-                  print('🟡 선택된 gameId: $selectedGameId');
-                  if (selectedGameId != null) {
-                    vm.updateSelectedGame(selectedGameId, label);
+                  final selectedInfo = labelToGameMap[label];
+                  print('🟡 선택된 gameId: $selectedInfo');
+                  if (selectedInfo != null) {
+                    vm.updateSelectedGame(selectedInfo, label);
                   }
                 }
               },
@@ -86,11 +89,18 @@ class VisitRecordSelectBody extends ConsumerWidget {
             MElevatedBtn(
               text: '다음',
               onPressed: () {
-                final selectedGameId = state.selectedGameId;
-                Navigator.pushNamed(context, "/visit-record/write", arguments: selectedGameId);
-                print('🟡 넘어가는 값: $selectedGameId');
+                final selectedGame = state.selectedGameInfo;
+                if (selectedGame == null) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('경기를 선택해주세요')),
+                  );
+                  return;
+                }
+                Navigator.pushNamed(context, "/visit-record/write",
+                    arguments: selectedGame);
+                print('🟡 넘어가는 값: $selectedGame');
               },
-            ),
+            )
           ],
         ),
       ),

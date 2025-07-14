@@ -43,6 +43,13 @@ String formatGameTime(TimeOfDay time) {
   final minute = time.minute.toString().padLeft(2, '0');
   return '$hour:$minute';
 }
+
+/// "2025-07-25" -> "2025-07"
+String extractYearMonth(String fullDate) {
+  final dt = DateTime.parse(fullDate);
+  return '${dt.year.toString().padLeft(4, '0')}-${dt.month.toString().padLeft(2, '0')}';
+}
+
 /// 문자열로 된 시간("HH:mm")을 파싱하여 시간(hour)과 분(minute)을 Map으로 반환
 Map<String, int> parseHourMinute(String? timeStr) {
   if (timeStr == null || !timeStr.contains(":")) {
