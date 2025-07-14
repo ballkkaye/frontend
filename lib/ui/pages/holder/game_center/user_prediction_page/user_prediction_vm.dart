@@ -1,7 +1,6 @@
 import 'package:ballkkaye_frontend/data/model/game.dart';
 import 'package:ballkkaye_frontend/data/repository/game_center_repository.dart';
 import 'package:ballkkaye_frontend/main.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/user_prediction_fm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
@@ -42,31 +41,39 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
     state = UserPredictionModel.fromList(data["body"]);
   }
 
-  void selectTeam(int gameId, int teamId) {
-    print("✅ VM: selectTeam 호출됨 - gameId: $gameId, teamId: $teamId");
-    ref.read(userPredictionFProvider.notifier).selectTeam(gameId, teamId); // FM에 전달
-    final prev = state!;
-    final updatedGames = prev.games.map((g) {
-      Logger().d("🔁 [VM] 기존 선택 상태 확인 | gameId: ${g.game.id}, 선택팀: ${g.userChoiceTeamId}");
-      if (g.game.id == gameId) {
-        Logger().i("🟢 [VM] 예측 수정됨 | gameId: $gameId → teamId: $teamId");
-        return UserPredictionGame(
-          game: g.game,
-          userChoiceTeamId: teamId,
-          //
-          predictionStatus: g.predictionStatus,
-          homeVoteRate: g.homeVoteRate,
-          awayVoteRate: g.awayVoteRate,
-        );
-      }
-      return g;
-    }).toList();
-
-    state = UserPredictionModel(updatedGames);
-    Logger().i("✅ [VM] 상태 반영 완료");
+  void setPredictions(List<UserPredictionGame> predictions) {
+    state = UserPredictionModel(predictions);
   }
 
+  // void selectTeam(int gameId, int teamId) {
+  //   print("✅ VM: selectTeam 호출됨 - gameId: $gameId, teamId: $teamId");
+  //   ref.read(userPredictionFProvider.notifier).selectTeam(gameId, teamId); // FM에 전달
+  //   final prev = state!;
+  //   final updatedGames = prev.games.map((g) {
+  //     Logger().d("🔁 [VM] 기존 선택 상태 확인 | gameId: ${g.game.id}, 선택팀: ${g.userChoiceTeamId}");
+  //     if (g.game.id == gameId) {
+  //       Logger().i("🟢 [VM] 예측 수정됨 | gameId: $gameId → teamId: $teamId");
+  //       return UserPredictionGame(
+  //         game: g.game,
+  //         userChoiceTeamId: teamId,
+  //         //
+  //         predictionStatus: g.predictionStatus,
+  //         homeVoteRate: g.homeVoteRate,
+  //         awayVoteRate: g.awayVoteRate,
+  //       );
+  //     }
+  //     return g;
+  //   }).toList();
+  //
+  //   state = UserPredictionModel(updatedGames);
+  //   Logger().i("✅ [VM] 상태 반영 완료");
+  // }
+
   List<Map<String, dynamic>> toJsonList() {
+    Logger().i("📦 [toJsonList] 총 게임 수: ${state!.games.length}");
+    for (var g in state!.games) {
+      Logger().i("📦 gameId: ${g.game.id}, 선택된 팀: ${g.userChoiceTeamId}");
+    }
     return state?.games
             .where((g) => g.userChoiceTeamId != null)
             .map((g) => {

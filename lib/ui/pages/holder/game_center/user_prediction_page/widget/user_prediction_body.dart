@@ -22,6 +22,8 @@ class UserPredictionBody extends ConsumerWidget {
 
     // 예측 완료되었으면 버튼 비활성화
     final bool isEnabled = !vm.isSubmitted;
+    final games = model.games.map((g) => g.game).toList();
+    final gameModels = model.games;
     return ListView(
       children: [
         Padding(
@@ -33,7 +35,7 @@ class UserPredictionBody extends ConsumerWidget {
           child: Column(
             children: [
               UserPredictionCardList(
-                games: model.games,
+                games: gameModels,
                 onSelectTeam: fm.selectTeam,
               ),
               SizedBox(height: 12),
@@ -42,23 +44,19 @@ class UserPredictionBody extends ConsumerWidget {
                   isEnabled: isEnabled,
                   onPressed: () {
                     if (!isEnabled) return;
-                    final vm = ref.read(userPredictionProvider.notifier);
-                    final jsonList = vm.toJsonList();
+                    final predictions = fm.toGameList(games);
 
-                    if (jsonList.isEmpty) {
+                    if (predictions.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('예측할 팀을 선택해주세요.')),
+                        SnackBar(content: Text('예측할 팀을 선택해주세요W.')),
                       );
                       return;
                     }
 
-                    // 여기서 print로 로그 확인
-                    print('예측 JSON 리스트:');
-                    for (var item in jsonList) {
-                      print('  gameId: ${item["gameId"]}, userChoiceTeamId: ${item["userChoiceTeamId"]}');
-                    }
+                    // 💾 예측 데이터 상태에 반영
+                    vm.setPredictions(predictions);
 
-                    // 서버 전송 실행!
+                    // 🔄 서버 전송
                     vm.submitPredictions().then((_) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('예측이 완료되었습니다.')),
