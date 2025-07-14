@@ -7,15 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
-final visitRecordListProvider = AutoDisposeNotifierProvider<VisitRecordListVM, List<VisitRecord>?>(
+final visitRecordListProvider = AutoDisposeNotifierProvider<VisitRecordListVM, List<VisitRecordListModel>?>(
   VisitRecordListVM.new,
 );
 
-class VisitRecordListVM extends AutoDisposeNotifier<List<VisitRecord>?> {
+class VisitRecordListVM extends AutoDisposeNotifier<List<VisitRecordListModel>?> {
   final mContext = navigatorKey.currentContext!;
 
   @override
-  List<VisitRecord>? build() => null;
+  List<VisitRecordListModel>? build() => null;
 
   Future<void> loadMonth({required int year, required int month}) async {
     final body = await VisitRecordRepository().getMonthGameList(year: year, month: month);
@@ -25,9 +25,8 @@ class VisitRecordListVM extends AutoDisposeNotifier<List<VisitRecord>?> {
       );
       return;
     }
-
-    final List<dynamic> rawList = body["body"];
-    final list = rawList.map((e) => VisitRecord.fromMap(e)).toList();
+    final List<VisitRecordListModel> list =
+        (body['body'] as List<dynamic>).map((e) => VisitRecordListModel.fromMap(e as Map<String, dynamic>)).toList();
 
     state = list;
   }
@@ -41,9 +40,8 @@ class VisitRecordListVM extends AutoDisposeNotifier<List<VisitRecord>?> {
       );
       return;
     }
-
-    final List<dynamic> rawList = body["body"];
-    final list = rawList.map((e) => VisitRecord.fromMap(e)).toList();
+    final List<VisitRecordListModel> list =
+        (body['body'] as List<dynamic>).map((e) => VisitRecordListModel.fromMap(e as Map<String, dynamic>)).toList();
 
     state = list;
   }
@@ -61,22 +59,79 @@ class VisitRecordListVM extends AutoDisposeNotifier<List<VisitRecord>?> {
     }
 
     final newRecord = VisitRecord.fromMap(data["body"]);
+    final newModel = VisitRecordListModel(
+      newRecord.id,
+      newRecord.homeTeamName,
+      newRecord.awayTeamName,
+      newRecord.homeScore,
+      newRecord.awayScore,
+      newRecord.gameDate,
+      newRecord.stadiumName,
+    );
 
-    // 현재 state가 null이면 빈 리스트로 시작
-    final nextRecords = <VisitRecord>[newRecord, ...?state ?? []];
+    state = [newModel, ...(state ?? [])];
 
-    // state 업데이트 (작성한 데이터 맨 앞에 추가)
-    state = nextRecords;
-
-    // 페이지 이동
     Navigator.pop(mContext);
     Navigator.push(
       mContext,
       MaterialPageRoute(
-        builder: (context) => VisitRecordDetailPage(
-          visitRecordId: newRecord.gameId!,
-        ),
+        builder: (context) => VisitRecordDetailPage(visitRecordId: newRecord.id!),
       ),
     );
+  }
+}
+
+// List 형태
+class VisitRecordListModel {
+  int? id;
+  String? homeTeamName;
+  String? awayTeamName;
+  int? homeScore;
+  int? awayScore;
+  String? gameDate;
+  String? stadiumName;
+
+  VisitRecordListModel(
+    this.id,
+    this.homeTeamName,
+    this.awayTeamName,
+    this.homeScore,
+    this.awayScore,
+    this.gameDate,
+    this.stadiumName,
+  );
+
+  VisitRecordListModel.fromMap(Map<String, dynamic> data)
+      : id = data['id'],
+        homeTeamName = data['homeTeamName'],
+        awayTeamName = data['awayTeamName'],
+        homeScore = data['homeScore'],
+        awayScore = data['awayScore'],
+        gameDate = data['gameDate'],
+        stadiumName = data['stadiumName'];
+
+  VisitRecordListModel copyWith({
+    int? id,
+    String? homeTeamName,
+    String? awayTeamName,
+    int? homeScore,
+    int? awayScore,
+    String? gameDate,
+    String? stadiumName,
+  }) {
+    return VisitRecordListModel(
+      id ?? this.id,
+      homeTeamName ?? this.homeTeamName,
+      awayTeamName ?? this.awayTeamName,
+      homeScore ?? this.homeScore,
+      awayScore ?? this.awayScore,
+      gameDate ?? this.gameDate,
+      stadiumName ?? this.stadiumName,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'VisitRecordListModel{id: $id, homeTeamName: $homeTeamName, awayTeamName: $awayTeamName, homeScore: $homeScore, awayScore: $awayScore, gameDate: $gameDate, stadiumName: $stadiumName,}';
   }
 }

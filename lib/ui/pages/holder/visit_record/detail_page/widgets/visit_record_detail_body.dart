@@ -1,5 +1,4 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
-import 'package:ballkkaye_frontend/data/model/visit_record.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/detail_page/visit_record_detail_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/detail_page/widgets/visit_record_detail_content.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/detail_page/widgets/visit_record_detail_game.dart';
@@ -17,7 +16,7 @@ class VisitRecordDetailBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    VisitRecord? model = ref.watch(visitRecordDetailProvider(visitRecordId));
+    VisitRecordDetailModel? model = ref.watch(visitRecordDetailProvider(visitRecordId));
     if (model == null) {
       return Center(child: CircularProgressIndicator());
     } else {
@@ -33,11 +32,11 @@ class VisitRecordDetailBody extends ConsumerWidget {
             padding: EdgeInsets.all(14),
             child: Column(
               children: [
-                VisitRecordDetailGame(record: model),
+                VisitRecordDetailGame(visitRecord: model.visitRecord),
                 SizedBox(height: 19),
-                VisitRecordDetailImg(visitRecord: model),
+                VisitRecordDetailImg(visitRecord: model.visitRecord),
                 SizedBox(height: 19),
-                VisitRecordDetailContent(visitRecord: model),
+                VisitRecordDetailContent(visitRecord: model.visitRecord),
               ],
             ),
           ),

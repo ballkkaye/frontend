@@ -3,29 +3,47 @@ import 'package:ballkkaye_frontend/data/repository/visit_record_repository.dart'
 import 'package:ballkkaye_frontend/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 
-final visitRecordDetailProvider = AutoDisposeNotifierProvider.family<VisitRecordDetailVM, VisitRecord?, int>(() {
+final visitRecordDetailProvider = AutoDisposeNotifierProvider.family<VisitRecordDetailVM, VisitRecordDetailModel?, int>(() {
   return VisitRecordDetailVM();
 });
 
-class VisitRecordDetailVM extends AutoDisposeFamilyNotifier<VisitRecord?, int> {
+class VisitRecordDetailVM extends AutoDisposeFamilyNotifier<VisitRecordDetailModel?, int> {
   final mContext = navigatorKey.currentContext!;
 
   @override
-  VisitRecord? build(int id) {
-    init(id);
+  VisitRecordDetailModel? build(int visitRecordId) {
+    init(visitRecordId);
+
+    ref.onDispose(() {
+      Logger().d("VisitRecordDetailVM 파괴됨");
+    });
 
     return null;
   }
 
-  Future<void> init(int id) async {
-    Map<String, dynamic> body = await VisitRecordRepository().getOne(id);
+  Future<void> init(int visitRecordId) async {
+    Map<String, dynamic> body = await VisitRecordRepository().getOne(visitRecordId);
     if (body["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
         SnackBar(content: Text("게시글 상세보기 실패 : ${body["msg"]}")),
       );
       return;
     }
-    state = VisitRecord.fromMap(body["body"]);
+    state = VisitRecordDetailModel.fromMap(body["body"]);
+    Logger().d(state);
+  }
+}
+
+class VisitRecordDetailModel {
+  VisitRecord visitRecord;
+
+  VisitRecordDetailModel(this.visitRecord);
+
+  VisitRecordDetailModel.fromMap(Map<String, dynamic> data) : visitRecord = VisitRecord.fromMap(data);
+
+  VisitRecordDetailModel copyWith({VisitRecord? visitRecord}) {
+    return VisitRecordDetailModel(visitRecord ?? this.visitRecord);
   }
 }
