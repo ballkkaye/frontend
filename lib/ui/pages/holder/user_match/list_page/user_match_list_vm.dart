@@ -3,14 +3,14 @@ import 'package:ballkkaye_frontend/data/enum/gender.dart';
 import 'package:ballkkaye_frontend/data/model/user_match.dart';
 import 'package:ballkkaye_frontend/data/repository/user_match_repository.dart';
 import 'package:ballkkaye_frontend/main.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/user_match/detail_page/user_match_detail_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/write_page/user_match_write_fm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-final userMatchListProvider = AutoDisposeNotifierProvider<UserMatchListVM, UserMatchListModel?>(() {
+final userMatchListProvider =
+    AutoDisposeNotifierProvider<UserMatchListVM, UserMatchListModel?>(() {
   return UserMatchListVM();
 });
 
@@ -57,14 +57,14 @@ class UserMatchListVM extends AutoDisposeNotifier<UserMatchListModel?> {
   }) async {
     Logger().d('📩 fetchList() called with => '
         'page: $page, '
-        'gender: ${gender?.label}, '
-        'age: ${age?.label}, '
+        'gender: ${gender?.name}, '
+        'age: ${age?.name}, '
         'teamId: $teamId');
 
     Map<String, dynamic> data = await UserMatchRepository().getListByQuery(
       page: page,
-      gender: gender?.label,
-      age: age?.label,
+      gender: gender?.name,
+      age: age?.name,
       teamId: teamId,
     );
 
@@ -81,7 +81,8 @@ class UserMatchListVM extends AutoDisposeNotifier<UserMatchListModel?> {
   Future<void> write(UserMatchWriteModel model) async {
     Logger().d("글쓰기 요청 : ${model.toMap()}");
 
-    Map<String, dynamic> data = await UserMatchRepository().write(model.toMap());
+    Map<String, dynamic> data =
+        await UserMatchRepository().write(model.toMap());
 
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext).showSnackBar(
@@ -90,16 +91,26 @@ class UserMatchListVM extends AutoDisposeNotifier<UserMatchListModel?> {
       return;
     }
 
-    final newMatch = UserMatch.fromMap(data["body"]["match"]);
+    UserMatch newMatch = UserMatch.fromWriteMap(data["body"]);
 
-    List<UserMatch> nextMatches = [newMatch, ...?state?.userMatches];
+    List<UserMatch> nextMatches = [newMatch, ...state!.userMatches];
 
-    state = state?.copyWith(userMatches: nextMatches) ??
-        UserMatchListModel(null, null, null, null, [newMatch]);
+    state = state?.copyWith(userMatches: nextMatches);
 
     Navigator.pop(mContext);
-    Navigator.push(
-        mContext, MaterialPageRoute(builder: (context) => UserMatchDetailPage(newMatch.matchId!)));
+    Navigator.pop(mContext);
+    // Navigator.push(
+    //     mContext, MaterialPageRoute(builder: (context) => UserMatchDetailPage(newMatch.matchId!)));
+  }
+
+  // 삭제 notify
+  void notifyDeleteOne(int userMatchId) {
+    UserMatchListModel model = state!;
+
+    model.userMatches =
+        model.userMatches.where((um) => um.matchId != userMatchId).toList();
+
+    state = state!.copyWith(userMatches: model.userMatches);
   }
 }
 
@@ -124,7 +135,8 @@ class UserMatchListModel {
         selectedAge = data['selectedAge'],
         selectedTeamId = data['selectedTeamId'],
         selectedTimeName = data['selectedTimeName'],
-        userMatches = (data['matches'] as List).map((e) => UserMatch.fromMap(e)).toList();
+        userMatches =
+            (data['matches'] as List).map((e) => UserMatch.fromMap(e)).toList();
 
   UserMatchListModel copyWith({
     String? selectedGender,

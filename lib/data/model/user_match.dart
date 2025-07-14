@@ -42,7 +42,7 @@ class UserMatch {
   UserMatch.fromMap(Map<String, dynamic> data)
       : matchId = data['matchId'] ?? data['id'],
         isOwner = data['isOwner'],
-        relativeTime = data['relativeTime'],
+        relativeTime = data['relativeTime'] ?? '방금 전',
         likeCount = data['likeCount'],
         isLike = data['isLike'],
         game = Game(
@@ -65,6 +65,33 @@ class UserMatch {
         chatRoomId = data['chatRoomId'],
         teamId = data['teamId'],
         teamName = data['teamName'];
+
+  UserMatch.fromWriteMap(Map<String, dynamic> data)
+      : matchId = data['match']['id'],
+        relativeTime = '방금 전',
+        title = data['match']['title'],
+        content = data['match']['content'],
+        isSameTeam = data['chatRoom']['isSameTeam'],
+        gender = data['chatRoom']['preferredGender'],
+        age = data['chatRoom']['preferredAge'],
+        teamName = data['chatRoom']['preferredTeamName'],
+        participationInfo =  "1/${data['chatRoom']['maxParticipants']}",
+        chatRoomId = data['match']['chatRoomId'],
+        teamId = null,
+        isOwner = null,
+        likeCount = null,
+        isLike = null,
+        game = Game(
+          homeTeam: Team(teamName: data['chatRoom']['homeTeamName']),
+          awayTeam: Team(teamName: data['chatRoom']['awayTeamName']),
+          gameDate: null,
+          stadiumName: null,
+        ),
+        user = User(
+          nickname: data['match']['userNickname'],
+          teamName: data['match']['userTeamName'],
+          profileUrl: null,
+        );
 
   @override
   String toString() {
