@@ -24,7 +24,8 @@ class VisitRecordWriteForm extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<VisitRecordWriteForm> createState() => _VisitRecordWriteFormState();
+  ConsumerState<VisitRecordWriteForm> createState() =>
+      _VisitRecordWriteFormState();
 }
 
 class _VisitRecordWriteFormState extends ConsumerState<VisitRecordWriteForm> {

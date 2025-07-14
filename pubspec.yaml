@@ -58,6 +58,7 @@ dependencies:
   firebase_core: ^3.15.1
   firebase_messaging: ^15.2.9
   image_picker: ^1.1.2
+  lottie: ^3.3.1
 
 dev_dependencies:
   flutter_test:
@@ -85,6 +86,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/animation/
     - .env
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
