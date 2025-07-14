@@ -23,7 +23,6 @@ class UserPredictionBody extends ConsumerWidget {
     // 예측 완료되었으면 버튼 비활성화
     final bool isEnabled = !vm.isSubmitted;
     final games = model.games.map((g) => g.game).toList();
-    final gameModels = model.games;
     return ListView(
       children: [
         Padding(
@@ -35,7 +34,7 @@ class UserPredictionBody extends ConsumerWidget {
           child: Column(
             children: [
               UserPredictionCardList(
-                games: gameModels,
+                games: model.games,
                 onSelectTeam: fm.selectTeam,
               ),
               SizedBox(height: 12),

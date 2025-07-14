@@ -6,6 +6,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
+import 'user_prediction_fm.dart';
+
 /// 1. 창고 관리자
 final userPredictionProvider = AutoDisposeNotifierProvider<UserPredictionVM, UserPredictionModel?>(() {
   return UserPredictionVM();
@@ -45,29 +47,29 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
     state = UserPredictionModel(predictions);
   }
 
-  // void selectTeam(int gameId, int teamId) {
-  //   print("✅ VM: selectTeam 호출됨 - gameId: $gameId, teamId: $teamId");
-  //   ref.read(userPredictionFProvider.notifier).selectTeam(gameId, teamId); // FM에 전달
-  //   final prev = state!;
-  //   final updatedGames = prev.games.map((g) {
-  //     Logger().d("🔁 [VM] 기존 선택 상태 확인 | gameId: ${g.game.id}, 선택팀: ${g.userChoiceTeamId}");
-  //     if (g.game.id == gameId) {
-  //       Logger().i("🟢 [VM] 예측 수정됨 | gameId: $gameId → teamId: $teamId");
-  //       return UserPredictionGame(
-  //         game: g.game,
-  //         userChoiceTeamId: teamId,
-  //         //
-  //         predictionStatus: g.predictionStatus,
-  //         homeVoteRate: g.homeVoteRate,
-  //         awayVoteRate: g.awayVoteRate,
-  //       );
-  //     }
-  //     return g;
-  //   }).toList();
-  //
-  //   state = UserPredictionModel(updatedGames);
-  //   Logger().i("✅ [VM] 상태 반영 완료");
-  // }
+  void selectTeam(int gameId, int teamId) {
+    print("✅ VM: selectTeam 호출됨 - gameId: $gameId, teamId: $teamId");
+
+    // FM 업데이트만 한 줄로
+    ref.read(userPredictionFProvider.notifier).selectTeam(gameId, teamId);
+
+    // UI용 상태 업데이트
+    final prev = state!;
+    final updatedGames = prev.games.map((g) {
+      if (g.game.id == gameId) {
+        return UserPredictionGame(
+          game: g.game,
+          userChoiceTeamId: teamId,
+          predictionStatus: g.predictionStatus,
+          homeVoteRate: g.homeVoteRate,
+          awayVoteRate: g.awayVoteRate,
+        );
+      }
+      return g;
+    }).toList();
+
+    state = UserPredictionModel(updatedGames);
+  }
 
   List<Map<String, dynamic>> toJsonList() {
     Logger().i("📦 [toJsonList] 총 게임 수: ${state!.games.length}");
