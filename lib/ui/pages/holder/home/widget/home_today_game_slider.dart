@@ -1,18 +1,24 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/utils/m_util.dart';
+import 'package:ballkkaye_frontend/data/enum/game_status.dart';
+import 'package:ballkkaye_frontend/data/model/game.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/home/widget/home_today_game_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-class HomeTodatGameSlider extends StatefulWidget {
-  const HomeTodatGameSlider({
+class HomeTodayGameSlider extends StatefulWidget {
+  final List<Game> games;
+
+  const HomeTodayGameSlider({
     super.key,
+    required this.games,
   });
 
   @override
-  State<HomeTodatGameSlider> createState() => _HomeTodatGameSliderState();
+  State<HomeTodayGameSlider> createState() => _HomeTodayGameSliderState();
 }
 
-class _HomeTodatGameSliderState extends State<HomeTodatGameSlider> {
+class _HomeTodayGameSliderState extends State<HomeTodayGameSlider> {
   int _currentIndex = 0;
   final CarouselSliderController _carouselSliderController = CarouselSliderController();
 
@@ -24,7 +30,7 @@ class _HomeTodatGameSliderState extends State<HomeTodatGameSlider> {
           CarouselSlider(
             carouselController: _carouselSliderController,
             options: CarouselOptions(
-              height: 242,
+              height: 248,
               enableInfiniteScroll: true,
               onPageChanged: (index, reason) {
                 setState(() {
@@ -32,20 +38,20 @@ class _HomeTodatGameSliderState extends State<HomeTodatGameSlider> {
                 });
               },
             ),
-            items: List.generate(5, (index) {
+            items:  widget.games.map((game) {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: HomeTodayGameCard(
-                  gameState: '경기예정',
-                  stadium: '고척',
-                  gameTime: TimeOfDay(hour: 18, minute: 20),
-                  broadcastInfo: 'SPO-2T',
-                  leftPitcher: '화이트',
-                  rightPitcher: '김윤하',
-                  ticketUrl: '',
+                  gameState: game.gameStatus?.label ?? '경기 예정',
+                  stadium: game.stadiumShortName,
+                  gameTime: parseGameTime(game.gameTime ?? '00:00'),
+                  broadcastInfo: game.broadcastChannel,
+                  leftPitcher: game.homePitcherName,
+                  rightPitcher: game.awayPitcherName,
+                  ticketUrl: game.ticketLink,
                 ),
               );
-            }),
+            }).toList(),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

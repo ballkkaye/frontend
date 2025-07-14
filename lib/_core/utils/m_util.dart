@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 /// 오늘 날짜 (시, 분, 초 0으로 초기화된 날짜)
@@ -28,6 +29,20 @@ String formatToDotDate(String dashDate) {
   return dashDate.replaceAll("-", ".");
 }
 
+/// "18:30" → TimeOfDay
+TimeOfDay parseGameTime(String timeStr) {
+  final parts = timeStr.split(':');
+  final hour = int.tryParse(parts[0]) ?? 0;
+  final minute = int.tryParse(parts[1]) ?? 0;
+  return TimeOfDay(hour: hour, minute: minute);
+}
+
+/// TimeOfDay → "18:30"
+String formatGameTime(TimeOfDay time) {
+  final hour = time.hour.toString().padLeft(2, '0');
+  final minute = time.minute.toString().padLeft(2, '0');
+  return '$hour:$minute';
+}
 /// 문자열로 된 시간("HH:mm")을 파싱하여 시간(hour)과 분(minute)을 Map으로 반환
 Map<String, int> parseHourMinute(String? timeStr) {
   if (timeStr == null || !timeStr.contains(":")) {
