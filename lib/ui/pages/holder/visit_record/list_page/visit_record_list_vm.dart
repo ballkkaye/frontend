@@ -7,8 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
-final visitRecordListProvider =
-    AutoDisposeNotifierProvider<VisitRecordListVM, List<VisitRecord>?>(
+final visitRecordListProvider = AutoDisposeNotifierProvider<VisitRecordListVM, List<VisitRecord>?>(
   VisitRecordListVM.new,
 );
 
@@ -19,8 +18,7 @@ class VisitRecordListVM extends AutoDisposeNotifier<List<VisitRecord>?> {
   List<VisitRecord>? build() => null;
 
   Future<void> loadMonth({required int year, required int month}) async {
-    final body = await VisitRecordRepository()
-        .getMonthGameList(year: year, month: month);
+    final body = await VisitRecordRepository().getMonthGameList(year: year, month: month);
     if (body["status"] != 200) {
       ScaffoldMessenger.of(mContext).showSnackBar(
         SnackBar(content: Text("월별 조회 실패: ${body['errorMessage']}")),

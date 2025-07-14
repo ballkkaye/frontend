@@ -43,8 +43,7 @@ class VisitRecord {
     this.teamId,
   });
 
-  String get gameName =>
-      '$awayTeamFullName vs $homeTeamFullName ($stadiumShortName)';
+  String get gameName => '$awayTeamFullName vs $homeTeamFullName ($stadiumShortName)';
 
   factory VisitRecord.fromMap(Map<String, dynamic> data) {
     return VisitRecord(

@@ -54,8 +54,7 @@ class VisitRecordRepository {
   }
 
   // 선택된 달 직관기록 리스트
-  Future<Map<String, dynamic>> getMonthGameList(
-      {required int year, required int month}) async {
+  Future<Map<String, dynamic>> getMonthGameList({required int year, required int month}) async {
     // Response response = await dio.get("/s/api/visitRecords",
     // queryParameters: {"year": year, "month": month},);
     final responseBody = {
@@ -195,6 +194,18 @@ class VisitRecordRepository {
         "imgUrl": "https://example.com/visit-photo.jpg",
         "deleteStatus": "정상"
       }
+    };
+    Logger().d(responseBody);
+    return responseBody;
+  }
+
+  Future<Map<String, dynamic>> deleteOne(int id) async {
+    // Response response = await dio.delete("/api/post/${id}");
+    // final responseBody = response.data;
+    final responseBody = {
+      "status": 200,
+      "msg": "성공",
+      "body": {"deleteStatus": "삭제됨"}
     };
     Logger().d(responseBody);
     return responseBody;
