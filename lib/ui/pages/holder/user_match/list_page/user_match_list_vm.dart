@@ -9,7 +9,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-final userMatchListProvider = AutoDisposeNotifierProvider<UserMatchListVM, UserMatchListModel?>(() {
+final userMatchListProvider =
+    AutoDisposeNotifierProvider<UserMatchListVM, UserMatchListModel?>(() {
   return UserMatchListVM();
 });
 
@@ -56,8 +57,8 @@ class UserMatchListVM extends AutoDisposeNotifier<UserMatchListModel?> {
   }) async {
     Logger().d('📩 fetchList() called with => '
         'page: $page, '
-        'gender: $gender, '
-        'age: $age, '
+        'gender: ${gender?.name}, '
+        'age: ${age?.name}, '
         'teamId: $teamId');
 
     Map<String, dynamic> data = await UserMatchRepository().getListByQuery(
@@ -80,7 +81,8 @@ class UserMatchListVM extends AutoDisposeNotifier<UserMatchListModel?> {
   Future<void> write(UserMatchWriteModel model) async {
     Logger().d("글쓰기 요청 : ${model.toMap()}");
 
-    Map<String, dynamic> data = await UserMatchRepository().write(model.toMap());
+    Map<String, dynamic> data =
+        await UserMatchRepository().write(model.toMap());
 
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext).showSnackBar(
@@ -89,7 +91,7 @@ class UserMatchListVM extends AutoDisposeNotifier<UserMatchListModel?> {
       return;
     }
 
-    UserMatch newMatch = UserMatch.fromMap(data["body"]["match"]);
+    UserMatch newMatch = UserMatch.fromWriteMap(data["body"]);
 
     List<UserMatch> nextMatches = [newMatch, ...state!.userMatches];
 
@@ -105,7 +107,8 @@ class UserMatchListVM extends AutoDisposeNotifier<UserMatchListModel?> {
   void notifyDeleteOne(int userMatchId) {
     UserMatchListModel model = state!;
 
-    model.userMatches = model.userMatches.where((um) => um.matchId != userMatchId).toList();
+    model.userMatches =
+        model.userMatches.where((um) => um.matchId != userMatchId).toList();
 
     state = state!.copyWith(userMatches: model.userMatches);
   }
@@ -132,7 +135,8 @@ class UserMatchListModel {
         selectedAge = data['selectedAge'],
         selectedTeamId = data['selectedTeamId'],
         selectedTimeName = data['selectedTimeName'],
-        userMatches = (data['matches'] as List).map((e) => UserMatch.fromMap(e)).toList();
+        userMatches =
+            (data['matches'] as List).map((e) => UserMatch.fromMap(e)).toList();
 
   UserMatchListModel copyWith({
     String? selectedGender,

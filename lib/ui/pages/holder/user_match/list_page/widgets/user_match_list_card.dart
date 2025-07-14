@@ -29,7 +29,8 @@ class UserMatchListCard extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => UserMatchDetailPage(userMatch.matchId!)),
+              MaterialPageRoute(
+                  builder: (_) => UserMatchDetailPage(userMatch.matchId!)),
             );
           },
           child: Padding(
@@ -41,7 +42,7 @@ class UserMatchListCard extends StatelessWidget {
                 UserMatchListCardHeader(
                   matchTitle:
                       '${userMatch.game.awayTeam.teamName} vs ${userMatch.game.homeTeam.teamName}',
-                  postedTime: userMatch.relativeTime!,
+                  postedTime: userMatch.relativeTime ?? '방금 전',
                 ),
 
                 SizedBox(height: 4),
@@ -84,13 +85,15 @@ class UserMatchListCard extends StatelessWidget {
                           ],
                         ),
                         // 같은 팀 체크박스 선택 했을 경우 = true
-                        if (userMatch.isSameTeam!) ...[
+                        if (userMatch.isSameTeam ?? false) ...[
                           SizedBox(height: 8),
                           Row(
                             children: [
-                              Icon(Icons.check_box, size: 16, color: MColor.kPrimary.strong),
+                              Icon(Icons.check_box,
+                                  size: 16, color: MColor.kPrimary.strong),
                               SizedBox(width: 4),
-                              MText.label2_5("같은 팀이면 좋겠어요", color: MColor.kPrimary.strong),
+                              MText.label2_5("같은 팀이면 좋겠어요",
+                                  color: MColor.kPrimary.strong),
                             ],
                           ),
                         ],
