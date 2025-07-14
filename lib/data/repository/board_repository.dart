@@ -265,4 +265,29 @@ class BoardRepository {
     Logger().d(responseBody);
     return responseBody;
   }
+
+  Future<Map<String, dynamic>> writeOne(int teamId, String content) async {
+    final responseBody = {
+      "status": 200,
+      "msg": "성공",
+      "body": {
+        "relativeTime": "방금",
+        "replyId": 1,
+        "boardId": 1,
+        "userId": 6,
+        "nickname": "jungwon",
+        "profileImg": "/img/profile.png",
+        "myTeamName": "KIA 타이거즈",
+        "parentReplyId": null,
+        "tagReplyId": null,
+        "tagReplyName": null,
+        "isOwner": true,
+        "isLike": false,
+        "likeCount": 0,
+        "content": content,
+      }
+    };
+    Logger().d(responseBody);
+    return responseBody;
+  }
 }

@@ -32,7 +32,7 @@ class Reply {
       nickname: data['nickname'],
       profileImg: data['profileImg'],
       relativeTime: data['relativeTime'],
-      myTeamName: data['myTeamName'],
+      myTeamName: data['myTeamName'] ?? '',
       content: data['content'],
       isOwner: data['isOwner'],
       isLike: data['isLike'],

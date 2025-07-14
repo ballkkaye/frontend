@@ -32,7 +32,12 @@ class BoardDetailPage extends ConsumerWidget {
           replyController: _replyController,
         ),
         // 댓글 입력창
-        bottomNavigationBar: BoardDetailReplyInputBar(replyController: _replyController),
+        bottomNavigationBar: BoardDetailReplyInputBar(
+          replyController: _replyController,
+          onSubmit: (content) {
+            ref.read(boardDetailReplyProvider(boardId).notifier).writeReply(boardId, content);
+          },
+        ),
       );
     }
   }

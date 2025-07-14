@@ -6,9 +6,11 @@ class BoardDetailReplyInputBar extends StatelessWidget {
   const BoardDetailReplyInputBar({
     super.key,
     required TextEditingController replyController,
+    required this.onSubmit,
   }) : _replyController = replyController;
 
   final TextEditingController _replyController;
+  final void Function(String content) onSubmit;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,12 @@ class BoardDetailReplyInputBar extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              if (_replyController.text.trim().isNotEmpty) {
+                onSubmit(_replyController.text.trim());
+                _replyController.clear(); // 입력 후 초기화
+              }
+            },
             icon: Icon(CupertinoIcons.arrow_up),
             color: MColor.kLabel.neutral,
           ),
