@@ -15,15 +15,7 @@ class UserMatchSelectBody extends ConsumerStatefulWidget {
 }
 
 class _UserMatchSelectBodyState extends ConsumerState<UserMatchSelectBody> {
-  String selectedDate = formatDateToStr(today);
-
-  List<String> games = [
-    '두산 베어스 vs 롯데 자이언츠 (사직)',
-    'SSG 랜더스 vs LG 트윈스 (잠실)',
-    '삼성 라이온즈 vs 기아 타이거즈 (광주)',
-    'KT 위즈 vs 한화 이글스 (대전)',
-    'NC 다이노스 vs 키움 히어로즈 (고척)'
-  ];
+  String selectedDate = formatDateToStr(DateTime(2025, 7, 13));
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +35,7 @@ class _UserMatchSelectBodyState extends ConsumerState<UserMatchSelectBody> {
               // 날짜 선택 버튼
               MDateSelectBtn(
                 text: selectedDate,
-                minimumDate: today,
+                minimumDate: DateTime(2025, 7, 13),
                 maximumDate: dateModel.maximumDate,
                 onDateTimeChanged: (value) {
                   Logger().d(dateModel.isGameDay(value));
