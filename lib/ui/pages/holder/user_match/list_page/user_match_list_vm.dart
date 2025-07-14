@@ -3,7 +3,6 @@ import 'package:ballkkaye_frontend/data/enum/gender.dart';
 import 'package:ballkkaye_frontend/data/model/user_match.dart';
 import 'package:ballkkaye_frontend/data/repository/user_match_repository.dart';
 import 'package:ballkkaye_frontend/main.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/user_match/detail_page/user_match_detail_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/write_page/user_match_write_fm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -57,14 +56,14 @@ class UserMatchListVM extends AutoDisposeNotifier<UserMatchListModel?> {
   }) async {
     Logger().d('📩 fetchList() called with => '
         'page: $page, '
-        'gender: ${gender?.label}, '
-        'age: ${age?.label}, '
+        'gender: $gender, '
+        'age: $age, '
         'teamId: $teamId');
 
     Map<String, dynamic> data = await UserMatchRepository().getListByQuery(
       page: page,
-      gender: gender?.label,
-      age: age?.label,
+      gender: gender?.name,
+      age: age?.name,
       teamId: teamId,
     );
 
@@ -98,8 +97,8 @@ class UserMatchListVM extends AutoDisposeNotifier<UserMatchListModel?> {
 
     Navigator.pop(mContext);
     Navigator.pop(mContext);
-    Navigator.push(
-        mContext, MaterialPageRoute(builder: (context) => UserMatchDetailPage(newMatch.matchId!)));
+    // Navigator.push(
+    //     mContext, MaterialPageRoute(builder: (context) => UserMatchDetailPage(newMatch.matchId!)));
   }
 
   // 삭제 notify
