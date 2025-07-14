@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_theme.dart';
+import 'package:ballkkaye_frontend/data/model/visit_record.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_nickname_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_team_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/login_page/login_page.dart';
@@ -71,7 +72,8 @@ class MyApp extends StatelessWidget {
         "/visit-record/select": (context) => VisitRecordSelectPage(),
         //"/visit-record/write": (context) => const VisitRecordWritePage(),
         "/visit-record/write": (context) {
-          final VisitRecord selectedGame = ModalRoute.of(context)!.settings.arguments as VisitRecord;
+          final VisitRecord selectedGame =
+              ModalRoute.of(context)!.settings.arguments as VisitRecord;
           return VisitRecordWritePage(selectedGame: selectedGame);
         },
         "/visit-record/update": (context) => const VisitRecordUpdatePage(),
