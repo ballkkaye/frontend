@@ -1,3 +1,4 @@
+import 'package:ballkkaye_frontend/data/enum/game_status.dart';
 import 'package:ballkkaye_frontend/data/model/team.dart';
 
 class Game {
@@ -5,25 +6,55 @@ class Game {
   final Team homeTeam;
   final Team awayTeam;
   final String? gameDate;
+  final String? gameTime;
   final String? stadiumName;
-  final String? stadiumShotrName;
+  final String? stadiumShortName;
+  final GameStatus? gameStatus;
+  final String? broadcastChannel;
+  final String? ticketLink;
+  final String? homePitcherName;
+  final String? awayPitcherName;
 
   Game({
     this.id,
     required this.homeTeam,
     required this.awayTeam,
-    required this.gameDate,
+    this.gameStatus,
+    this.gameDate,
+    this.gameTime,
     this.stadiumName,
-    this.stadiumShotrName,
+    this.stadiumShortName,
+    this.broadcastChannel,
+    this.ticketLink,
+    this.homePitcherName,
+    this.awayPitcherName,
   });
 
-  Game.fromMap(Map<String, dynamic> data)
-      : id = data['id'],
-        homeTeam = Team.fromMap(data['homeTeam']),
-        awayTeam = Team.fromMap(data['awayTeam']),
-        gameDate = data['gameDate'],
-        stadiumName = data['stadiumName'],
-        stadiumShotrName = null;
+  Game.fromMap(Map<String, dynamic> map)
+      : id = map['gameId'] ?? map['id'],
+        homeTeam = map['homeTeam'] != null
+            ? Team.fromMap(map['homeTeam'])
+            : Team(
+                teamId: map['homeTeamId'],
+                fullName: map['homeTeamName'],
+                teamLogo: map['homeTeamLogoUrl'],
+              ),
+        awayTeam = map['awayTeam'] != null
+            ? Team.fromMap(map['awayTeam'])
+            : Team(
+                teamId: map['awayTeamId'],
+                fullName: map['awayTeamName'],
+                teamLogo: map['awayTeamLogoUrl'],
+              ),
+        gameDate = map['gameDate'],
+        gameTime = map['gameTime'],
+        stadiumName = map['stadiumName'],
+        stadiumShortName = map['stadiumShortName'],
+        gameStatus = GameStatusExtension.fromString(map['gameStatus']),
+        broadcastChannel = map['broadcastChannel'],
+        ticketLink = map['ticketLink'],
+        homePitcherName = map['homePitcherName'],
+        awayPitcherName = map['awayPitcherName'];
 
   Game.fromGameData(Map<String, dynamic> data)
       : id = data['gameId'],
@@ -39,7 +70,13 @@ class Game {
         ),
         gameDate = data['gameDate'],
         stadiumName = data['stadiumFullName'],
-        stadiumShotrName = data['stadiumShortName'];
+        stadiumShortName = data['stadiumShortName'],
+        gameTime = data['gameTime'],
+        gameStatus = GameStatusExtension.fromString(data['gameStatus']),
+        broadcastChannel = data['broadcastChannel'],
+        ticketLink = data['ticketLink'],
+        homePitcherName = data['homePitcherName'],
+        awayPitcherName = data['awayPitcherName'];
 
   @override
   String toString() {

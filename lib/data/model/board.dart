@@ -61,6 +61,25 @@ class Board {
     );
   }
 
+  /// 홈화면 전용 간단 파싱
+  factory Board.fromSimple(Map<String, dynamic> data) {
+    return Board(
+      boardId: 0,
+      nickname: '',
+      relativeTime: '',
+      myTeamName: '',
+      teamCategoryId: 0,
+      teamCategoryName: '',
+      title: data['title'] ?? '',
+      content: data['content'] ?? '',
+      isOwner: false,
+      isLike: false,
+      likeCount: 0,
+      replyCount: 0,
+      replyItems: [],
+    );
+  }
+
   Board copyWith({
     int? boardId,
     String? nickname,

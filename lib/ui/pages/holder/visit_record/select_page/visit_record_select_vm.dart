@@ -68,7 +68,6 @@ class VisitRecordSelectVM extends AutoDisposeNotifier<VisitRecordSelectState> {
       ScaffoldMessenger.of(mContext).showSnackBar(
         SnackBar(content: Text("경기 목록 조회 실패: ${body['errorMessage']}")),
       );
-      return;
     }
 
     final formattedDate = formatToDotDate(date);
@@ -81,13 +80,14 @@ class VisitRecordSelectVM extends AutoDisposeNotifier<VisitRecordSelectState> {
 
     if (matchedGroup.isEmpty) {
       state = state.copyWith(gameList: []);
-      return;
     }
 
     final items = List<Map<String, dynamic>>.from(matchedGroup["items"] ?? []);
     final list = items.map((e) => VisitRecord.fromMap(e)).toList();
 
     state = state.copyWith(gameList: list);
+    print("${list}");
+    return;
   }
 
   Future<void> loadHasGameDay(String yearMonth) async {
