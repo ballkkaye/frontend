@@ -39,7 +39,7 @@ class VisitRecordUpdateForm extends StatelessWidget {
             visible: hasImage,
             child: Column(
               children: [
-                VisitRecordThumbnail(),
+                //VisitRecordThumbnail(),
                 SizedBox(height: 20),
               ],
             ),

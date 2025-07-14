@@ -1,5 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_theme.dart';
 import 'package:ballkkaye_frontend/_core/utils/m_fcm.dart';
+import 'package:ballkkaye_frontend/data/model/visit_record.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_nickname_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_team_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/login_page/login_page.dart';
@@ -71,21 +72,26 @@ class MyApp extends StatelessWidget {
         "/home": (context) => const HomePage(),
         "/main-holder": (context) => MainHolder(),
         "/visit-record/list": (context) => const VisitRecordListPage(),
-        "/visit-record/detail": (context) =>
-            const VisitRecordDetailPage(visitRecordId: 10),
+        "/visit-record/detail": (context) => const VisitRecordDetailPage(visitRecordId: 10),
+        "/visit-record/detail": (context) {
+          final visitRecordId = ModalRoute.of(context)!.settings.arguments as int;
+          return VisitRecordDetailPage(visitRecordId: visitRecordId);
+        },
         "/visit-record/select": (context) => VisitRecordSelectPage(),
-        "/visit-record/write": (context) => const VisitRecordWritePage(),
+        //"/visit-record/write": (context) => const VisitRecordWritePage(),
+        "/visit-record/write": (context) {
+          final VisitRecord selectedGame = ModalRoute.of(context)!.settings.arguments as VisitRecord;
+          return VisitRecordWritePage(selectedGame: selectedGame);
+        },
         "/visit-record/update": (context) => const VisitRecordUpdatePage(),
         "/game-center/matchup": (context) => const MatchupPage(),
         "/game-center/prediction": (context) => const PredictionPage(),
-        "/game-center/rainout-prediction": (context) =>
-            const RainoutPredictionPage(),
+        "/game-center/rainout-prediction": (context) => const RainoutPredictionPage(),
         "/game-center/ranking": (context) => const RankingPage(),
         "/game-center/today-game": (context) => const TodayGamePage(),
         "/game-center/user-prediction": (context) => const UserPredictionPage(),
         "/board/list": (context) => const BoardListPage(),
-        "/board/detail": (context) =>
-            BoardDetailPage(13), //todo 나중에 리스트에서 받은값 전달하기
+        "/board/detail": (context) => BoardDetailPage(13), //todo 나중에 리스트에서 받은값 전달하기
         "/board/write": (context) => const BoardWritePage(),
         // "/board/update": (context) => BoardUpdatePage(), // 동적데이터 받기 어려워서 MaterialPageRoute 사용
         "/user-match/update": (context) => const UserMatchUpdatePage(),
