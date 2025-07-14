@@ -90,16 +90,25 @@ class UserMatchListVM extends AutoDisposeNotifier<UserMatchListModel?> {
       return;
     }
 
-    final newMatch = UserMatch.fromMap(data["body"]["match"]);
+    UserMatch newMatch = UserMatch.fromMap(data["body"]["match"]);
 
-    List<UserMatch> nextMatches = [newMatch, ...?state?.userMatches];
+    List<UserMatch> nextMatches = [newMatch, ...state!.userMatches];
 
-    state = state?.copyWith(userMatches: nextMatches) ??
-        UserMatchListModel(null, null, null, null, [newMatch]);
+    state = state?.copyWith(userMatches: nextMatches);
 
+    Navigator.pop(mContext);
     Navigator.pop(mContext);
     Navigator.push(
         mContext, MaterialPageRoute(builder: (context) => UserMatchDetailPage(newMatch.matchId!)));
+  }
+
+  // 삭제 notify
+  void notifyDeleteOne(int userMatchId) {
+    UserMatchListModel model = state!;
+
+    model.userMatches = model.userMatches.where((um) => um.matchId != userMatchId).toList();
+
+    state = state!.copyWith(userMatches: model.userMatches);
   }
 }
 
