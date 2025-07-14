@@ -1,6 +1,4 @@
 import 'package:ballkkaye_frontend/_core/style/m_theme.dart';
-import 'package:ballkkaye_frontend/_core/utils/m_fcm.dart';
-import 'package:ballkkaye_frontend/data/model/visit_record.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_nickname_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_team_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/login_page/login_page.dart';
@@ -29,22 +27,15 @@ import 'package:ballkkaye_frontend/ui/pages/mypage/user/detail_page/user_detail_
 import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_page/user_update_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/splash/splash_page.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/date_symbol_data_local.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
-  await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await initializeDateFormatting();
-  await MFcm.initFcmToken();
-  FirebaseMessaging.instance.getInitialMessage();
   runApp(const ProviderScope(child: MyApp()));
 }
 
