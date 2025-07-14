@@ -55,6 +55,7 @@ dependencies:
   smooth_page_indicator: ^1.2.1
   flutter_naver_login: ^2.1.1
   flutter_secure_storage: ^9.2.4
+  image_picker: ^1.1.2
 
 dev_dependencies:
   flutter_test:

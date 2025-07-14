@@ -11,9 +11,13 @@ class VisitRecordWriteBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return SingleChildScrollView(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-      child: VisitRecordWriteForm(selectedGame: selectedGame),
+      child: Column(
+        children: [
+          VisitRecordWriteForm(selectedGame: selectedGame),
+        ],
+      ),
     );
   }
 }
