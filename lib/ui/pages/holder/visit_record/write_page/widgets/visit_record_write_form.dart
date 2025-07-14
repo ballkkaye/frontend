@@ -1,13 +1,13 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
-import 'package:ballkkaye_frontend/_core/utils/m_image.dart';
+import 'package:ballkkaye_frontend/_core/utils/m_img.dart';
 import 'package:ballkkaye_frontend/data/enum/result.dart';
 import 'package:ballkkaye_frontend/data/model/visit_record.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/widgets/visit_record_img_thumbnail.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/visit_record_write_fm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/write_page/widgets/visit_record_write_game_card.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_icon_btn.dart';
-import 'package:ballkkaye_frontend/ui/widgets/m_image_action_sheet.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_img_action_sheet.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_text_form_field.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_toggle_btn.dart';
 import 'package:flutter/cupertino.dart';
