@@ -34,7 +34,7 @@ migrate_working_dir/
 /build/
 
 # 환경변수 파일
-assets/.env
+.env
 
 # Symbolication related
 app.*.symbols

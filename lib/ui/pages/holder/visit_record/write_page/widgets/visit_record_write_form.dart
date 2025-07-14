@@ -125,29 +125,6 @@ class _VisitRecordWriteFormState extends ConsumerState<VisitRecordWriteForm> {
           // 🟡 기존에 버튼 spacer로 되어있어 기기별로 이미지가 추가되었을 때
           // 전체적인 디자인이 화면 바깥으로 삐져나감 SingleChildScrollView 로 감싸며
           // spacer 사용 시 화면이 출력되지 않는 이슈 있음 그래서 버튼을 가장 바깥으로 빼 구조변경
-
-          // 작성 완료 버튼
-          // MElevatedBtn(
-          //   text: '완료',
-          //   onPressed: () {
-          //     writeModel.gameId(widget.selectedGame.gameId!);
-          //     writeModel.teamId; // TODO: 유저 정보 받을 수 있을 때
-          //
-          //     final writeProvider = ref.read(visitRecordWriteProvider);
-          //
-          //     print("📦 작성 모델: $writeProvider");
-          //     print("  - 게임 ID: ${writeProvider.gameId}");
-          //     print("  - 팀 ID: ${writeProvider.teamId}");
-          //     print("  - 결과: ${writeProvider.result}");
-          //     print("  - 내용: ${writeProvider.content}");
-          //     print("  - 이미지 URL: ${writeProvider.imgUrl}");
-          //
-          //     // 4. 작성 요청
-          //     listModel.writeVisitRecord(writeProvider);
-          //
-          //     Navigator.pop(context);
-          //   },
-          // ),
         ],
       ),
     );
