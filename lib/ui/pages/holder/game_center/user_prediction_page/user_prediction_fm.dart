@@ -13,19 +13,19 @@ final userPredictionProvider = AutoDisposeNotifierProvider<UserPredictionFM, Use
 
 /// 2. 창고 (상태가 변경되어도, 화면 갱신 안함 - watch 하지마)
 class UserPredictionFM extends AutoDisposeNotifier<UserPredictionModel?> {
-  final mContext = navigatorKey.currentContext!;
+  BuildContext get mContext => navigatorKey.currentContext!;
+
+  /// context 고정 저장 위험 방지용, 매번 최신값 가져오기
   final refreshCtrl = RefreshController();
   bool isSubmitted = false; // 예측 완료 여부
 
   @override
   UserPredictionModel? build() {
     init();
-
     ref.onDispose(() {
       refreshCtrl.dispose();
       Logger().d("UserPredictionFM 파괴됨");
     });
-
     return null;
   }
 
