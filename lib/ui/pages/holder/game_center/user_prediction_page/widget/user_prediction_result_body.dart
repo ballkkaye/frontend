@@ -1,4 +1,4 @@
-import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/user_prediction_fm.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/user_prediction_vm.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,10 +12,10 @@ class UserPredictionResultBody extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final model = ref.watch(userPredictionProvider);
-    final fm = ref.read(userPredictionProvider.notifier);
+    final vm = ref.read(userPredictionProvider.notifier);
     if (model == null) return const Center(child: CircularProgressIndicator());
 
-    final bool isEnabled = !fm.isSubmitted;
+    final bool isEnabled = !vm.isSubmitted;
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
@@ -29,8 +29,8 @@ class UserPredictionResultBody extends ConsumerWidget {
             isEnabled: isEnabled,
             onPressed: () {
               if (!isEnabled) return;
-              final fm = ref.read(userPredictionProvider.notifier);
-              final jsonList = fm.toJsonList();
+              final vm = ref.read(userPredictionProvider.notifier);
+              final jsonList = vm.toJsonList();
 
               if (jsonList.isEmpty) {
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -46,7 +46,7 @@ class UserPredictionResultBody extends ConsumerWidget {
               }
 
               // 서버 전송 실행!
-              fm.submitPredictions().then((_) {
+              vm.submitPredictions().then((_) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('예측이 완료되었습니다.')),
                 );

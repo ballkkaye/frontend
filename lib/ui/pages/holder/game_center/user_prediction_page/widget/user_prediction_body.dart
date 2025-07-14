@@ -5,42 +5,23 @@ import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserPredictionBody extends ConsumerStatefulWidget {
+class UserPredictionBody extends ConsumerWidget {
   const UserPredictionBody({
     super.key,
   });
 
   @override
-  ConsumerState<UserPredictionBody> createState() => _UserPredictionBodyState();
-}
-
-class _UserPredictionBodyState extends ConsumerState<UserPredictionBody> {
-  bool _fetched = false;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!_fetched) {
-        final vm = UserPredictionVM(ref);
-        vm.init();
-        _fetched = true;
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final model = ref.watch(userPredictionProvider);
-    final fm = ref.read(userPredictionProvider.notifier);
-    final vm = UserPredictionVM(ref);
+    final vm = ref.read(userPredictionProvider.notifier);
+    final fm = ref.read(userPredictionFProvider.notifier);
 
     if (model == null) {
       return const Center(child: CircularProgressIndicator());
     }
 
     // 예측 완료되었으면 버튼 비활성화
-    final bool isEnabled = !fm.isSubmitted;
+    final bool isEnabled = !vm.isSubmitted;
     return ListView(
       children: [
         Padding(
@@ -59,9 +40,10 @@ class _UserPredictionBodyState extends ConsumerState<UserPredictionBody> {
               MElevatedBtn(
                   text: '예측하기',
                   isEnabled: isEnabled,
-                  onPressed: () async {
+                  onPressed: () {
                     if (!isEnabled) return;
-                    final jsonList = fm.toJsonList();
+                    final vm = ref.read(userPredictionProvider.notifier);
+                    final jsonList = vm.toJsonList();
 
                     if (jsonList.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -77,12 +59,13 @@ class _UserPredictionBodyState extends ConsumerState<UserPredictionBody> {
                     }
 
                     // 서버 전송 실행!
-                    await fm.submitPredictions();
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('예측이 완료되었습니다.')),
-                    );
+                    vm.submitPredictions().then((_) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('예측이 완료되었습니다.')),
+                      );
 
-                    // TODO: 서버에 전송하는 API 호출 넣기
+                      // TODO: 서버에 전송하는 API 호출 넣기
+                    });
                   }
                   //isEnabled = false
                   ),

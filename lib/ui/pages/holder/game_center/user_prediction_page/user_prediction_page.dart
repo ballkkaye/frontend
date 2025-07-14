@@ -18,8 +18,8 @@ class _UserPredictionPageState extends ConsumerState<UserPredictionPage> {
 
   @override
   Widget build(BuildContext context) {
-    final vm = UserPredictionVM(ref);
-
+    final vm = ref.read(userPredictionProvider.notifier);
+    
     return Scaffold(
       appBar: AppBar(title: const Text("나의 승부예측")),
       body: showResult
