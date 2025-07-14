@@ -1,5 +1,5 @@
 import 'package:ballkkaye_frontend/data/model/game.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/user_match/select_page/user_match_select_game_vm.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/select_page/user_match_select_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/write_page/user_match_write_fm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/write_page/user_match_write_page.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_dropdown_btn.dart';
@@ -14,11 +14,11 @@ class UserMatchSelectDropdownBtn extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    UserMatchSelectGameModel? gameModel = ref.watch(userMatchSelectGameProvider(date));
+    UserMatchSelectModel? model = ref.watch(userMatchSelectProvider(date));
     UserMatchWriteFM fm = ref.read(userMatchWriteProvider.notifier);
     int? selectedGameId;
 
-    if (gameModel == null) {
+    if (model == null || model.games == null) {
       return MDropdownBtn(
         hintText: '경기',
         items: [],
@@ -30,7 +30,7 @@ class UserMatchSelectDropdownBtn extends ConsumerWidget {
       children: [
         MDropdownBtn<Map<String, dynamic>>(
           hintText: '경기',
-          items: gameModel.formatGameList(),
+          items: model.formatGameList(),
           itemLabel: (item) => item['game'],
           onChanged: (item) {
             if (item != null) {
@@ -43,8 +43,9 @@ class UserMatchSelectDropdownBtn extends ConsumerWidget {
         MElevatedBtn(
           text: '다음',
           onPressed: () {
-            if (selectedGameId != null) {
-              final Game selectedGame = gameModel.games.firstWhere((g) => g.id == selectedGameId);
+            final games = model.games;
+            if (selectedGameId != null && games != null) {
+              final Game selectedGame = games.firstWhere((g) => g.id == selectedGameId);
               Navigator.push(
                 context,
                 MaterialPageRoute(

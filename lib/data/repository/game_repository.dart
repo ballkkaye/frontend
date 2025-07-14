@@ -128,7 +128,7 @@ class GameRepository {
     }
   }
 
-  Future<Map<String, dynamic>> getAvailableDateList() async {
+  Future<Map<String, dynamic>> getAvailableDateList(String date) async {
     // Response response = await dio.get("/s/api/games/dates");
     // final responseBody = response.data;
     final responseBody = {

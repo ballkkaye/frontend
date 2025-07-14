@@ -26,34 +26,93 @@ class UserMatchSelectVM extends AutoDisposeFamilyNotifier<UserMatchSelectModel?,
   }
 
   Future<void> init(String date) async {
-    Map<String, dynamic> data = await GameRepository().getList(date);
-    if (data["status"] != 200) {
+    // games 조회
+    Map<String, dynamic> gameData = await GameRepository().getList(date);
+    if (gameData["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
-        SnackBar(content: Text("동행글 작성 전 경기 선택 통신 실패 : ${data["msg"]}")),
+        SnackBar(content: Text("동행글 작성 전 경기 조회 통신 실패 : ${gameData["msg"]}")),
       );
       return;
     }
 
-    state = UserMatchSelectModel.fromMap(data["body"]);
+    final newGames = UserMatchSelectModel.fromGameList(gameData["body"]).games;
+
+    state = UserMatchSelectModel(games: newGames, selectedDate: date);
+
+    // years 조회
+    Map<String, dynamic> dateData =
+        await GameRepository().getAvailableDateList(extractYearMonth(date));
+    if (dateData["status"] != 200) {
+      ScaffoldMessenger.of(mContext!).showSnackBar(
+        SnackBar(content: Text("동행글 작성 전 날짜 조회 통신 실패 : ${dateData["msg"]}")),
+      );
+      return;
+    }
+    final newYears = UserMatchSelectModel.fromYearList(dateData["body"]).years;
+
+    state = state!.copyWith(years: newYears);
+  }
+
+  Future<void> getAvailableDate(String date) async {
+    Map<String, dynamic> data = await GameRepository().getAvailableDateList(extractYearMonth(date));
+    if (data["status"] != 200) {
+      ScaffoldMessenger.of(mContext!).showSnackBar(
+        SnackBar(content: Text("동행글 작성 전 날짜 조회 통신 실패 : ${data["msg"]}")),
+      );
+      return;
+    }
+
+    final newYears = UserMatchSelectModel.fromYearList(data["body"]).years;
+    final tempState = state?.copyWith(years: newYears);
+
+    // 날짜에 해당하는 경기가 있는지 확인
+    final selectedDate = DateTime.parse(date);
+    if (tempState == null || !tempState.isGameDay(selectedDate)) {
+      ScaffoldMessenger.of(mContext!).showSnackBar(
+        SnackBar(content: Text("해당 날짜에는 경기가 없습니다.")),
+      );
+      return;
+    }
+
+    // 날짜에 경기 있음 → 게임 조회 후 상태 갱신
+    Map<String, dynamic> gameData = await GameRepository().getList(date);
+    if (gameData["status"] != 200) {
+      ScaffoldMessenger.of(mContext!).showSnackBar(
+        SnackBar(content: Text("경기 목록 조회 실패 : ${gameData["msg"]}")),
+      );
+      return;
+    }
+
+    final newGames = UserMatchSelectModel.fromGameList(gameData["body"]).games;
+
+    // 최종 상태 갱신
+    state = state!.copyWith(years: newYears, games: newGames, selectedDate: date);
   }
 }
 
 class UserMatchSelectModel {
-  final List<AvailableYear> years; // 날짜 구조
-  final List<Game> games; // 경기 리스트
-  final String selectedDate; // 선택된 날짜
+  final List<AvailableYear>? years;
+  final List<Game>? games;
+  final String? selectedDate;
 
   UserMatchSelectModel({
-    required this.years,
-    required this.games,
-    required this.selectedDate,
+    this.years,
+    this.games,
+    this.selectedDate,
   });
 
-  factory UserMatchSelectModel.initial() => UserMatchSelectModel(
-        years: [],
-        games: [],
-        selectedDate: formatDateToStr(today),
-      );
+  UserMatchSelectModel.fromYearList(List<dynamic> list)
+      : years = list.map((e) => AvailableYear.fromMap(e)).toList(),
+        games = null,
+        selectedDate = formatDateToStr(today);
+
+  UserMatchSelectModel.fromGameList(Map<String, dynamic> map)
+      : games = (map['games'] as List)
+            .expand((g) => (g['items'] as List))
+            .map((e) => Game.fromMap(e))
+            .toList(),
+        years = null,
+        selectedDate = map['selectedDate'];
 
   UserMatchSelectModel copyWith({
     List<AvailableYear>? years,
@@ -67,30 +126,8 @@ class UserMatchSelectModel {
     );
   }
 
-  /// 모든 가능한 날짜 리스트 추출
-  List<DateTime> get allAvailableDates {
-    List<DateTime> list = [];
-    for (var year in years) {
-      for (var month in year.months) {
-        for (var day in month.days) {
-          if (day.isHaveGame) {
-            list.add(DateTime(
-              int.parse(year.year),
-              int.parse(month.month),
-              int.parse(day.day),
-            ));
-          }
-        }
-      }
-    }
-    return list..sort();
-  }
-
-  DateTime get minimumDate => allAvailableDates.first;
-  DateTime get maximumDate => allAvailableDates.last;
-
   bool isGameDay(DateTime date) {
-    for (final year in years) {
+    for (final year in years!) {
       for (final month in year.months) {
         for (final day in month.days) {
           if (day.isHaveGame &&
@@ -106,7 +143,7 @@ class UserMatchSelectModel {
   }
 
   List<Map<String, dynamic>> formatGameList() {
-    return games.map((g) {
+    return games!.map((g) {
       return {
         'gameId': g.id,
         'game': '${g.awayTeam.fullName} vs ${g.homeTeam.fullName} (${g.stadiumShortName})',
@@ -116,7 +153,7 @@ class UserMatchSelectModel {
 
   @override
   String toString() {
-    return 'UserMatchSelectModel{selectedDate: $selectedDate, games: ${games.length}, totalDates: ${allAvailableDates.length}}';
+    return 'UserMatchSelectModel{selectedDate: $selectedDate, games: ${games?.length}}';
   }
 }
 
