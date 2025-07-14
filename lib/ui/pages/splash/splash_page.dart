@@ -1,9 +1,11 @@
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/utils/m_fcm.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:logger/logger.dart';
+import 'package:lottie/lottie.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -13,6 +15,10 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  bool _isInitialized = false;
+  bool _isAnimationLoaded = false;
+  Duration _animationDuration = Duration.zero;
+
   @override
   void initState() {
     super.initState();
@@ -33,24 +39,43 @@ class _SplashPageState extends State<SplashPage> {
       Logger().d("4. FCM initial message");
       FirebaseMessaging.instance.getInitialMessage();
 
-      Logger().d("5. 이동");
-      if (mounted) {
-        Navigator.pushReplacementNamed(context, "/login");
-      }
+      Logger().d("✅ 초기화 완료");
+
+      setState(() {
+        _isInitialized = true;
+      });
+
+      _tryNavigate();
     } catch (e) {
       Logger().e("초기화 에러: $e");
+    }
+  }
+
+  void _tryNavigate() {
+    if (_isInitialized && _isAnimationLoaded) {
+      Future.delayed(_animationDuration, () {
+        if (mounted) {
+          Navigator.pushReplacementNamed(context, "/login");
+        }
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MColor.kPrimary.alternative,
       body: Center(
-        child: Image.asset(
-          'assets/images/splash.gif',
-          width: double.infinity,
-          height: double.infinity,
+        child: Lottie.asset(
+          'assets/animation/splash_logo.json',
+          repeat: false,
+          animate: true,
           fit: BoxFit.cover,
+          onLoaded: (composition) {
+            _animationDuration = composition.duration;
+            _isAnimationLoaded = true;
+            _tryNavigate();
+          },
         ),
       ),
       floatingActionButton: FloatingActionButton(
