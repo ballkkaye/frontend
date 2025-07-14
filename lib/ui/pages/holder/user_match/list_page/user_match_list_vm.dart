@@ -32,10 +32,8 @@ class UserMatchListVM extends AutoDisposeNotifier<UserMatchListModel?> {
     return null;
   }
 
-  Future<void> init({int? page}) async {
-    Map<String, dynamic> data = await UserMatchRepository().getList(
-      page: page,
-    );
+  Future<void> init({int page = 0}) async {
+    Map<String, dynamic> data = await UserMatchRepository().getList(page: page);
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
         SnackBar(content: Text("동행글 전체 목록 통신 실패 : ${data["msg"]}")),
@@ -43,9 +41,55 @@ class UserMatchListVM extends AutoDisposeNotifier<UserMatchListModel?> {
       return;
     }
 
-    state = UserMatchListModel.fromMap(data['body']);
+    final matches = (data['body']['matches'] as List)
+        .map((e) => UserMatch.fromMap(e))
+        .toList();
+
+    final isLast = matches.length < 5; // 한 페이지 5개 기준
+
+    state =
+        UserMatchListModel.fromMap(data['body'], page: page, isLast: isLast);
 
     refreshCtrl.refreshCompleted();
+  }
+
+  Future<void> nextList() async {
+    UserMatchListModel prevModel = state!;
+    final nextPage = prevModel.pageNumber + 1;
+
+    if (prevModel.isLast) {
+      await Future.delayed(Duration(milliseconds: 500));
+      refreshCtrl.loadComplete();
+      return;
+    }
+
+    Map<String, dynamic> data =
+        await UserMatchRepository().getList(page: nextPage);
+    if (data["status"] != 200) {
+      ScaffoldMessenger.of(mContext!).showSnackBar(
+        SnackBar(content: Text("동행글 전체 목록 통신 실패 : ${data["msg"]}")),
+      );
+      refreshCtrl.loadComplete();
+      return;
+    }
+
+    final matches = (data['body']['matches'] as List)
+        .map((e) => UserMatch.fromMap(e))
+        .toList();
+
+    final isLast = matches.length < 5;
+
+    final nextModel = UserMatchListModel.fromMap(
+      data["body"],
+      page: nextPage,
+      isLast: isLast,
+    );
+
+    state = nextModel.copyWith(
+      userMatches: [...prevModel.userMatches, ...nextModel.userMatches],
+    );
+
+    refreshCtrl.loadComplete();
   }
 
   // 드롭다운버튼으로 조건부 조회
@@ -121,22 +165,29 @@ class UserMatchListModel {
   int? selectedTeamId;
   String? selectedTimeName;
   List<UserMatch> userMatches;
+  int pageNumber;
+  bool isLast;
 
   UserMatchListModel(
     this.selectedGender,
     this.selectedAge,
     this.selectedTeamId,
     this.selectedTimeName,
-    this.userMatches,
-  );
+    this.userMatches, {
+    required this.pageNumber,
+    required this.isLast,
+  });
 
-  UserMatchListModel.fromMap(Map<String, dynamic> data)
+  UserMatchListModel.fromMap(Map<String, dynamic> data,
+      {int page = 0, bool isLast = false})
       : selectedGender = data['selectedGender'],
         selectedAge = data['selectedAge'],
         selectedTeamId = data['selectedTeamId'],
         selectedTimeName = data['selectedTimeName'],
         userMatches =
-            (data['matches'] as List).map((e) => UserMatch.fromMap(e)).toList();
+            (data['matches'] as List).map((e) => UserMatch.fromMap(e)).toList(),
+        pageNumber = page,
+        isLast = isLast;
 
   UserMatchListModel copyWith({
     String? selectedGender,
@@ -144,6 +195,8 @@ class UserMatchListModel {
     int? selectedTeamId,
     String? selectedTimeName,
     List<UserMatch>? userMatches,
+    int? pageNumber,
+    bool? isLast,
   }) {
     return UserMatchListModel(
       selectedGender ?? this.selectedGender,
@@ -151,11 +204,13 @@ class UserMatchListModel {
       selectedTeamId ?? this.selectedTeamId,
       selectedTimeName ?? this.selectedTimeName,
       userMatches ?? this.userMatches,
+      pageNumber: pageNumber ?? this.pageNumber,
+      isLast: isLast ?? this.isLast,
     );
   }
 
   @override
   String toString() {
-    return 'UserMatchListModel{selectedGender: $selectedGender, selectedAge: $selectedAge, selectedTeamId: $selectedTeamId, selectedTimeName: $selectedTimeName, userMatches: $userMatches}';
+    return 'UserMatchListModel{selectedGender: $selectedGender, selectedAge: $selectedAge, selectedTeamId: $selectedTeamId, selectedTimeName: $selectedTimeName, userMatches: $userMatches, pageNumber: $pageNumber, isLast: $isLast}';
   }
 }

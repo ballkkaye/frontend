@@ -38,11 +38,14 @@ class UserMatchRepository {
   }
 
   Future<Map<String, dynamic>> getList({
-    int? page,
+    int page = 0,
   }) async {
-    Response response = await dio.get("/s/api/matches", queryParameters: {
-      if (page != null) 'page': page, // TODO : 페이징 처리시 default = 0으로 변경
-    });
+    Response response = await dio.get(
+      "/s/api/matches",
+      queryParameters: {
+        'page': page,
+      },
+    );
     final responseBody = response.data;
     // final responseBody = {
     //   "status": 200,
@@ -385,6 +388,7 @@ class UserMatchRepository {
     return responseBody;
   }
 
+  // queryParameters 테스트용
   Future<Map<String, dynamic>> getListByQuery({
     int? page,
     String? gender,
