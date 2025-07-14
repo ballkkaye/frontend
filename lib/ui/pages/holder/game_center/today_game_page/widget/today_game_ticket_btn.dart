@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TodayGameTicketBtn extends StatelessWidget {
-  final String ticketUrl;
+  final String? ticketUrl;
 
   const TodayGameTicketBtn({
     super.key,
@@ -13,9 +13,13 @@ class TodayGameTicketBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (ticketUrl == null || ticketUrl!.isEmpty) {
+      return const SizedBox.shrink(); //에러터지는거 방지로 아무것도 안 보여줌
+    }
+
     return OutlinedButton(
       onPressed: () async {
-        final url = Uri.parse(ticketUrl);
+        final url = Uri.parse(ticketUrl!);
         if (await canLaunchUrl(url)) {
           await launchUrl(url, mode: LaunchMode.externalApplication);
         }

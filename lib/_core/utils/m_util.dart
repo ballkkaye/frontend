@@ -1,4 +1,5 @@
-import 'package:intl/intl.dart' show DateFormat;
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 /// 오늘 날짜 (시, 분, 초 0으로 초기화된 날짜)
 DateTime get today => DateTime(
@@ -26,4 +27,19 @@ String formatDateToYMD(DateTime date) {
 String formatToDotDate(String dashDate) {
   // "2025-07-10" → "2025.07.10"
   return dashDate.replaceAll("-", ".");
+}
+
+/// "18:30" → TimeOfDay
+TimeOfDay parseGameTime(String timeStr) {
+  final parts = timeStr.split(':');
+  final hour = int.tryParse(parts[0]) ?? 0;
+  final minute = int.tryParse(parts[1]) ?? 0;
+  return TimeOfDay(hour: hour, minute: minute);
+}
+
+/// TimeOfDay → "18:30"
+String formatGameTime(TimeOfDay time) {
+  final hour = time.hour.toString().padLeft(2, '0');
+  final minute = time.minute.toString().padLeft(2, '0');
+  return '$hour:$minute';
 }
