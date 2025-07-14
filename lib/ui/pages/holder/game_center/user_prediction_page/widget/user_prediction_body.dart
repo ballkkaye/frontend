@@ -1,18 +1,39 @@
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/user_prediction_fm.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/user_prediction_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/widget/user_prediction_card_list.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class UserPredictionBody extends ConsumerWidget {
+class UserPredictionBody extends ConsumerStatefulWidget {
   const UserPredictionBody({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<UserPredictionBody> createState() => _UserPredictionBodyState();
+}
+
+class _UserPredictionBodyState extends ConsumerState<UserPredictionBody> {
+  bool _fetched = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!_fetched) {
+        final vm = UserPredictionVM(ref);
+        vm.init();
+        _fetched = true;
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final model = ref.watch(userPredictionProvider);
     final fm = ref.read(userPredictionProvider.notifier);
+    final vm = UserPredictionVM(ref);
 
     if (model == null) {
       return const Center(child: CircularProgressIndicator());
@@ -40,7 +61,6 @@ class UserPredictionBody extends ConsumerWidget {
                   isEnabled: isEnabled,
                   onPressed: () async {
                     if (!isEnabled) return;
-                    final fm = ref.read(userPredictionProvider.notifier);
                     final jsonList = fm.toJsonList();
 
                     if (jsonList.isEmpty) {

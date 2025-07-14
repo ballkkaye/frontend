@@ -1,11 +1,10 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/user_prediction_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/widget/user_prediction_body.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/widget/user_prediction_result_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'user_prediction_fm.dart';
 
 class UserPredictionPage extends ConsumerStatefulWidget {
   const UserPredictionPage({super.key});
@@ -19,7 +18,7 @@ class _UserPredictionPageState extends ConsumerState<UserPredictionPage> {
 
   @override
   Widget build(BuildContext context) {
-    final fm = ref.read(userPredictionProvider.notifier);
+    final vm = UserPredictionVM(ref);
 
     return Scaffold(
       appBar: AppBar(title: const Text("나의 승부예측")),
@@ -29,7 +28,7 @@ class _UserPredictionPageState extends ConsumerState<UserPredictionPage> {
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          fm.getAfterGamePrediction();
+          vm.getAfterGamePrediction();
           setState(() {
             showResult = true; //화면 전환
           });

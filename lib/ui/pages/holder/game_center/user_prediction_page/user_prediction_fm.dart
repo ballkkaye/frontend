@@ -21,7 +21,6 @@ class UserPredictionFM extends AutoDisposeNotifier<UserPredictionModel?> {
 
   @override
   UserPredictionModel? build() {
-    init();
     ref.onDispose(() {
       refreshCtrl.dispose();
       Logger().d("UserPredictionFM 파괴됨");
@@ -29,36 +28,17 @@ class UserPredictionFM extends AutoDisposeNotifier<UserPredictionModel?> {
     return null;
   }
 
-  /// 1. 최초 진입 시 데이터 불러오기
-  Future<void> init() async {
-    Map<String, dynamic> data = await GameCenterRepository().getUserPrediction();
-    if (data["status"] != 200) {
-      ScaffoldMessenger.of(mContext!).showSnackBar(
-        SnackBar(content: Text("유저 승부예측 조회 실패 : ${data["msg"]}")),
-      );
-      return;
-    }
-    state = UserPredictionModel.fromList(data["body"]);
-  }
-
-  /// 2. 유저가 팀 선택
+  /// 2. 유저가 팀 선택 fm
   void selectTeam(int gameId, int teamId) {
     final prev = state!;
     final updatedGames = prev.games.map((g) {
-      if (g.game.id == gameId) {
-        return UserPredictionGame(
-          game: g.game,
-          userChoiceTeamId: teamId,
-          //
-          predictionStatus: g.predictionStatus,
-          homeVoteRate: g.homeVoteRate,
-          awayVoteRate: g.awayVoteRate,
-        );
-      }
-      return g;
+      return g.game.id == gameId ? g.copyWith(userChoiceTeamId: teamId) : g;
     }).toList();
 
-    state = UserPredictionModel(updatedGames);
+    state = UserPredictionModel(
+      games: updatedGames,
+      isSubmitted: prev.isSubmitted,
+    );
   }
 
   /// 3. 선택된 값만 JSON으로 추출 → 서버 전송용
@@ -125,24 +105,13 @@ class UserPredictionFM extends AutoDisposeNotifier<UserPredictionModel?> {
     final parsed = data.map((e) => UserPredictionGame.fromMap(e)).toList();
 
     Logger().i("파싱된 모델 예시: ${parsed.first.userChoiceTeamId}, ${parsed.first.predictionStatus}");
-    state = UserPredictionModel(parsed);
+    state = UserPredictionModel(
+      games: parsed,
+      isSubmitted: false,
+    );
 
     for (var g in parsed) {
       print("💡 parsed gameId: ${g.game.id}, selectedTeamId: ${g.userChoiceTeamId}");
-    }
-  }
-
-  /// 6. 경기후 내가 선택한 예측상태 반영
-  Future<void> getAfterGamePrediction() async {
-    final response = await GameCenterRepository().getMyPredictionTest();
-
-    if (response["status"] != 200) {
-      ScaffoldMessenger.of(mContext!).showSnackBar(
-        SnackBar(content: Text("예측 결과 불러오기 실패: ${response["msg"]}")),
-      );
-    } else {
-      setPredictionData(response["body"]);
-      isSubmitted = true; //  실제 예측 결과 받았으니 비활성화
     }
   }
 
@@ -194,22 +163,53 @@ class UserPredictionGame {
       awayVoteRate: (map['awayVoteRate'] as num).toDouble(),
     );
   }
+
+  UserPredictionGame copyWith({
+    Game? game,
+    int? userChoiceTeamId,
+    String? predictionStatus,
+    double? homeVoteRate,
+    double? awayVoteRate,
+  }) {
+    return UserPredictionGame(
+      game: game ?? this.game,
+      userChoiceTeamId: userChoiceTeamId ?? this.userChoiceTeamId,
+      predictionStatus: predictionStatus ?? this.predictionStatus,
+      homeVoteRate: homeVoteRate ?? this.homeVoteRate,
+      awayVoteRate: awayVoteRate ?? this.awayVoteRate,
+    );
+  }
 }
 
 /// 3. 창고 데이터 타입 (불변 아님)
 class UserPredictionModel {
-  List<UserPredictionGame> games;
+  final List<UserPredictionGame> games;
+  final bool isSubmitted;
 
-  UserPredictionModel(this.games);
+  UserPredictionModel({
+    required this.games,
+    required this.isSubmitted,
+  });
 
   factory UserPredictionModel.fromList(List<dynamic> list) {
     return UserPredictionModel(
-      list.map((e) => UserPredictionGame.fromMap(e as Map<String, dynamic>)).toList(),
+      games: list.map((e) => UserPredictionGame.fromMap(e)).toList(),
+      isSubmitted: false, // 최초 상태 초기값
+    );
+  }
+
+  UserPredictionModel copyWith({
+    List<UserPredictionGame>? games,
+    bool? isSubmitted,
+  }) {
+    return UserPredictionModel(
+      games: games ?? this.games,
+      isSubmitted: isSubmitted ?? this.isSubmitted,
     );
   }
 
   @override
   String toString() {
-    return 'UserPredictionModel{games: $games}';
+    return 'UserPredictionModel(games: $games, isSubmitted: $isSubmitted)';
   }
 }
