@@ -61,12 +61,12 @@ class Game {
         homeTeam = Team.fromGameData(
           teamId: data['homeTeamId'],
           fullName: data['homeTeamFullName'],
-          score: data['homeTeamScore'],
+          score: data['homeTeamScore'] ?? 0,
         ),
         awayTeam = Team.fromGameData(
           teamId: data['awayTeamId'],
           fullName: data['awayTeamFullName'],
-          score: data['awayTeamScore'],
+          score: data['awayTeamScore'] ?? 0,
         ),
         gameDate = data['gameDate'],
         stadiumName = data['stadiumFullName'],

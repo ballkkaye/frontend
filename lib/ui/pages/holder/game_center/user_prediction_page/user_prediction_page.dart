@@ -5,7 +5,7 @@ import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_p
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'user_prediction_vm.dart';
+import 'user_prediction_fm.dart';
 
 class UserPredictionPage extends ConsumerStatefulWidget {
   const UserPredictionPage({super.key});
@@ -19,19 +19,19 @@ class _UserPredictionPageState extends ConsumerState<UserPredictionPage> {
 
   @override
   Widget build(BuildContext context) {
-    final vm = ref.read(userPredictionProvider.notifier);
+    final fm = ref.read(userPredictionProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(title: const Text("나의 승부예측")),
       body: showResult
           ? const UserPredictionResultBody() // 경기후 예측 화면
-          : const UserPredictionBody(),      // 경기전 예측 화면
+          : const UserPredictionBody(), // 경기전 예측 화면
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          vm.getAfterGamePrediction();
+          fm.getAfterGamePrediction();
           setState(() {
-            showResult = true;     //화면 전환
+            showResult = true; //화면 전환
           });
         },
         child: const Icon(Icons.access_time),
@@ -39,6 +39,7 @@ class _UserPredictionPageState extends ConsumerState<UserPredictionPage> {
       ),
     );
   }
+
   AppBar _appbar() {
     return AppBar(
       centerTitle: true,

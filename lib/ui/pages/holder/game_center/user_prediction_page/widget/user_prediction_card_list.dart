@@ -1,5 +1,5 @@
 import 'package:ballkkaye_frontend/_core/utils/m_util.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/user_prediction_vm.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/user_prediction_fm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/widget/user_prediction_card.dart';
 import 'package:flutter/material.dart';
 
@@ -29,8 +29,6 @@ class UserPredictionCardList extends StatelessWidget {
               leftTeamId: home.teamId!,
               rightTeamId: away.teamId!,
               selectedTeamId: g.userChoiceTeamId,
-
-
               leftTeamName: home.teamName!,
               rightTeamName: away.teamName!,
               leftScore: home.score ?? 0,

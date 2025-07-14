@@ -1,5 +1,3 @@
-
-import 'package:ballkkaye_frontend/data/enum/game_status.dart';
 import 'package:ballkkaye_frontend/data/model/game.dart';
 import 'package:ballkkaye_frontend/data/repository/game_center_repository.dart';
 import 'package:ballkkaye_frontend/main.dart';
@@ -9,16 +7,15 @@ import 'package:logger/logger.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 /// 1. 창고 관리자
-final userPredictionProvider = AutoDisposeNotifierProvider<UserPredictionVM, UserPredictionModel?>(() {
-  return UserPredictionVM();
+final userPredictionProvider = AutoDisposeNotifierProvider<UserPredictionFM, UserPredictionModel?>(() {
+  return UserPredictionFM();
 });
 
 /// 2. 창고 (상태가 변경되어도, 화면 갱신 안함 - watch 하지마)
-class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
+class UserPredictionFM extends AutoDisposeNotifier<UserPredictionModel?> {
   final mContext = navigatorKey.currentContext!;
   final refreshCtrl = RefreshController();
   bool isSubmitted = false; // 예측 완료 여부
-
 
   @override
   UserPredictionModel? build() {
@@ -26,7 +23,7 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
 
     ref.onDispose(() {
       refreshCtrl.dispose();
-      Logger().d("UserPredictionVM 파괴됨");
+      Logger().d("UserPredictionFM 파괴됨");
     });
 
     return null;
@@ -34,8 +31,7 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
 
   /// 1. 최초 진입 시 데이터 불러오기
   Future<void> init() async {
-    Map<String, dynamic> data = await GameCenterRepository()
-        .getUserPrediction();
+    Map<String, dynamic> data = await GameCenterRepository().getUserPrediction();
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
         SnackBar(content: Text("유저 승부예측 조회 실패 : ${data["msg"]}")),
@@ -68,13 +64,12 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
   /// 3. 선택된 값만 JSON으로 추출 → 서버 전송용
   List<Map<String, dynamic>> toJsonList() {
     return state?.games
-        .where((g) => g.userChoiceTeamId != null)
-        .map((g) =>
-    {
-      "gameId": g.game.id,
-      "userChoiceTeamId": g.userChoiceTeamId,
-    })
-        .toList() ??
+            .where((g) => g.userChoiceTeamId != null)
+            .map((g) => {
+                  "gameId": g.game.id,
+                  "userChoiceTeamId": g.userChoiceTeamId,
+                })
+            .toList() ??
         [];
   }
 
@@ -124,14 +119,17 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
     );
   }
 
-  /// 5. 서버에서 받아온 최신 상태 반영
+  /// 5. 서버에서 받은 예측 결과로 전체 상태 새로고침
   void setPredictionData(List<dynamic> data) {
-
     Logger().i("setPredictionData 호출됨. data 길이: ${data.length}");
     final parsed = data.map((e) => UserPredictionGame.fromMap(e)).toList();
 
     Logger().i("파싱된 모델 예시: ${parsed.first.userChoiceTeamId}, ${parsed.first.predictionStatus}");
     state = UserPredictionModel(parsed);
+
+    for (var g in parsed) {
+      print("💡 parsed gameId: ${g.game.id}, selectedTeamId: ${g.userChoiceTeamId}");
+    }
   }
 
   /// 6. 경기후 내가 선택한 예측상태 반영
@@ -149,19 +147,19 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
   }
 
   /// 7. 선택 초기화 (선택 해제용) 다음날 새로 팀 새로 선택해야하는경우에 사용
-  // void clearSelections() {
-  //   final clearedGames = state!.games.map((g) {
-  //     return UserPredictionGame(
-  //       game: g.game,
-  //       userChoiceTeamId: null,
-  //       predictionStatus: g.predictionStatus,
-  //       homeVoteRate: g.homeVoteRate,
-  //       awayVoteRate: g.awayVoteRate,
-  //     );
-  //   }).toList();
-  //
-  //   state = UserPredictionModel(clearedGames);
-  // }
+// void clearSelections() {
+//   final clearedGames = state!.games.map((g) {
+//     return UserPredictionGame(
+//       game: g.game,
+//       userChoiceTeamId: null,
+//       predictionStatus: g.predictionStatus,
+//       homeVoteRate: g.homeVoteRate,
+//       awayVoteRate: g.awayVoteRate,
+//     );
+//   }).toList();
+//
+//   state = UserPredictionModel(clearedGames);
+// }
 }
 
 class UserPredictionGame {
@@ -170,7 +168,6 @@ class UserPredictionGame {
   final String? predictionStatus;
   final double homeVoteRate;
   final double awayVoteRate;
-
 
   UserPredictionGame({
     required this.game,
@@ -182,7 +179,15 @@ class UserPredictionGame {
 
   factory UserPredictionGame.fromMap(Map<String, dynamic> map) {
     return UserPredictionGame(
-      game: Game.fromMap(map),
+      game: Game.fromMap({
+        'gameId': map['gameId'],
+        'gameTime': map['gameTime'],
+        'homeTeam': map['homeTeam'],
+        'awayTeam': map['awayTeam'],
+        'homeScore': map['homeScore'],
+        'awayScore': map['awayScore'],
+        'gameStatus': map['gameStatus'],
+      }),
       userChoiceTeamId: map['userChoiceTeamId'],
       predictionStatus: map['predictionStatus'],
       homeVoteRate: (map['homeVoteRate'] as num).toDouble(),
