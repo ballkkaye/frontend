@@ -493,8 +493,8 @@ class GameCenterRepository {
   }
 
   // 오늘의 경기 조회
-  Future<Map<String, dynamic>> getTodayGame() async {
-    Response response = await dio.get("/s/api/today-games");
+  Future<Map<String, dynamic>> getTodayGame({String? date}) async {
+    Response response = await dio.get("/s/api/today-games", queryParameters: {"date": date});
     final responseBody = response.data;
     // final responseBody = {
     //   "status": 200,
