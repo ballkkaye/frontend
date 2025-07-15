@@ -10,7 +10,7 @@ class BoardRepository {
         "imageString": "https://example.com/board-photo.jpg", //이미지 임시주소
         "boardId": 1,
         "nickname": "cos",
-        // "profileImageUrl": "/img/profile.png",
+        "profileImageUrl": "https://cdn.pixabay.com/photo/2023/06/04/20/21/cat-8040862_1280.jpg",
         "relativeTime": "8분 전",
         "myTeamName": "두산 베어스",
         "teamCategoryId": 3,
@@ -29,7 +29,7 @@ class BoardRepository {
           {
             "replyId": 1,
             "nickname": "cos",
-            "profileImg": "/img/profile.png",
+            "profileImg": "https://cdn.pixabay.com/photo/2023/06/04/20/21/cat-8040862_1280.jpg",
             "relativeTime": "8분 전",
             "myTeamName": "두산 베어스",
             "content": "좋은 글이네요! 감사합니다.",

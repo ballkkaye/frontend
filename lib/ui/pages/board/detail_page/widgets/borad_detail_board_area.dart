@@ -12,6 +12,9 @@ class BoardDetailBoardArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    bool hasProfileImgUrl =
+        board.profileImgUrl != null && board.profileImgUrl.isNotEmpty && board.profileImgUrl.startsWith('http');
+
     return Column(
       children: [
         // 게시글 이미지 영역
@@ -44,9 +47,29 @@ class BoardDetailBoardArea extends StatelessWidget {
                   CircleAvatar(
                     radius: 20,
                     backgroundColor: Colors.white,
-                    backgroundImage: true // bool hasProfileImgUrl = true;
-                        ? AssetImage('assets/images/lotte_emblem_sample.jpg')
-                        : AssetImage('assets/images/user.png'),
+                    child: ClipOval(
+                      child: hasProfileImgUrl
+                          ? Image.network(
+                              board.profileImgUrl,
+                              fit: BoxFit.cover,
+                              width: 40,
+                              height: 40,
+                              errorBuilder: (context, error, stackTrace) {
+                                return Image.asset(
+                                  'assets/images/user.png',
+                                  fit: BoxFit.cover,
+                                  width: 40,
+                                  height: 40,
+                                );
+                              },
+                            )
+                          : Image.asset(
+                              'assets/images/user.png',
+                              fit: BoxFit.cover,
+                              width: 40,
+                              height: 40,
+                            ),
+                    ),
                   ),
                   SizedBox(width: 8),
                   Column(

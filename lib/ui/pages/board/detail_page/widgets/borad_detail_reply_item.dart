@@ -17,6 +17,9 @@ class BoardDetailReplyItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool hasProfileImgUrl =
+        reply.profileImg != null && reply.profileImg.isNotEmpty && reply.profileImg.startsWith('http');
+
     return Padding(
       padding: EdgeInsets.only(
         top: 12,
@@ -35,9 +38,29 @@ class BoardDetailReplyItem extends StatelessWidget {
               CircleAvatar(
                 radius: 16,
                 backgroundColor: Colors.white,
-                backgroundImage: true
-                    ? AssetImage('assets/images/lotte_emblem_sample.jpg')
-                    : const AssetImage('assets/images/user.png'), //todo: 나중에 이미지넣으면 profileImgUrl로 바꾸기
+                child: ClipOval(
+                  child: hasProfileImgUrl
+                      ? Image.network(
+                          reply.profileImg,
+                          fit: BoxFit.cover,
+                          width: 40,
+                          height: 40,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Image.asset(
+                              'assets/images/user.png',
+                              fit: BoxFit.cover,
+                              width: 40,
+                              height: 40,
+                            );
+                          },
+                        )
+                      : Image.asset(
+                          'assets/images/user.png',
+                          fit: BoxFit.cover,
+                          width: 40,
+                          height: 40,
+                        ),
+                ),
               ),
               SizedBox(width: 8),
               // 응원 팀 및 작성 시간

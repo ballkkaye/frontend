@@ -7,7 +7,7 @@ class Board {
   final int boardId;
   final String nickname;
 
-  //final String profileImgUrl;
+  final String profileImgUrl;
   final String relativeTime;
   final String myTeamName;
   final int teamCategoryId;
@@ -39,7 +39,7 @@ class Board {
     required this.imageString,
     // required this.images,
     required this.replyItems,
-    // required this.profileImgUrl,
+    required this.profileImgUrl,
   });
 
   factory Board.fromMap(Map<String, dynamic> data) {
@@ -48,7 +48,8 @@ class Board {
       boardId: data['boardId'],
       nickname: data['nickname'],
       //todo: 나중에 로그인한계정 닉네임 불러오기
-      // profileImgUrl: json['profileImageUrl'], //todo: 나중에 이미지추가할때 주석지워서 사용
+      profileImgUrl: data['profileImageUrl'] ?? '',
+      //todo: 나중에 이미지추가할때 주석지워서 사용
       relativeTime: data['relativeTime'],
       myTeamName: data['myTeamName'] ?? '',
       teamCategoryId: data['teamCategoryId'] ?? 0,
@@ -83,6 +84,7 @@ class Board {
       replyCount: 0,
       replyItems: [],
       imageString: '',
+      profileImgUrl: '',
       // images: [],
     );
   }
@@ -101,6 +103,7 @@ class Board {
     int? likeCount,
     int? replyCount,
     String? imageString,
+    String? profileImgUrl,
     List<Reply>? replyItems,
     List<BoardImage>? images,
   }) {
@@ -119,6 +122,7 @@ class Board {
       replyCount: replyCount ?? this.replyCount,
       replyItems: replyItems ?? this.replyItems,
       imageString: imageString ?? this.imageString,
+      profileImgUrl: profileImgUrl ?? this.profileImgUrl,
       // images: images ?? this.images,
     );
   }
