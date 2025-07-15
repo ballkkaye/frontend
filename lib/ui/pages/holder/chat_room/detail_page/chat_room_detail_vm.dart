@@ -5,13 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
-final chatRoomDetailProvider = AutoDisposeNotifierProvider.family<
-    ChatRoomDetailVM, ChatRoomDetailModel?, int>(() {
+final chatRoomDetailProvider =
+    AutoDisposeNotifierProvider.family<ChatRoomDetailVM, ChatRoomDetailModel?, int>(() {
   return ChatRoomDetailVM();
 });
 
-class ChatRoomDetailVM
-    extends AutoDisposeFamilyNotifier<ChatRoomDetailModel?, int> {
+class ChatRoomDetailVM extends AutoDisposeFamilyNotifier<ChatRoomDetailModel?, int> {
   final mContext = navigatorKey.currentContext!;
 
   @override
@@ -78,10 +77,16 @@ class ChatRoomDetailModel {
   ChatRoomDetailModel(this.groupedChatList);
 
   factory ChatRoomDetailModel.fromMap(List<dynamic> rawList) {
+    if (rawList.isEmpty) {
+      return ChatRoomDetailModel([]); // 빈 채팅방 처리
+    }
+
     // 메시지 날짜 기준으로 묶기
     Map<String, List<ChatRoom>> grouped = {};
 
     for (final map in rawList) {
+      if (map['createdAt'] == null) continue;
+
       final date = DateTime.parse(map['createdAt']).toLocal();
       final dateKey =
           "${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
@@ -93,8 +98,7 @@ class ChatRoomDetailModel {
     final sortedKeys = grouped.keys.toList()..sort();
 
     for (final key in sortedKeys) {
-      grouped[key]!
-          .sort((a, b) => a.chat!.createdAt.compareTo(b.chat!.createdAt));
+      grouped[key]!.sort((a, b) => a.chat!.createdAt.compareTo(b.chat!.createdAt));
     }
 
     List<dynamic> finalList = [];

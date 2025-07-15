@@ -42,7 +42,7 @@ class UserMatchListCard extends StatelessWidget {
                 UserMatchListCardHeader(
                   matchTitle:
                       '${userMatch.game.awayTeam.teamName} vs ${userMatch.game.homeTeam.teamName}',
-                  postedTime: userMatch.relativeTime!,
+                  postedTime: userMatch.relativeTime ?? '방금 전',
                 ),
 
                 SizedBox(height: 4),
@@ -85,7 +85,7 @@ class UserMatchListCard extends StatelessWidget {
                           ],
                         ),
                         // 같은 팀 체크박스 선택 했을 경우 = true
-                        if (userMatch.isSameTeam!) ...[
+                        if (userMatch.isSameTeam ?? false) ...[
                           SizedBox(height: 8),
                           Row(
                             children: [

@@ -54,6 +54,7 @@ class UserMatchSelectVM extends AutoDisposeFamilyNotifier<UserMatchSelectModel?,
   }
 
   Future<void> getAvailableDate(String date) async {
+    Logger().d("년-월로 추출된 날짜 : ${extractYearMonth(date)}");
     Map<String, dynamic> data = await GameRepository().getAvailableDateList(extractYearMonth(date));
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
@@ -109,7 +110,7 @@ class UserMatchSelectModel {
   UserMatchSelectModel.fromGameList(Map<String, dynamic> map)
       : games = (map['games'] as List)
             .expand((g) => (g['items'] as List))
-            .map((e) => Game.fromMap(e))
+            .map((e) => Game.fromGameData(e))
             .toList(),
         years = null,
         selectedDate = map['selectedDate'];

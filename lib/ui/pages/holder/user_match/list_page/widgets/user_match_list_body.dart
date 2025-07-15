@@ -27,7 +27,10 @@ class UserMatchListBody extends ConsumerWidget {
           _filterKey.currentState?.resetFilters();
           vm.init();
         },
-        enablePullUp: false,
+        enablePullUp: true,
+        onLoading: () {
+          vm.nextList();
+        },
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
