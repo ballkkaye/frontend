@@ -17,11 +17,8 @@ class RainoutPredictionCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // stadiumId가 null이면 기본값 사용 (예: 잠실야구장 id = 1)
-    final effectiveStadiumId = stadiumId ?? 1;
-
     final weatherModel = ref.watch(
-      rainoutPredictionWeatherProvider(effectiveStadiumId),
+      rainoutPredictionWeatherProvider(stadiumId),
     );
 
     if (weatherModel == null) {

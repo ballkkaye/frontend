@@ -138,8 +138,8 @@ class GameCenterRepository {
     return responseBody;
   }
 
-  // 우천 취소 예측용
-  Future<Map<String, dynamic>> getStadiumList(int stadiumId) async {
+  // 우천 취소 예측 구장 리스트
+  Future<Map<String, dynamic>> getStadiumList() async {
     Response response = await dio.get("/api/stadiums");
     final responseBody = response.data;
     // final responseBody = {

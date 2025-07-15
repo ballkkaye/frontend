@@ -2,45 +2,28 @@ import 'package:ballkkaye_frontend/data/repository/game_center_repository.dart';
 import 'package:ballkkaye_frontend/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 
 final rainoutPredictionWeatherProvider = AutoDisposeNotifierProvider.family<
-    RainoutPredictionWeatherVM, RainoutPredictionWeatherModel?, int>(() {
+    RainoutPredictionWeatherVM, RainoutPredictionWeatherModel?, int?>(() {
   return RainoutPredictionWeatherVM();
 });
 
 class RainoutPredictionWeatherVM
-    extends AutoDisposeFamilyNotifier<RainoutPredictionWeatherModel?, int> {
+    extends AutoDisposeFamilyNotifier<RainoutPredictionWeatherModel?, int?> {
   final mContext = navigatorKey.currentContext!;
 
   @override
-  RainoutPredictionWeatherModel? build(int stadiumId) {
-    // 1. 더미 데이터 먼저 보여줌
-    state = RainoutPredictionWeatherModel(
-      location: '잠실야구장',
-      hourly: [
-        HourlyWeather(
-          hour: DateTime.now().hour,
-          temperature: 26.0,
-          temperatureDiffFromYesterday: "2.0°↑",
-          weatherCode: "맑음",
-          humidity: 85.0,
-          windDirection: '남풍',
-          windSpeed: 1.3,
-        ),
-      ],
-      hourlyRain: [
-        HourlyRain(hour: DateTime.now().hour, rainPer: 30.0, rainAmount: 1.2),
-      ],
-      message: '우천취소 가능성 낮음',
-    );
+  RainoutPredictionWeatherModel? build(int? stadiumId) {
+    loadWeather(
+        stadiumId ?? 2); // 드롭다운 첫번째 아이템이 잠실이니 잠실 기준으로 진입. // TODO : 현재 잠실 데이터가 없어서 고척으로 설정 -> 추후 수정
 
-    // 2. 이후에 API 호출해서 실제 데이터로 덮어쓰기
-    loadWeather(stadiumId);
-    return state;
+    return null;
   }
 
   Future<void> loadWeather(int stadiumId) async {
-    Map<String, dynamic> body = await GameCenterRepository().getStadiumList(stadiumId);
+    Logger().d("stadiumId: $stadiumId");
+    Map<String, dynamic> body = await GameCenterRepository().getWeatherInfo(stadiumId);
     if (body["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
         SnackBar(content: Text("날씨 불러오기 실패 : ${body["msg"]}")),
