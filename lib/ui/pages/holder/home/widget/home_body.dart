@@ -9,7 +9,6 @@ class HomeBody extends StatefulWidget {
     super.key,
   });
 
-
   @override
   State<HomeBody> createState() => _HomeBodyState();
 }
@@ -23,14 +22,12 @@ class _HomeBodyState extends State<HomeBody> {
     super.dispose();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-
     return ListView(
       controller: _scrollController,
       children: [
+        SizedBox(height: 22),
         HomeTodayGame(),
         SizedBox(height: 56),
         HomePrediction(),
