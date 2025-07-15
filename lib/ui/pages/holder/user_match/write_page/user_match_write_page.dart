@@ -14,11 +14,11 @@ class UserMatchWritePage extends StatelessWidget {
     return Scaffold(
       appBar: _appbar(),
       body: UserMatchWriteBody(selectedGame: selectedGame),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, "/user-match/detail");
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.pushNamed(context, "/user-match/detail");
+      //   },
+      // ),
     );
   }
 
