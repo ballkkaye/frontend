@@ -7,26 +7,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
-final visitRecordListProvider = AutoDisposeNotifierProvider<VisitRecordListVM, List<VisitRecordListModel>?>(
+final visitRecordListProvider =
+    AutoDisposeNotifierProvider<VisitRecordListVM, List<VisitRecordListModel>?>(
   VisitRecordListVM.new,
 );
 
-class VisitRecordListVM extends AutoDisposeNotifier<List<VisitRecordListModel>?> {
+class VisitRecordListVM
+    extends AutoDisposeNotifier<List<VisitRecordListModel>?> {
   final mContext = navigatorKey.currentContext!;
 
   @override
   List<VisitRecordListModel>? build() => null;
 
   Future<void> loadMonth({required int year, required int month}) async {
-    final body = await VisitRecordRepository().getMonthGameList(year: year, month: month);
+    final body = await VisitRecordRepository()
+        .getMonthGameList(year: year, month: month);
     if (body["status"] != 200) {
       ScaffoldMessenger.of(mContext).showSnackBar(
         SnackBar(content: Text("월별 조회 실패: ${body['errorMessage']}")),
       );
       return;
     }
-    final List<VisitRecordListModel> list =
-        (body['body'] as List<dynamic>).map((e) => VisitRecordListModel.fromMap(e as Map<String, dynamic>)).toList();
+    final List<VisitRecordListModel> list = (body['body'] as List<dynamic>)
+        .map((e) => VisitRecordListModel.fromMap(e as Map<String, dynamic>))
+        .toList();
 
     state = list;
   }
@@ -40,8 +44,9 @@ class VisitRecordListVM extends AutoDisposeNotifier<List<VisitRecordListModel>?>
       );
       return;
     }
-    final List<VisitRecordListModel> list =
-        (body['body'] as List<dynamic>).map((e) => VisitRecordListModel.fromMap(e as Map<String, dynamic>)).toList();
+    final List<VisitRecordListModel> list = (body['body'] as List<dynamic>)
+        .map((e) => VisitRecordListModel.fromMap(e as Map<String, dynamic>))
+        .toList();
 
     state = list;
   }
@@ -75,9 +80,18 @@ class VisitRecordListVM extends AutoDisposeNotifier<List<VisitRecordListModel>?>
     Navigator.push(
       mContext,
       MaterialPageRoute(
-        builder: (context) => VisitRecordDetailPage(visitRecordId: newRecord.id!),
+        builder: (context) =>
+            VisitRecordDetailPage(visitRecordId: newRecord.id!),
       ),
     );
+  }
+
+  void notifyDeleteOne(int visitRecordId) {
+    if (state == null) return;
+    final updatedList = state!
+        .where((record) => record.id != null && record.id != visitRecordId)
+        .toList();
+    state = updatedList;
   }
 }
 

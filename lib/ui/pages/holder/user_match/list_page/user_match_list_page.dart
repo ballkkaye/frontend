@@ -1,7 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/user_match/detail_page/user_match_detail_page.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/user_match_list_body.dart';
@@ -15,12 +14,12 @@ class UserMatchListPage extends StatelessWidget {
       backgroundColor: MColor.kBackground.normal,
       appBar: _appbar(context),
       body: UserMatchListBody(),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => UserMatchDetailPage(5)),
-        );
-      }),
+      // floatingActionButton: FloatingActionButton(onPressed: () {
+      //   Navigator.push(
+      //     context,
+      //     MaterialPageRoute(builder: (_) => UserMatchDetailPage(5)),
+      //   );
+      // }),
     );
   }
 
