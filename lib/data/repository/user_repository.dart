@@ -63,6 +63,7 @@ class UserRepository {
 
   Future<Map<String, dynamic>> update(Map<String, dynamic> data) async {
     Response response = await dio.put("/s/api/users", data: data);
+    Logger().d("update data : $data");
     final responseBody = response.data;
     // final responseBody = {
     //   "status": 200,

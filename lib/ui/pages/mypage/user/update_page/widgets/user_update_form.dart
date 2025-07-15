@@ -78,6 +78,7 @@ class UserUpdateForm extends ConsumerWidget {
             MElevatedBtn(
               text: '수정',
               onPressed: () {
+                Logger().d("수정 버튼 클릭 userUpdateModel: $userUpdateModel");
                 gvm.update(userUpdateModel);
               },
             ),

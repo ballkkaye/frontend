@@ -1,28 +1,80 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
+import 'package:ballkkaye_frontend/_core/utils/m_img.dart';
+import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_page/user_update_fm.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_img_action_sheet.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 
-class UserUpdateProfileImgBtn extends StatelessWidget {
-  const UserUpdateProfileImgBtn({
-    super.key,
-  });
+class UserUpdateProfileImgBtn extends ConsumerStatefulWidget {
+  const UserUpdateProfileImgBtn({super.key});
+
+  @override
+  ConsumerState<UserUpdateProfileImgBtn> createState() =>
+      _UserUpdateProfileImgBtnState();
+}
+
+class _UserUpdateProfileImgBtnState
+    extends ConsumerState<UserUpdateProfileImgBtn> {
+  XFile? imageFile;
+  String? uploadedUrl;
+  String? selectedResult;
+
+  Future<void> pickAndUploadImg(ImageSource source) async {
+    final result = await MImg.pickAndUploadImg(source);
+    if (result != null) {
+      setState(() {
+        imageFile = result.file;
+        uploadedUrl = result.url;
+      });
+
+      ref.read(userUpdateProvider.notifier).profileUrl(result.url);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: InkWell(
-        onTap: () {}, // TODO : image_picker로 이미지 가져오기
+        onTap: () {
+          showCupertinoModalPopup(
+            context: context,
+            builder: (context) => MImgActionSheet(
+              onCamera: () {
+                Navigator.pop(context);
+                pickAndUploadImg(ImageSource.camera);
+              },
+              onGallery: () {
+                Navigator.pop(context);
+                pickAndUploadImg(ImageSource.gallery);
+              },
+            ),
+          );
+        },
         child: Stack(
           alignment: Alignment.center,
           children: [
             CircleAvatar(
               backgroundColor: MColor.kFill.normal,
               radius: 40,
-              child: SizedBox(
-                width: 40,
-                height: 40,
-                child: MIcon.page.mypage.image,
-              ), // 이미지 있으면 이미지로 대체되도록
+              child: uploadedUrl != null
+                  ? ClipOval(
+                      child: SizedBox(
+                        width: 80, // CircleAvatar의 지름과 동일
+                        height: 80,
+                        child: Image.network(
+                          uploadedUrl!,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    )
+                  : SizedBox(
+                      width: 40,
+                      height: 40,
+                      child: MIcon.page.mypage.image,
+                    ),
             ),
             Positioned(
               bottom: 0,
