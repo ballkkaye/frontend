@@ -16,46 +16,52 @@ class UserMatchDetailPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     UserMatchDetailVM vm = ref.read(userMatchDetailProvider(userMatchId).notifier);
+    UserMatchDetailModel? model = ref.watch(userMatchDetailProvider(userMatchId));
 
-    return Scaffold(
-      appBar: _appbar(context, vm),
-      body: UserMatchDetailBody(userMatchId),
-      // floatingActionButton: Padding(
-      //   padding: const EdgeInsets.only(bottom: 210),
-      //   child: FloatingActionButton(onPressed: () {
-      //     Navigator.push(
-      //       context,
-      //       MaterialPageRoute(builder: (_) => UserMatchWritePage()),
-      //     );
-      //   }),
-      // ),
-    );
+    if (model == null) {
+      return Center(child: CircularProgressIndicator());
+    } else {
+      return Scaffold(
+        appBar: _appbar(context, vm, model),
+        body: UserMatchDetailBody(userMatchId),
+        // floatingActionButton: Padding(
+        //   padding: const EdgeInsets.only(bottom: 210),
+        //   child: FloatingActionButton(onPressed: () {
+        //     Navigator.push(
+        //       context,
+        //       MaterialPageRoute(builder: (_) => UserMatchWritePage()),
+        //     );
+        //   }),
+        // ),
+      );
+    }
   }
 
-  AppBar _appbar(BuildContext context, UserMatchDetailVM vm) {
+  AppBar _appbar(BuildContext context, UserMatchDetailVM vm, UserMatchDetailModel model) {
     return AppBar(
       centerTitle: true,
       title: MText.h1('동행', color: MColor.kLabel.normal),
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.white,
       actions: [
-        // 더보기 버튼
-        MMoreOptionBtn(
-          icon: MIcon.nav.top.dotHorizontal,
-          onUpdate: () {
-            Navigator.pushNamed(context, '/user-match/update');
-          },
-          alertTitle: '동행글 삭제',
-          alertContent: '동행글을 삭제하시겠습니까?',
-          onAlertConfirm: () {
-            vm.deleteOne(userMatchId);
-          },
-          // 다이얼로그 닫힌 뒤 동작
-          onAlertCancel: () {},
-          // 다이얼로그 닫힌 뒤 동작
-          alertConfirmText: '삭제',
-          alertCancelText: '취소',
-        ),
+        if (model.userMatch.isOwner!)
+          // 더보기 버튼
+          MMoreOptionBtn(
+            icon: MIcon.nav.top.dotHorizontal,
+            onUpdate: () {
+              Navigator.pushNamed(context, '/user-match/update');
+            },
+            alertTitle: '동행글 삭제',
+            alertContent: '동행글을 삭제하시겠습니까?',
+            onAlertConfirm: () {
+              vm.deleteOne(userMatchId);
+            },
+            // 다이얼로그 닫힌 뒤 동작
+            onAlertCancel: () {},
+            // 다이얼로그 닫힌 뒤 동작
+            alertConfirmText: '삭제',
+            alertCancelText: '취소',
+          ),
       ],
     );
   }
