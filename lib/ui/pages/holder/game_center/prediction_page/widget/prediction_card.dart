@@ -62,10 +62,10 @@ class PredictionCard extends StatelessWidget {
                           children: [
                             Expanded(
                               child: AspectRatio(
-                                aspectRatio: 5 / 7,
+                                aspectRatio: 7 / 7,
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: MColor.kFill.normal,
+                                    color: MColor.kBackground.normal,
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   // TODO: 나중에 통신 연결 시 null자리에 imageUrl
@@ -138,10 +138,10 @@ class PredictionCard extends StatelessWidget {
                           children: [
                             Expanded(
                               child: AspectRatio(
-                                aspectRatio: 5 / 7,
+                                aspectRatio: 7 / 7,
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: MColor.kFill.alternative,
+                                    color: MColor.kBackground.normal,
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   // TODO: 나중에 통신 연결 시 null자리에 imageUrl
