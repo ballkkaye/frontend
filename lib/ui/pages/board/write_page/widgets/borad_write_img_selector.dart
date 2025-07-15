@@ -1,13 +1,18 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/utils/m_img.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/write_page/board_write_fm.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/write_page/widgets/board_write_img_thumbnail.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_img_action_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class BoardWriteImgSelector extends StatefulWidget {
+  final BoardWriteFM fm;
+
   const BoardWriteImgSelector({
     super.key,
+    required this.fm,
   });
 
   @override
@@ -26,6 +31,7 @@ class _BoardWriteImgSelectorState extends State<BoardWriteImgSelector> {
         imageFile = result.file;
         uploadedUrl = result.url;
       });
+      widget.fm.imgUrl(result.url);
       print("✅ 업로드 완료: ${result.url}");
     }
   }
@@ -70,44 +76,9 @@ class _BoardWriteImgSelectorState extends State<BoardWriteImgSelector> {
         SizedBox(width: 10),
         // 이미지 썸네일
         Expanded(
-          child: board_img_thumbnail(imageUrl: uploadedUrl),
+          child: BoardImgThumbnail(imageUrl: uploadedUrl),
         )
       ],
-    );
-  }
-}
-
-class board_img_thumbnail extends StatelessWidget {
-  final imageUrl;
-
-  const board_img_thumbnail({
-    super.key,
-    this.imageUrl,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    if (imageUrl == null || imageUrl!.isEmpty) {
-      return const SizedBox(); // 이미지 없으면 아무것도 안 그림
-    }
-    return SizedBox(
-      height: 80,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemCount: 1,
-        itemBuilder: (context, index) {
-          return ClipRRect(
-            borderRadius: BorderRadiusGeometry.circular(8),
-            child: Image.network(
-              imageUrl!,
-              height: 80,
-              width: 80,
-              fit: BoxFit.cover,
-            ),
-          );
-        },
-        separatorBuilder: (context, index) => SizedBox(width: 10),
-      ),
     );
   }
 }

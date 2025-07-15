@@ -238,11 +238,12 @@ class BoardRepository {
       "status": 200,
       "msg": "성공",
       "body": {
-        "imagesUrl": [
-          {"id": 1, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img001.png"},
-          {"id": 2, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img002.png"},
-          {"id": 3, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/new003.png"}
-        ],
+        "imgUrl": "https://example.com/board-photo.jpg",
+        // "imagesUrl": [
+        //   {"id": 1, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img001.png"},
+        //   {"id": 2, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img002.png"},
+        //   {"id": 3, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/new003.png"}
+        // ],
         "boardId": 12,
         "title": "수정된 게시글 제목2",
         "teamId": 3,

@@ -1,5 +1,6 @@
 import 'package:ballkkaye_frontend/data/model/board.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/detail_page/board_detail_board_vm.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/write_page/board_write_fm.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/write_page/widgets/borad_write_img_selector.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_dropdown_btn.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
@@ -14,6 +15,7 @@ class BoardUpdateForm extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    BoardWriteFM fm = ref.read(boardWriteProvider.notifier);
     BoardDetailBoardVM vm = ref.read(boardDetailBoardProvider(board.boardId).notifier);
     List<String> teams = [
       'SSG 랜더스',
@@ -55,7 +57,7 @@ class BoardUpdateForm extends ConsumerWidget {
           ),
           SizedBox(height: 12),
           // 이미지 버튼 (가로 스크롤)
-          BoardWriteImgSelector(),
+          BoardWriteImgSelector(fm: fm),
           SizedBox(height: 12),
           // 내용
           MTextFormField(

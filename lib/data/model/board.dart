@@ -18,7 +18,7 @@ class Board {
   final bool isLike;
   final int likeCount;
   final int replyCount;
-  final String? imageString;
+  final String? imageString; //임시 이미지코드
 
   // final List<BoardImage> images;
   final List<Reply> replyItems;

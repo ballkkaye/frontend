@@ -54,7 +54,7 @@ class BoardWriteForm extends ConsumerWidget {
           ),
           SizedBox(height: 12),
           // 이미지 버튼 (가로 스크롤)
-          BoardWriteImgSelector(),
+          BoardWriteImgSelector(fm: fm),
           SizedBox(height: 12),
           // 내용
           MTextFormField(
