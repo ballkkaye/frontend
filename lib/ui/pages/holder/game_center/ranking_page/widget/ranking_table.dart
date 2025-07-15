@@ -1,5 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/_core/utils/m_util.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/ranking_page/ranking_vm.dart';
 import 'package:flutter/material.dart';
 
@@ -20,14 +21,14 @@ class RankingTable extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: Table(
         columnWidths: const {
-          0: FixedColumnWidth(26),
+          0: FixedColumnWidth(32),
           1: FlexColumnWidth(),
-          2: FlexColumnWidth(),
-          3: FixedColumnWidth(26),
-          4: FixedColumnWidth(26),
-          5: FixedColumnWidth(26),
-          6: FixedColumnWidth(46),
-          7: FixedColumnWidth(42),
+          2: FixedColumnWidth(28),
+          3: FixedColumnWidth(28),
+          4: FixedColumnWidth(28),
+          5: FixedColumnWidth(28),
+          6: FixedColumnWidth(42),
+          7: FixedColumnWidth(34),
           8: FixedColumnWidth(68),
           9: FlexColumnWidth(),
         },
@@ -50,7 +51,7 @@ class RankingTable extends StatelessWidget {
               ]),
           ...rankings.map((ranking) => _rankingConRow([
                 '${ranking.teamRank}',
-                ranking.teamName,
+                shortenTeamName(ranking.teamName),
                 '${ranking.totalGame}',
                 '${ranking.winGame}',
                 '${ranking.loseGame}',

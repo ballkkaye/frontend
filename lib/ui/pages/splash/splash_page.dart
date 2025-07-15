@@ -84,7 +84,8 @@ class _SplashPageState extends State<SplashPage> {
           ),
           Center(
             child: Lottie.asset(
-              'assets/animation/splash_logo_kr.json',
+              // 대문자
+              'assets/animation/splash_logo_en_full_upper.json',
               repeat: false,
               animate: true,
               fit: BoxFit.cover,
