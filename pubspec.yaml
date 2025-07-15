@@ -49,7 +49,6 @@ dependencies:
   flutter_svg: ^2.2.0
   table_calendar: ^3.2.0
   dropdown_button2: ^2.3.9
-  fl_chart: ^1.0.0
   url_launcher: ^6.3.1
   carousel_slider: ^5.1.1
   smooth_page_indicator: ^1.2.1
@@ -59,7 +58,6 @@ dependencies:
   firebase_messaging: ^15.2.9
   image_picker: ^1.1.2
   lottie: ^3.3.1
-  animated_text_kit: ^4.2.3
   visibility_detector: ^0.4.0+2
 
 dev_dependencies:
