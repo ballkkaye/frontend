@@ -42,7 +42,7 @@ class UserMatch {
   UserMatch.fromMap(Map<String, dynamic> data)
       : matchId = data['matchId'] ?? data['id'],
         isOwner = data['isOwner'],
-        relativeTime = data['relativeTime'] ?? '방금 전',
+        relativeTime = data['relativeTime'] ?? '방금',
         likeCount = data['likeCount'],
         isLike = data['isLike'],
         game = Game(
