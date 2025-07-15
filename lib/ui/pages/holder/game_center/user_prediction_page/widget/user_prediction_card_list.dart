@@ -41,6 +41,7 @@ class UserPredictionCardList extends StatelessWidget {
               gameStatus: g.game.gameStatus,
               onTapLeft: () => onSelectTeam(game.id!, home.teamId!),
               onTapRight: () => onSelectTeam(game.id!, away.teamId!),
+              teamLogo: home.teamLogo ?? '',
             ),
           ],
         );
