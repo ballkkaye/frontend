@@ -24,7 +24,7 @@ class BoardDetailBoardArea extends StatelessWidget {
               itemCount: 10,
               itemBuilder: (context, index) {
                 return Image.network(
-                  board.images[index].imageUrl,
+                  "${board.imageString}",
                   fit: BoxFit.cover,
                 );
               },

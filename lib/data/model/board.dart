@@ -18,7 +18,9 @@ class Board {
   final bool isLike;
   final int likeCount;
   final int replyCount;
-  final List<BoardImage> images;
+  final String? imageString;
+
+  // final List<BoardImage> images;
   final List<Reply> replyItems;
 
   Board({
@@ -34,7 +36,8 @@ class Board {
     required this.isLike,
     required this.likeCount,
     required this.replyCount,
-    required this.images,
+    required this.imageString,
+    // required this.images,
     required this.replyItems,
     // required this.profileImgUrl,
   });
@@ -56,7 +59,8 @@ class Board {
       isLike: data['isLike'] ?? false,
       likeCount: data['likeCount'],
       replyCount: data['replyCount'] ?? 0,
-      images: (data['images'] as List<dynamic>).map((e) => BoardImage.fromMap(e)).toList(),
+      imageString: data['imageString'] ?? '',
+      // images: (data['images'] as List<dynamic>?)?.map((e) => BoardImage.fromMap(e)).toList() ?? [],
       //todo: 나중에 이미지추가할때 주석지워서 사용
       replyItems: (data['replyItems'] as List<dynamic>?)?.map((e) => Reply.fromMap(e)).toList() ?? [],
     );
@@ -78,7 +82,8 @@ class Board {
       likeCount: 0,
       replyCount: 0,
       replyItems: [],
-      images: [],
+      imageString: '',
+      // images: [],
     );
   }
 
@@ -95,6 +100,7 @@ class Board {
     bool? isLike,
     int? likeCount,
     int? replyCount,
+    String? imageString,
     List<Reply>? replyItems,
     List<BoardImage>? images,
   }) {
@@ -112,7 +118,8 @@ class Board {
       likeCount: likeCount ?? this.likeCount,
       replyCount: replyCount ?? this.replyCount,
       replyItems: replyItems ?? this.replyItems,
-      images: images ?? this.images,
+      imageString: imageString ?? this.imageString,
+      // images: images ?? this.images,
     );
   }
 }
