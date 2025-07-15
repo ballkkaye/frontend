@@ -23,8 +23,8 @@ class BoardDetailBoardArea extends StatelessWidget {
             child: PageView.builder(
               itemCount: 10,
               itemBuilder: (context, index) {
-                return Image.asset(
-                  "assets/images/visit_record_sample.jpg",
+                return Image.network(
+                  board.images[index].imageUrl,
                   fit: BoxFit.cover,
                 );
               },
