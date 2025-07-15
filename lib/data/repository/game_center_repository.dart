@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/utils/m_http.dart';
+import 'package:ballkkaye_frontend/_core/utils/m_util.dart';
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 
@@ -494,7 +495,9 @@ class GameCenterRepository {
 
   // 오늘의 경기 조회
   Future<Map<String, dynamic>> getTodayGame({String? date}) async {
-    Response response = await dio.get("/s/api/today-games", queryParameters: {"date": date});
+    final formattedDate = date ?? formatDateToStr(today); // date 없으면 무조건 오늘 날짜로 조회
+    Response response =
+        await dio.get("/s/api/today-games", queryParameters: {"date": formattedDate});
     final responseBody = response.data;
     // final responseBody = {
     //   "status": 200,
