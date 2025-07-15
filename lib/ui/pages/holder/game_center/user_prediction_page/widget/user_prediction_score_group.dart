@@ -31,7 +31,7 @@ class UserPredictionScoreGroup extends StatelessWidget {
   final String? predictionStatus;
   final GameStatus? gameStatus;
   final String teamLogo;
-
+  
   @override
   Widget build(BuildContext context) {
     final bool showResult = gameStatus == GameStatus.completed;
@@ -53,6 +53,7 @@ class UserPredictionScoreGroup extends StatelessWidget {
           isSelected: isLeftSelected,
           onTap: onTapLeft,
           teamLogo: teamLogo,
+
         ),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 12.5),

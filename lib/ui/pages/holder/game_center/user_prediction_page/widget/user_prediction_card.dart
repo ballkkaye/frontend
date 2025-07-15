@@ -53,6 +53,7 @@ class UserPredictionCard extends StatelessWidget {
     final bool canSelect = !hasPredicted;
     final bool showResult =
         predictionStatus != null && (predictionStatus == 'CORRECT' || predictionStatus == 'INCORRECT');
+    
     return Column(
       children: [
         Container(
