@@ -7,7 +7,6 @@ import 'package:ballkkaye_frontend/ui/pages/board/detail_page/board_detail_page.
 import 'package:ballkkaye_frontend/ui/pages/board/list_page/board_list_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/write_page/board_write_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/list_page/chat_room_list_page.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/game_center/matchup_page/matchup_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/prediction_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/rainout_prediction_page/rainout_prediction_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/ranking_page/ranking_page.dart';
@@ -64,11 +63,9 @@ class MyApp extends StatelessWidget {
         "/home": (context) => const HomePage(),
         "/main-holder": (context) => MainHolder(),
         "/visit-record/list": (context) => const VisitRecordListPage(),
-        "/visit-record/detail": (context) =>
-            const VisitRecordDetailPage(visitRecordId: 10),
+        "/visit-record/detail": (context) => const VisitRecordDetailPage(visitRecordId: 10),
         "/visit-record/detail": (context) {
-          final visitRecordId =
-              ModalRoute.of(context)!.settings.arguments as int;
+          final visitRecordId = ModalRoute.of(context)!.settings.arguments as int;
           return VisitRecordDetailPage(visitRecordId: visitRecordId);
         },
         "/visit-record/select": (context) => VisitRecordSelectPage(),
@@ -79,16 +76,14 @@ class MyApp extends StatelessWidget {
           return VisitRecordWritePage(selectedGame: selectedGame);
         },
         "/visit-record/update": (context) => const VisitRecordUpdatePage(),
-        "/game-center/matchup": (context) => const MatchupPage(),
+        // "/game-center/matchup": (context) => const MatchupPage(),
         "/game-center/prediction": (context) => const PredictionPage(),
-        "/game-center/rainout-prediction": (context) =>
-            const RainoutPredictionPage(),
+        "/game-center/rainout-prediction": (context) => const RainoutPredictionPage(),
         "/game-center/ranking": (context) => const RankingPage(),
         "/game-center/today-game": (context) => const TodayGamePage(),
         "/game-center/user-prediction": (context) => const UserPredictionPage(),
         "/board/list": (context) => const BoardListPage(),
-        "/board/detail": (context) =>
-            BoardDetailPage(13), //todo 나중에 리스트에서 받은값 전달하기
+        "/board/detail": (context) => BoardDetailPage(13), //todo 나중에 리스트에서 받은값 전달하기
         "/board/write": (context) => const BoardWritePage(),
         // "/board/update": (context) => BoardUpdatePage(), // 동적데이터 받기 어려워서 MaterialPageRoute 사용
         "/user-match/update": (context) => const UserMatchUpdatePage(),

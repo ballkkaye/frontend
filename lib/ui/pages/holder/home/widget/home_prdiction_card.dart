@@ -1,5 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/matchup_page/matchup_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/prediction_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/widget/prediction_bar_graph_title.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/widget/prediction_graph_value.dart';
@@ -93,7 +94,13 @@ class HomePredictionCard extends StatelessWidget {
                           width: double.infinity,
                           child: OutlinedButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, '/game-center/matchup');
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => MatchupPage(
+                                        teamId: predictionGame.homeTeamId!,
+                                        gameId: predictionGame.game.id!)),
+                              );
                             },
                             style: OutlinedButton.styleFrom(
                               shape: RoundedRectangleBorder(
@@ -188,7 +195,13 @@ class HomePredictionCard extends StatelessWidget {
                           width: double.infinity,
                           child: OutlinedButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, '/game-center/matchup');
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => MatchupPage(
+                                        teamId: predictionGame.awayTeamId!,
+                                        gameId: predictionGame.game.id!)),
+                              );
                             },
                             style: OutlinedButton.styleFrom(
                               shape: RoundedRectangleBorder(
@@ -237,7 +250,8 @@ class HomePredictionCard extends StatelessWidget {
                     ),
                     SizedBox(height: 6),
                     PredictionGraphValue(
-                        leftScore: predictionGame.homeWinPercent ?? 0, rightScore: predictionGame.awayWinPercent ?? 0),
+                        leftScore: predictionGame.homeWinPercent ?? 0,
+                        rightScore: predictionGame.awayWinPercent ?? 0),
                   ],
                 ),
               ],
