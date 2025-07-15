@@ -237,7 +237,8 @@ class HomePredictionCard extends StatelessWidget {
                     ),
                     SizedBox(height: 6),
                     PredictionGraphValue(
-                        leftScore: predictionGame.homeWinPercent ?? 0, rightScore: predictionGame.awayWinPercent ?? 0),
+                        leftScore: predictionGame.homeWinPercent ?? 0,
+                        rightScore: predictionGame.awayWinPercent ?? 0),
                   ],
                 ),
               ],

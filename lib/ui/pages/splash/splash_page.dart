@@ -73,11 +73,7 @@ class _SplashPageState extends State<SplashPage> {
                 gradient: LinearGradient(
                   begin: Alignment(0.50, -0.00),
                   end: Alignment(0.50, 1.00),
-                  colors: [
-                    Color(0xFF4FE8C1),
-                    Color(0xFF4EE1BB),
-                    Color(0xFF4BD7B3)
-                  ],
+                  colors: [Color(0xFF4FE8C1), Color(0xFF4EE1BB), Color(0xFF4BD7B3)],
                 ),
               ),
             ),
@@ -85,7 +81,7 @@ class _SplashPageState extends State<SplashPage> {
           Center(
             child: Lottie.asset(
               // 대문자
-              'assets/animation/splash_logo_en_full_upper.json',
+              'assets/animation/splash_logo_kr.json',
               repeat: false,
               animate: true,
               fit: BoxFit.cover,
