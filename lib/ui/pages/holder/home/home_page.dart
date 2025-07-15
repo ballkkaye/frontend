@@ -25,8 +25,8 @@ class HomePage extends StatelessWidget {
       surfaceTintColor: Colors.white,
       elevation: 0,
       title: Image.asset(
-        'assets/images/main_logo.png',
-        height: 40,
+        'assets/images/main_logo_kr.png',
+        height: 32,
       ),
       actions: [
         InkWell(
