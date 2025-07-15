@@ -71,22 +71,20 @@ class _SplashPageState extends State<SplashPage> {
             child: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
+                  begin: Alignment(0.50, -0.00),
+                  end: Alignment(0.50, 1.00),
                   colors: [
-                    Colors.transparent,
+                    Color(0xFF4FE8C1),
                     Color(0xFF4EE1BB),
-                    Color(0xFF4EE1BB).withOpacity(0.97),
-                    Color(0xFF45CFAA),
+                    Color(0xFF4BD7B3)
                   ],
-                  stops: [0.0, 0.6, 0.8, 1.0],
                 ),
               ),
             ),
           ),
           Center(
             child: Lottie.asset(
-              'assets/animation/splash_logo.json',
+              'assets/animation/splash_logo_kr.json',
               repeat: false,
               animate: true,
               fit: BoxFit.cover,
