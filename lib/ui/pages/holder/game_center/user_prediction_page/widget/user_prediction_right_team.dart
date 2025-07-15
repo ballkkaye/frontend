@@ -6,11 +6,15 @@ import 'package:flutter/material.dart';
 class UserPredictionRightTeam extends StatelessWidget {
   final String teamName;
   final int score;
+  final bool isSelected;
+  final VoidCallback? onTap;
 
   const UserPredictionRightTeam({
     super.key,
     required this.teamName,
     required this.score,
+    required this.isSelected,
+    required this.onTap,
   });
 
   @override
@@ -18,9 +22,10 @@ class UserPredictionRightTeam extends StatelessWidget {
     return Expanded(
       child: GestureDetector(
         //TODO 클릭 시 상태 저장하는 추가 작업 필요 (stateful)
-        onTap: () {},
+        onTap: onTap,
         child: Container(
           decoration: BoxDecoration(
+            color: isSelected ? MColor.kBackground.alternative : MColor.kBackground.normal,
             border: Border(
               left: BorderSide(
                 color: MColor.kLine.normal,
