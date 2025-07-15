@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/utils/m_util.dart';
 import 'package:ballkkaye_frontend/data/enum/game_status.dart';
 import 'package:ballkkaye_frontend/data/model/game.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/today_game_page/widget/today_game_card_content.dart';
@@ -27,7 +28,7 @@ class TodayGameCard extends StatelessWidget {
                   rightPhotoUrl: game.homeTeam.teamLogo,
                   leftPhotoUrl: game.awayTeam.teamLogo,
                   gameState: game.gameStatus?.label ?? '경기 예정',
-                  stadium: game.stadiumShortName ?? '',
+                  stadium: shortenStadiumName(game.stadiumName ?? ''),
                   gameTime: _parseTime(game.gameTime),
                   broadcastInfo: game.broadcastChannel ?? '',
                   leftPitcher: game.homePitcherName ?? '',
@@ -42,7 +43,8 @@ class TodayGameCard extends StatelessWidget {
   }
 
   TimeOfDay _parseTime(String? timeStr) {
-    if (timeStr == null || !timeStr.contains(':')) return const TimeOfDay(hour: 0, minute: 0);
+    if (timeStr == null || !timeStr.contains(':'))
+      return const TimeOfDay(hour: 0, minute: 0);
     final parts = timeStr.split(':');
     return TimeOfDay(hour: int.parse(parts[0]), minute: int.parse(parts[1]));
   }

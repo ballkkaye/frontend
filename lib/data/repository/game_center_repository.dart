@@ -367,7 +367,8 @@ class GameCenterRepository {
   }
 
   // 상대 전적 확인
-  Future<Map<String, dynamic>> getMatchup({required int gameId, required int teamId}) async {
+  Future<Map<String, dynamic>> getMatchup(
+      {required int gameId, required int teamId}) async {
     Logger().d("상대전적 확인 gameId : $gameId, teamId : $teamId");
     Response response = await dio.get(
       "/api/today/hitter-lineup",
@@ -496,9 +497,10 @@ class GameCenterRepository {
 
   // 오늘의 경기 조회
   Future<Map<String, dynamic>> getTodayGame({String? date}) async {
-    final formattedDate = date ?? formatDateToStr(today); // date 없으면 무조건 오늘 날짜로 조회
-    Response response =
-        await dio.get("/s/api/today-games", queryParameters: {"date": formattedDate});
+    final formattedDate =
+        date ?? formatDateToStr(today); // date 없으면 무조건 오늘 날짜로 조회
+    Response response = await dio
+        .get("/s/api/today-games", queryParameters: {"date": formattedDate});
     final responseBody = response.data;
     // final responseBody = {
     //   "status": 200,
@@ -670,7 +672,8 @@ class GameCenterRepository {
 
   // 유저 승리 예측 진입
   Future<Map<String, dynamic>> getUserPrediction() async {
-    Response response = await dio.get("/s/api/predictions/today");
+    Response response = await dio.get("/s/api/predictions/today",
+        queryParameters: {"date": formatDateToStr(today)});
     final responseBody = response.data;
     // final responseBody = {
     //   "status": 200,
@@ -747,7 +750,8 @@ class GameCenterRepository {
   }
 
   // 유저 승리 예측 전송
-  Future<Map<String, dynamic>> sendPrediction(List<Map<String, dynamic>> predictions) async {
+  Future<Map<String, dynamic>> sendPrediction(
+      List<Map<String, dynamic>> predictions) async {
     Logger().d("sendPrediction의 body predictions: $predictions");
     Response response = await dio.post("/s/api/predictions", data: predictions);
     final responseBody = response.data;

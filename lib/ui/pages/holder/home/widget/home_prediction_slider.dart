@@ -1,7 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
-import 'package:ballkkaye_frontend/data/model/game.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/prediction_vm.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/home/widget/home_prdiction_card.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/home/widget/home_prediction_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +18,8 @@ class HomePredictionSlider extends StatefulWidget {
 
 class _HomePredictionSliderState extends State<HomePredictionSlider> {
   int _currentIndex = 0;
-  final CarouselSliderController _carouselSliderController = CarouselSliderController();
+  final CarouselSliderController _carouselSliderController =
+      CarouselSliderController();
 
   @override
   Widget build(BuildContext context) {
@@ -53,10 +53,13 @@ class _HomePredictionSliderState extends State<HomePredictionSlider> {
                     duration: const Duration(milliseconds: 300),
                     width: _currentIndex == index ? 16 : 8,
                     height: 8,
-                    margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 10),
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: 4, vertical: 10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: _currentIndex == index ? MColor.kPrimary.strong : MColor.kFill.normal,
+                      color: _currentIndex == index
+                          ? MColor.kPrimary.strong
+                          : MColor.kFill.normal,
                     ),
                   ));
             }),

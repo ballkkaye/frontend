@@ -76,3 +76,12 @@ String shortenTeamName(String name) {
   }
   return name;
 }
+
+/// 문자열의 앞 두 글자만 반환 (예: "잠실야구장" → "잠실", "대구 라이온즈 파크" → "대구")
+String shortenStadiumName(String name) {
+  name = name.trim(); // 공백 제거
+  if (name.length >= 2) {
+    return name.substring(0, 2);
+  }
+  return name; // 2글자 미만인 경우 그대로 반환
+}
