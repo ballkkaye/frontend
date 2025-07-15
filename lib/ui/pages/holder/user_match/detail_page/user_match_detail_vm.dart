@@ -1,11 +1,12 @@
 import 'package:ballkkaye_frontend/data/model/user_match.dart';
 import 'package:ballkkaye_frontend/data/repository/user_match_repository.dart';
 import 'package:ballkkaye_frontend/main.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/user_match_list_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
-final UserMatchDetailProvider =
+final userMatchDetailProvider =
     AutoDisposeNotifierProvider.family<UserMatchDetailVM, UserMatchDetailModel?, int>(() {
   return UserMatchDetailVM();
 });
@@ -27,8 +28,8 @@ class UserMatchDetailVM extends AutoDisposeFamilyNotifier<UserMatchDetailModel?,
     return null;
   }
 
-  Future<void> init(int postId) async {
-    Map<String, dynamic> data = await UserMatchRepository().getOne(postId);
+  Future<void> init(int userMatchId) async {
+    Map<String, dynamic> data = await UserMatchRepository().getOne(userMatchId);
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
         SnackBar(content: Text("동행 상세보기 실패 : ${data["msg"]}")),
@@ -37,6 +38,21 @@ class UserMatchDetailVM extends AutoDisposeFamilyNotifier<UserMatchDetailModel?,
     }
 
     state = UserMatchDetailModel.fromMap(data["body"]);
+  }
+
+  // 삭제
+  Future<void> deleteOne(int userMatchId) async {
+    Map<String, dynamic> data = await UserMatchRepository().deleteOne(userMatchId);
+    if (data["status"] != 200) {
+      ScaffoldMessenger.of(mContext!).showSnackBar(
+        SnackBar(content: Text("동행글 삭제 실패 : ${data["msg"]}")),
+      );
+      return;
+    }
+
+    ref.read(userMatchListProvider.notifier).notifyDeleteOne(userMatchId);
+
+    Navigator.pop(mContext);
   }
 }
 

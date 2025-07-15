@@ -3,8 +3,10 @@ import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class HomeUpBtn extends StatelessWidget {
+  final ScrollController controller;
   const HomeUpBtn({
     super.key,
+    required this.controller,
   });
 
   @override
@@ -14,7 +16,12 @@ class HomeUpBtn extends StatelessWidget {
         decoration:
             BoxDecoration(borderRadius: BorderRadius.circular(30), border: Border.all(color: MColor.kLine.normal)),
         child: OutlinedButton(
-          onPressed: () {},
+          onPressed: () {
+            controller.animateTo(
+                0,
+                duration: Duration(milliseconds: 300),
+            curve: Curves.easeOut,);
+          },
           style: OutlinedButton.styleFrom(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),

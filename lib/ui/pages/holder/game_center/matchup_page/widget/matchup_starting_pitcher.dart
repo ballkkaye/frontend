@@ -28,15 +28,13 @@ class MatchupStartingPitcher extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final width = constraints.maxWidth;
-        final imageWidth = width * (120 / 328);
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                width: imageWidth,
+                width: 80,
                 child: AspectRatio(
                   aspectRatio: 5 / 7,
                   child: Container(
@@ -48,27 +46,23 @@ class MatchupStartingPitcher extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(width: 12), // 간격
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    MText.normal4_6(
-                      name,
-                      color: MColor.kLabel.normal,
-                    ),
-                    SizedBox(height: 2),
-                    MatchupPlayerStatList(
-                      gameCount: gameCount,
-                      result: result,
-                      era: era,
-                      whip: whip,
-                      qs: qs,
-                    ),
-                  ],
-                ),
+              SizedBox(width: 16), // 간격
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  MText.normal4_6(
+                    name,
+                    color: MColor.kLabel.normal,
+                  ),
+                  MatchupPlayerStatList(
+                    gameCount: gameCount,
+                    result: result,
+                    era: era,
+                    whip: whip,
+                    qs: qs,
+                  ),
+                ],
               ),
             ],
           ),

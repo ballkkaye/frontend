@@ -12,9 +12,7 @@ class VisitRecordDetailImg extends StatelessWidget {
   // TODO: 이미지는 마지막에
   @override
   Widget build(BuildContext context) {
-    final imageUrls = visitRecord.imageString;
-
-    if (imageUrls == null || imageUrls.isEmpty) {
+    if (visitRecord.imageString == null) {
       // TODO: 실제통신 시에는 이미지 주소가 없을 때 아무것도 출력하지 않을거임
       // return SizedBox.shrink();
 
@@ -31,16 +29,14 @@ class VisitRecordDetailImg extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        ...imageUrls.map(
-          (url) => Padding(
-            padding: const EdgeInsets.only(bottom: 12),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.network(
-                url,
-                fit: BoxFit.cover,
-                width: double.infinity,
-              ),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 12),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.network(
+              "${visitRecord.imageString}",
+              fit: BoxFit.cover,
+              width: double.infinity,
             ),
           ),
         ),

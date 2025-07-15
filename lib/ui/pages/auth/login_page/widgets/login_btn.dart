@@ -56,6 +56,7 @@ class LoginBtn extends ConsumerWidget {
   Future<String?> _oauthLogin() async {
     try {
       final NaverLoginResult result = await FlutterNaverLogin.logIn();
+      Logger().d('네이버 로그인 result: ${result}');
       if (result.status == NaverLoginStatus.loggedIn) {
         final naverToken = await FlutterNaverLogin.getCurrentAccessToken();
         if (naverToken.isValid()) {

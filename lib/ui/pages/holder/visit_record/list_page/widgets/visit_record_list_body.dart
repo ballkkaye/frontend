@@ -38,7 +38,8 @@ class _VisitRecordListBodyState extends ConsumerState<VisitRecordListBody> {
     final screenWidth = MediaQuery.of(context).size.width;
     final cellSize = screenWidth * (47 / 360); // 디자인 비율 반영
     final selectedDate = ref.watch(VisitRecordListselectedDateProvider);
-    final records = ref.watch(visitRecordListProvider);
+    final recordModel = ref.watch(visitRecordListProvider);
+    final records = recordModel ?? [];
 
     return CustomScrollView(
       slivers: [
@@ -91,7 +92,9 @@ class _VisitRecordListBodyState extends ConsumerState<VisitRecordListBody> {
               },
               childCount: records.length,
             ),
+            childCount: 5,
           ),
+        ),
       ],
     );
   }

@@ -2,6 +2,7 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/data/model/user_match.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/detail_page/chat_room_detail_page.dart';
 import 'package:flutter/material.dart';
 
 class UserMatchDetailActionBar extends StatelessWidget {
@@ -26,14 +27,17 @@ class UserMatchDetailActionBar extends StatelessWidget {
               child: Text(
                 '현재 ${userMatch.participationInfo}명 참여중',
                 style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                    color: MColor.kLabel.alternative),
+                    fontSize: 12, fontWeight: FontWeight.w400, color: MColor.kLabel.alternative),
               ),
             ),
             SizedBox(width: 12.5),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ChatRoomDetailPage(userMatch.chatRoomId!)));
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: MColor.kPrimary.strong,
                 shape: RoundedRectangleBorder(

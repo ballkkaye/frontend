@@ -1,17 +1,18 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/data/model/chat_room.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/detail_page/chat_room_detail_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/widgets/chat_room_leave_btn.dart';
 import 'package:flutter/material.dart';
 
 class ChatRoomListItem extends StatelessWidget {
+  final ChatRoom chatRoom;
+
   const ChatRoomListItem({
     super.key,
-    required this.chat,
+    required this.chatRoom,
   });
-
-  final Map<String, String> chat;
 
   @override
   Widget build(BuildContext context) {
@@ -19,29 +20,69 @@ class ChatRoomListItem extends StatelessWidget {
       children: [
         ListTile(
           contentPadding: EdgeInsets.only(left: 12),
-          leading: ClipOval(
-            child: Container(
-              width: 30,
-              height: 30,
-              color: Colors.grey.shade300,
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: SizedBox(
-                  width: 21,
-                  height: 21,
-                  child: MIcon.page.mypage.userDummy,
-                ),
+          leading: Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+            ),
+            child: Stack(
+              children: List.generate(
+                (chatRoom.users.length > 4 ? 4 : chatRoom.users.length),
+                (index) {
+                  final user = chatRoom.users[index];
+
+                  // 위치 (0: topLeft, 1: topRight, 2: bottomLeft, 3: bottomRight)
+                  double spacing = 3.0;
+                  double size = 23;
+
+                  double top = (index ~/ 2 == 0) ? 0 : size + spacing;
+                  double left = (index % 2 == 0) ? 0 : size + spacing;
+
+                  return Positioned(
+                    top: top,
+                    left: left,
+                    child: ClipOval(
+                      child: Image.network(
+                        user.profileUrl ?? '',
+                        width: size,
+                        height: size,
+                        fit: BoxFit.cover,
+                        errorBuilder: (_, __, ___) => Container(
+                          width: size,
+                          height: size,
+                          color: Colors.grey.shade300,
+                          child: MIcon.page.mypage.userDummy,
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
           ),
           title: MText.normal5_6(
-            chat['name']!,
+            '${chatRoom.chatRoomTitle}',
             color: MColor.kLabel.normal,
           ),
-          subtitle: MText.label3(
-            chat['time']!,
-            color: MColor.kLabel.neutral,
+          subtitle: Row(
+            children: [
+              Text(
+                '${chatRoom.content}',
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w500,
+                    color: MColor.kLabel.neutral),
+              ),
+              MText.label3(
+                ' • ${chatRoom.relativeTime}',
+                color: MColor.kLabel.neutral,
+              )
+            ],
           ),
+          //TextStyle(fontSize: 11, fontWeight: FontWeight.w500, color: color)
           trailing: ChatRoomLeaveBtn(
             icon: MIcon.nav.top.dotVertical,
             onConfirm: () {
@@ -51,7 +92,8 @@ class ChatRoomListItem extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => ChatRoomDetailPage()),
+              MaterialPageRoute(
+                  builder: (_) => ChatRoomDetailPage(chatRoom.chatRoomId)),
             );
           },
         ),

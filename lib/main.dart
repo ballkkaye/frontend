@@ -1,11 +1,11 @@
 import 'package:ballkkaye_frontend/_core/style/m_theme.dart';
+import 'package:ballkkaye_frontend/data/model/visit_record.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_nickname_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_team_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/login_page/login_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/detail_page/board_detail_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/list_page/board_list_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/write_page/board_write_page.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/detail_page/chat_room_detail_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/list_page/chat_room_list_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/matchup_page/matchup_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/prediction_page.dart';
@@ -15,11 +15,9 @@ import 'package:ballkkaye_frontend/ui/pages/holder/game_center/today_game_page/t
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/user_prediction_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/home/home_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/main_holder.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/user_match/detail_page/user_match_detail_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/list_page/user_match_list_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/select_page/user_match_select_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/user_match/update_page/user_match_update_page.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/user_match/write_page/user_match_write_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/detail_page/visit_record_detail_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/visit_record_list_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/select_page/visit_record_select_page.dart';
@@ -29,18 +27,16 @@ import 'package:ballkkaye_frontend/ui/pages/mypage/mypage_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/mypage/user/detail_page/user_detail_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_page/user_update_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/splash/splash_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/date_symbol_data_local.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
-  await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
-  await initializeDateFormatting();
+  await Firebase.initializeApp();
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -68,30 +64,43 @@ class MyApp extends StatelessWidget {
         "/home": (context) => const HomePage(),
         "/main-holder": (context) => MainHolder(),
         "/visit-record/list": (context) => const VisitRecordListPage(),
-        "/visit-record/detail": (context) => const VisitRecordDetailPage(visitRecordId: 10),
+        "/visit-record/detail": (context) =>
+            const VisitRecordDetailPage(visitRecordId: 10),
+        "/visit-record/detail": (context) {
+          final visitRecordId =
+              ModalRoute.of(context)!.settings.arguments as int;
+          return VisitRecordDetailPage(visitRecordId: visitRecordId);
+        },
         "/visit-record/select": (context) => VisitRecordSelectPage(),
-        "/visit-record/write": (context) => const VisitRecordWritePage(),
+        //"/visit-record/write": (context) => const VisitRecordWritePage(),
+        "/visit-record/write": (context) {
+          final VisitRecord selectedGame =
+              ModalRoute.of(context)!.settings.arguments as VisitRecord;
+          return VisitRecordWritePage(selectedGame: selectedGame);
+        },
         "/visit-record/update": (context) => const VisitRecordUpdatePage(),
         "/game-center/matchup": (context) => const MatchupPage(),
         "/game-center/prediction": (context) => const PredictionPage(),
-        "/game-center/rainout-prediction": (context) => const RainoutPredictionPage(),
+        "/game-center/rainout-prediction": (context) =>
+            const RainoutPredictionPage(),
         "/game-center/ranking": (context) => const RankingPage(),
         "/game-center/today-game": (context) => const TodayGamePage(),
         "/game-center/user-prediction": (context) => const UserPredictionPage(),
         "/board/list": (context) => const BoardListPage(),
-        "/board/detail": (context) => BoardDetailPage(1), //todo 나중에 리스트에서 받은값 전달하기
+        "/board/detail": (context) =>
+            BoardDetailPage(13), //todo 나중에 리스트에서 받은값 전달하기
         "/board/write": (context) => const BoardWritePage(),
         // "/board/update": (context) => BoardUpdatePage(), // 동적데이터 받기 어려워서 MaterialPageRoute 사용
         "/user-match/update": (context) => const UserMatchUpdatePage(),
-        "/user-match/write": (context) => const UserMatchWritePage(),
-        "/user-match/detail": (context) => UserMatchDetailPage(1),
+        // "/user-match/write": (context) => const UserMatchWritePage(),
+        // "/user-match/detail": (context) => UserMatchDetailPage(1),
         "/user-match/list": (context) => const UserMatchListPage(),
         "/user-match/select": (context) => const UserMatchSelectPage(),
         "/user/detail": (context) => const UserDetailPage(),
         "/user/update": (context) => const UserUpdatePage(),
         "/mypage": (context) => const MypagePage(),
         "/chat-room/list": (context) => const ChatRoomListPage(),
-        "/chat-room/detail": (context) => const ChatRoomDetailPage(),
+        // "/chat-room/detail": (context) => const ChatRoomDetailPage(),
       },
     );
   }
