@@ -67,19 +67,6 @@ class _SplashPageState extends State<SplashPage> {
       backgroundColor: MColor.kPrimary.alternative,
       body: Stack(
         children: [
-          Center(
-            child: Lottie.asset(
-              'assets/animation/splash_logo.json',
-              repeat: false,
-              animate: true,
-              fit: BoxFit.cover,
-              onLoaded: (composition) {
-                _animationDuration = composition.duration;
-                _isAnimationLoaded = true;
-                _tryNavigate();
-              },
-            ),
-          ),
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
@@ -92,9 +79,22 @@ class _SplashPageState extends State<SplashPage> {
                     Color(0xFF4EE1BB).withOpacity(0.97),
                     Color(0xFF45CFAA),
                   ],
-                  stops: const [0.0, 0.8, 1.0],
+                  stops: [0.0, 0.6, 0.8, 1.0],
                 ),
               ),
+            ),
+          ),
+          Center(
+            child: Lottie.asset(
+              'assets/animation/splash_logo.json',
+              repeat: false,
+              animate: true,
+              fit: BoxFit.cover,
+              onLoaded: (composition) {
+                _animationDuration = composition.duration;
+                _isAnimationLoaded = true;
+                _tryNavigate();
+              },
             ),
           ),
         ],
