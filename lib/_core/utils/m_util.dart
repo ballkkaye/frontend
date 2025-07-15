@@ -68,3 +68,11 @@ String formatTime(int hour, int minute) {
   final m = minute.toString().padLeft(2, '0');
   return "$h:$m";
 }
+
+/// 팀 이름 공백 직전까지 기준으로 파싱
+String shortenTeamName(String name) {
+  if (name.contains(' ')) {
+    return name.split(' ').first;
+  }
+  return name;
+}
