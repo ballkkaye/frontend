@@ -5,7 +5,8 @@ import 'package:logger/logger.dart';
 class ChatRoomRepository {
   // 채팅방 상세 = 채팅 목록
   Future<Map<String, dynamic>> getOne(int chatRoomId) async {
-    Response response = await dio.get("/s/api/chatrooms/${chatRoomId}/messages");
+    Response response =
+        await dio.get("/s/api/chatrooms/${chatRoomId}/messages");
     final responseBody = response.data;
     // final responseBody = {
     //   "status": 200,
@@ -216,6 +217,33 @@ class ChatRoomRepository {
     //   ]
     // };
     Logger().d('ChatRoomRepository getList: ${responseBody}');
+    return responseBody;
+  }
+
+  // 채팅방 삭제
+  Future<Map<String, dynamic>> exitOne(int chatRoomUserId) async {
+    Response response =
+        await dio.delete("/s/api/chatroom-users/$chatRoomUserId");
+    final responseBody = response.data;
+    // final responseBody = {
+    //   "status": 200,
+    //   "msg": "성공",
+    //   "body": {"deleteStatus": "DELETED"}
+    // };
+    Logger().d('ChatRoomRepository deleteOne: ${responseBody}');
+    return responseBody;
+  }
+
+  // 채팅방 삭제
+  Future<Map<String, dynamic>> deleteOne(int chatRoomId) async {
+    Response response = await dio.delete("/s/api/chatrooms/$chatRoomId");
+    final responseBody = response.data;
+    // final responseBody = {
+    //   "status": 200,
+    //   "msg": "성공",
+    //   "body": {"deleteStatus": "DELETED"}
+    // };
+    Logger().d('ChatRoomRepository deleteOne: ${responseBody}');
     return responseBody;
   }
 }

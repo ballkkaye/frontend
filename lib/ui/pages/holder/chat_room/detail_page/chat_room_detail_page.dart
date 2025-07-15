@@ -1,6 +1,4 @@
-import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
-import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/list_page/chat_room_list_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/widgets/chat_room_leave_btn.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +31,7 @@ class ChatRoomDetailPage extends StatelessWidget {
   AppBar _appbar(BuildContext context) {
     return AppBar(
       centerTitle: true,
-      title: MText.h1('직관같이갑시다', color: MColor.kLabel.normal),
+      // title: MText.h1('직관같이갑시다', color: MColor.kLabel.normal),
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.white,
       actions: [

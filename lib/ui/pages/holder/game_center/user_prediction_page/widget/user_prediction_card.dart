@@ -20,8 +20,8 @@ class UserPredictionCard extends StatelessWidget {
   final int startHour;
   final int startMinute;
 
-  final VoidCallback onTapLeft;
-  final VoidCallback onTapRight;
+  final VoidCallback? onTapLeft;
+  final VoidCallback? onTapRight;
   final String? predictionStatus;
   final GameStatus? gameStatus;
   final String teamLogo;
@@ -49,18 +49,13 @@ class UserPredictionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool hasPredicted = predictionStatus != null;
-    final bool canSelect = !hasPredicted;
-    final bool showResult =
-        predictionStatus != null && (predictionStatus == 'CORRECT' || predictionStatus == 'INCORRECT');
-    
+    final bool canSelect = predictionStatus == null;
+
     return Column(
       children: [
         Container(
           decoration: BoxDecoration(
-            border: Border.all(
-              color: MColor.kLine.normal,
-            ),
+            border: Border.all(color: MColor.kLine.normal),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Column(
@@ -89,7 +84,7 @@ class UserPredictionCard extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
       ],
     );
   }

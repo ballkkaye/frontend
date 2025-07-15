@@ -5,12 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
-final chatRoomDetailProvider =
-    AutoDisposeNotifierProvider.family<ChatRoomDetailVM, ChatRoomDetailModel?, int>(() {
+final chatRoomDetailProvider = AutoDisposeNotifierProvider.family<
+    ChatRoomDetailVM, ChatRoomDetailModel?, int>(() {
   return ChatRoomDetailVM();
 });
 
-class ChatRoomDetailVM extends AutoDisposeFamilyNotifier<ChatRoomDetailModel?, int> {
+class ChatRoomDetailVM
+    extends AutoDisposeFamilyNotifier<ChatRoomDetailModel?, int> {
   final mContext = navigatorKey.currentContext!;
 
   @override
@@ -98,7 +99,8 @@ class ChatRoomDetailModel {
     final sortedKeys = grouped.keys.toList()..sort();
 
     for (final key in sortedKeys) {
-      grouped[key]!.sort((a, b) => a.chat!.createdAt.compareTo(b.chat!.createdAt));
+      grouped[key]!
+          .sort((a, b) => a.chat!.createdAt.compareTo(b.chat!.createdAt));
     }
 
     List<dynamic> finalList = [];

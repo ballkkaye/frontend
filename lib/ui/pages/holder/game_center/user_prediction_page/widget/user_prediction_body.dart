@@ -6,66 +6,51 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class UserPredictionBody extends ConsumerWidget {
-  const UserPredictionBody({
-    super.key,
-  });
+  final UserPredictionState state;
+
+  const UserPredictionBody({super.key, required this.state});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final model = ref.watch(userPredictionProvider);
     final vm = ref.read(userPredictionProvider.notifier);
     final fm = ref.read(userPredictionFProvider.notifier);
 
-    if (model == null) {
-      return const Center(child: CircularProgressIndicator());
-    }
+    final games = switch (state) {
+      BeforePrediction(:final games) => games,
+      AfterPrediction(:final games) => games,
+    };
 
-    // 예측 완료되었으면 버튼 비활성화
-    final bool isEnabled = !vm.isSubmitted;
-    final games = model.games.map((g) => g.game).toList();
+    final isSubmitted = state is AfterPrediction;
+
     return ListView(
       children: [
         Padding(
-          padding: const EdgeInsets.only(
-            top: 22,
-            left: 16,
-            right: 16,
-          ),
+          padding:
+              const EdgeInsets.only(top: 22, bottom: 22, left: 16, right: 16),
           child: Column(
             children: [
               UserPredictionCardList(
-                games: model.games,
+                games: games,
                 onSelectTeam: fm.selectTeam,
+                isResult: isSubmitted,
               ),
-              SizedBox(height: 12),
-              MElevatedBtn(
+              const SizedBox(height: 12),
+              if (!isSubmitted)
+                MElevatedBtn(
                   text: '예측하기',
-                  isEnabled: isEnabled,
-                  onPressed: () {
-                    if (!isEnabled) return;
-                    final predictions = fm.toGameList(games);
+                  isEnabled: true,
+                  onPressed: () async {
+                    final predictions = fm.toMapList();
 
-                    if (predictions.isEmpty) {
+                    try {
+                      await vm.submitPredictions(predictions);
+                    } catch (e) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('예측할 팀을 선택해주세요W.')),
+                        SnackBar(content: Text('예측 실패: $e')),
                       );
-                      return;
                     }
-
-                    // 💾 현재 예측 상태 로컬에 저장
-                    vm.setPredictions(predictions);
-
-                    // 🔄 서버에 예측 전송 → 상태 갱신
-                    vm.submitPredictions().then((_) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('예측이 완료되었습니다.')),
-                      );
-
-                      // TODO: 서버에 전송하는 API 호출 넣기
-                    });
-                  }
-                  //isEnabled = false
-                  ),
+                  },
+                ),
             ],
           ),
         ),

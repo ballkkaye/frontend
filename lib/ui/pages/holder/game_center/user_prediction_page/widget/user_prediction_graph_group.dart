@@ -16,7 +16,9 @@ class UserPredictionGraphGroup extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isLeftHigher = leftPercent >= rightPercent;
     double total = leftPercent + rightPercent;
-    double barPercent = (isLeftHigher ? leftPercent : rightPercent) / total;
+    // 둘 다 0이면 50%로 강제 설정
+    double barPercent =
+        total == 0 ? 0.5 : (isLeftHigher ? leftPercent : rightPercent) / total;
 
     return Row(
       children: [

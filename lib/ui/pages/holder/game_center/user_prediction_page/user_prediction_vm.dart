@@ -6,19 +6,20 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-/// 1. 창고 관리자
-final userPredictionProvider = AutoDisposeNotifierProvider<UserPredictionVM, UserPredictionModel?>(() {
-  return UserPredictionVM();
-});
+// Provider
+final userPredictionProvider =
+    AutoDisposeNotifierProvider<UserPredictionVM, UserPredictionState?>(
+  () => UserPredictionVM(),
+);
 
-/// 2. 창고 (상태가 변경되어도, 화면 갱신 안함 - watch 하지마)
-class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
+// VM
+class UserPredictionVM extends AutoDisposeNotifier<UserPredictionState?> {
   final mContext = navigatorKey.currentContext!;
   final refreshCtrl = RefreshController();
-  bool isSubmitted = false; // 예측 완료 여부
+  bool isSubmitted = false;
 
   @override
-  UserPredictionModel? build() {
+  UserPredictionState? build() {
     init();
 
     ref.onDispose(() {
@@ -29,109 +30,79 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
     return null;
   }
 
-  /// 1. 앱 최초 진입 시 서버에서 예측 데이터 불러오기
   Future<void> init() async {
-    Map<String, dynamic> data = await GameCenterRepository().getUserPrediction();
+    final data = await GameCenterRepository().getBeforePredictionList();
+
     if (data["status"] != 200) {
-      ScaffoldMessenger.of(mContext!).showSnackBar(
-        SnackBar(content: Text("유저 승부예측 조회 실패 : ${data["msg"]}")),
-      );
-      return;
-    }
-    state = UserPredictionModel.fromList(data["body"]);
-  }
-
-  /// 2. 사용자가 선택한 예측 데이터를 상태에 반영
-  void setPredictions(List<UserPredictionGame> predictions) {
-    state = UserPredictionModel(predictions);
-  }
-
-  /// 3. 상태에서 서버 전송용 JSON 리스트 생성
-  List<Map<String, dynamic>> toJsonList() {
-    Logger().i("📦 [toJsonList] 총 게임 수: ${state!.games.length}");
-    for (var g in state!.games) {
-      Logger().i("📦 gameId: ${g.game.id}, 선택된 팀: ${g.userChoiceTeamId}");
-    }
-    return state?.games
-            .where((g) => g.userChoiceTeamId != null)
-            .map((g) => {
-                  "gameId": g.game.id,
-                  "userChoiceTeamId": g.userChoiceTeamId,
-                })
-            .toList() ??
-        [];
-  }
-
-  /// 4. 서버에서 받아온 최신 예측 데이터를 상태에 반영
-  void setPredictionData(List<dynamic> data) {
-    Logger().i("setPredictionData 호출됨. data 길이: ${data.length}");
-    final parsed = data.map((e) => UserPredictionGame.fromMap(e)).toList();
-
-    Logger().i("파싱된 모델 예시: ${parsed.first.userChoiceTeamId}, ${parsed.first.predictionStatus}");
-    state = UserPredictionModel(parsed);
-  }
-
-  /// 5. 서버에 예측 저장 후, 최신 예측 상태를 재요청하여 상태 갱신
-  Future<void> submitPredictions() async {
-    final jsonList = toJsonList();
-
-    Logger().i("서버 전송 직전 JSON: $jsonList");
-
-    if (jsonList.isEmpty) {
-      ScaffoldMessenger.of(mContext!).showSnackBar(
-        const SnackBar(content: Text("예측할 팀을 선택해주세요.")),
-      );
+      _showSnack("유저 예측 데이터 조회 실패 : ${data["msg"]}");
       return;
     }
 
-    /// 5-1. 서버에 JSON 전송
-    final response = await GameCenterRepository().sendPrediction(jsonList);
+    final games = (data["body"] as List)
+        .map((e) => UserPredictionGame.fromMap(e))
+        .toList();
 
-    Logger().i("예측 저장 응답: $response");
+    final allPredicted = games.every((g) => g.userChoiceTeamId != null);
+
+    state = allPredicted ? AfterPrediction(games) : BeforePrediction(games);
+    isSubmitted = allPredicted;
+
+    Logger().d("초기 상태: ${isSubmitted ? 'After' : 'Before'}");
+  }
+
+  Future<void> submitPredictions(List<Map<String, dynamic>> predictions) async {
+    if (predictions.isEmpty) {
+      _showSnack("예측할 팀을 선택해주세요.");
+      return;
+    }
+
+    final response = await GameCenterRepository().sendPrediction(predictions);
+    Logger().d("예측 저장 응답: $response");
 
     if (response["status"] != 200) {
-      ScaffoldMessenger.of(mContext!).showSnackBar(
-        SnackBar(content: Text("예측 저장 실패 : ${response["msg"]}")),
-      );
+      _showSnack("예측 저장 실패 : ${response["msg"]}");
       return;
     }
 
-    /// 5-2. 예측 상태를 다시 받아옴
-    final result = await GameCenterRepository().getMyPrediction();
-
-    Logger().i("예측 결과 재조회 응답: $result");
+    final result = await GameCenterRepository().getAfterPredictionList();
+    Logger().d("예측 결과 재조회 응답: $result");
 
     if (result["status"] != 200) {
-      ScaffoldMessenger.of(mContext!).showSnackBar(
-        SnackBar(content: Text("예측 결과 갱신 실패 : ${result["msg"]}")),
-      );
+      _showSnack("예측 결과 갱신 실패 : ${result["msg"]}");
       return;
     }
-    setPredictionData(result["body"]);
+
+    final games = (result["body"] as List)
+        .map((e) => UserPredictionGame.fromMap(e))
+        .toList();
+
+    state = AfterPrediction(games);
     isSubmitted = true;
 
-    Logger().i("상태 반영 완료!");
-
-    ScaffoldMessenger.of(mContext!).showSnackBar(
-      const SnackBar(content: Text("예측이 완료되었습니다.")),
-    );
+    _showSnack("예측이 완료되었습니다.");
   }
 
-  /// 6. 경기후 내가 선택한 예측상태 반영
-  Future<void> getAfterGamePrediction() async {
-    final response = await GameCenterRepository().getMyPredictionTest();
-
-    if (response["status"] != 200) {
-      ScaffoldMessenger.of(mContext!).showSnackBar(
-        SnackBar(content: Text("예측 결과 불러오기 실패: ${response["msg"]}")),
-      );
-    } else {
-      setPredictionData(response["body"]);
-      isSubmitted = true; //  실제 예측 결과 받았으니 비활성화
-    }
+  void _showSnack(String msg) {
+    ScaffoldMessenger.of(mContext).showSnackBar(SnackBar(content: Text(msg)));
   }
 }
 
+/// 상태 타입
+sealed class UserPredictionState {}
+
+class BeforePrediction extends UserPredictionState {
+  final List<UserPredictionGame> games;
+
+  BeforePrediction(this.games);
+}
+
+class AfterPrediction extends UserPredictionState {
+  final List<UserPredictionGame> games;
+
+  AfterPrediction(this.games);
+}
+
+/// 공통 게임 모델
 class UserPredictionGame {
   final Game game;
   final int? userChoiceTeamId;
@@ -141,8 +112,8 @@ class UserPredictionGame {
 
   UserPredictionGame({
     required this.game,
-    required this.userChoiceTeamId,
-    required this.predictionStatus,
+    this.userChoiceTeamId,
+    this.predictionStatus,
     required this.homeVoteRate,
     required this.awayVoteRate,
   });
@@ -151,27 +122,9 @@ class UserPredictionGame {
     return UserPredictionGame(
       game: Game.fromMap(map),
       userChoiceTeamId: map['userChoiceTeamId'],
-      predictionStatus: map['predictionStatus'],
-      homeVoteRate: (map['homeVoteRate'] as num).toDouble(),
-      awayVoteRate: (map['awayVoteRate'] as num).toDouble(),
+      predictionStatus: map['predictionStatus'] ?? '',
+      homeVoteRate: (map['homeVoteRate'] ?? 0).toDouble(),
+      awayVoteRate: (map['awayVoteRate'] ?? 0).toDouble(),
     );
-  }
-}
-
-/// 3. 창고 데이터 타입 (불변 아님)
-class UserPredictionModel {
-  List<UserPredictionGame> games;
-
-  UserPredictionModel(this.games);
-
-  factory UserPredictionModel.fromList(List<dynamic> list) {
-    return UserPredictionModel(
-      list.map((e) => UserPredictionGame.fromMap(e as Map<String, dynamic>)).toList(),
-    );
-  }
-
-  @override
-  String toString() {
-    return 'UserPredictionModel{games: $games}';
   }
 }

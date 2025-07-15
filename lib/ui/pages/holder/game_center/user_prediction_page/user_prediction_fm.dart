@@ -1,54 +1,67 @@
-import 'package:ballkkaye_frontend/data/model/game.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/user_prediction_vm.dart';
+// user_prediction_fm.dart
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
-/// 1. 창고 관리자
-final userPredictionFProvider = NotifierProvider<UserPredictionFM, List<UserPredictionFModel>>(
+/// 창고 관리자
+final userPredictionFProvider =
+    NotifierProvider<UserPredictionFM, List<UserPredictionFModel>>(
   () => UserPredictionFM(),
 );
 
-/// 2. 창고 (상태가 변경되어도, 화면 갱신 안함 - watch 하지마)
+/// 창고 (사용자 선택한 예측 리스트를 관리)
 class UserPredictionFM extends Notifier<List<UserPredictionFModel>> {
   @override
   List<UserPredictionFModel> build() => [];
 
+  /// 팀 선택 시 호출되는 메서드
   void selectTeam(int gameId, int userChoiceTeamId) {
-    print("✅ FM: selectTeam 호출됨 - gameId: $gameId, teamId: $userChoiceTeamId");
+    Logger()
+        .d("✅ [FM] selectTeam 호출 - gameId: $gameId, teamId: $userChoiceTeamId");
     final index = state.indexWhere((e) => e.gameId == gameId);
 
     if (index != -1) {
-      Logger().d("🔁 [FM] 기존 예측 수정됨 | index: $index");
+      // 기존 선택 수정
       state = [
         ...state.sublist(0, index),
         state[index].copyWith(userChoiceTeamId: userChoiceTeamId),
         ...state.sublist(index + 1),
       ];
+      Logger().d("🔁 [FM] 예측 수정됨 | index: $index");
     } else {
-      Logger().i("➕ [FM] 새 예측 추가됨");
+      // 새 선택 추가
       state = [
         ...state,
-        UserPredictionFModel(gameId: gameId, userChoiceTeamId: userChoiceTeamId),
+        UserPredictionFModel(
+            gameId: gameId, userChoiceTeamId: userChoiceTeamId),
       ];
+      Logger().d("➕ [FM] 예측 추가됨");
     }
-    Logger().i("📌 [FM] 예측 선택됨: $state");
+
+    Logger().d("📌 [FM] 현재 예측 리스트: $state");
   }
 
+  /// 서버 전송용 Map 리스트로 변환
   List<Map<String, dynamic>> toMapList() {
     return state.map((f) => f.toMap()).toList();
   }
 
-  /// VM에 넘길 수 있는 UserPredictionGame 리스트로 변환
-  List<UserPredictionGame> toGameList(List<Game> allGames) {
-    return state.map((fm) {
-      final game = allGames.firstWhere((g) => g.id == fm.gameId);
-
-      return UserPredictionGame(
-          game: game, userChoiceTeamId: fm.userChoiceTeamId, awayVoteRate: 50, homeVoteRate: 50, predictionStatus: '');
-    }).toList();
-  }
+  // /// 필요 시 VM로 넘기기 위한 변환 메서드 (예측 결과 X)
+  // List<UserPredictionGame> toGameList(List<Game> allGames) {
+  //   return state.map((fm) {
+  //     final game = allGames.firstWhere((g) => g.id == fm.gameId);
+  //     return UserPredictionGame(
+  //       game: game,
+  //       userChoiceTeamId: fm.userChoiceTeamId,
+  //       homeVoteRate: 50,
+  //       awayVoteRate: 50,
+  //       predictionStatus: '',
+  //     );
+  //   }).toList();
+  // }
 }
 
+/// 유저 예측 모델 (단일 게임)
 class UserPredictionFModel {
   final int gameId;
   final int userChoiceTeamId;
@@ -65,10 +78,6 @@ class UserPredictionFModel {
     };
   }
 
-  static List<Map<String, dynamic>> toMapList(List<UserPredictionFModel> list) {
-    return list.map((f) => f.toMap()).toList();
-  }
-
   UserPredictionFModel copyWith({
     int? gameId,
     int? userChoiceTeamId,
@@ -81,6 +90,6 @@ class UserPredictionFModel {
 
   @override
   String toString() {
-    return 'UserPredictionModel(gameId: $gameId, userChoiceTeamId: $userChoiceTeamId)';
+    return 'UserPredictionFModel(gameId: $gameId, userChoiceTeamId: $userChoiceTeamId)';
   }
 }
