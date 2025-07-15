@@ -7,6 +7,7 @@ import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/visit_
 import 'package:ballkkaye_frontend/ui/widgets/m_more_option_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 
 class VisitRecordDetailPage extends ConsumerWidget {
   final int visitRecordId;
@@ -45,6 +46,7 @@ class VisitRecordDetailPage extends ConsumerWidget {
           alertTitle: '직관 기록 삭제',
           alertContent: '직관 기록을 삭제하시겠습니까?',
           onAlertConfirm: () async {
+            Logger().d("🧨 삭제 요청 ID: $visitRecordId");
             final body = await VisitRecordRepository().deleteOne(visitRecordId);
             if (body["status"] != 200) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -52,9 +54,7 @@ class VisitRecordDetailPage extends ConsumerWidget {
               );
               return;
             }
-            ref
-                .read(visitRecordListProvider.notifier)
-                .notifyDeleteOne(visitRecordId);
+            ref.read(visitRecordListProvider.notifier).notifyDeleteOne(visitRecordId);
             Navigator.pop(context);
           },
           // 다이얼로그 닫힌 뒤 동작

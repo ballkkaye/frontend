@@ -7,21 +7,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
-final visitRecordListProvider =
-    AutoDisposeNotifierProvider<VisitRecordListVM, List<VisitRecordListModel>?>(
+final visitRecordListProvider = AutoDisposeNotifierProvider<VisitRecordListVM, List<VisitRecordListModel>?>(
   VisitRecordListVM.new,
 );
 
-class VisitRecordListVM
-    extends AutoDisposeNotifier<List<VisitRecordListModel>?> {
+class VisitRecordListVM extends AutoDisposeNotifier<List<VisitRecordListModel>?> {
   final mContext = navigatorKey.currentContext!;
 
   @override
   List<VisitRecordListModel>? build() => null;
 
   Future<void> loadMonth({required int year, required int month}) async {
-    final body = await VisitRecordRepository()
-        .getMonthGameList(year: year, month: month);
+    Logger().d("🟡 loadMonth 호출됨 → year=$year, month=$month");
+    final body = await VisitRecordRepository().getMonthGameList(year: year, month: month);
+    Logger().d("📦 loadMonth 응답 body: $body");
     if (body["status"] != 200) {
       ScaffoldMessenger.of(mContext).showSnackBar(
         SnackBar(content: Text("월별 조회 실패: ${body['errorMessage']}")),
@@ -37,7 +36,7 @@ class VisitRecordListVM
 
   Future<void> loadDay(String date) async {
     state = null;
-    final body = await VisitRecordRepository().getDayGameList(date);
+    final body = await VisitRecordRepository().getDayGameList(date: date);
     if (body["status"] != 200) {
       ScaffoldMessenger.of(mContext).showSnackBar(
         SnackBar(content: Text("일별 조회 실패: ${body['errorMessage']}")),
@@ -80,17 +79,14 @@ class VisitRecordListVM
     Navigator.push(
       mContext,
       MaterialPageRoute(
-        builder: (context) =>
-            VisitRecordDetailPage(visitRecordId: newRecord.id!),
+        builder: (context) => VisitRecordDetailPage(visitRecordId: newRecord.id!),
       ),
     );
   }
 
   void notifyDeleteOne(int visitRecordId) {
     if (state == null) return;
-    final updatedList = state!
-        .where((record) => record.id != null && record.id != visitRecordId)
-        .toList();
+    final updatedList = state!.where((record) => record.id != null && record.id != visitRecordId).toList();
     state = updatedList;
   }
 }

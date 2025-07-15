@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final visitRecordWriteProvider =
-    NotifierProvider<VisitRecordWriteFM, VisitRecordWriteModel>(() {
+final visitRecordWriteProvider = NotifierProvider<VisitRecordWriteFM, VisitRecordWriteModel>(() {
   return VisitRecordWriteFM();
 });
 
@@ -9,6 +8,12 @@ class VisitRecordWriteFM extends Notifier<VisitRecordWriteModel> {
   @override
   VisitRecordWriteModel build() {
     return VisitRecordWriteModel(0, 0, "", "", "");
+  }
+
+  void initTeamId(int teamId) {
+    if (state.teamId == 0) {
+      state = state.copyWith(teamId: teamId);
+    }
   }
 
   void gameId(int gameId) {
