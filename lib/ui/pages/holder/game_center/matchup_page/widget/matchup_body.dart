@@ -8,13 +8,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MatchupBody extends ConsumerWidget {
+  final int gameId;
+  final int teamId;
+
   const MatchupBody({
     super.key,
+    required this.gameId,
+    required this.teamId,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final model = ref.watch(matchupProvider(MatchupParam(gameId: 423, teamId: 2)));
+    final model = ref.watch(matchupProvider(MatchupParam(gameId: gameId, teamId: teamId)));
 
     if (model == null) {
       return const Center(child: CircularProgressIndicator());

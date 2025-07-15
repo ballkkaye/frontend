@@ -1,7 +1,7 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:flutter/material.dart';
 
-enum GameStatus { scheduled, ongoing, finished }
+enum GameStatus { scheduled, ongoing, completed }
 
 extension GameStatusExtension on GameStatus {
   String get label {
@@ -10,7 +10,7 @@ extension GameStatusExtension on GameStatus {
         return '경기 예정';
       case GameStatus.ongoing:
         return '경기중';
-      case GameStatus.finished:
+      case GameStatus.completed:
         return '경기종료';
     }
   }
@@ -21,7 +21,7 @@ extension GameStatusExtension on GameStatus {
         return MColor.kStatus.cautionary;
       case GameStatus.ongoing:
         return MColor.kStatus.positive;
-      case GameStatus.finished:
+      case GameStatus.completed:
         return MColor.kStatus.negative;
     }
   }
@@ -31,7 +31,8 @@ extension GameStatusExtension on GameStatus {
       case 'ONGOING':
         return GameStatus.ongoing;
       case 'FINISHED':
-        return GameStatus.finished;
+      case 'COMPLETED':
+        return GameStatus.completed;
       case 'SCHEDULED':
       default:
         return GameStatus.scheduled;

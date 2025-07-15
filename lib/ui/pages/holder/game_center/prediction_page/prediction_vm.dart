@@ -42,7 +42,9 @@ class PredictionVM extends AutoDisposeNotifier<PredictionModel?> {
 
 class PredictionGame {
   final Game game;
+  final int? homeTeamId;
   final String? homeTeamName;
+  final int? awayTeamId;
   final String? awayTeamName;
   final String? homePitcherProfileUrl;
   final String? awayPitcherProfileUrl;
@@ -54,7 +56,9 @@ class PredictionGame {
 
   PredictionGame({
     required this.game,
+    this.homeTeamId,
     this.homeTeamName,
+    this.awayTeamId,
     this.awayTeamName,
     this.homePitcherProfileUrl,
     this.awayPitcherProfileUrl,
@@ -68,7 +72,9 @@ class PredictionGame {
   factory PredictionGame.fromMap(Map<String, dynamic> data) {
     return PredictionGame(
       game: Game.fromMap(data),
+      homeTeamId: data['homeTeamId'],
       homeTeamName: data['homeTeamName'],
+      awayTeamId: data['awayTeamId'],
       awayTeamName: data['awayTeamName'],
       homePitcherProfileUrl: data['homePitcherProfileUrl'],
       awayPitcherProfileUrl: data['awayPitcherProfileUrl'],

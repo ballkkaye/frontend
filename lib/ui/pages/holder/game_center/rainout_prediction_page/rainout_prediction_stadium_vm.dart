@@ -4,30 +4,29 @@ import 'package:ballkkaye_frontend/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final rainoutPredictionStadiumProvider = AutoDisposeNotifierProvider.family<
-    RainoutPredictionStadiumVM, RainoutPredictionStadiumModel?, int>(() {
+final rainoutPredictionStadiumProvider =
+    AutoDisposeNotifierProvider<RainoutPredictionStadiumVM, RainoutPredictionStadiumModel?>(() {
   return RainoutPredictionStadiumVM();
 });
 
-class RainoutPredictionStadiumVM
-    extends AutoDisposeFamilyNotifier<RainoutPredictionStadiumModel?, int> {
+class RainoutPredictionStadiumVM extends AutoDisposeNotifier<RainoutPredictionStadiumModel?> {
   final mContext = navigatorKey.currentContext!;
 
   @override
-  RainoutPredictionStadiumModel? build(int stadiumId) {
-    loadStadiumList(stadiumId);
+  RainoutPredictionStadiumModel? build() {
+    init();
     return null;
   }
 
-  Future<void> loadStadiumList(int stadiumId) async {
-    Map<String, dynamic> body = await GameCenterRepository().getStadiumList(stadiumId);
+  Future<void> init() async {
+    Map<String, dynamic> body = await GameCenterRepository().getStadiumList();
     if (body["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
         SnackBar(content: Text("경기장 조회 실패 : ${body["msg"]}")),
       );
       return;
     }
-    state = RainoutPredictionStadiumModel.fromMap(body["body"]);
+    state = RainoutPredictionStadiumModel.fromList(body["body"]);
   }
 }
 
@@ -36,9 +35,9 @@ class RainoutPredictionStadiumModel {
 
   RainoutPredictionStadiumModel(this.stadiums);
 
-  factory RainoutPredictionStadiumModel.fromMap(Map<String, dynamic> data) {
+  factory RainoutPredictionStadiumModel.fromList(List<dynamic> data) {
     return RainoutPredictionStadiumModel(
-      (data['stadiumItems'] as List<dynamic>).map((e) => Stadium.fromMap(e)).toList(),
+      data.map((e) => Stadium.fromMap(e)).toList(),
     );
   }
 

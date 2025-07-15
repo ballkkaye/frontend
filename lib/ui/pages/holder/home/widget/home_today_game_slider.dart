@@ -38,7 +38,7 @@ class _HomeTodayGameSliderState extends State<HomeTodayGameSlider> {
                 });
               },
             ),
-            items:  widget.games.map((game) {
+            items: widget.games.map((game) {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: HomeTodayGameCard(
@@ -49,6 +49,8 @@ class _HomeTodayGameSliderState extends State<HomeTodayGameSlider> {
                   leftPitcher: game.homePitcherName,
                   rightPitcher: game.awayPitcherName,
                   ticketUrl: game.ticketLink,
+                  leftPhotoUrl: game.homeTeam.teamLogo,
+                  rightPhotoUrl: game.awayTeam.teamLogo,
                 ),
               );
             }).toList(),
