@@ -21,15 +21,15 @@ class RankingTable extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: Table(
         columnWidths: const {
-          0: FixedColumnWidth(26),
+          0: FixedColumnWidth(32),
           1: FlexColumnWidth(),
-          2: FlexColumnWidth(),
-          3: FixedColumnWidth(24),
-          4: FixedColumnWidth(24),
-          5: FixedColumnWidth(24),
+          2: FixedColumnWidth(28),
+          3: FixedColumnWidth(28),
+          4: FixedColumnWidth(28),
+          5: FixedColumnWidth(28),
           6: FixedColumnWidth(42),
-          7: FixedColumnWidth(32),
-          8: FixedColumnWidth(66),
+          7: FixedColumnWidth(34),
+          8: FixedColumnWidth(68),
           9: FlexColumnWidth(),
         },
         children: [
