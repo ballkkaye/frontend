@@ -1,7 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/game_center/matchup_page/matchup_page.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/prediction_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/widget/prediction_bar_graph_title.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/widget/prediction_graph_value.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/widget/prediction_player_image.dart';
@@ -98,8 +96,7 @@ class HomePredictionCard extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (_) => MatchupPage(
-                                        teamId: predictionGame.homeTeamId!,
-                                        gameId: predictionGame.game.id!)),
+                                        teamId: predictionGame.homeTeamId!, gameId: predictionGame.game.id!)),
                               );
                             },
                             style: OutlinedButton.styleFrom(
@@ -199,8 +196,7 @@ class HomePredictionCard extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (_) => MatchupPage(
-                                        teamId: predictionGame.awayTeamId!,
-                                        gameId: predictionGame.game.id!)),
+                                        teamId: predictionGame.awayTeamId!, gameId: predictionGame.game.id!)),
                               );
                             },
                             style: OutlinedButton.styleFrom(
