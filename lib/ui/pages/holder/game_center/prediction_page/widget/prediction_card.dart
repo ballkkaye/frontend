@@ -68,7 +68,6 @@ class PredictionCard extends StatelessWidget {
                                     color: MColor.kBackground.normal,
                                     borderRadius: BorderRadius.circular(8),
                                   ),
-                                  // TODO: 나중에 통신 연결 시 null자리에 imageUrl
                                   child: PredictionPlayerImage(predictionGame.homePitcherProfileUrl),
                                 ),
                               ),
@@ -144,7 +143,6 @@ class PredictionCard extends StatelessWidget {
                                     color: MColor.kBackground.normal,
                                     borderRadius: BorderRadius.circular(8),
                                   ),
-                                  // TODO: 나중에 통신 연결 시 null자리에 imageUrl
                                   child: PredictionPlayerImage(predictionGame.awayPitcherProfileUrl),
                                 ),
                               ),
