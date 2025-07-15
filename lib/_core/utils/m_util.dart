@@ -49,3 +49,11 @@ String extractYearMonth(String fullDate) {
   final dt = DateTime.parse(fullDate);
   return '${dt.year.toString().padLeft(4, '0')}-${dt.month.toString().padLeft(2, '0')}';
 }
+
+/// 팀 이름 공백 직전까지 기준으로 파싱
+String shortenTeamName(String name) {
+  if (name.contains(' ')) {
+    return name.split(' ').first;
+  }
+  return name;
+}
