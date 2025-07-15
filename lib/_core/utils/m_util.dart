@@ -50,10 +50,27 @@ String extractYearMonth(String fullDate) {
   return '${dt.year.toString().padLeft(4, '0')}-${dt.month.toString().padLeft(2, '0')}';
 }
 
+/// 문자열로 된 시간("HH:mm")을 파싱하여 시간(hour)과 분(minute)을 Map으로 반환
+Map<String, int> parseHourMinute(String? timeStr) {
+  if (timeStr == null || !timeStr.contains(":")) {
+    return {"hour": 0, "minute": 0};
+  }
+  final parts = timeStr.split(":");
+  return {
+    "hour": int.tryParse(parts[0]) ?? 0,
+    "minute": int.tryParse(parts[1]) ?? 0,
+  };
+}
+
+/// 시간(hour)과 분(minute)을 두 자릿수 문자열로 포맷팅하여 "HH:mm" 형태의 문자열로 반환
+String formatTime(int hour, int minute) {
+  final h = hour.toString().padLeft(2, '0');
+  final m = minute.toString().padLeft(2, '0');
+  return "$h:$m";
+  
 /// 팀 이름 공백 직전까지 기준으로 파싱
 String shortenTeamName(String name) {
   if (name.contains(' ')) {
     return name.split(' ').first;
   }
   return name;
-}

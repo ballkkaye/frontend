@@ -9,9 +9,7 @@ import 'package:flutter/material.dart';
 class HomePredictionCard extends StatelessWidget {
   final PredictionGame predictionGame;
 
-  const HomePredictionCard({
-    super.key,
-    required this.predictionGame});
+  const HomePredictionCard({super.key, required this.predictionGame});
 
   @override
   Widget build(BuildContext context) {
@@ -77,11 +75,10 @@ class HomePredictionCard extends StatelessWidget {
                               aspectRatio: 5 / 7,
                               child: Container(
                                 decoration: BoxDecoration(
-                                  color: MColor.kFill.normal,
+                                  color: MColor.kBackground.normal,
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                // TODO: 나중에 통신 연결 시 null자리에 imageUrl
-                                child: PredictionPlayerImage(null),
+                                child: PredictionPlayerImage(predictionGame.homePitcherProfileUrl),
                               ),
                             ),
                           ),
@@ -146,7 +143,7 @@ class HomePredictionCard extends StatelessWidget {
                                 vertical: 2,
                               ),
                               child: MText.label2_7(
-                                predictionGame.awayTeamName ?? '' ,
+                                predictionGame.awayTeamName ?? '',
                                 color: MColor.kLabel.white,
                               ),
                             ),
@@ -154,7 +151,7 @@ class HomePredictionCard extends StatelessWidget {
                           SizedBox(width: 2),
                           // 선수명
                           Text(
-                            predictionGame.game.awayPitcherName ?? '' ,
+                            predictionGame.game.awayPitcherName ?? '',
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
@@ -173,11 +170,10 @@ class HomePredictionCard extends StatelessWidget {
                               aspectRatio: 5 / 7,
                               child: Container(
                                 decoration: BoxDecoration(
-                                  color: MColor.kFill.normal,
+                                  color: MColor.kBackground.normal,
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                // TODO: 나중에 통신 연결 시 null자리에 imageUrl
-                                child: PredictionPlayerImage(null),
+                                child: PredictionPlayerImage(predictionGame.awayPitcherProfileUrl),
                               ),
                             ),
                           ),
@@ -227,7 +223,8 @@ class HomePredictionCard extends StatelessWidget {
                       totalScoreValue: predictionGame.totalPredictionScore,
                     ),
                     SizedBox(height: 6),
-                    PredictionGraphValue(leftScore: predictionGame.homePredictionScore ?? 0,
+                    PredictionGraphValue(
+                        leftScore: predictionGame.homePredictionScore ?? 0,
                         rightScore: predictionGame.awayPredictionScore ?? 0),
                   ],
                 ),
@@ -239,8 +236,8 @@ class HomePredictionCard extends StatelessWidget {
                       showTotalLabel: false,
                     ),
                     SizedBox(height: 6),
-                    PredictionGraphValue(leftScore: predictionGame.homeWinPercent ?? 0,
-                        rightScore: predictionGame.awayWinPercent ?? 0),
+                    PredictionGraphValue(
+                        leftScore: predictionGame.homeWinPercent ?? 0, rightScore: predictionGame.awayWinPercent ?? 0),
                   ],
                 ),
               ],

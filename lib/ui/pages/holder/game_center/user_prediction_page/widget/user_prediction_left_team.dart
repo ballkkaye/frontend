@@ -1,26 +1,31 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
-import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
 class UserPredictionLeftTeam extends StatelessWidget {
   final String teamName;
   final int score;
+  final bool isSelected;
+  final VoidCallback? onTap;
+  final String teamLogo;
 
   const UserPredictionLeftTeam({
     super.key,
     required this.teamName,
     required this.score,
+    required this.isSelected,
+    required this.onTap,
+    required this.teamLogo,
   });
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: GestureDetector(
-        //TODO 클릭 시 상태 저장하는 추가 작업, 배경색 변경 필요 (stateful)
-        onTap: () {},
+        onTap: onTap,
         child: Container(
           decoration: BoxDecoration(
+            color: isSelected ? MColor.kBackground.alternative : MColor.kBackground.normal,
             border: Border(
               right: BorderSide(
                 color: MColor.kLine.normal,
@@ -41,9 +46,18 @@ class UserPredictionLeftTeam extends StatelessWidget {
                         width: 60,
                         height: 60,
                         color: MColor.kFill.normal,
-                        child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: MIcon.page.userPrediction.image,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.network(
+                            teamLogo,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Image.asset(
+                                'assets/images/lotte_emblem_sample.png',
+                                fit: BoxFit.cover,
+                              );
+                            },
+                          ),
                         ),
                       ),
                     ),
