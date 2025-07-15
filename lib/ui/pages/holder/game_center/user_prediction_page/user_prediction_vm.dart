@@ -29,7 +29,7 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
     return null;
   }
 
-  /// 1. 최초 진입 시 데이터 불러오기
+  /// 1. 앱 최초 진입 시 서버에서 예측 데이터 불러오기
   Future<void> init() async {
     Map<String, dynamic> data = await GameCenterRepository().getUserPrediction();
     if (data["status"] != 200) {
@@ -41,10 +41,12 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
     state = UserPredictionModel.fromList(data["body"]);
   }
 
+  /// 2. 사용자가 선택한 예측 데이터를 상태에 반영
   void setPredictions(List<UserPredictionGame> predictions) {
     state = UserPredictionModel(predictions);
   }
 
+  /// 3. 상태에서 서버 전송용 JSON 리스트 생성
   List<Map<String, dynamic>> toJsonList() {
     Logger().i("📦 [toJsonList] 총 게임 수: ${state!.games.length}");
     for (var g in state!.games) {
@@ -60,7 +62,16 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
         [];
   }
 
-  /// 4. 예측 저장 후 최신 데이터 다시 받아서 상태 갱신
+  /// 4. 서버에서 받아온 최신 예측 데이터를 상태에 반영
+  void setPredictionData(List<dynamic> data) {
+    Logger().i("setPredictionData 호출됨. data 길이: ${data.length}");
+    final parsed = data.map((e) => UserPredictionGame.fromMap(e)).toList();
+
+    Logger().i("파싱된 모델 예시: ${parsed.first.userChoiceTeamId}, ${parsed.first.predictionStatus}");
+    state = UserPredictionModel(parsed);
+  }
+
+  /// 5. 서버에 예측 저장 후, 최신 예측 상태를 재요청하여 상태 갱신
   Future<void> submitPredictions() async {
     final jsonList = toJsonList();
 
@@ -73,7 +84,7 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
       return;
     }
 
-    // 1단계: 서버에 JSON 전송
+    /// 5-1. 서버에 JSON 전송
     final response = await GameCenterRepository().sendPrediction(jsonList);
 
     Logger().i("예측 저장 응답: $response");
@@ -85,7 +96,7 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
       return;
     }
 
-    // 2단계: 예측 상태를 다시 받아옴
+    /// 5-2. 예측 상태를 다시 받아옴
     final result = await GameCenterRepository().getMyPrediction();
 
     Logger().i("예측 결과 재조회 응답: $result");
@@ -106,15 +117,6 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
     );
   }
 
-  /// 5. 서버에서 받아온 최신 상태 반영
-  void setPredictionData(List<dynamic> data) {
-    Logger().i("setPredictionData 호출됨. data 길이: ${data.length}");
-    final parsed = data.map((e) => UserPredictionGame.fromMap(e)).toList();
-
-    Logger().i("파싱된 모델 예시: ${parsed.first.userChoiceTeamId}, ${parsed.first.predictionStatus}");
-    state = UserPredictionModel(parsed);
-  }
-
   /// 6. 경기후 내가 선택한 예측상태 반영
   Future<void> getAfterGamePrediction() async {
     final response = await GameCenterRepository().getMyPredictionTest();
@@ -128,21 +130,6 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
       isSubmitted = true; //  실제 예측 결과 받았으니 비활성화
     }
   }
-
-  /// 7. 선택 초기화 (선택 해제용) 다음날 새로 팀 새로 선택해야하는경우에 사용
-// void clearSelections() {
-//   final clearedGames = state!.games.map((g) {
-//     return UserPredictionGame(
-//       game: g.game,
-//       userChoiceTeamId: null,
-//       predictionStatus: g.predictionStatus,
-//       homeVoteRate: g.homeVoteRate,
-//       awayVoteRate: g.awayVoteRate,
-//     );
-//   }).toList();
-//
-//   state = UserPredictionModel(clearedGames);
-//
 }
 
 class UserPredictionGame {

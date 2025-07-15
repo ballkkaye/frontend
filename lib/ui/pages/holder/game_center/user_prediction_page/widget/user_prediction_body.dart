@@ -52,10 +52,10 @@ class UserPredictionBody extends ConsumerWidget {
                       return;
                     }
 
-                    // 💾 예측 데이터 상태에 반영
+                    // 💾 현재 예측 상태 로컬에 저장
                     vm.setPredictions(predictions);
 
-                    // 🔄 서버 전송
+                    // 🔄 서버에 예측 전송 → 상태 갱신
                     vm.submitPredictions().then((_) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('예측이 완료되었습니다.')),
