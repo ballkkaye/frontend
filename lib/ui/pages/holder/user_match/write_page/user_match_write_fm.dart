@@ -7,7 +7,7 @@ final userMatchWriteProvider = NotifierProvider<UserMatchWriteFM, UserMatchWrite
 class UserMatchWriteFM extends Notifier<UserMatchWriteModel> {
   @override
   UserMatchWriteModel build() {
-    return UserMatchWriteModel(0, 0, 0, "", "", "", "", true);
+    return UserMatchWriteModel(0, 0, 0, "", "", "", "", false);
   }
 
   void gameId(int gameId) {

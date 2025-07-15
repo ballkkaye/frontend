@@ -42,7 +42,7 @@ class UserMatch {
   UserMatch.fromMap(Map<String, dynamic> data)
       : matchId = data['matchId'] ?? data['id'],
         isOwner = data['isOwner'],
-        relativeTime = data['relativeTime'] ?? '방금 전',
+        relativeTime = data['relativeTime'] ?? '방금',
         likeCount = data['likeCount'],
         isLike = data['isLike'],
         game = Game(
@@ -53,7 +53,7 @@ class UserMatch {
         ),
         user = User(
           nickname: data['userNickname'],
-          teamName: data['userTeamName'],
+          teamName: data['userTeamName'] ?? '',
           profileUrl: data['userProfileUrl'],
         ),
         title = data['title'],
@@ -75,7 +75,7 @@ class UserMatch {
         gender = data['chatRoom']['preferredGender'],
         age = data['chatRoom']['preferredAge'],
         teamName = data['chatRoom']['preferredTeamName'],
-        participationInfo =  "1/${data['chatRoom']['maxParticipants']}",
+        participationInfo = "1/${data['chatRoom']['maxParticipants']}",
         chatRoomId = data['match']['chatRoomId'],
         teamId = null,
         isOwner = null,
