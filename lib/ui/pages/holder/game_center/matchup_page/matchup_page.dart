@@ -4,13 +4,20 @@ import 'package:ballkkaye_frontend/ui/pages/holder/game_center/matchup_page/widg
 import 'package:flutter/material.dart';
 
 class MatchupPage extends StatelessWidget {
-  const MatchupPage({super.key});
+  final int gameId;
+  final int teamId;
+
+  const MatchupPage({
+    super.key,
+    required this.gameId,
+    required this.teamId,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appbar(),
-      body: MatchupBody(),
+      body: MatchupBody(gameId: gameId, teamId: teamId),
     );
   }
 
