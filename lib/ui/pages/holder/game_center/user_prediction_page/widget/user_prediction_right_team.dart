@@ -1,5 +1,4 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
-import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +7,7 @@ class UserPredictionRightTeam extends StatelessWidget {
   final int score;
   final bool isSelected;
   final VoidCallback? onTap;
+  final String teamLogo;
 
   const UserPredictionRightTeam({
     super.key,
@@ -15,6 +15,7 @@ class UserPredictionRightTeam extends StatelessWidget {
     required this.score,
     required this.isSelected,
     required this.onTap,
+    required this.teamLogo,
   });
 
   @override
@@ -51,9 +52,15 @@ class UserPredictionRightTeam extends StatelessWidget {
                         width: 60,
                         height: 60,
                         color: MColor.kFill.normal,
-                        child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: MIcon.page.userPrediction.image,
+                        child: Image.network(
+                          teamLogo,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Image.asset(
+                              'assets/images/lotte_emblem_sample.png',
+                              fit: BoxFit.cover,
+                            );
+                          },
                         ),
                       ),
                     ),
