@@ -14,9 +14,18 @@ class UserPredictionGraphGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isLeftHigher = leftPercent >= rightPercent;
+    final bool isTie = leftPercent == rightPercent;
+    final bool isLeftHigher = !isTie && (leftPercent > rightPercent);
+    final bool isRightHigher = !isTie && (rightPercent > leftPercent);
+
     double total = leftPercent + rightPercent;
-    double barPercent = (isLeftHigher ? leftPercent : rightPercent) / total;
+    double barPercent;
+
+    if (total == 0) {
+      barPercent = 0.0;
+    } else {
+      barPercent = (isLeftHigher || isTie) ? leftPercent / total : rightPercent / total;
+    }
 
     return Row(
       children: [
@@ -25,23 +34,21 @@ class UserPredictionGraphGroup extends StatelessWidget {
           '${leftPercent.toInt()}%',
           style: TextStyle(
             fontSize: 12,
-            fontWeight: isLeftHigher ? FontWeight.w600 : FontWeight.w400,
-            color:
-                isLeftHigher ? MColor.kLabel.normal : MColor.kLabel.alternative,
+            fontWeight: (isTie || isLeftHigher) ? FontWeight.w600 : FontWeight.w400,
+            color: (isTie || isLeftHigher) ? MColor.kLabel.normal : MColor.kLabel.alternative,
           ),
         ),
-        SizedBox(width: 8),
+        const SizedBox(width: 8),
         // Bar
         UserPredictionGraph(isLeftHigher: isLeftHigher, barPercent: barPercent),
-        SizedBox(width: 8),
+        const SizedBox(width: 8),
         // Right Text
         Text(
           '${rightPercent.toInt()}%',
           style: TextStyle(
             fontSize: 12,
-            fontWeight: isLeftHigher ? FontWeight.w400 : FontWeight.w600,
-            color:
-                isLeftHigher ? MColor.kLabel.alternative : MColor.kLabel.normal,
+            fontWeight: (isTie || isRightHigher) ? FontWeight.w600 : FontWeight.w400,
+            color: (isTie || isRightHigher) ? MColor.kLabel.normal : MColor.kLabel.alternative,
           ),
         ),
       ],

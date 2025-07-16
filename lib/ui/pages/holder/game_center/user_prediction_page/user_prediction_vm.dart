@@ -14,7 +14,7 @@ final userPredictionProvider =
   return UserPredictionVM();
 });
 
-/// 2. 창고 (상태가 변경되어도, 화면 갱신 안함 - watch 하지마)
+/// 2. 창고
 class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
   final mContext = navigatorKey.currentContext!;
   final refreshCtrl = RefreshController();
@@ -37,30 +37,29 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
   Future<void> init() async {
     Map<String, dynamic> beforeData = await GameCenterRepository().getBeforeUserPrediction();
 
-    if (beforeData["status"] == 200) {
+    if ((beforeData["status"] == 200 &&
+        beforeData["body"] != null &&
+        beforeData["body"].isNotEmpty)) {
       // getUserPrediction 성공 시
       state = UserPredictionModel.fromList(beforeData["body"]);
     } else {
-      // getUserPrediction 실패 시, getMyPrediction 시도
-      ScaffoldMessenger.of(mContext).showSnackBar(
-        SnackBar(content: Text("유저 승리 예측 진입 실패: ${beforeData["msg"]}. 나의 승리 예측 조회 시도.")),
-      );
+      // getBeforeUserPrediction 실패 시, getAfterUserPrediction 시도
+      Logger().d("유저 승리 예측 진입 실패: ${beforeData["msg"]}. 나의 승리 예측 조회 시도.");
       Map<String, dynamic> afterData = await GameCenterRepository().getAfterUserPrediction();
       if (afterData["status"] == 200) {
         state = UserPredictionModel.fromList(afterData["body"]);
-        isSubmitted = true; // getMyPrediction 성공 시, 이미 예측이 제출되었다고 가정
+        isSubmitted = true;
       } else {
         ScaffoldMessenger.of(mContext).showSnackBar(
           SnackBar(content: Text("내 예측 정보 조회 실패: ${afterData["msg"]}")),
         );
       }
     }
+
+    refreshCtrl.refreshCompleted();
   }
 
-  /// 2. 서버에 예측 저장 후, 최신 예측 상태를 재요청하여 상태 갱신
   Future<void> submitPredictions(List<UserPredictionFModel> predictionsToSubmit) async {
-    // UserPredictionFModel 리스트를 서버 요청 형식인 List<Map<String, dynamic>>으로 변환
-    // userChoiceTeamId가 0인 경우(선택 안 함)는 서버에 보내지 않도록 필터링
     final predictions =
         predictionsToSubmit.where((f) => f.userChoiceTeamId != 0).map((f) => f.toMap()).toList();
 
@@ -68,12 +67,11 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
 
     if (predictions.isEmpty) {
       ScaffoldMessenger.of(mContext).showSnackBar(
-        const SnackBar(content: Text("예측할 팀을 선택해주세요.")),
+        SnackBar(content: Text("예측할 팀을 선택해주세요.")),
       );
       return;
     }
 
-    /// 2-1. 서버에 JSON 전송
     Map<String, dynamic> data = await GameCenterRepository().sendPrediction(predictions);
 
     Logger().d("예측 저장 응답: $data");
@@ -85,7 +83,6 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
       return;
     }
 
-    /// 2-2. 예측 상태를 다시 받아옴 (경기 전/후 상관없이 현재 상태를 가져옴)
     Map<String, dynamic> result = await GameCenterRepository().getAfterUserPrediction();
 
     Logger().d("예측 결과 재조회 응답: $result");
@@ -101,7 +98,7 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
 
     state = state!.copyWith(games: updatedGames);
 
-    isSubmitted = true; // 예측이 제출되었음을 표시
+    isSubmitted = true;
 
     Logger().d("상태 반영 완료!");
 
@@ -111,7 +108,6 @@ class UserPredictionVM extends AutoDisposeNotifier<UserPredictionModel?> {
   }
 }
 
-/// UserPredictionGame 모델: 서버에서 받아오는 각 게임의 예측 정보
 class UserPredictionGame {
   final Game game;
   final int? userChoiceTeamId;
@@ -127,18 +123,6 @@ class UserPredictionGame {
     required this.awayVoteRate,
   });
 
-  // factory UserPredictionGame.fromMap(Map<String, dynamic> map) {
-  //   return UserPredictionGame(
-  //     game: Game.fromMap(map),
-  //     // userChoiceTeamId가 없거나 null이면 0으로 기본값 설정
-  //     userChoiceTeamId: map['userChoiceTeamId'] as int? ?? 0,
-  //     // predictionStatus가 없거나 null이면 빈 문자열로 기본값 설정
-  //     predictionStatus: map['predictionStatus'] as String? ?? '',
-  //     homeVoteRate: (map['homeVoteRate'] as num).toDouble(),
-  //     awayVoteRate: (map['awayVoteRate'] as num).toDouble(),
-  //   );
-  // }
-
   UserPredictionGame.fromMap(Map<String, dynamic> map)
       : game = Game.fromMap(map),
         userChoiceTeamId = map['userChoiceTeamId'] as int? ?? 0,
@@ -147,17 +131,11 @@ class UserPredictionGame {
         awayVoteRate = (map['awayVoteRate'] as num).toDouble();
 }
 
-/// UserPredictionModel 모델: 전체 예측 게임 목록을 포함하는 VM의 상태
 class UserPredictionModel {
   List<UserPredictionGame> games;
 
   UserPredictionModel(this.games);
 
-  // factory UserPredictionModel.fromList(List<dynamic> list) {
-  //   return UserPredictionModel(
-  //     list.map((e) => UserPredictionGame.fromMap(e as Map<String, dynamic>)).toList(),
-  //   );
-  // }
   UserPredictionModel.fromList(List<dynamic> list)
       : games = list.map((e) => UserPredictionGame.fromMap(e as Map<String, dynamic>)).toList();
 

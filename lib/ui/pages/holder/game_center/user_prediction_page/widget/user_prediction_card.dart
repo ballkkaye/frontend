@@ -20,11 +20,12 @@ class UserPredictionCard extends StatelessWidget {
   final int startHour;
   final int startMinute;
 
-  final VoidCallback onTapLeft;
-  final VoidCallback onTapRight;
+  final VoidCallback? onTapLeft;
+  final VoidCallback? onTapRight;
   final String? predictionStatus;
   final GameStatus? gameStatus;
-  final String teamLogo;
+  final String leftTeamLogo;
+  final String rightTeamLogo;
 
   const UserPredictionCard({
     super.key,
@@ -40,20 +41,16 @@ class UserPredictionCard extends StatelessWidget {
     required this.leftTeamId,
     required this.rightTeamId,
     required this.selectedTeamId,
-    required this.onTapLeft,
-    required this.onTapRight,
+    this.onTapLeft,
+    this.onTapRight,
     required this.predictionStatus,
     required this.gameStatus,
-    required this.teamLogo,
+    required this.leftTeamLogo,
+    required this.rightTeamLogo,
   });
 
   @override
   Widget build(BuildContext context) {
-    final bool hasPredicted = predictionStatus != null;
-    final bool canSelect = !hasPredicted;
-    final bool showResult =
-        predictionStatus != null && (predictionStatus == 'CORRECT' || predictionStatus == 'INCORRECT');
-    
     return Column(
       children: [
         Container(
@@ -76,11 +73,12 @@ class UserPredictionCard extends StatelessWidget {
                 rightScore: rightScore,
                 isLeftSelected: selectedTeamId == leftTeamId,
                 isRightSelected: selectedTeamId == rightTeamId,
-                onTapLeft: canSelect ? onTapLeft : null,
-                onTapRight: canSelect ? onTapRight : null,
+                onTapLeft: onTapLeft,
+                onTapRight: onTapRight,
                 predictionStatus: predictionStatus,
                 gameStatus: gameStatus,
-                teamLogo: teamLogo,
+                leftTeamLogo: leftTeamLogo,
+                rightTeamLogo: rightTeamLogo,
               ),
               UserPredictionVoteGroup(
                 leftPercent: leftPercent,

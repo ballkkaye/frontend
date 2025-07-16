@@ -1,25 +1,11 @@
-import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
+import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/data/enum/game_status.dart';
+// UserPredictionLeftTeam 및 UserPredictionRightTeam import 필요
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/widget/user_prediction_left_team.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/widget/user_prediction_right_team.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_page/widget/user_prediction_right_team.dart'; // 이 파일도 존재한다고 가정
 import 'package:flutter/material.dart';
 
 class UserPredictionScoreGroup extends StatelessWidget {
-  const UserPredictionScoreGroup({
-    super.key,
-    required this.leftTeamName,
-    required this.leftScore,
-    required this.rightTeamName,
-    required this.rightScore,
-    required this.isLeftSelected,
-    required this.isRightSelected,
-    required this.onTapLeft,
-    required this.onTapRight,
-    this.predictionStatus,
-    required this.gameStatus,
-    required this.teamLogo,
-  });
-
   final String leftTeamName;
   final int leftScore;
   final String rightTeamName;
@@ -30,21 +16,27 @@ class UserPredictionScoreGroup extends StatelessWidget {
   final VoidCallback? onTapRight;
   final String? predictionStatus;
   final GameStatus? gameStatus;
-  final String teamLogo;
-  
+  final String leftTeamLogo;
+  final String rightTeamLogo;
+
+  const UserPredictionScoreGroup({
+    super.key,
+    required this.leftTeamName,
+    required this.leftScore,
+    required this.rightTeamName,
+    required this.rightScore,
+    required this.isLeftSelected,
+    required this.isRightSelected,
+    this.onTapLeft,
+    this.onTapRight,
+    required this.predictionStatus,
+    required this.gameStatus,
+    required this.leftTeamLogo,
+    required this.rightTeamLogo,
+  });
+
   @override
   Widget build(BuildContext context) {
-    final bool showResult = gameStatus == GameStatus.completed;
-
-    Widget resultIcon = const SizedBox.shrink();
-    if (showResult) {
-      if (predictionStatus == "CORRECT") {
-        resultIcon = MIcon.page.userPrediction.success;
-      } else if (predictionStatus == "INCORRECT") {
-        resultIcon = MIcon.page.userPrediction.fail;
-      }
-    }
-
     return Row(
       children: [
         UserPredictionLeftTeam(
@@ -52,24 +44,19 @@ class UserPredictionScoreGroup extends StatelessWidget {
           score: leftScore,
           isSelected: isLeftSelected,
           onTap: onTapLeft,
-          teamLogo: teamLogo,
-
+          teamLogo: leftTeamLogo,
         ),
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12.5),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              resultIcon,
-            ],
-          ),
+          width: 1,
+          height: 100,
+          color: MColor.kLine.normal,
         ),
         UserPredictionRightTeam(
           teamName: rightTeamName,
           score: rightScore,
           isSelected: isRightSelected,
           onTap: onTapRight,
-          teamLogo: teamLogo,
+          teamLogo: rightTeamLogo,
         ),
       ],
     );
