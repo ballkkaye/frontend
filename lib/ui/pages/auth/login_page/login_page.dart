@@ -9,8 +9,16 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: LoginBody(),
       // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     Navigator.pushNamed(context, "/join/nickname");
+      //   onPressed: () async {
+      //     // Navigator.pushNamed(context, "/join/nickname");
+      //     try {
+      //       throw StateError('Sentry Test Exception');
+      //     } catch (exception, stackTrace) {
+      //       await Sentry.captureException(
+      //         exception,
+      //         stackTrace: stackTrace,
+      //       );
+      //     }
       //   },
       // ),
     );

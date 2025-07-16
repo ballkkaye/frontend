@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:ballkkaye_frontend/_core/utils/m_exception.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:logger/logger.dart';
 import 'package:mime/mime.dart';
 import 'package:uuid/uuid.dart';
 
@@ -42,10 +44,17 @@ class MImg {
         return inner['url'];
       } else {
         print('Presigned URL not found or invalid structure');
+        throw MException(
+          message: "Presigned URL not found or invalid structure",
+        );
         return null;
       }
     } catch (e) {
-      print('Failed to parse presigned URL: $e');
+      // print('Failed to parse presigned URL: $e');
+      throw MException(
+        message: "Failed to parse presigned URL",
+        cause: e,
+      );
       return null;
     }
   }
@@ -69,12 +78,20 @@ class MImg {
       if (res.statusCode == 200) {
         return "${Env.bucketUrl}/$objectKey";
       } else {
-        print("Upload failed: ${res.body}");
-        return null;
+        //print("Upload failed: ${res.body}");
+        throw MException(
+          message: "Upload failed",
+          cause: res.body,
+        );
+        //return null;
       }
     } catch (e) {
-      print("Upload error: $e");
-      return null;
+      //print("Upload error: $e");
+      throw MException(
+        message: "Upload error",
+        cause: e,
+      );
+      //return null;
     }
   }
 
@@ -89,12 +106,20 @@ class MImg {
 
       final Map<String, dynamic> responseData = json.decode(response.body);
       if (responseData['statusCode'] == 200) {
-        print('✅ Object deleted successfully: ${response.body}');
+        Logger().d('Object deleted successfully: ${response.body}');
       } else {
-        print('❌ Failed to delete object: ${response.body}');
+        //print('Failed to delete object: ${response.body}');
+        throw MException(
+          message: "Failed to delete object",
+          cause: response.body,
+        );
       }
     } catch (e) {
-      print('⚠️ Exception occurred while deleting object: $e');
+      // print('Exception occurred while deleting object: $e');
+      throw MException(
+        message: "Exception occurred while deleting object",
+        cause: e,
+      );
     }
   }
 

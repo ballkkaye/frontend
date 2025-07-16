@@ -2,7 +2,6 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/utils/m_fcm.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:logger/logger.dart';
 import 'package:lottie/lottie.dart';
@@ -27,9 +26,6 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> _initializeApp() async {
     try {
-      Logger().d("1. dotenv 시작");
-      await dotenv.load(fileName: ".env");
-
       Logger().d("2. intl 시작");
       await initializeDateFormatting();
 
