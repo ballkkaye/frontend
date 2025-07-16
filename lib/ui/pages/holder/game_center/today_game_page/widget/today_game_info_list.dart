@@ -1,5 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_slide_down_text_animation.dart';
 import 'package:flutter/material.dart';
 
 class TodayGameInfoList extends StatelessWidget {
@@ -24,10 +25,11 @@ class TodayGameInfoList extends StatelessWidget {
 
     return Column(
       children: [
-        Row(
-          children: [
-            MText.h2('${stadium}, ${timeText}', color: MColor.kLabel.normal),
-          ],
+        MSlideDownTextAnimation(
+          child: MText.h2(
+            '${stadium}, ${timeText}',
+            color: MColor.kLabel.normal,
+          ),
         ),
         SizedBox(height: 4),
         MText.normal6_6(
