@@ -16,16 +16,16 @@ class VisitRecordDetailGame extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        MText.normal1_7('${visitRecord.homeScore}', color: MColor.kLabel.disable),
+        MText.normal1_7('${visitRecord.awayScore}', color: MColor.kLabel.disable),
         Column(
           children: [
             Row(
               children: [
-                MText.h1(visitRecord.homeTeamName, color: MColor.kLabel.normal),
+                MText.h1(visitRecord.awayTeamName, color: MColor.kLabel.normal),
                 SizedBox(width: 16),
                 MText.normal7_6("vs", color: MColor.kLabel.alternative),
                 SizedBox(width: 16),
-                MText.h1(visitRecord.awayTeamName, color: MColor.kLabel.normal),
+                MText.h1(visitRecord.homeTeamName, color: MColor.kLabel.normal),
               ],
             ),
             SizedBox(height: 8),
@@ -33,7 +33,7 @@ class VisitRecordDetailGame extends StatelessWidget {
             MText.normal8_5(visitRecord.stadiumName, color: MColor.kLabel.alternative),
           ],
         ),
-        MText.normal1_7('${visitRecord.awayScore}', color: MColor.kPrimary.strong),
+        MText.normal1_7('${visitRecord.homeScore}', color: MColor.kPrimary.strong),
       ],
     );
   }
