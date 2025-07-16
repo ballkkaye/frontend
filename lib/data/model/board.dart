@@ -6,7 +6,6 @@ import 'package:ballkkaye_frontend/data/model/reply.dart';
 class Board {
   final int boardId;
   final String nickname;
-
   final String profileImgUrl;
   final String relativeTime;
   final String myTeamName;
@@ -18,7 +17,6 @@ class Board {
   final bool isLike;
   final int likeCount;
   final int replyCount;
-  final String? imageString; //임시 이미지코드
   final List<BoardImage> images;
   final List<Reply> replyItems;
 
@@ -35,7 +33,6 @@ class Board {
     required this.isLike,
     required this.likeCount,
     required this.replyCount,
-    required this.imageString,
     required this.images,
     required this.replyItems,
     required this.profileImgUrl,
@@ -59,7 +56,6 @@ class Board {
       isLike: data['isLike'] ?? false,
       likeCount: data['likeCount'],
       replyCount: data['replyCount'] ?? 0,
-      imageString: data['imageString'] ?? '',
       images: (data['images'] as List<dynamic>?)?.map((e) => BoardImage.fromMap(e)).toList() ?? [],
       //todo: 나중에 이미지추가할때 주석지워서 사용
       replyItems: (data['replyItems'] as List<dynamic>?)?.map((e) => Reply.fromMap(e)).toList() ?? [],
@@ -82,7 +78,6 @@ class Board {
       likeCount: 0,
       replyCount: 0,
       replyItems: [],
-      imageString: '',
       profileImgUrl: '',
       images: [],
     );
@@ -120,7 +115,6 @@ class Board {
       likeCount: likeCount ?? this.likeCount,
       replyCount: replyCount ?? this.replyCount,
       replyItems: replyItems ?? this.replyItems,
-      imageString: imageString ?? this.imageString,
       profileImgUrl: profileImgUrl ?? this.profileImgUrl,
       images: images ?? this.images,
     );

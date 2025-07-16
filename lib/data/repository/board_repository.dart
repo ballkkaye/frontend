@@ -7,7 +7,6 @@ class BoardRepository {
       "status": 200,
       "msg": "성공",
       "body": {
-        "imageString": "https://example.com/board-photo.jpg", //이미지 임시주소
         "boardId": 1,
         "nickname": "cos",
         "profileImageUrl": "https://cdn.pixabay.com/photo/2023/06/04/20/21/cat-8040862_1280.jpg",
@@ -20,11 +19,11 @@ class BoardRepository {
         "isOwner": true,
         "isLike": false,
         "likeCount": 0,
-        // "images": [
-        //   {"id": 1, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img001.png"},
-        //   {"id": 2, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img002.png"},
-        //   {"id": 3, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/new003.png"}
-        // ],
+        "images": [
+          {"id": 1, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img001.png"},
+          {"id": 2, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img002.png"},
+          {"id": 3, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/new003.png"}
+        ],
         "replyItems": [
           {
             "replyId": 1,
