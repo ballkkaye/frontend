@@ -66,7 +66,7 @@ class BoardListCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(80),
                           child: Padding(
                             padding: EdgeInsetsGeometry.directional(top: 4, bottom: 4, end: 4),
-                            child: MIcon.page.community.likedRed,
+                            child: MIcon.page.community.likeGrey,
                           ),
                         ),
                         MText.button4_5('${board.likeCount}', color: MColor.kLabel.neutral),

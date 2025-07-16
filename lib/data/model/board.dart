@@ -22,7 +22,7 @@ class Board {
 
   Board({
     required this.boardId,
-    required this.nickname, //todo: 나중에 유저모델에서 받아서 사용
+    required this.nickname,
     required this.relativeTime,
     required this.myTeamName,
     required this.teamCategoryId,
@@ -51,11 +51,9 @@ class Board {
   factory Board.fromMap(Map<String, dynamic> data) {
     // 복합 데이터(replyItems) 파싱을 factory로 처리해서 가독성과 유지보수성을 높임
     return Board(
-      boardId: data['boardId'],
+      boardId: data['boardId'] as int,
       nickname: data['nickname'],
-      //todo: 나중에 로그인한계정 닉네임 불러오기
       profileImgUrl: _buildFullImageUrl(data['profileImg'] as String?),
-      //todo: 나중에 이미지추가할때 주석지워서 사용
       relativeTime: data['relativeTime'],
       myTeamName: data['myTeamName'] ?? '',
       teamCategoryId: data['teamCategoryId'] ?? 0,
@@ -67,7 +65,6 @@ class Board {
       likeCount: data['likeCount'],
       replyCount: data['replyCount'] ?? 0,
       images: (data['images'] as List<dynamic>?)?.map((e) => BoardImage.fromMap(e)).toList() ?? [],
-      //todo: 나중에 이미지추가할때 주석지워서 사용
       replyItems: (data['replyItems'] as List<dynamic>?)?.map((e) => Reply.fromMap(e)).toList() ?? [],
     );
   }
@@ -75,7 +72,7 @@ class Board {
   /// 홈화면 전용 간단 파싱
   factory Board.fromSimple(Map<String, dynamic> data) {
     return Board(
-      boardId: 0,
+      boardId: data['boardId'],
       nickname: '',
       relativeTime: '',
       myTeamName: '',

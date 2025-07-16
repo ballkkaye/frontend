@@ -20,7 +20,7 @@ class BoardDetailBoardArea extends StatelessWidget {
       children: [
         // 게시글 이미지 영역
         Visibility(
-          visible: true, // bool hasImg = true;
+          visible: board.images.isNotEmpty,
           child: SizedBox(
             height: screenWidth,
             width: screenWidth,
@@ -28,6 +28,9 @@ class BoardDetailBoardArea extends StatelessWidget {
               itemCount: board.images.length,
               itemBuilder: (context, index) {
                 final BoardImage boardImage = board.images[index];
+                if (boardImage.imageUrl.isEmpty) {
+                  return SizedBox.shrink();
+                }
                 return Image.network(
                   boardImage.imageUrl,
                   fit: BoxFit.cover,
@@ -105,7 +108,7 @@ class BoardDetailBoardArea extends StatelessWidget {
                         borderRadius: BorderRadius.circular(80),
                         child: Padding(
                           padding: EdgeInsetsGeometry.directional(top: 4, bottom: 4, end: 4),
-                          child: MIcon.page.community.likedRed,
+                          child: MIcon.page.community.likeGrey,
                         ),
                       ),
                       MText.normal6_7('${board.likeCount}', color: MColor.kLabel.neutral)

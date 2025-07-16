@@ -1,6 +1,3 @@
-import 'package:ballkkaye_frontend/data/model/board.dart';
-import 'package:logger/logger.dart';
-
 class HomeRepository {
   Future<Map<String, dynamic>> getHome() async {
     final responseBody = {
@@ -142,26 +139,11 @@ class HomeRepository {
           }
         ],
         "boards": [
-          {
-            "title": "직관 다녀온 후기",
-            "content": "롯데 경기 진짜 재밌었음. 9회말 역전승은 감동이었어."
-          },
-          {
-            "title": "직관 다녀온 후기",
-            "content": "롯데 경기 진짜 재밌었음. 9회말 역전승은 감동이었어."
-          },
-          {
-            "title": "직관 다녀온 후기",
-            "content": "롯데 경기 진짜 재밌었음. 9회말 역전승은 감동이었어."
-          },
-          {
-            "title": "직관 다녀온 후기",
-            "content": "롯데 경기 진짜 재밌었음. 9회말 역전승은 감동이었어."
-          },
-          {
-            "title": "직관 다녀온 후기",
-            "content": "롯데 경기 진짜 재밌었음. 9회말 역전승은 감동이었어."
-          }
+          {"boardId": 1, "title": "직관 다녀온 후기", "content": "롯데 경기 진짜 재밌었음. 9회말 역전승은 감동이었어."},
+          {"boardId": 2, "title": "직관 다녀온 후기", "content": "롯데 경기 진짜 재밌었음. 9회말 역전승은 감동이었어."},
+          {"boardId": 3, "title": "직관 다녀온 후기", "content": "롯데 경기 진짜 재밌었음. 9회말 역전승은 감동이었어."},
+          {"boardId": 4, "title": "직관 다녀온 후기", "content": "롯데 경기 진짜 재밌었음. 9회말 역전승은 감동이었어."},
+          {"boardId": 5, "title": "직관 다녀온 후기", "content": "롯데 경기 진짜 재밌었음. 9회말 역전승은 감동이었어."}
         ]
       }
     };

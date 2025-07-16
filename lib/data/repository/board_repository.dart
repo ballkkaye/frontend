@@ -1,11 +1,16 @@
+import 'package:ballkkaye_frontend/_core/utils/m_img.dart';
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 
-class BoardRepository {
-  final Dio dio;
-  final Logger logger;
+import '../../_core/utils/m_http.dart';
 
-  BoardRepository(this.dio, this.logger);
+class BoardRepository {
+  final Dio _dio = Dio(BaseOptions(
+    baseUrl: Env.apiUrl, // 너희 API 주소
+    headers: {
+      'Content-Type': 'application/json', // ★ 중요!
+    },
+  ));
 
   Future<Map<String, dynamic>> getOne(int boardId) async {
     Response response = await dio.get("/s/api/boards/$boardId");
@@ -256,34 +261,15 @@ class BoardRepository {
     }
   }
 
-  Future<Map<String, dynamic>> updateOne(int boardId, Map<String, dynamic> requestBody) async {
-    Response response = await dio.put(
-      "/s/api/boards/$boardId",
-      data: requestBody,
+  Future<Map<String, dynamic>> updateOne(int boardId, Map<String, dynamic> data) async {
+    Logger().d('BoardRepository updatebody: ${data}');
+    final response = await _dio.put(
+      '/s/api/boards/$boardId',
+      data: data,
     );
+
     final responseBody = response.data;
-    Logger().d('BoardRepository delete: ${responseBody}');
-    // final responseBody = {
-    //   "status": 200,
-    //   "msg": "성공",
-    //   "body": {
-    //     "imgUrl": "https://example.com/board-photo.jpg",
-    //     // "imagesUrl": [
-    //     //   {"id": 1, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img001.png"},
-    //     //   {"id": 2, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img002.png"},
-    //     //   {"id": 3, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/new003.png"}
-    //     // ],
-    //     "boardId": 12,
-    //     "title": "수정된 게시글 제목2",
-    //     "teamId": 3,
-    //     "content": "이건 수정된 게시글 내용입니다2.",
-    //     "nickname": "love",
-    //     "relativeTime": "1분전",
-    //     "likeCount": 4,
-    //     "myTeamName": "삼성 라이온즈",
-    //     "teamCategoryName": "롯데 자이언츠",
-    //   }
-    // };
+    Logger().d('BoardRepository updateResponseBody: ${responseBody}');
     return responseBody;
   }
 
