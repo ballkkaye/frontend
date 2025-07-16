@@ -13,10 +13,12 @@ class HomeBoardList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: boards.map((board) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: HomeBoardContent(board: board),
-      )).toList(),
+      children: boards
+          .map((board) => Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: HomeBoardContent(board: board),
+              ))
+          .toList(),
     );
   }
 }

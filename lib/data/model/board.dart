@@ -38,13 +38,23 @@ class Board {
     required this.profileImgUrl,
   });
 
+  static String _buildFullImageUrl(String? path) {
+    if (path == null || path.isEmpty) {
+      return ''; // 또는 'assets/images/default_image.png' (로컬 에셋)
+    }
+    if (path.startsWith('http://') || path.startsWith('https://')) {
+      return path;
+    }
+    return 'path'; // 상대 경로인 경우 Base URL과 조합
+  }
+
   factory Board.fromMap(Map<String, dynamic> data) {
     // 복합 데이터(replyItems) 파싱을 factory로 처리해서 가독성과 유지보수성을 높임
     return Board(
       boardId: data['boardId'],
       nickname: data['nickname'],
       //todo: 나중에 로그인한계정 닉네임 불러오기
-      profileImgUrl: data['profileImageUrl'] ?? '',
+      profileImgUrl: _buildFullImageUrl(data['profileImg'] as String?),
       //todo: 나중에 이미지추가할때 주석지워서 사용
       relativeTime: data['relativeTime'],
       myTeamName: data['myTeamName'] ?? '',

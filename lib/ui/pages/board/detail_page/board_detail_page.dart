@@ -11,11 +11,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class BoardDetailPage extends ConsumerWidget {
-  int boardId;
+  final int boardId;
 
-  BoardDetailPage(this.boardId);
+  BoardDetailPage({
+    super.key,
+    required this.boardId, // <--- 여기에 required 사용
+  });
 
-  TextEditingController _replyController = TextEditingController();
+  final TextEditingController _replyController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

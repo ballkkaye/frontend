@@ -2,6 +2,7 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/data/model/board.dart';
+import 'package:ballkkaye_frontend/data/model/board_image.dart';
 import 'package:flutter/material.dart';
 
 class BoardDetailBoardArea extends StatelessWidget {
@@ -24,10 +25,11 @@ class BoardDetailBoardArea extends StatelessWidget {
             height: screenWidth,
             width: screenWidth,
             child: PageView.builder(
-              itemCount: 10,
+              itemCount: board.images.length,
               itemBuilder: (context, index) {
+                final BoardImage boardImage = board.images[index];
                 return Image.network(
-                  "${board.images}",
+                  boardImage.imageUrl,
                   fit: BoxFit.cover,
                 );
               },
@@ -115,7 +117,7 @@ class BoardDetailBoardArea extends StatelessWidget {
                     children: [
                       MIcon.page.community.comment,
                       SizedBox(width: 4),
-                      MText.normal6_7('4', color: MColor.kLabel.neutral),
+                      MText.normal6_7('${board.replyCount}', color: MColor.kLabel.neutral),
                     ],
                   ),
                 ],
