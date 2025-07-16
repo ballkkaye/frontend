@@ -98,7 +98,7 @@ class HomePredictionCard extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (_) => MatchupPage(
-                                        teamId: predictionGame.homeTeamId!,
+                                        teamId: predictionGame.awayTeamId!,
                                         gameId: predictionGame.game.id!)),
                               );
                             },
@@ -199,7 +199,7 @@ class HomePredictionCard extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                     builder: (_) => MatchupPage(
-                                        teamId: predictionGame.awayTeamId!,
+                                        teamId: predictionGame.homeTeamId!,
                                         gameId: predictionGame.game.id!)),
                               );
                             },

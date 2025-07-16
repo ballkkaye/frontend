@@ -38,7 +38,7 @@ class UserPredictionPage extends ConsumerWidget {
   AppBar _appbar() {
     return AppBar(
       centerTitle: true,
-      title: MText.h1('나의승부예측', color: MColor.kLabel.normal),
+      title: MText.h1('나의 승리 예측', color: MColor.kLabel.normal),
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.white,
     );

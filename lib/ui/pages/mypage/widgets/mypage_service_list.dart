@@ -14,7 +14,7 @@ class MypageServiceList extends StatelessWidget {
     final List<Widget> serviceItems = [
       ServiceItem(
         icon: MIcon.page.mypage.prediction,
-        label: '승리예측',
+        label: '승리 예측',
         onTap: () {
           Navigator.pushNamed(context, '/game-center/prediction');
         },
@@ -28,7 +28,7 @@ class MypageServiceList extends StatelessWidget {
       ),
       ServiceItem(
         icon: MIcon.page.mypage.record,
-        label: '나의 승부 예측',
+        label: '나의 승리 예측',
         onTap: () {
           Navigator.pushNamed(context, '/game-center/user-prediction');
         },

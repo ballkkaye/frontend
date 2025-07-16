@@ -32,7 +32,7 @@ class PredictionVM extends AutoDisposeNotifier<PredictionModel?> {
     Map<String, dynamic> data = await GameCenterRepository().getPrediction();
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
-        SnackBar(content: Text("승부 예측 조회 실패 : ${data["msg"]}")),
+        SnackBar(content: Text("승리 예측 조회 실패 : ${data["msg"]}")),
       );
       return;
     }

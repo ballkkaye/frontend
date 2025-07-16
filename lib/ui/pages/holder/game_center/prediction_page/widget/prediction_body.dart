@@ -28,7 +28,7 @@ class PredictionBody extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               MText.h2(
-                '오늘 승리 예측',
+                '오늘의 승리 예측',
                 color: MColor.kLabel.normal,
               ),
               SizedBox(height: 12),
