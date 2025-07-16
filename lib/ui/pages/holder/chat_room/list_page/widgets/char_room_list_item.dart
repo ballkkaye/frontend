@@ -3,10 +3,12 @@ import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/data/model/chat_room.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/detail_page/chat_room_detail_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/list_page/chat_room_list_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/widgets/chat_room_leave_btn.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ChatRoomListItem extends StatelessWidget {
+class ChatRoomListItem extends ConsumerWidget {
   final ChatRoom chatRoom;
 
   const ChatRoomListItem({
@@ -15,7 +17,9 @@ class ChatRoomListItem extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ChatRoomListVM vm = ref.read(chatRoomListProvider.notifier);
+
     return Column(
       children: [
         ListTile(
@@ -72,9 +76,7 @@ class ChatRoomListItem extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
                 style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w500,
-                    color: MColor.kLabel.neutral),
+                    fontSize: 11, fontWeight: FontWeight.w500, color: MColor.kLabel.neutral),
               ),
               MText.label3(
                 ' • ${chatRoom.relativeTime}',
@@ -86,14 +88,16 @@ class ChatRoomListItem extends StatelessWidget {
           trailing: ChatRoomLeaveBtn(
             icon: MIcon.nav.top.dotVertical,
             onConfirm: () {
-              print("list에서 채팅방 나감");
+              // 채팅방 나가기
+              //vm.exitOne(chatRoom.chatRoomId);
+              // 채팅방 주인일 경우 삭제
+              //vm.deleteOne(chatRoom.chatRoomId);
             },
           ),
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (_) => ChatRoomDetailPage(chatRoom.chatRoomId)),
+              MaterialPageRoute(builder: (_) => ChatRoomDetailPage(chatRoom.chatRoomId)),
             );
           },
         ),

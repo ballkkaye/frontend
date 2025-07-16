@@ -30,31 +30,31 @@ class Game {
     this.awayPitcherName,
   });
 
-  Game.fromMap(Map<String, dynamic> map)
-      : id = map['gameId'] ?? map['id'],
-        homeTeam = map['homeTeam'] != null
-            ? Team.fromMap(map['homeTeam'])
+  Game.fromMap(Map<String, dynamic> data)
+      : id = data['gameId'] ?? data['id'],
+        homeTeam = data['homeTeam'] != null
+            ? Team.fromMap(data['homeTeam'])
             : Team(
-                teamId: map['homeTeamId'],
-                fullName: map['homeTeamName'],
-                teamLogo: map['homeTeamLogoUrl'],
+                teamId: data['homeTeamId'],
+                fullName: data['homeTeamName'],
+                teamLogo: data['homeTeamLogoUrl'],
               ),
-        awayTeam = map['awayTeam'] != null
-            ? Team.fromMap(map['awayTeam'])
+        awayTeam = data['awayTeam'] != null
+            ? Team.fromMap(data['awayTeam'])
             : Team(
-                teamId: map['awayTeamId'],
-                fullName: map['awayTeamName'],
-                teamLogo: map['awayTeamLogoUrl'],
+                teamId: data['awayTeamId'] ?? data['teamId'],
+                fullName: data['awayTeamName'],
+                teamLogo: data['awayTeamLogoUrl'],
               ),
-        gameDate = map['gameDate'],
-        gameTime = map['gameTime'],
-        stadiumName = map['stadiumName'],
-        stadiumShortName = map['stadiumShortName'],
-        gameStatus = GameStatusExtension.fromString(map['gameStatus']),
-        broadcastChannel = map['broadcastChannel'],
-        ticketLink = map['ticketLink'],
-        homePitcherName = map['homePitcherName'],
-        awayPitcherName = map['awayPitcherName'];
+        gameDate = data['gameDate'],
+        gameTime = data['gameTime'],
+        stadiumName = data['stadiumName'],
+        stadiumShortName = data['stadiumShortName'],
+        gameStatus = GameStatusExtension.fromString(data['gameStatus']),
+        broadcastChannel = data['broadcastChannel'],
+        ticketLink = data['ticketLink'],
+        homePitcherName = data['homePitcherName'],
+        awayPitcherName = data['awayPitcherName'];
 
   Game.fromGameData(Map<String, dynamic> data)
       : id = data['gameId'],

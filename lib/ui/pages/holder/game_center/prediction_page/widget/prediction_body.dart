@@ -15,32 +15,32 @@ class PredictionBody extends ConsumerWidget {
     final model = ref.watch(predictionProvider);
 
     if (model == null) {
-      return const Center(child: CircularProgressIndicator());
+      return Center(child: MText.normal3_6("오늘의 경기가 없습니다.", color: MColor.kLabel.disable));
+    } else {
+      return ListView(children: [
+        Padding(
+          padding: EdgeInsets.only(
+            top: 22,
+            left: 16,
+            right: 16,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              MText.h2(
+                '오늘 승리 예측',
+                color: MColor.kLabel.normal,
+              ),
+              SizedBox(height: 12),
+              Column(
+                children: model.games.map((game) {
+                  return PredictionCard(predictionGame: game); // game 넘기기
+                }).toList(),
+              ),
+            ],
+          ),
+        ),
+      ]);
     }
-
-    return ListView(children: [
-      Padding(
-        padding: EdgeInsets.only(
-          top: 22,
-          left: 16,
-          right: 16,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            MText.h2(
-              '오늘 승리 예측',
-              color: MColor.kLabel.normal,
-            ),
-            SizedBox(height: 12),
-            Column(
-              children: model.games.map((game) {
-                return PredictionCard(predictionGame: game); // game 넘기기
-              }).toList(),
-            ),
-          ],
-        ),
-      ),
-    ]);
   }
 }
