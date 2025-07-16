@@ -28,8 +28,9 @@ class VisitRecordRepository {
 
   // 선택된 날짜 직관기록 리스트
   Future<Map<String, dynamic>> getDayGameList({String? date}) async {
+    Logger().d("date: $date");
     Response response = await dio.get(
-      "/s/api/visitRecords",
+      "/s/api/visit-records",
       queryParameters: {
         'date': date,
       },
@@ -232,7 +233,8 @@ class VisitRecordRepository {
     Logger().d("💥 최종 DELETE URL: /s/api/visitRecords/$id");
     Logger().d("💥 dio baseUrl: ${dio.options.baseUrl}");
     Logger().d("💥 Authorization 헤더: ${dio.options.headers['Authorization']}");
-    Response response = await dio.delete("/s/api/visitRecords/${id}");
+    Logger().d("🔥 삭제 시도 ID: $id");
+    Response response = await dio.delete("/s/api/visit-records/${id}");
     final responseBody = response.data;
     // final responseBody = {
     //   "status": 200,

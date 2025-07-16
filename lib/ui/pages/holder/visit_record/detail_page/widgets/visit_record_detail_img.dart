@@ -12,7 +12,7 @@ class VisitRecordDetailImg extends StatelessWidget {
   // TODO: 이미지는 마지막에
   @override
   Widget build(BuildContext context) {
-    final img = visitRecord.imageString;
+    final img = visitRecord.imgUrl;
     if (img != null && img.isNotEmpty) {
       // TODO: 실제통신 시에는 이미지 주소가 없을 때 아무것도 출력하지 않을거임
       return Column(
