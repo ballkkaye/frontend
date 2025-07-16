@@ -2,6 +2,7 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/data/model/board.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/detail_page/board_detail_page.dart';
 import 'package:flutter/material.dart';
 
 class BoardListCard extends StatelessWidget {
@@ -15,10 +16,11 @@ class BoardListCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(
+          Navigator.push(
             context,
-            "/board/detail",
-            arguments: board.boardId,
+            MaterialPageRoute(
+              builder: (context) => BoardDetailPage(boardId: board.boardId),
+            ),
           );
         },
         child: Container(
@@ -64,7 +66,7 @@ class BoardListCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(80),
                           child: Padding(
                             padding: EdgeInsetsGeometry.directional(top: 4, bottom: 4, end: 4),
-                            child: MIcon.page.community.likedRed,
+                            child: MIcon.page.community.likeGrey,
                           ),
                         ),
                         MText.button4_5('${board.likeCount}', color: MColor.kLabel.neutral),

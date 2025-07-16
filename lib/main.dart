@@ -3,10 +3,10 @@ import 'package:ballkkaye_frontend/data/model/visit_record.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_nickname_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/join_page/join_team_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/auth/login_page/login_page.dart';
-import 'package:ballkkaye_frontend/ui/pages/board/detail_page/board_detail_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/list_page/board_list_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/write_page/board_write_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/list_page/chat_room_list_page.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/matchup_page/matchup_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/prediction_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/rainout_prediction_page/rainout_prediction_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/ranking_page/ranking_page.dart';
@@ -71,8 +71,7 @@ class MyApp extends StatelessWidget {
         "/visit-record/select": (context) => VisitRecordSelectPage(),
         //"/visit-record/write": (context) => const VisitRecordWritePage(),
         "/visit-record/write": (context) {
-          final VisitRecord selectedGame =
-              ModalRoute.of(context)!.settings.arguments as VisitRecord;
+          final VisitRecord selectedGame = ModalRoute.of(context)!.settings.arguments as VisitRecord;
           return VisitRecordWritePage(selectedGame: selectedGame);
         },
         "/visit-record/update": (context) => const VisitRecordUpdatePage(),
@@ -83,7 +82,7 @@ class MyApp extends StatelessWidget {
         "/game-center/today-game": (context) => const TodayGamePage(),
         "/game-center/user-prediction": (context) => const UserPredictionPage(),
         "/board/list": (context) => const BoardListPage(),
-        "/board/detail": (context) => BoardDetailPage(13), //todo 나중에 리스트에서 받은값 전달하기
+        // "/board/detail": (context) => BoardDetailPage(1),
         "/board/write": (context) => const BoardWritePage(),
         // "/board/update": (context) => BoardUpdatePage(), // 동적데이터 받기 어려워서 MaterialPageRoute 사용
         "/user-match/update": (context) => const UserMatchUpdatePage(),

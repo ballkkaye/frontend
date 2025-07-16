@@ -75,9 +75,9 @@ class BoardListBoardVM extends AutoDisposeNotifier<BoardListBoardModel?> {
     state = nextModel.copyWith(boards: [...prevModel.boards, ...nextModel.boards]);
   }
 
-  Future<void> write(int teamId, String title, String content, List<String> imageUrl) async {
+  Future<void> write(int teamId, String title, String content, List<String> images) async {
     // 1. 레포지토리에 함수 호출
-    Map<String, dynamic> data = await BoardRepository().write(teamId, title, content, imageUrl);
+    Map<String, dynamic> data = await BoardRepository().write(teamId, title, content, images);
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
         SnackBar(content: Text("게시글 쓰기 실패 : ${data["msg"]}")),

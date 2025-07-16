@@ -109,7 +109,7 @@ class BoardDetailReplyItem extends StatelessWidget {
                     borderRadius: BorderRadius.circular(50),
                     child: Padding(
                       padding: EdgeInsetsGeometry.directional(top: 4, bottom: 4, end: 4),
-                      child: MIcon.page.community.likedRed,
+                      child: MIcon.page.community.likeGrey,
                     ),
                   ),
                   MText.normal7_6('${reply.likeCount}', color: MColor.kLabel.neutral),

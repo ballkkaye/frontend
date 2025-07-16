@@ -6,13 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
-final boardDetailBoardProvider = AutoDisposeNotifierProvider.family<
-    BoardDetailBoardVM, BoardDetailBoardModel?, int>(() {
+final boardDetailBoardProvider =
+    AutoDisposeNotifierProvider.family<BoardDetailBoardVM, BoardDetailBoardModel?, int>(() {
   return BoardDetailBoardVM();
 });
 
-class BoardDetailBoardVM
-    extends AutoDisposeFamilyNotifier<BoardDetailBoardModel?, int> {
+class BoardDetailBoardVM extends AutoDisposeFamilyNotifier<BoardDetailBoardModel?, int> {
   final mContext = navigatorKey.currentContext!;
 
   @override
@@ -38,9 +37,17 @@ class BoardDetailBoardVM
     state = BoardDetailBoardModel.fromMap(data["body"]);
   }
 
-  Future<void> updateOne(Board board) async {
+  Future<void> updateOne(board) async {
+    final requestBody = {
+      "title": board.title,
+      "teamId": board.teamCategoryId,
+      "content": board.content,
+      "remainImageUrls": board.images.map((e) => e.imageUrl).toList(),
+      "newImages": [],
+    };
+
     // 1. 통신
-    Map<String, dynamic> data = await BoardRepository().updateOne(board);
+    Map<String, dynamic> data = await BoardRepository().updateOne(board.boardId, requestBody);
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
         SnackBar(content: Text("게시글 수정하기 실패 : ${data["msg"]}")),
@@ -80,8 +87,7 @@ class BoardDetailBoardModel {
 
   BoardDetailBoardModel(this.board);
 
-  BoardDetailBoardModel.fromMap(Map<String, dynamic> data)
-      : board = Board.fromMap(data);
+  BoardDetailBoardModel.fromMap(Map<String, dynamic> data) : board = Board.fromMap(data);
 
   BoardDetailBoardModel copyWith({
     Board? board,

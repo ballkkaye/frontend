@@ -2,6 +2,7 @@ import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/data/model/board.dart';
+import 'package:ballkkaye_frontend/data/model/board_image.dart';
 import 'package:flutter/material.dart';
 
 class BoardDetailBoardArea extends StatelessWidget {
@@ -19,15 +20,19 @@ class BoardDetailBoardArea extends StatelessWidget {
       children: [
         // 게시글 이미지 영역
         Visibility(
-          visible: true, // bool hasImg = true;
+          visible: board.images.isNotEmpty,
           child: SizedBox(
             height: screenWidth,
             width: screenWidth,
             child: PageView.builder(
-              itemCount: 10,
+              itemCount: board.images.length,
               itemBuilder: (context, index) {
+                final BoardImage boardImage = board.images[index];
+                if (boardImage.imageUrl.isEmpty) {
+                  return SizedBox.shrink();
+                }
                 return Image.network(
-                  "${board.images}",
+                  boardImage.imageUrl,
                   fit: BoxFit.cover,
                 );
               },
@@ -103,7 +108,7 @@ class BoardDetailBoardArea extends StatelessWidget {
                         borderRadius: BorderRadius.circular(80),
                         child: Padding(
                           padding: EdgeInsetsGeometry.directional(top: 4, bottom: 4, end: 4),
-                          child: MIcon.page.community.likedRed,
+                          child: MIcon.page.community.likeGrey,
                         ),
                       ),
                       MText.normal6_7('${board.likeCount}', color: MColor.kLabel.neutral)
@@ -115,7 +120,7 @@ class BoardDetailBoardArea extends StatelessWidget {
                     children: [
                       MIcon.page.community.comment,
                       SizedBox(width: 4),
-                      MText.normal6_7('4', color: MColor.kLabel.neutral),
+                      MText.normal6_7('${board.replyCount}', color: MColor.kLabel.neutral),
                     ],
                   ),
                 ],
