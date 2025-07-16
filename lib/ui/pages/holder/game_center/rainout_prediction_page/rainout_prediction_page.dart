@@ -19,7 +19,7 @@ class RainoutPredictionPage extends StatelessWidget {
   AppBar _appbar() {
     return AppBar(
       centerTitle: true,
-      title: MText.h1('우천취소예측', color: MColor.kLabel.normal),
+      title: MText.h1('우천 취소 예측', color: MColor.kLabel.normal),
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.white,
     );

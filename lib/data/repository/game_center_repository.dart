@@ -669,8 +669,9 @@ class GameCenterRepository {
   }
 
   // 유저 승리 예측 진입
-  Future<Map<String, dynamic>> getUserPrediction() async {
-    Response response = await dio.get("/s/api/predictions/today");
+  Future<Map<String, dynamic>> getBeforeUserPrediction() async {
+    Response response = await dio
+        .get("/s/api/predictions/today", queryParameters: {"date": formatDateToStr(today)});
     final responseBody = response.data;
     // final responseBody = {
     //   "status": 200,
@@ -742,7 +743,7 @@ class GameCenterRepository {
     //     }
     //   ]
     // };
-    Logger().d("GameCenterRepository getUserPrediction : $responseBody");
+    Logger().d("GameCenterRepository getBeforeUserPrediction : $responseBody");
     return responseBody;
   }
 
@@ -766,10 +767,10 @@ class GameCenterRepository {
     return responseBody;
   }
 
-  // 유저 승리 예측 결과 (경기 전)
-  Future<Map<String, dynamic>> getMyPrediction() async {
-    Response response = await dio.get("/s/api/today-games/prediction");
-    // TODO : 여기도 date 무조건 넘겨야 하는 구조
+  // 유저 승리 예측 결과
+  Future<Map<String, dynamic>> getAfterUserPrediction() async {
+    Response response =
+        await dio.get("/s/api/predictions", queryParameters: {"date": formatDateToStr(today)});
     final responseBody = response.data;
     // final responseBody = {
     //   "status": 200,
@@ -887,131 +888,131 @@ class GameCenterRepository {
     //     }
     //   ]
     // };
-    Logger().d("GameCenterRepository getMyPrediction : $responseBody");
+    Logger().d("GameCenterRepository getAfterUserPrediction : $responseBody");
     return responseBody;
   }
 
   // 유저 승리 예측 결과 (경기 후)
-  Future<Map<String, dynamic>> getMyPredictionTest() async {
-    Response response = await dio.get("/s/api/today-games/prediction");
-    final responseBody = response.data;
-    // final responseBody = {
-    //   "status": 200,
-    //   "msg": "성공",
-    //   "body": [
-    //     {
-    //       "gameId": 423,
-    //       "gameTime": "19:00",
-    //       "homeTeam": {
-    //         "teamId": 2,
-    //         "teamName": "두산 베어스",
-    //         "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/0/09/Doosan_Bears.png"
-    //       },
-    //       "awayTeam": {
-    //         "teamId": 4,
-    //         "teamName": "SSG 랜더스",
-    //         "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/0/02/SSG_Landers.png"
-    //       },
-    //       "homeScore": 3,
-    //       "awayScore": 1,
-    //       "userChoiceTeamId": 2,
-    //       "predictionStatus": "CORRECT",
-    //       "homeVoteRate": 100,
-    //       "awayVoteRate": 0,
-    //       "gameStatus": "COMPLETED",
-    //       "updatedAt": "2025-07-07T17:46:53.495039"
-    //     },
-    //     {
-    //       "gameId": 424,
-    //       "gameTime": "17:30",
-    //       "homeTeam": {
-    //         "teamId": 6,
-    //         "teamName": "삼성 라이온즈",
-    //         "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/9/95/Samsung_Lions.png"
-    //       },
-    //       "awayTeam": {
-    //         "teamId": 8,
-    //         "teamName": "한화 이글스",
-    //         "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/9/99/Hanwha_Eagles.png"
-    //       },
-    //       "homeScore": 2,
-    //       "awayScore": 5,
-    //       "userChoiceTeamId": 6,
-    //       "predictionStatus": "INCORRECT",
-    //       "homeVoteRate": 100,
-    //       "awayVoteRate": 0,
-    //       "gameStatus": "COMPLETED",
-    //       "updatedAt": "2025-07-07T17:46:53.495039"
-    //     },
-    //     {
-    //       "gameId": 425,
-    //       "gameTime": "20:00",
-    //       "homeTeam": {
-    //         "teamId": 9,
-    //         "teamName": "NC 다이노스",
-    //         "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/b/bd/NC_Dinos.png"
-    //       },
-    //       "awayTeam": {
-    //         "teamId": 7,
-    //         "teamName": "롯데 자이언츠",
-    //         "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/9/91/Lotte_Giants.png"
-    //       },
-    //       "homeScore": 4,
-    //       "awayScore": 4,
-    //       "userChoiceTeamId": 9,
-    //       "predictionStatus": "TIE",
-    //       "homeVoteRate": 100,
-    //       "awayVoteRate": 0,
-    //       "gameStatus": "COMPLETED",
-    //       "updatedAt": "2025-07-07T17:46:53.495039"
-    //     },
-    //     {
-    //       "gameId": 426,
-    //       "gameTime": "18:00",
-    //       "homeTeam": {
-    //         "teamId": 10,
-    //         "teamName": "KT 위즈",
-    //         "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/b/b3/KT_Wiz.png"
-    //       },
-    //       "awayTeam": {
-    //         "teamId": 1,
-    //         "teamName": "LG 트윈스",
-    //         "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/4/4f/LG_Twins.png"
-    //       },
-    //       "homeScore": 5,
-    //       "awayScore": 2,
-    //       "userChoiceTeamId": 10,
-    //       "predictionStatus": "CORRECT",
-    //       "homeVoteRate": 100,
-    //       "awayVoteRate": 0,
-    //       "gameStatus": "COMPLETED",
-    //       "updatedAt": "2025-07-07T17:46:53.496039"
-    //     },
-    //     {
-    //       "gameId": 427,
-    //       "gameTime": "19:30",
-    //       "homeTeam": {
-    //         "teamId": 3,
-    //         "teamName": "키움 히어로즈",
-    //         "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/5/52/Kiwoom_Heroes.png"
-    //       },
-    //       "awayTeam": {
-    //         "teamId": 5,
-    //         "teamName": "KIA 타이거즈",
-    //         "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/6/6e/KIA_Tigers.png"
-    //       },
-    //       "homeScore": 2,
-    //       "awayScore": 0,
-    //       "userChoiceTeamId": 5,
-    //       "predictionStatus": "INCORRECT",
-    //       "homeVoteRate": 0,
-    //       "awayVoteRate": 100,
-    //       "gameStatus": "COMPLETED",
-    //       "updatedAt": "2025-07-07T17:46:53.496039"
-    //     }
-    //   ]
-    // };
-    Logger().d("GameCenterRepository getMyPredictionTest : $responseBody");
-    return responseBody;
-  }
+  // Future<Map<String, dynamic>> getMyPredictionTest() async {
+  //   Response response = await dio.get("/s/api/prediction");
+  //   final responseBody = response.data;
+  //   // final responseBody = {
+  //   //   "status": 200,
+  //   //   "msg": "성공",
+  //   //   "body": [
+  //   //     {
+  //   //       "gameId": 423,
+  //   //       "gameTime": "19:00",
+  //   //       "homeTeam": {
+  //   //         "teamId": 2,
+  //   //         "teamName": "두산 베어스",
+  //   //         "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/0/09/Doosan_Bears.png"
+  //   //       },
+  //   //       "awayTeam": {
+  //   //         "teamId": 4,
+  //   //         "teamName": "SSG 랜더스",
+  //   //         "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/0/02/SSG_Landers.png"
+  //   //       },
+  //   //       "homeScore": 3,
+  //   //       "awayScore": 1,
+  //   //       "userChoiceTeamId": 2,
+  //   //       "predictionStatus": "CORRECT",
+  //   //       "homeVoteRate": 100,
+  //   //       "awayVoteRate": 0,
+  //   //       "gameStatus": "COMPLETED",
+  //   //       "updatedAt": "2025-07-07T17:46:53.495039"
+  //   //     },
+  //   //     {
+  //   //       "gameId": 424,
+  //   //       "gameTime": "17:30",
+  //   //       "homeTeam": {
+  //   //         "teamId": 6,
+  //   //         "teamName": "삼성 라이온즈",
+  //   //         "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/9/95/Samsung_Lions.png"
+  //   //       },
+  //   //       "awayTeam": {
+  //   //         "teamId": 8,
+  //   //         "teamName": "한화 이글스",
+  //   //         "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/9/99/Hanwha_Eagles.png"
+  //   //       },
+  //   //       "homeScore": 2,
+  //   //       "awayScore": 5,
+  //   //       "userChoiceTeamId": 6,
+  //   //       "predictionStatus": "INCORRECT",
+  //   //       "homeVoteRate": 100,
+  //   //       "awayVoteRate": 0,
+  //   //       "gameStatus": "COMPLETED",
+  //   //       "updatedAt": "2025-07-07T17:46:53.495039"
+  //   //     },
+  //   //     {
+  //   //       "gameId": 425,
+  //   //       "gameTime": "20:00",
+  //   //       "homeTeam": {
+  //   //         "teamId": 9,
+  //   //         "teamName": "NC 다이노스",
+  //   //         "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/b/bd/NC_Dinos.png"
+  //   //       },
+  //   //       "awayTeam": {
+  //   //         "teamId": 7,
+  //   //         "teamName": "롯데 자이언츠",
+  //   //         "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/9/91/Lotte_Giants.png"
+  //   //       },
+  //   //       "homeScore": 4,
+  //   //       "awayScore": 4,
+  //   //       "userChoiceTeamId": 9,
+  //   //       "predictionStatus": "TIE",
+  //   //       "homeVoteRate": 100,
+  //   //       "awayVoteRate": 0,
+  //   //       "gameStatus": "COMPLETED",
+  //   //       "updatedAt": "2025-07-07T17:46:53.495039"
+  //   //     },
+  //   //     {
+  //   //       "gameId": 426,
+  //   //       "gameTime": "18:00",
+  //   //       "homeTeam": {
+  //   //         "teamId": 10,
+  //   //         "teamName": "KT 위즈",
+  //   //         "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/b/b3/KT_Wiz.png"
+  //   //       },
+  //   //       "awayTeam": {
+  //   //         "teamId": 1,
+  //   //         "teamName": "LG 트윈스",
+  //   //         "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/4/4f/LG_Twins.png"
+  //   //       },
+  //   //       "homeScore": 5,
+  //   //       "awayScore": 2,
+  //   //       "userChoiceTeamId": 10,
+  //   //       "predictionStatus": "CORRECT",
+  //   //       "homeVoteRate": 100,
+  //   //       "awayVoteRate": 0,
+  //   //       "gameStatus": "COMPLETED",
+  //   //       "updatedAt": "2025-07-07T17:46:53.496039"
+  //   //     },
+  //   //     {
+  //   //       "gameId": 427,
+  //   //       "gameTime": "19:30",
+  //   //       "homeTeam": {
+  //   //         "teamId": 3,
+  //   //         "teamName": "키움 히어로즈",
+  //   //         "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/5/52/Kiwoom_Heroes.png"
+  //   //       },
+  //   //       "awayTeam": {
+  //   //         "teamId": 5,
+  //   //         "teamName": "KIA 타이거즈",
+  //   //         "logoUrl": "https://upload.wikimedia.org/wikipedia/ko/6/6e/KIA_Tigers.png"
+  //   //       },
+  //   //       "homeScore": 2,
+  //   //       "awayScore": 0,
+  //   //       "userChoiceTeamId": 5,
+  //   //       "predictionStatus": "INCORRECT",
+  //   //       "homeVoteRate": 0,
+  //   //       "awayVoteRate": 100,
+  //   //       "gameStatus": "COMPLETED",
+  //   //       "updatedAt": "2025-07-07T17:46:53.496039"
+  //   //     }
+  //   //   ]
+  //   // };
+  //   Logger().d("GameCenterRepository getMyPredictionTest : $responseBody");
+  //   return responseBody;
+  // }
 }

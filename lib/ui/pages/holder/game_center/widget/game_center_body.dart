@@ -29,7 +29,7 @@ class GameCenterBody extends StatelessWidget {
               Expanded(
                 flex: 4,
                 child: GameCenterCard(
-                    title: '승리예측',
+                    title: '승리 예측',
                     description: '볼까예의 예측을\n확인해 보세요',
                     icon: MIcon.page.predictionList.prediction,
                     onTap: () {
@@ -40,7 +40,7 @@ class GameCenterBody extends StatelessWidget {
               Expanded(
                 flex: 6,
                 child: GameCenterCard(
-                    title: '우천취소 예측',
+                    title: '우천 취소 예측',
                     description: '',
                     icon: MIcon.page.predictionList.rain,
                     onTap: () {
@@ -55,7 +55,7 @@ class GameCenterBody extends StatelessWidget {
               Expanded(
                 flex: 6,
                 child: GameCenterCard(
-                    title: '나의 승부 예측',
+                    title: '나의 승리 예측',
                     description: '오늘 경기의 승리를\n예측해 보세요',
                     icon: MIcon.page.predictionList.userPrediction,
                     onTap: () {

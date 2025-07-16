@@ -20,7 +20,8 @@ class HomeTodayGameSlider extends StatefulWidget {
 
 class _HomeTodayGameSliderState extends State<HomeTodayGameSlider> {
   int _currentIndex = 0;
-  final CarouselSliderController _carouselSliderController = CarouselSliderController();
+  final CarouselSliderController _carouselSliderController =
+      CarouselSliderController();
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class _HomeTodayGameSliderState extends State<HomeTodayGameSlider> {
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: HomeTodayGameCard(
                   gameState: game.gameStatus?.label ?? '경기 예정',
-                  stadium: game.stadiumShortName,
+                  stadium: game.stadiumName,
                   gameTime: parseGameTime(game.gameTime ?? '00:00'),
                   broadcastInfo: game.broadcastChannel,
                   leftPitcher: game.homePitcherName,
@@ -64,10 +65,13 @@ class _HomeTodayGameSliderState extends State<HomeTodayGameSlider> {
                     duration: const Duration(milliseconds: 300),
                     width: _currentIndex == index ? 16 : 8,
                     height: 8,
-                    margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 10),
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: 4, vertical: 10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: _currentIndex == index ? MColor.kPrimary.strong : MColor.kFill.normal,
+                      color: _currentIndex == index
+                          ? MColor.kPrimary.strong
+                          : MColor.kFill.normal,
                     ),
                   ));
             }),

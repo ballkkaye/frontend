@@ -1,4 +1,5 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
+import 'package:ballkkaye_frontend/_core/style/m_text.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/rainout_prediction_page/rainout_prdiction_weather_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/rainout_prediction_page/widget/rainout_prediction_rain_value.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/rainout_prediction_page/widget/rainout_prediction_report.dart';
@@ -22,27 +23,27 @@ class RainoutPredictionCard extends ConsumerWidget {
     );
 
     if (weatherModel == null) {
-      return const Center(child: CircularProgressIndicator());
+      return Center(child: MText.normal3_6("오늘의 날씨 정보가 없습니다.", color: MColor.kLabel.disable));
+    } else {
+      return Container(
+        padding: EdgeInsets.symmetric(vertical: 22, horizontal: 12),
+        decoration: BoxDecoration(
+          boxShadow: MColor.kShadow.normal,
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Column(
+          children: [
+            RainoutPredictionWeatherHead(weatherModel: weatherModel),
+            SizedBox(height: 20),
+            RainoutPredictionWeatherList(weatherModel: weatherModel),
+            SizedBox(height: 20),
+            RainoutPredictionRainValue(weatherModel: weatherModel),
+            SizedBox(height: 20),
+            RainoutPredictionReport(weatherModel: weatherModel),
+          ],
+        ),
+      );
     }
-
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 22, horizontal: 12),
-      decoration: BoxDecoration(
-        boxShadow: MColor.kShadow.normal,
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Column(
-        children: [
-          RainoutPredictionWeatherHead(weatherModel: weatherModel),
-          SizedBox(height: 20),
-          RainoutPredictionWeatherList(weatherModel: weatherModel),
-          SizedBox(height: 20),
-          RainoutPredictionRainValue(weatherModel: weatherModel),
-          SizedBox(height: 20),
-          RainoutPredictionReport(weatherModel: weatherModel),
-        ],
-      ),
-    );
   }
 }

@@ -4,10 +4,16 @@ import 'package:ballkkaye_frontend/ui/pages/holder/game_center/user_prediction_p
 import 'package:ballkkaye_frontend/ui/widgets/m_elevated_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class UserPredictionBody extends ConsumerWidget {
+  // 경기 예측 단계인지(true) 결과를 보여주는 단계인지(false)를 나타내는 플래그
+  final bool isPredictionPhase;
+
   const UserPredictionBody({
     super.key,
+    required this.isPredictionPhase,
   });
 
   @override
@@ -15,61 +21,52 @@ class UserPredictionBody extends ConsumerWidget {
     final model = ref.watch(userPredictionProvider);
     final vm = ref.read(userPredictionProvider.notifier);
     final fm = ref.read(userPredictionFProvider.notifier);
+    final fModel = ref.watch(userPredictionFProvider);
 
     if (model == null) {
       return const Center(child: CircularProgressIndicator());
     }
 
-    // 예측 완료되었으면 버튼 비활성화
-    final bool isEnabled = !vm.isSubmitted;
-    final games = model.games.map((g) => g.game).toList();
-    return ListView(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(
-            top: 22,
-            left: 16,
-            right: 16,
-          ),
-          child: Column(
-            children: [
-              UserPredictionCardList(
-                games: model.games,
-                onSelectTeam: fm.selectTeam,
-              ),
-              SizedBox(height: 12),
-              MElevatedBtn(
-                  text: '예측하기',
-                  isEnabled: isEnabled,
-                  onPressed: () {
-                    if (!isEnabled) return;
-                    final predictions = fm.toGameList(games);
+    final bool isEnabled = isPredictionPhase;
 
-                    if (predictions.isEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('예측할 팀을 선택해주세요W.')),
-                      );
-                      return;
-                    }
+    return SmartRefresher(
+      controller: vm.refreshCtrl,
+      enablePullUp: false,
+      enablePullDown: true,
+      onRefresh: () {
+        Logger().d("새로고침 시도");
+        vm.init();
+      },
+      child: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 22,
+              left: 16,
+              right: 16,
+            ),
+            child: Column(
+              children: [
+                UserPredictionCardList(
+                  games: model.games,
+                  onSelectTeam: isPredictionPhase ? fm.selectTeam : (_, __) {},
+                ),
+                const SizedBox(height: 12),
+                if (isPredictionPhase)
+                  MElevatedBtn(
+                    text: '예측하기',
+                    isEnabled: isEnabled,
+                    onPressed: () {
+                      if (!isEnabled) return;
 
-                    // 💾 현재 예측 상태 로컬에 저장
-                    vm.setPredictions(predictions);
-
-                    // 🔄 서버에 예측 전송 → 상태 갱신
-                    vm.submitPredictions().then((_) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('예측이 완료되었습니다.')),
-                      );
-
-                      // TODO: 서버에 전송하는 API 호출 넣기
-                    });
-                  }
-                  //isEnabled = false
+                      vm.submitPredictions(fModel);
+                    },
                   ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

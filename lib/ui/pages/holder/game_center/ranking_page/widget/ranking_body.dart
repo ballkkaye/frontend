@@ -14,7 +14,8 @@ class RankingBody extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final rankings = ref.watch(rankingProvider);
     if (rankings.isEmpty) {
-      return CircularProgressIndicator(); // 또는 Center(child: Text("로딩 중"))
+      // return CircularProgressIndicator(); // 또는 Center(child: Text("로딩 중"))
+      return Center(child: MText.normal3_6("오늘의 팀 순위 정보가 없습니다.", color: MColor.kLabel.disable));
     }
     return Padding(
       padding: EdgeInsets.only(top: 22, left: 16, right: 16),

@@ -7,6 +7,7 @@ class ChatRoom {
   final String? chatRoomTitle;
   final String? relativeTime;
   final String? content;
+  final int? chatRoomUserId;
   final List<User> users;
 
   ChatRoom(
@@ -15,6 +16,7 @@ class ChatRoom {
     this.chatRoomTitle,
     this.relativeTime,
     this.content,
+    this.chatRoomUserId,
     this.users,
   );
 
@@ -24,6 +26,7 @@ class ChatRoom {
         chatRoomTitle = data['chatRoomTitle'],
         relativeTime = data['relativeTime'],
         content = data['content'],
+        chatRoomUserId = data['chatRoomUserId'],
         users = (data['userProfileImgs'] as List<dynamic>?)
                 ?.map((userData) => User.fromMap({
                       'id': userData['userId'],
