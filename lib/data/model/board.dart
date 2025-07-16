@@ -40,12 +40,12 @@ class Board {
 
   static String _buildFullImageUrl(String? path) {
     if (path == null || path.isEmpty) {
-      return ''; // 또는 'assets/images/default_image.png' (로컬 에셋)
+      return '';
     }
     if (path.startsWith('http://') || path.startsWith('https://')) {
       return path;
     }
-    return 'path'; // 상대 경로인 경우 Base URL과 조합
+    return 'https://ballkkaye-bucket.s3.ap-northeast-2.amazonaws.com/$path';
   }
 
   factory Board.fromMap(Map<String, dynamic> data) {

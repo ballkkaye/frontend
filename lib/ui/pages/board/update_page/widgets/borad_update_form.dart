@@ -48,7 +48,7 @@ class BoardUpdateForm extends ConsumerWidget {
           MTextFormField(
             hintText: '제목을 입력하세요',
             maxLines: 1,
-            initialValue: '동행후기 써봄',
+            initialValue: board.title,
             // TODO : 기존에 작성된 제목 불러오기
             onChanged: (value) {
               board = board.copyWith(title: value);
@@ -63,7 +63,7 @@ class BoardUpdateForm extends ConsumerWidget {
           MTextFormField(
             hintText: '내용을 입력하세요',
             maxLines: 10,
-            initialValue: '동행후기 써봄 내용~~~~~~',
+            initialValue: board.content,
             // TODO : 기존에 작성된 내용 불러오기
             isDense: false,
             onChanged: (value) {
