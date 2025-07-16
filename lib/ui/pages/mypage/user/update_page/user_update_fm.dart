@@ -40,7 +40,7 @@ class UserUpdateModel {
     return {
       "nickname": nickname,
       "teamId": teamId,
-      "profileUrl": profileUrl,
+      "profileImg": profileUrl,
     };
   }
 

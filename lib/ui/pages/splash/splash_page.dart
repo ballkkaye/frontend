@@ -94,11 +94,11 @@ class _SplashPageState extends State<SplashPage> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, "/login");
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.pushNamed(context, "/login");
+      //   },
+      // ),
     );
   }
 }
