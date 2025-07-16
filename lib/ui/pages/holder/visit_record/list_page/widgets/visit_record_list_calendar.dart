@@ -1,28 +1,35 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/_core/utils/m_util.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/visit_record_list_selected_date_vm.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class VisitRecordListCalendar extends ConsumerStatefulWidget {
-  const VisitRecordListCalendar({super.key, required this.cellSize, this.onDateSelected, this.onMonthChanged});
+  const VisitRecordListCalendar(
+      {super.key,
+      required this.cellSize,
+      this.onDateSelected,
+      this.onMonthChanged});
 
   final double cellSize;
   final ValueChanged<DateTime?>? onDateSelected;
   final void Function(int year, int month)? onMonthChanged;
 
   @override
-  ConsumerState<VisitRecordListCalendar> createState() => _VisitRecordListCalendarState();
+  ConsumerState<VisitRecordListCalendar> createState() =>
+      _VisitRecordListCalendarState();
 }
 
-class _VisitRecordListCalendarState extends ConsumerState<VisitRecordListCalendar> {
+class _VisitRecordListCalendarState
+    extends ConsumerState<VisitRecordListCalendar> {
   late DateTime _focusedDay;
 
   @override
   void initState() {
     super.initState();
-    _focusedDay = DateTime.now();
+    _focusedDay = DateTime(2025, 7, 17);
   }
 
   @override
@@ -41,8 +48,9 @@ class _VisitRecordListCalendarState extends ConsumerState<VisitRecordListCalenda
         firstDay: DateTime(2020, 3, 1),
         lastDay: DateTime(DateTime.now().year, DateTime.now().month + 1, 0),
         onDaySelected: (selectedDay, focusedDay) {
-          if (selectedDay.isAfter(DateTime.now())) return;
-          ref.read(VisitRecordListselectedDateProvider.notifier).state = selectedDay;
+          if (selectedDay.isAfter(today)) return;
+          ref.read(VisitRecordListselectedDateProvider.notifier).state =
+              selectedDay;
           setState(() {
             _focusedDay = focusedDay;
           });
@@ -120,8 +128,9 @@ class _VisitRecordListCalendarState extends ConsumerState<VisitRecordListCalenda
         );
       },
       defaultBuilder: (context, date, _) {
-        final isFuture = date.isAfter(DateTime.now());
-        final textColor = isFuture ? MColor.kLabel.disable : MColor.kLabel.neutral;
+        final isFuture = date.isAfter(today);
+        final textColor =
+            isFuture ? MColor.kLabel.disable : MColor.kLabel.neutral;
 
         return Center(
           child: MText.normal5_6(

@@ -22,32 +22,34 @@ class UserPredictionCardList extends StatelessWidget {
         final away = game.awayTeam;
         final time = parseHourMinute(g.game.gameTime);
 
-        final VoidCallback? currentOnTapLeft =
-            onSelectTeam != null ? () => onSelectTeam!(game.id!, home.teamId!) : null;
-        final VoidCallback? currentOnTapRight =
-            onSelectTeam != null ? () => onSelectTeam!(game.id!, away.teamId!) : null;
+        final VoidCallback? currentOnTapLeft = onSelectTeam != null
+            ? () => onSelectTeam!(game.id!, home.teamId!)
+            : null;
+        final VoidCallback? currentOnTapRight = onSelectTeam != null
+            ? () => onSelectTeam!(game.id!, away.teamId!)
+            : null;
 
         return Column(
           children: [
             UserPredictionCard(
               gameId: game.id,
-              leftTeamId: home.teamId!,
-              rightTeamId: away.teamId!,
+              leftTeamId: away.teamId!,
+              rightTeamId: home.teamId!,
               selectedTeamId: g.userChoiceTeamId,
-              leftTeamName: home.teamName!,
-              rightTeamName: away.teamName!,
-              leftScore: home.score ?? 0,
-              rightScore: away.score ?? 0,
+              leftTeamName: away.teamName!,
+              rightTeamName: home.teamName!,
+              leftScore: away.score ?? 0,
+              rightScore: home.score ?? 0,
               leftPercent: g.homeVoteRate,
-              rightPercent: g.awayVoteRate,
+              rightPercent: g.homeVoteRate,
               startHour: time['hour']!,
               startMinute: time['minute']!,
               predictionStatus: g.predictionStatus,
               gameStatus: g.game.gameStatus,
               onTapLeft: currentOnTapLeft,
               onTapRight: currentOnTapRight,
-              leftTeamLogo: home.teamLogo ?? '',
-              rightTeamLogo: away.teamLogo ?? '',
+              leftTeamLogo: away.teamLogo ?? '',
+              rightTeamLogo: home.teamLogo ?? '',
             ),
             SizedBox(height: 10),
           ],

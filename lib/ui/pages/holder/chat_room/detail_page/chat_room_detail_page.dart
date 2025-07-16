@@ -1,5 +1,4 @@
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/list_page/chat_room_list_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/widgets/chat_room_leave_btn.dart';
 import 'package:flutter/material.dart';
 
@@ -16,15 +15,17 @@ class ChatRoomDetailPage extends StatelessWidget {
       resizeToAvoidBottomInset: true,
       appBar: _appbar(context),
       body: ChatRoomDetailBody(chatRoomId),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 50),
-        child: FloatingActionButton(onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => ChatRoomListPage()),
-          );
-        }),
-      ),
+      // floatingActionButton: Padding(
+      //   padding: const EdgeInsets.only(bottom: 50),
+      //   child: FloatingActionButton(
+      //     onPressed: () {
+      //       Navigator.push(
+      //         context,
+      //         MaterialPageRoute(builder: (_) => ChatRoomListPage()),
+      //       );
+      //     },
+      //   ),
+      // ),
     );
   }
 

@@ -21,11 +21,11 @@ class VisitRecordDetailPage extends ConsumerWidget {
     return Scaffold(
       appBar: _appbar(context, ref),
       body: VisitRecordDetailBody(visitRecordId: visitRecordId),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, "/visit-record/update");
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.pushNamed(context, "/visit-record/update");
+      //   },
+      // ),
     );
   }
 

@@ -16,11 +16,11 @@ class HomePage extends ConsumerWidget {
       return Scaffold(
         appBar: _appbar(context, model),
         body: HomeBody(),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.pushNamed(context, "/board/list");
-          },
-        ),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () {
+        //     Navigator.pushNamed(context, "/board/list");
+        //   },
+        // ),
       );
     }
   }
