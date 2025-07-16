@@ -8,9 +8,14 @@ Widget PredictionPlayerImage(String? imageUrl) {
       child: MText.normal5_6('이미지 준비중', color: MColor.kLabel.alternative),
     );
   } else {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(8),
-      child: Image.network(imageUrl, fit: BoxFit.cover),
+    return Center(
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Image.network(
+          imageUrl,
+          fit: BoxFit.scaleDown,
+        ),
+      ),
     );
   }
 }

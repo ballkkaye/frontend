@@ -1,5 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/game_center/matchup_page/matchup_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/prediction_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/widget/prediction_bar_graph_title.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/widget/prediction_graph_value.dart';
@@ -47,12 +48,14 @@ class PredictionCard extends StatelessWidget {
                                   horizontal: 4,
                                   vertical: 2,
                                 ),
-                                child: MText.label2_7(predictionGame.homeTeamName ?? '', color: MColor.kLabel.white),
+                                child: MText.label2_7(predictionGame.homeTeamName ?? '',
+                                    color: MColor.kLabel.white),
                               ),
                             ),
                             SizedBox(width: 2),
                             // 선수명
-                            MText.normal6_4(predictionGame.game.homePitcherName ?? '', color: MColor.kLabel.normal),
+                            MText.normal6_4(predictionGame.game.homePitcherName ?? '',
+                                color: MColor.kLabel.normal),
                           ],
                         ),
                         // 여백
@@ -62,14 +65,14 @@ class PredictionCard extends StatelessWidget {
                           children: [
                             Expanded(
                               child: AspectRatio(
-                                aspectRatio: 5 / 7,
+                                aspectRatio: 7 / 7,
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: MColor.kFill.normal,
+                                    color: MColor.kBackground.normal,
                                     borderRadius: BorderRadius.circular(8),
                                   ),
-                                  // TODO: 나중에 통신 연결 시 null자리에 imageUrl
-                                  child: PredictionPlayerImage(null),
+                                  child:
+                                      PredictionPlayerImage(predictionGame.homePitcherProfileUrl),
                                 ),
                               ),
                             ),
@@ -84,7 +87,13 @@ class PredictionCard extends StatelessWidget {
                             width: double.infinity,
                             child: OutlinedButton(
                               onPressed: () {
-                                Navigator.pushNamed(context, '/game-center/matchup');
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => MatchupPage(
+                                          teamId: predictionGame.awayTeamId!,
+                                          gameId: predictionGame.game.id!)),
+                                );
                               },
                               style: OutlinedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
@@ -123,12 +132,14 @@ class PredictionCard extends StatelessWidget {
                                   horizontal: 4,
                                   vertical: 2,
                                 ),
-                                child: MText.label2_7(predictionGame.awayTeamName ?? '', color: MColor.kLabel.white),
+                                child: MText.label2_7(predictionGame.awayTeamName ?? '',
+                                    color: MColor.kLabel.white),
                               ),
                             ),
                             SizedBox(width: 2),
                             // 선수명
-                            MText.normal6_4(predictionGame.game.awayPitcherName ?? '', color: MColor.kLabel.normal),
+                            MText.normal6_4(predictionGame.game.awayPitcherName ?? '',
+                                color: MColor.kLabel.normal),
                           ],
                         ),
                         // 여백
@@ -138,14 +149,14 @@ class PredictionCard extends StatelessWidget {
                           children: [
                             Expanded(
                               child: AspectRatio(
-                                aspectRatio: 5 / 7,
+                                aspectRatio: 7 / 7,
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: MColor.kFill.normal,
+                                    color: MColor.kBackground.normal,
                                     borderRadius: BorderRadius.circular(8),
                                   ),
-                                  // TODO: 나중에 통신 연결 시 null자리에 imageUrl
-                                  child: PredictionPlayerImage(null),
+                                  child:
+                                      PredictionPlayerImage(predictionGame.awayPitcherProfileUrl),
                                 ),
                               ),
                             ),
@@ -160,7 +171,13 @@ class PredictionCard extends StatelessWidget {
                             width: double.infinity,
                             child: OutlinedButton(
                               onPressed: () {
-                                Navigator.pushNamed(context, '/game-center/matchup');
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => MatchupPage(
+                                          teamId: predictionGame.homeTeamId!,
+                                          gameId: predictionGame.game.id!)),
+                                );
                               },
                               style: OutlinedButton.styleFrom(
                                 shape: RoundedRectangleBorder(

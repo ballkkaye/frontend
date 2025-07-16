@@ -11,22 +11,22 @@ class HomePrediction extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context,WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final homeModel = ref.watch(homeProvider);
     if (homeModel == null) {
       return Center(child: CircularProgressIndicator());
     } else {
-      final predictions  = homeModel.predictionModel.games;
-    return Column(
-      children: [
-        HomeHeading(
-          title: '승리예측',
-          uri: PredictionPage(),
-        ),
-        SizedBox(height: 14),
-        HomePredictionSlider(games : predictions),
-      ],
-    );
+      final predictions = homeModel.predictionModel.games;
+      return Column(
+        children: [
+          HomeHeading(
+            title: '승리 예측',
+            uri: PredictionPage(),
+          ),
+          SizedBox(height: 14),
+          HomePredictionSlider(games: predictions),
+        ],
+      );
     }
   }
 }

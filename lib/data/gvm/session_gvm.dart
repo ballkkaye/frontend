@@ -100,6 +100,8 @@ class SessionGVM extends Notifier<SessionModel> {
     Logger().d('writeAdditionalInfo : ${dio.options.headers["Authorization"]}');
 
     // 4. 페이지 이동
+    Navigator.pop(mContext);
+    Navigator.pop(mContext);
     Navigator.pushNamed(mContext, "/main-holder");
   }
 
@@ -120,8 +122,8 @@ class SessionGVM extends Notifier<SessionModel> {
 
     // 3. 세션 모델 갱신
     state = SessionModel.fromMap(data["body"]);
-    Logger().d('writeAdditionalInfo : ${state}');
-    Logger().d('writeAdditionalInfo : ${dio.options.headers["Authorization"]}');
+    Logger().d('update : ${state}');
+    Logger().d('update : ${dio.options.headers["Authorization"]}');
 
     // 4. 페이지 이동
     Navigator.pop(mContext);

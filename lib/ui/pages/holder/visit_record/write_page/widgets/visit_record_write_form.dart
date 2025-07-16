@@ -24,8 +24,7 @@ class VisitRecordWriteForm extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<VisitRecordWriteForm> createState() =>
-      _VisitRecordWriteFormState();
+  ConsumerState<VisitRecordWriteForm> createState() => _VisitRecordWriteFormState();
 }
 
 class _VisitRecordWriteFormState extends ConsumerState<VisitRecordWriteForm> {
@@ -52,6 +51,8 @@ class _VisitRecordWriteFormState extends ConsumerState<VisitRecordWriteForm> {
   @override
   Widget build(BuildContext context) {
     final writeModel = ref.read(visitRecordWriteProvider.notifier);
+    final model = ref.read(visitRecordWriteProvider);
+    print("✅ 저장되고있는 이미지: ${model.imgUrl}");
 
     bool hasImage = true;
     List<String> results = ['승', '무', '패'];

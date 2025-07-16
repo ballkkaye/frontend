@@ -14,7 +14,9 @@ class RainoutPredictionWeatherHead extends StatelessWidget {
   Widget build(BuildContext context) {
     final nowHour = DateTime.now().hour;
     final currentWeather =
-        weatherModel.hourly.where((e) => e.hour == nowHour).isNotEmpty ? weatherModel.hourly.firstWhere((e) => e.hour == nowHour) : null;
+        weatherModel.hourly.where((e) => e.hour == nowHour).isNotEmpty
+            ? weatherModel.hourly.firstWhere((e) => e.hour == nowHour)
+            : null;
 
     return Column(
       children: [
@@ -24,12 +26,14 @@ class RainoutPredictionWeatherHead extends StatelessWidget {
         ),
         SizedBox(height: 4),
         MText.normal1_7(
-          currentWeather != null ? '${currentWeather.temperature}°' : '기온 정보 없음',
+          currentWeather != null ? '${currentWeather.temperature}°' : '--°',
           color: MColor.kLabel.normal,
         ),
         SizedBox(height: 4),
         MText.normal6_4(
-          currentWeather != null ? '${currentWeather.temperatureDiffFromYesterday}°' : '기온 정보 없음',
+          currentWeather != null
+              ? '${currentWeather.temperatureDiffFromYesterday}°'
+              : '전일 대비 기온 정보 없음',
           color: MColor.kLabel.normal,
         ),
       ],

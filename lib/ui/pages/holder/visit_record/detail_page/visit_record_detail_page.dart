@@ -1,12 +1,12 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_icon.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
-import 'package:ballkkaye_frontend/data/repository/visit_record_repository.dart';
+import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/detail_page/visit_record_detail_vm.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/detail_page/widgets/visit_record_detail_body.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/visit_record/list_page/visit_record_list_vm.dart';
 import 'package:ballkkaye_frontend/ui/widgets/m_more_option_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 
 class VisitRecordDetailPage extends ConsumerWidget {
   final int visitRecordId;
@@ -30,6 +30,7 @@ class VisitRecordDetailPage extends ConsumerWidget {
   }
 
   AppBar _appbar(BuildContext context, ref) {
+    VisitRecordDetailVM vm = ref.read(visitRecordDetailProvider(visitRecordId).notifier);
     return AppBar(
       centerTitle: true,
       title: MText.h1('직관 기록', color: MColor.kLabel.normal),
@@ -45,17 +46,8 @@ class VisitRecordDetailPage extends ConsumerWidget {
           alertTitle: '직관 기록 삭제',
           alertContent: '직관 기록을 삭제하시겠습니까?',
           onAlertConfirm: () async {
-            final body = await VisitRecordRepository().deleteOne(visitRecordId);
-            if (body["status"] != 200) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text("삭제 실패: ${body["errorMessage"]}")),
-              );
-              return;
-            }
-            ref
-                .read(visitRecordListProvider.notifier)
-                .notifyDeleteOne(visitRecordId);
-            Navigator.pop(context);
+            Logger().d("🧨 삭제 요청 ID: $visitRecordId");
+            vm.deleteOne(visitRecordId, ref);
           },
           // 다이얼로그 닫힌 뒤 동작
           onAlertCancel: () {},

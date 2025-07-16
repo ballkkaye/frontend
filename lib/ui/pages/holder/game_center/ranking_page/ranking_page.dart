@@ -17,7 +17,7 @@ class RankingPage extends StatelessWidget {
   AppBar _appbar() {
     return AppBar(
       centerTitle: true,
-      title: MText.h1('팀순위', color: MColor.kLabel.normal),
+      title: MText.h1('팀 순위', color: MColor.kLabel.normal),
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.white,
     );

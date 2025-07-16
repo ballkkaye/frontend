@@ -58,6 +58,6 @@ class UserUpdateModel {
 
   @override
   String toString() {
-    return 'JoinModel{nickname: $nickname, teamId: $teamId, profileUrl: $profileUrl}';
+    return 'UserUpdateModel{nickname: $nickname, teamId: $teamId, profileUrl: $profileUrl}';
   }
 }

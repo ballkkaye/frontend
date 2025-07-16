@@ -75,7 +75,7 @@ class MyApp extends StatelessWidget {
           return VisitRecordWritePage(selectedGame: selectedGame);
         },
         "/visit-record/update": (context) => const VisitRecordUpdatePage(),
-        "/game-center/matchup": (context) => const MatchupPage(),
+        // "/game-center/matchup": (context) => const MatchupPage(),
         "/game-center/prediction": (context) => const PredictionPage(),
         "/game-center/rainout-prediction": (context) => const RainoutPredictionPage(),
         "/game-center/ranking": (context) => const RankingPage(),
