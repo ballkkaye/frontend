@@ -27,9 +27,8 @@ class VisitRecordListVM extends AutoDisposeNotifier<List<VisitRecordListModel>?>
       );
       return;
     }
-    final List<VisitRecordListModel> list = (body['body'] as List<dynamic>)
-        .map((e) => VisitRecordListModel.fromMap(e as Map<String, dynamic>))
-        .toList();
+    final List<VisitRecordListModel> list =
+        (body['body'] as List<dynamic>).map((e) => VisitRecordListModel.fromMap(e as Map<String, dynamic>)).toList();
 
     state = list;
   }
@@ -37,15 +36,19 @@ class VisitRecordListVM extends AutoDisposeNotifier<List<VisitRecordListModel>?>
   Future<void> loadDay(String date) async {
     state = null;
     final body = await VisitRecordRepository().getDayGameList(date: date);
+    Logger().d("📅 선택된 날짜: $date");
+    Logger().d("📡 API 응답 전체: $body");
+    Logger().d("📡 body['body']: ${body['body']}");
+    Logger().d("📡 body['status']: ${body['status']}");
+    Logger().d("📡 body['msg']: ${body['msg']}");
     if (body["status"] != 200) {
       ScaffoldMessenger.of(mContext).showSnackBar(
         SnackBar(content: Text("일별 조회 실패: ${body['errorMessage']}")),
       );
       return;
     }
-    final List<VisitRecordListModel> list = (body['body'] as List<dynamic>)
-        .map((e) => VisitRecordListModel.fromMap(e as Map<String, dynamic>))
-        .toList();
+    final List<VisitRecordListModel> list =
+        (body['body'] as List<dynamic>).map((e) => VisitRecordListModel.fromMap(e as Map<String, dynamic>)).toList();
 
     state = list;
   }
