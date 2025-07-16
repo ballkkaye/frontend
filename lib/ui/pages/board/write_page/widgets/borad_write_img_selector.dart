@@ -31,13 +31,15 @@ class _BoardWriteImgSelectorState extends State<BoardWriteImgSelector> {
         imageFile = result.file;
         uploadedUrl = result.url;
       });
-      widget.fm.imgUrl(result.url);
+      widget.fm.addImageUrl(result.url);
       print("✅ 업로드 완료: ${result.url}");
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final List<String> currentImageUrls = widget.fm.state.imageUrl;
+
     return Row(
       children: [
         // 이미지 추가 버튼
@@ -66,7 +68,7 @@ class _BoardWriteImgSelectorState extends State<BoardWriteImgSelector> {
               children: [
                 Icon(Icons.add_a_photo_outlined, color: MColor.kLabel.alternative),
                 Text(
-                  imageFile == null ? "0/10" : "1/10",
+                  "${currentImageUrls.length}/10",
                   style: TextStyle(color: MColor.kLabel.alternative),
                 ),
               ],
@@ -76,7 +78,7 @@ class _BoardWriteImgSelectorState extends State<BoardWriteImgSelector> {
         SizedBox(width: 10),
         // 이미지 썸네일
         Expanded(
-          child: BoardImgThumbnail(imageUrl: uploadedUrl),
+          child: BoardImgThumbnail(imageUrls: currentImageUrls),
         )
       ],
     );

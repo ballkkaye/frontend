@@ -9,7 +9,7 @@ final boardWriteProvider = NotifierProvider<BoardWriteFM, BoardWriteModel>(() {
 class BoardWriteFM extends Notifier<BoardWriteModel> {
   @override
   BoardWriteModel build() {
-    return BoardWriteModel("", "", 0, "");
+    return BoardWriteModel("", "", 0, []);
   }
 
   void title(String title) {
@@ -30,10 +30,18 @@ class BoardWriteFM extends Notifier<BoardWriteModel> {
     );
   }
 
-  void imgUrl(String imgUrl) {
-    state = state.copyWith(
-      imgUrl: imgUrl,
-    );
+  void addImageUrl(String url) {
+    final updatedList = [...state.imageUrl, url];
+    state = state.copyWith(imageUrl: updatedList);
+  }
+
+  void removeImageUrl(String url) {
+    final updatedList = state.imageUrl.where((e) => e != url).toList();
+    state = state.copyWith(imageUrl: updatedList);
+  }
+
+  void clearImageUrls() {
+    state = state.copyWith(imageUrl: []);
   }
 }
 
@@ -42,16 +50,13 @@ class BoardWriteModel {
   final String title;
   final String content;
   final int teamId;
-  final String imgUrl;
-
-  // final List<String> imageUrl;
+  final List<String> imageUrl;
 
   BoardWriteModel(
     this.title,
     this.content,
     this.teamId,
-    this.imgUrl,
-    // this.imageUrl,
+    this.imageUrl,
   );
 
   BoardWriteModel copyWith({
@@ -59,20 +64,18 @@ class BoardWriteModel {
     String? content,
     int? teamId,
     String? imgUrl,
-    // List<String>? imageUrl,
+    List<String>? imageUrl,
   }) {
     return BoardWriteModel(
       title ?? this.title,
       content ?? this.content,
       teamId ?? this.teamId,
-      imgUrl ?? this.imgUrl,
-      // imageUrl ?? this.imageUrl,
+      imageUrl ?? this.imageUrl,
     );
   }
 
   @override
   String toString() {
-    return 'PostWriteModel{title: $title, content: $content, teamId: $teamId, imgUrl: $imgUrl }';
+    return 'PostWriteModel{title: $title, content: $content, teamId: $teamId, imageUrl: $imageUrl }';
   }
-//, imageUrl: $imageUrl
 }

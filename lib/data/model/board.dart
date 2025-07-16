@@ -19,8 +19,7 @@ class Board {
   final int likeCount;
   final int replyCount;
   final String? imageString; //임시 이미지코드
-
-  // final List<BoardImage> images;
+  final List<BoardImage> images;
   final List<Reply> replyItems;
 
   Board({
@@ -37,7 +36,7 @@ class Board {
     required this.likeCount,
     required this.replyCount,
     required this.imageString,
-    // required this.images,
+    required this.images,
     required this.replyItems,
     required this.profileImgUrl,
   });
@@ -61,7 +60,7 @@ class Board {
       likeCount: data['likeCount'],
       replyCount: data['replyCount'] ?? 0,
       imageString: data['imageString'] ?? '',
-      // images: (data['images'] as List<dynamic>?)?.map((e) => BoardImage.fromMap(e)).toList() ?? [],
+      images: (data['images'] as List<dynamic>?)?.map((e) => BoardImage.fromMap(e)).toList() ?? [],
       //todo: 나중에 이미지추가할때 주석지워서 사용
       replyItems: (data['replyItems'] as List<dynamic>?)?.map((e) => Reply.fromMap(e)).toList() ?? [],
     );
@@ -85,7 +84,7 @@ class Board {
       replyItems: [],
       imageString: '',
       profileImgUrl: '',
-      // images: [],
+      images: [],
     );
   }
 
@@ -123,7 +122,7 @@ class Board {
       replyItems: replyItems ?? this.replyItems,
       imageString: imageString ?? this.imageString,
       profileImgUrl: profileImgUrl ?? this.profileImgUrl,
-      // images: images ?? this.images,
+      images: images ?? this.images,
     );
   }
 }

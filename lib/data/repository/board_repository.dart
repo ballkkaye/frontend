@@ -209,16 +209,16 @@ class BoardRepository {
     return responseBody;
   }
 
-  Future<Map<String, dynamic>> write(int teamId, String title, String content, String imgUrl) async {
+  Future<Map<String, dynamic>> write(int teamId, String title, String content, List<String> imagesUrl) async {
     final responseBody = {
       "status": 200,
       "msg": "성공",
       "body": {
-        "imgUrl": "https://example.com/board-photo.jpg",
-        // "imagesUrl": [
-        //   {"id": 1, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img001.png"},
-        //   {"id": 2, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img002.png"}
-        // ],
+        // "imgUrl": "https://example.com/board-photo.jpg",
+        "imagesUrl": [
+          {"id": 1, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img001.png"},
+          {"id": 2, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img002.png"}
+        ],
         "boardId": 12,
         "title": "새로운 게시글 제목",
         "teamId": 2,

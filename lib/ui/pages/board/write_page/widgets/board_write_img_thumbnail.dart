@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
 
 class BoardImgThumbnail extends StatelessWidget {
-  final String? imageUrl;
+  final List<String> imageUrls;
 
   const BoardImgThumbnail({
     super.key,
-    this.imageUrl,
+    required this.imageUrls,
   });
 
   @override
   Widget build(BuildContext context) {
-    if (imageUrl == null || imageUrl!.isEmpty) {
-      return const SizedBox(); // 이미지 없으면 아무것도 안 그림
+    if (imageUrls.isEmpty) {
+      return const SizedBox.shrink(); // 아무것도 표시하지 않는 위젯
     }
+
     return SizedBox(
       height: 80,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemCount: 1,
+        itemCount: imageUrls.length,
         itemBuilder: (context, index) {
+          final String currentImageUrl = imageUrls[index];
           return ClipRRect(
             borderRadius: BorderRadiusGeometry.circular(8),
             child: Image.network(
-              imageUrl!,
+              currentImageUrl,
               height: 80,
               width: 80,
               fit: BoxFit.cover,

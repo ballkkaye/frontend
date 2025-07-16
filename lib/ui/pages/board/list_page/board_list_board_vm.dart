@@ -1,6 +1,7 @@
 import 'package:ballkkaye_frontend/data/model/board.dart';
 import 'package:ballkkaye_frontend/data/repository/board_repository.dart';
 import 'package:ballkkaye_frontend/main.dart';
+import 'package:ballkkaye_frontend/ui/pages/board/write_page/board_write_fm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
@@ -74,18 +75,22 @@ class BoardListBoardVM extends AutoDisposeNotifier<BoardListBoardModel?> {
     state = nextModel.copyWith(boards: [...prevModel.boards, ...nextModel.boards]);
   }
 
-  Future<void> write(int teamId, String title, String content, String imgUrl) async {
+  Future<void> write(int teamId, String title, String content, List<String> imageUrl) async {
     // 1. 레포지토리에 함수 호출
-    Map<String, dynamic> data = await BoardRepository().write(teamId, title, content, imgUrl);
+    Map<String, dynamic> data = await BoardRepository().write(teamId, title, content, imageUrl);
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
         SnackBar(content: Text("게시글 쓰기 실패 : ${data["msg"]}")),
       );
       return;
     }
+
     Board board = Board.fromMap(data["body"]);
     List<Board> nextBoards = [board, ...state!.boards];
     state = state!.copyWith(boards: nextBoards);
+
+    ref.read(boardWriteProvider.notifier).clearImageUrls();
+
     Navigator.pop(mContext!);
   }
 }
