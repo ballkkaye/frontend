@@ -65,14 +65,15 @@ class Board {
       likeCount: data['likeCount'],
       replyCount: data['replyCount'] ?? 0,
       images: (data['images'] as List<dynamic>?)?.map((e) => BoardImage.fromMap(e)).toList() ?? [],
-      replyItems: (data['replyItems'] as List<dynamic>?)?.map((e) => Reply.fromMap(e)).toList() ?? [],
+      replyItems:
+          (data['replyItems'] as List<dynamic>?)?.map((e) => Reply.fromMap(e)).toList() ?? [],
     );
   }
 
   /// 홈화면 전용 간단 파싱
   factory Board.fromSimple(Map<String, dynamic> data) {
     return Board(
-      boardId: data['boardId'],
+      boardId: data['boardId'] ?? 0,
       nickname: '',
       relativeTime: '',
       myTeamName: '',
