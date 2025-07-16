@@ -9,7 +9,7 @@ class BoardRepository {
       "body": {
         "boardId": 1,
         "nickname": "cos",
-        // "profileImageUrl": "/img/profile.png",
+        "profileImageUrl": "https://cdn.pixabay.com/photo/2023/06/04/20/21/cat-8040862_1280.jpg",
         "relativeTime": "8분 전",
         "myTeamName": "두산 베어스",
         "teamCategoryId": 3,
@@ -19,16 +19,16 @@ class BoardRepository {
         "isOwner": true,
         "isLike": false,
         "likeCount": 0,
-        // "images": [
-        //   {"id": 1, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img001.png"},
-        //   {"id": 2, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img002.png"},
-        //   {"id": 3, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/new003.png"}
-        // ],
+        "images": [
+          {"id": 1, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img001.png"},
+          {"id": 2, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img002.png"},
+          {"id": 3, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/new003.png"}
+        ],
         "replyItems": [
           {
             "replyId": 1,
             "nickname": "cos",
-            "profileImg": "/img/profile.png",
+            "profileImg": "https://cdn.pixabay.com/photo/2023/06/04/20/21/cat-8040862_1280.jpg",
             "relativeTime": "8분 전",
             "myTeamName": "두산 베어스",
             "content": "좋은 글이네요! 감사합니다.",
@@ -208,11 +208,12 @@ class BoardRepository {
     return responseBody;
   }
 
-  Future<Map<String, dynamic>> write(int teamId, String title, String content) async {
+  Future<Map<String, dynamic>> write(int teamId, String title, String content, List<String> imagesUrl) async {
     final responseBody = {
       "status": 200,
       "msg": "성공",
       "body": {
+        // "imgUrl": "https://example.com/board-photo.jpg",
         "imagesUrl": [
           {"id": 1, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img001.png"},
           {"id": 2, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img002.png"}
@@ -236,11 +237,12 @@ class BoardRepository {
       "status": 200,
       "msg": "성공",
       "body": {
-        "imagesUrl": [
-          {"id": 1, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img001.png"},
-          {"id": 2, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img002.png"},
-          {"id": 3, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/new003.png"}
-        ],
+        "imgUrl": "https://example.com/board-photo.jpg",
+        // "imagesUrl": [
+        //   {"id": 1, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img001.png"},
+        //   {"id": 2, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/img002.png"},
+        //   {"id": 3, "imageUrl": "https://s3.ap-northeast-2.amazonaws.com/bucket-name/images/new003.png"}
+        // ],
         "boardId": 12,
         "title": "수정된 게시글 제목2",
         "teamId": 3,
