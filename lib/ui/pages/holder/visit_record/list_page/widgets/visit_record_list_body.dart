@@ -11,7 +11,8 @@ class VisitRecordListBody extends ConsumerStatefulWidget {
   const VisitRecordListBody({super.key});
 
   @override
-  ConsumerState<VisitRecordListBody> createState() => _VisitRecordListBodyState();
+  ConsumerState<VisitRecordListBody> createState() =>
+      _VisitRecordListBodyState();
 }
 
 class _VisitRecordListBodyState extends ConsumerState<VisitRecordListBody> {
@@ -51,7 +52,9 @@ class _VisitRecordListBodyState extends ConsumerState<VisitRecordListBody> {
                 cellSize: cellSize,
                 onDateSelected: (date) {
                   if (!isSameDay(selectedDate, date)) {
-                    ref.read(VisitRecordListselectedDateProvider.notifier).state = date;
+                    ref
+                        .read(VisitRecordListselectedDateProvider.notifier)
+                        .state = date;
 
                     final ymd = "${date!.year.toString().padLeft(4, '0')}-"
                         "${date.month.toString().padLeft(2, '0')}-"
@@ -64,7 +67,8 @@ class _VisitRecordListBodyState extends ConsumerState<VisitRecordListBody> {
                   _currentMonth = month;
 
                   // 달을 넘기면 → 월별 조회 & 선택된 날짜 초기화
-                  ref.read(VisitRecordListselectedDateProvider.notifier).state = null;
+                  ref.read(VisitRecordListselectedDateProvider.notifier).state =
+                      null;
                   ref.read(visitRecordListProvider.notifier).loadMonth(
                         year: year,
                         month: month,

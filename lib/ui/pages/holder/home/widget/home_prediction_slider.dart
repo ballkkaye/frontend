@@ -18,11 +18,11 @@ class HomePredictionSlider extends StatefulWidget {
 
 class _HomePredictionSliderState extends State<HomePredictionSlider> {
   int _currentIndex = 0;
-  final CarouselSliderController _carouselSliderController =
-      CarouselSliderController();
+  final CarouselSliderController _carouselSliderController = CarouselSliderController();
 
   @override
   Widget build(BuildContext context) {
+    final visibleGames = widget.games.take(5).toList();
     return Container(
       child: Column(
         children: [
@@ -37,7 +37,7 @@ class _HomePredictionSliderState extends State<HomePredictionSlider> {
                 });
               },
             ),
-            items: widget.games.map((game) {
+            items: visibleGames.map((game) {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: HomePredictionCard(predictionGame: game),
@@ -48,20 +48,18 @@ class _HomePredictionSliderState extends State<HomePredictionSlider> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(5, (index) {
               return GestureDetector(
-                  onTap: () => _carouselSliderController.animateToPage(index),
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    width: _currentIndex == index ? 16 : 8,
-                    height: 8,
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: 4, vertical: 10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: _currentIndex == index
-                          ? MColor.kPrimary.strong
-                          : MColor.kFill.normal,
-                    ),
-                  ));
+                onTap: () => _carouselSliderController.animateToPage(index),
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  width: _currentIndex == index ? 16 : 8,
+                  height: 8,
+                  margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: _currentIndex == index ? MColor.kPrimary.strong : MColor.kFill.normal,
+                  ),
+                ),
+              );
             }),
           ),
         ],

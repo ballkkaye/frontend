@@ -1,5 +1,6 @@
 import 'package:ballkkaye_frontend/_core/style/m_color.dart';
 import 'package:ballkkaye_frontend/_core/style/m_text.dart';
+import 'package:ballkkaye_frontend/ui/widgets/m_slide_down_text_animation.dart';
 import 'package:flutter/material.dart';
 
 class TodayGameLabel extends StatelessWidget {
@@ -24,9 +25,11 @@ class TodayGameLabel extends StatelessWidget {
       alignment: Alignment.center,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-        child: MText.label2_7(
-          gameState,
-          color: MColor.kLabel.white,
+        child: MSlideDownTextAnimation(
+          child: MText.label2_7(
+            gameState,
+            color: MColor.kLabel.white,
+          ),
         ),
       ),
     );
