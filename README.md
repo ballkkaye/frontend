@@ -18,7 +18,7 @@
 | **이력서 추천**   | 구직자 이력서 기반 추천 공고 보기                 |
 | **채용공고**     | 직무, 경력, 기술스택으로 조건 검색 / 공고 리스트 뷰     |
 | **마이페이지**    | 내 정보 수정 / 내 활동 내역 확인 (게시글, 댓글, 지원)  |
-| **로그인 인증**   | JWT 기반 자동 로그인 및 라우팅 처리              |
+| **로그인 인증**   | FCM 기반 네이버 로그인 및 라우팅 처리             |
 | **채팅 UI**    | 직관 동행 시 채팅방 레이아웃 설계                 |
 
 # Members
@@ -56,20 +56,11 @@
 
 <br>
 
-# Cooperated With
-
-<div>
-<img src="https://github.com/yewon-Noh/readme-template/blob/main/skills/Github.png?raw=true" width="80">
-<img src="https://github.com/yewon-Noh/readme-template/blob/main/skills/Notion.png?raw=true" width="80">
-</div>
-
-<br>
-
 # Tasks & Responsibilities
 
 |     |                                                                                                                          |                                                                                                       |
 |-----|--------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
-| 김주희 | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/240125_ynn1.png?raw=true" alt="문정준" width="100">   | <ul><li>프로젝트 계획 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>제안, 지원, 매칭 기능 개발</li><li>전체 DTO 수정 및 디버깅</li></ul> |
+| 김주희 | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/240125_ynn1.png?raw=true" alt="김주희" width="100">   | <ul><li>프로젝트 계획 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>제안, 지원, 매칭 기능 개발</li><li>전체 DTO 수정 및 디버깅</li></ul> |
 | 손영민 | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/Screenshot_38.png?raw=true" alt="손영민" width="100"> | <ul><li>추천 페이지 제작</li><li>이력서 관련 페이지 및 기능 개발</li><li>커뮤니티 관련 페이지 및 기능 개발</li></ul>                    |
 | 서회정 | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/image.png?raw=true" alt="서회정" width="100">         | <ul><li>홈 페이지 제작</li><li>채용공고 관련 페이지 및 기능 개발</li><li>페이지네이션 기능 개발</li></ul>                           |
 
