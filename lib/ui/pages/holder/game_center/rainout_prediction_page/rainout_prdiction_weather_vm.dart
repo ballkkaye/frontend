@@ -15,16 +15,14 @@ class RainoutPredictionWeatherVM
 
   @override
   RainoutPredictionWeatherModel? build(int? stadiumId) {
-    loadWeather(stadiumId ??
-        5); // 드롭다운 첫번째 아이템이 잠실이니 잠실 기준으로 진입. // TODO : 현재 잠실 데이터가 없어서 고척으로 설정 -> 추후 수정
+    loadWeather(stadiumId ?? 1); // 드롭다운 첫번째 아이템이 잠실이니 잠실 기준으로 진입
 
     return null;
   }
 
   Future<void> loadWeather(int stadiumId) async {
     Logger().d("stadiumId: $stadiumId");
-    Map<String, dynamic> body =
-        await GameCenterRepository().getWeatherInfo(stadiumId);
+    Map<String, dynamic> body = await GameCenterRepository().getWeatherInfo(stadiumId);
     if (body["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
         SnackBar(content: Text("날씨 불러오기 실패 : ${body["msg"]}")),
@@ -51,11 +49,8 @@ class RainoutPredictionWeatherModel {
   factory RainoutPredictionWeatherModel.fromMap(Map<String, dynamic> map) {
     return RainoutPredictionWeatherModel(
       location: map['location'],
-      hourly:
-          (map['hourly'] as List).map((e) => HourlyWeather.fromMap(e)).toList(),
-      hourlyRain: (map['hourlyRain'] as List)
-          .map((e) => HourlyRain.fromMap(e))
-          .toList(),
+      hourly: (map['hourly'] as List).map((e) => HourlyWeather.fromMap(e)).toList(),
+      hourlyRain: (map['hourlyRain'] as List).map((e) => HourlyRain.fromMap(e)).toList(),
       message: map['message'],
     );
   }

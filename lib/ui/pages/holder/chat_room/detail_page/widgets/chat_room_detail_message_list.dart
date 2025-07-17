@@ -23,25 +23,35 @@ class ChatRoomDetailMessageList extends ConsumerWidget {
         padding: EdgeInsets.symmetric(horizontal: 16),
         itemCount: model.groupedChatList.length,
         itemBuilder: (context, index) {
-          if (model.groupedChatList[index] is String) {
-            // 날짜 헤더
-            final date = DateTime.parse(model.groupedChatList[index]);
-            return Center(
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 10),
-                child: MText.normal6_7(
-                  "${date.year}년 ${date.month.toString().padLeft(2, '0')}월 ${date.day.toString().padLeft(2, '0')}일",
-                  color: MColor.kLabel.normal,
-                ),
-              ),
-            );
-          } else if (model.groupedChatList[index] is ChatRoom) {
-            if (model.groupedChatList[index].chat.messageType != 'TALK') {
+          final item = model.groupedChatList[index];
+
+          if (item is String) {
+            final date = DateTime.tryParse(item);
+            if (date != null) {
               return Center(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: MText.normal6_7(
+                    "${date.year}년 ${date.month.toString().padLeft(2, '0')}월 ${date.day.toString().padLeft(2, '0')}일",
+                    color: MColor.kLabel.normal,
+                  ),
+                ),
+              );
+            } else {
+              return const SizedBox.shrink();
+            }
+          }
+
+          if (item is ChatRoom && item.chat != null) {
+            final chat = item.chat!;
+            final isTALK = chat.messageType == 'TALK';
+
+            if (!isTALK) {
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Text(
-                    model.groupedChatList[index].chat.message,
+                    chat.message,
                     style: TextStyle(
                       color: MColor.kLabel.neutral,
                       fontSize: 12,
@@ -50,25 +60,24 @@ class ChatRoomDetailMessageList extends ConsumerWidget {
                 ),
               );
             }
+
             return Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
+              padding: const EdgeInsets.symmetric(vertical: 10),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: model.groupedChatList[index].chat.isOwner
-                    ? MainAxisAlignment.end
-                    : MainAxisAlignment.start,
+                mainAxisAlignment: chat.isOwner ? MainAxisAlignment.end : MainAxisAlignment.start,
                 children: [
-                  if (!model.groupedChatList[index].chat.isOwner) ...[
-                    ChatRoomDetailMessageProfile(), //userProfileImg: item.chat.user.profileUrl!
-                    SizedBox(width: 10),
+                  if (!chat.isOwner) ...[
+                    ChatRoomDetailMessageProfile(), // 프로필 이미지 등
+                    const SizedBox(width: 10),
                   ],
-                  ChatRoomDetailMessageBubble(model.groupedChatList[index].chat),
+                  ChatRoomDetailMessageBubble(chat),
                 ],
               ),
             );
           }
 
-          return SizedBox.shrink();
+          return const SizedBox.shrink();
         },
       );
     }

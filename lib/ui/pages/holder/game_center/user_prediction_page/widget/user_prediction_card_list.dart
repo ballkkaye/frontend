@@ -22,12 +22,10 @@ class UserPredictionCardList extends StatelessWidget {
         final away = game.awayTeam;
         final time = parseHourMinute(g.game.gameTime);
 
-        final VoidCallback? currentOnTapLeft = onSelectTeam != null
-            ? () => onSelectTeam!(game.id!, home.teamId!)
-            : null;
-        final VoidCallback? currentOnTapRight = onSelectTeam != null
-            ? () => onSelectTeam!(game.id!, away.teamId!)
-            : null;
+        final VoidCallback? currentOnTapLeft =
+            onSelectTeam != null ? () => onSelectTeam!(game.id!, home.teamId!) : null;
+        final VoidCallback? currentOnTapRight =
+            onSelectTeam != null ? () => onSelectTeam!(game.id!, away.teamId!) : null;
 
         return Column(
           children: [
@@ -40,7 +38,7 @@ class UserPredictionCardList extends StatelessWidget {
               rightTeamName: home.teamName!,
               leftScore: away.score ?? 0,
               rightScore: home.score ?? 0,
-              leftPercent: g.homeVoteRate,
+              leftPercent: g.awayVoteRate,
               rightPercent: g.homeVoteRate,
               startHour: time['hour']!,
               startMinute: time['minute']!,

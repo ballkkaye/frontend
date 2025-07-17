@@ -22,7 +22,7 @@ class Team {
   Team.fromMap(Map<String, dynamic> data)
       : teamId = data['teamId'],
         teamName = data['teamName'],
-        teamLogo = data['teamLogo'],
+        teamLogo = data['teamLogo'] ?? data['logoUrl'],
         teamRank = data['teamRank'],
         fullName = null,
         shortName = null,

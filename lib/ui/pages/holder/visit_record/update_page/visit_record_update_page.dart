@@ -11,11 +11,11 @@ class VisitRecordUpdatePage extends StatelessWidget {
     return Scaffold(
       appBar: _appbar(),
       body: VisitRecordUpdateBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.popAndPushNamed(context, "/visit-record/detail");
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.popAndPushNamed(context, "/visit-record/detail");
+      //   },
+      // ),
     );
   }
 
