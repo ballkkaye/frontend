@@ -47,6 +47,21 @@
 <img src="https://github.com/yewon-Noh/readme-template/blob/main/skills/Ajax.png?raw=true" width="80">
 </div>
 
+| Category             | 기술                                                                                                                                                                                                                                                |
+|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Language**         | ![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)                                                                                                                                                   |
+| **Framework**        | ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)                                                                                                                                          |
+| **State Management** | ![Riverpod](https://img.shields.io/badge/Riverpod-7B61FF?style=for-the-badge&logo=flutter&logoColor=white)                                                                                                                                        |
+| **Networking**       | ![Dio](https://img.shields.io/badge/Dio-FF69B4?style=for-the-badge&logo=axios&logoColor=white)                                                                                                                                                    |
+| **Authentication**   | ![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)                                                                                                                                            |
+| **Image Upload**     | ![Base64](https://img.shields.io/badge/Base64-E4C1F9?style=for-the-badge) ![PresignedURL](https://img.shields.io/badge/Presigned_URL-FFCA28?style=for-the-badge)                                                                                  |
+| **Routing**          | ![GoRouter](https://img.shields.io/badge/GoRouter-1E88E5?style=for-the-badge)                                                                                                                                                                     |
+| **UI Framework**     | ![Cupertino](https://img.shields.io/badge/Cupertino-F8F9FA?style=for-the-badge&logo=apple&logoColor=black)                                                                                                                                        |
+| **Tooling**          | ![Android Studio](https://img.shields.io/badge/Android%20Studio-3DDC84?style=for-the-badge&logo=android-studio&logoColor=white) ![VSCode](https://img.shields.io/badge/VSCode-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white) |
+| **Team Tools**       | ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white) ![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white)                                       |
+
+<br>
+
 # Cooperated With
 
 <div>
