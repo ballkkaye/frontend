@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=DCDCDC&height=300&section=header&text=Ball%20kka%20ye.&fontSize=90&fontColor=0099FF" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=DCDCDC&height=300&section=header&text=Ballkkaye%20%20.&fontSize=90&fontColor=0099FF" />
 
 # ⚾ 파이널 프로젝트 3 : KBO 팬들을 위한 올인원 커뮤니티 플랫폼
 
