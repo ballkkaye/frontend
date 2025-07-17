@@ -65,16 +65,3 @@
 | 서회정 | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/image.png?raw=true" alt="서회정" width="100">         | <ul><li>홈 페이지 제작</li><li>채용공고 관련 페이지 및 기능 개발</li><li>페이지네이션 기능 개발</li></ul>                           |
 
 <br>
-
-# Information Architecture
-
-- 기업과 구직자 역할은 구분되어 있음
-- 검정색 기능은 공통 기능
-
-<img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/projectia.png?raw=true">
-
-<br>
-
-# Table Setting
-
-## user_tb
