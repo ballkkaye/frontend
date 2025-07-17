@@ -7,7 +7,7 @@
 
 <br>
 
-## 🔨 주요 기능
+## 주요 기능
 
 | 카테고리         | 구현 기능                                         |
 |--------------|-----------------------------------------------|
@@ -58,10 +58,11 @@
 
 # Tasks & Responsibilities
 
-|     |                                                                                                                          |                                                                                                       |
-|-----|--------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
-| 김주희 | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/240125_ynn1.png?raw=true" alt="김주희" width="100">   | <ul><li>프로젝트 계획 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>제안, 지원, 매칭 기능 개발</li><li>전체 DTO 수정 및 디버깅</li></ul> |
-| 손영민 | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/Screenshot_38.png?raw=true" alt="손영민" width="100"> | <ul><li>추천 페이지 제작</li><li>이력서 관련 페이지 및 기능 개발</li><li>커뮤니티 관련 페이지 및 기능 개발</li></ul>                    |
-| 서회정 | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/image.png?raw=true" alt="서회정" width="100">         | <ul><li>홈 페이지 제작</li><li>채용공고 관련 페이지 및 기능 개발</li><li>페이지네이션 기능 개발</li></ul>                           |
+|     |                                                                                                                          |                                                                                                                     |
+|-----|--------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
+| 김주희 | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/240125_ynn1.png?raw=true" alt="김주희" width="100">   | <ul><li>전체 프로젝트 계획 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>동행/채팅리스트, 유저 로그인/회원가입 개발</li><li>직관기록, 커뮤니티 UI 개발  </li></ul> |
+| 손영민 | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/Screenshot_38.png?raw=true" alt="손영민" width="100"> | <ul><li>동행, 채팅리스트 UI구현</li><li>승리예측, 나의승부예측, 오늘의경기 페이지 개발</li><li>커뮤니티 관련 페이지 및 기능 개발</li></ul>                     |
+| 서회정 | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/image.png?raw=true" alt="서회정" width="100">         | <ul><li>볼까예 디자인가이드 제작</li><li>팀순위, 상대전적, 우천취소, 직관기록 개발</li><li>홈, 예측, 상대전적, 로그인 UI제작</li></ul>                      |
 
-<br>
+<br>;
+
