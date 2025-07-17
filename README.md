@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=DCDCDC&height=300&section=header&text=볼%20까%20예.&fontSize=90&fontColor=0099FF" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=DCDCDC&height=300&section=header&text=Ball%20kka%20ye.&fontSize=90&fontColor=0099FF" />
 
 # ⚾ 파이널 프로젝트 3 : KBO 팬들을 위한 올인원 커뮤니티 플랫폼
 
@@ -25,9 +25,9 @@
 
 |                                                          김주희                                                           |                                                           손영민                                                            |                                                       서회정                                                        |                                                                                                                   |
 |:----------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------:|
-| <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/240125_ynn1.png?raw=true" alt="문정준" width="150"> | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/Screenshot_38.png?raw=true" alt="손영민" width="150"> | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/image.png?raw=true" alt="서회정" width="150"> |
+| <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/240125_ynn1.png?raw=true" alt="김주희" width="150"> | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/Screenshot_38.png?raw=true" alt="손영민" width="150"> | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/image.png?raw=true" alt="서회정" width="150"> |
 |                                                           PL                                                           |                                                            FE                                                            |                                                        FE                                                        |
-|                                           [GitHub](https://github.com/Sxias)                                           |                                           [GitHub](https://github.com/son7571)                                           |                                      [GitHub](https://github.com/clubnerdy)                                      |
+|                                          [GitHub](https://github.com/jh0804)                                           |                                           [GitHub](https://github.com/son7571)                                           |                                      [GitHub](https://github.com/clubnerdy)                                      |
 
 <br>
 
@@ -64,5 +64,5 @@
 | 손영민 | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/Screenshot_38.png?raw=true" alt="손영민" width="100"> | <ul><li>동행, 채팅리스트 UI구현</li><li>승리예측, 나의승부예측, 오늘의경기 페이지 개발</li><li>커뮤니티 관련 페이지 및 기능 개발</li></ul>                     |
 | 서회정 | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/image.png?raw=true" alt="서회정" width="100">         | <ul><li>볼까예 디자인가이드 제작</li><li>팀순위, 상대전적, 우천취소, 직관기록 개발</li><li>홈, 예측, 상대전적, 로그인 UI제작</li></ul>                      |
 
-<br>;
+<br>
 
