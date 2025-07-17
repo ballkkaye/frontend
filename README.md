@@ -34,7 +34,7 @@
 # Developed With
 
 <a href="https://flutter.dev/">
-<img src="https://commons.wikimedia.org/wiki/File:Google-flutter-logo.svg" width="200">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuoF-9ybsBQyJTuTautJqBKZBhjuo9JZYRYA&s" width="200">
 </a>
 
 # Stacks Used
