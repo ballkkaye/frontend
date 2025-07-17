@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=DCDCDC&height=300&section=header&text=We%20Want%20You.&fontSize=90&fontColor=0099FF" />
+<img src="https://capsule-render.vercel.app/api?type=waving&color=DCDCDC&height=300&section=header&text=볼%20까%20예.&fontSize=90&fontColor=0099FF" />
 
 # ⚾ 파이널 프로젝트 3 : KBO 팬들을 위한 올인원 커뮤니티 플랫폼
 
@@ -25,9 +25,9 @@
 
 |                                                          김주희                                                           |                                                           손영민                                                            |                                                       서회정                                                        |                                                                                                                   |
 |:----------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------:|
-| <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/240125_ynn1.png?raw=true" alt="문정준" width="150"> | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/Screenshot_38.png?raw=true" alt="손영민" width="150"> | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/image.png?raw=true" alt="서회정" width="150"> | <img src="https://github.com/user-attachments/assets/beea8c64-19de-4d91-955f-ed24b813a638" alt="편준민" width="150"> |
-|                                                           PL                                                           |                                                            FE                                                            |                                                        FE                                                        |                                                        FE                                                         |
-|                                           [GitHub](https://github.com/Sxias)                                           |                                           [GitHub](https://github.com/son7571)                                           |                                      [GitHub](https://github.com/clubnerdy)                                      |                                       [GitHub](https://github.com/PJumMin)                                        |
+| <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/240125_ynn1.png?raw=true" alt="문정준" width="150"> | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/Screenshot_38.png?raw=true" alt="손영민" width="150"> | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/image.png?raw=true" alt="서회정" width="150"> |
+|                                                           PL                                                           |                                                            FE                                                            |                                                        FE                                                        |
+|                                           [GitHub](https://github.com/Sxias)                                           |                                           [GitHub](https://github.com/son7571)                                           |                                      [GitHub](https://github.com/clubnerdy)                                      |
 
 <br>
 
@@ -58,12 +58,11 @@
 
 # Tasks & Responsibilities
 
-|     |                                                                                                                          |                                                                                                         |
-|-----|--------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
-| 김주희 | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/240125_ynn1.png?raw=true" alt="문정준" width="100">   | <ul><li>프로젝트 계획 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>제안, 지원, 매칭 기능 개발</li><li>전체 DTO 수정 및 디버깅</li></ul>   |
-| 손영민 | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/Screenshot_38.png?raw=true" alt="손영민" width="100"> | <ul><li>추천 페이지 제작</li><li>이력서 관련 페이지 및 기능 개발</li><li>커뮤니티 관련 페이지 및 기능 개발</li></ul>                      |
-| 서회정 | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/image.png?raw=true" alt="서회정" width="100">         | <ul><li>홈 페이지 제작</li><li>채용공고 관련 페이지 및 기능 개발</li><li>페이지네이션 기능 개발</li></ul>                             |
-| 편준민 | <img src="https://github.com/user-attachments/assets/beea8c64-19de-4d91-955f-ed24b813a638" alt="편준민" width="100">        | <ul><li>로그인 관련 페이지 및 기능 개발</li><li> 마이페이지 및 회원 정보 수정 개발</li><li>매칭, 지원 페이지 제작</li><li>인터셉터 개발</li></ul> |
+|     |                                                                                                                          |                                                                                                       |
+|-----|--------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| 김주희 | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/240125_ynn1.png?raw=true" alt="문정준" width="100">   | <ul><li>프로젝트 계획 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>제안, 지원, 매칭 기능 개발</li><li>전체 DTO 수정 및 디버깅</li></ul> |
+| 손영민 | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/Screenshot_38.png?raw=true" alt="손영민" width="100"> | <ul><li>추천 페이지 제작</li><li>이력서 관련 페이지 및 기능 개발</li><li>커뮤니티 관련 페이지 및 기능 개발</li></ul>                    |
+| 서회정 | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/image.png?raw=true" alt="서회정" width="100">         | <ul><li>홈 페이지 제작</li><li>채용공고 관련 페이지 및 기능 개발</li><li>페이지네이션 기능 개발</li></ul>                           |
 
 <br>
 
