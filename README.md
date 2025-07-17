@@ -33,32 +33,26 @@
 
 # Developed With
 
-<a href="https://www.jetbrains.com/ko-kr/idea/">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/IntelliJ_IDEA_Icon.svg/800px-IntelliJ_IDEA_Icon.svg.png" width="200">
+<a href="https://flutter.dev/">
+<img src="https://commons.wikimedia.org/wiki/File:Google-flutter-logo.svg" width="200">
 </a>
 
 # Stacks Used
 
 <div>
-<img src="https://github.com/yewon-Noh/readme-template/blob/main/skills/Java.png?raw=true" width="80">
-<img src="https://github.com/yewon-Noh/readme-template/blob/main/skills/Bootstrap.png?raw=true" width="80">
-<img src="https://github.com/yewon-Noh/readme-template/blob/main/skills/JavaScript.png?raw=true" width="80">
-<img src="https://github.com/yewon-Noh/readme-template/blob/main/skills/HTMLCSS.png?raw=true" width="80">
-<img src="https://github.com/yewon-Noh/readme-template/blob/main/skills/Ajax.png?raw=true" width="80">
-</div>
 
-| Category             | 기술                                                                                                                                                                                                                                                |
-|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Language**         | ![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)                                                                                                                                                   |
-| **Framework**        | ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)                                                                                                                                          |
-| **State Management** | ![Riverpod](https://img.shields.io/badge/Riverpod-7B61FF?style=for-the-badge&logo=flutter&logoColor=white)                                                                                                                                        |
-| **Networking**       | ![Dio](https://img.shields.io/badge/Dio-FF69B4?style=for-the-badge&logo=axios&logoColor=white)                                                                                                                                                    |
-| **Authentication**   | ![FCM Token](https://img.shields.io/badge/FCM%20Token-FF9800?style=for-the-badge&logo=firebase&logoColor=white)                                                                                                                                   |
-| **Image Upload**     | ![Base64](https://img.shields.io/badge/Base64-E4C1F9?style=for-the-badge) ![PresignedURL](https://img.shields.io/badge/Presigned_URL-FFCA28?style=for-the-badge)                                                                                  |
-| **Routing**          | ![Navigator](https://img.shields.io/badge/Flutter%20Navigator-4CAF50?style=for-the-badge&logo=flutter&logoColor=white)                                                                                                                            |
-| **UI Framework**     | ![Material Design](https://img.shields.io/badge/Material%20Design-757575?style=for-the-badge&logo=material-design&logoColor=white)                                                                                                                |
-| **Tooling**          | ![Android Studio](https://img.shields.io/badge/Android%20Studio-3DDC84?style=for-the-badge&logo=android-studio&logoColor=white) ![VSCode](https://img.shields.io/badge/VSCode-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white) |
-| **Team Tools**       | ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white) ![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white)                                       |
+| Category             | 기술                                                                                                                                                                                                          |
+|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Language**         | ![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)                                                                                                             |
+| **Framework**        | ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)                                                                                                    |
+| **State Management** | ![Riverpod](https://img.shields.io/badge/Riverpod-7B61FF?style=for-the-badge&logo=flutter&logoColor=white)                                                                                                  |
+| **Networking**       | ![Dio](https://img.shields.io/badge/Dio-FF69B4?style=for-the-badge&logo=axios&logoColor=white)                                                                                                              |
+| **Authentication**   | ![FCM Token](https://img.shields.io/badge/FCM%20Token-FF9800?style=for-the-badge&logo=firebase&logoColor=white)                                                                                             |
+| **Image Upload**     | ![Base64](https://img.shields.io/badge/Base64-E4C1F9?style=for-the-badge) ![PresignedURL](https://img.shields.io/badge/Presigned_URL-FFCA28?style=for-the-badge)                                            |
+| **Routing**          | ![Navigator](https://img.shields.io/badge/Flutter%20Navigator-4CAF50?style=for-the-badge&logo=flutter&logoColor=white)                                                                                      |
+| **UI Framework**     | ![Material Design](https://img.shields.io/badge/Material%20Design-757575?style=for-the-badge&logo=material-design&logoColor=white)                                                                          |
+| **Tooling**          | ![Android Studio](https://img.shields.io/badge/Android%20Studio-3DDC84?style=for-the-badge&logo=android-studio&logoColor=white)                                                                             |
+| **Team Tools**       | ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white) ![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white) |
 
 <br>
 
