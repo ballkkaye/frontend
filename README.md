@@ -21,25 +21,23 @@
 | **로그인 인증**   | FCM 기반 네이버 로그인 및 라우팅 처리                       |
 | **채팅 UI**    | 직관 동행 시 채팅방 레이아웃 설계                           |
 
-# Members
+# 프론트엔드 팀원
 
-|                                           김주희                                           |                                                           손영민                                                            |                                                       서회정                                                        |                                                                                                                   |
-|:---------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------:|
+|                                           김주희                                           |                                                           손영민                                                            |                                                       서회정                                                        |
+|:---------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------:|
 | <img src="https://avatars.githubusercontent.com/u/127887466?v=4" alt="김주희" width="150"> | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/Screenshot_38.png?raw=true" alt="손영민" width="150"> | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/image.png?raw=true" alt="서회정" width="150"> |
 |                                           PL                                            |                                                            FE                                                            |                                                        FE                                                        |
 |                           [GitHub](https://github.com/jh0804)                           |                                           [GitHub](https://github.com/son7571)                                           |                                      [GitHub](https://github.com/clubnerdy)                                      |
 
 <br>
 
-# Developed With
+# 프론트엔드 프레임워크
 
 <a href="https://flutter.dev/">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuoF-9ybsBQyJTuTautJqBKZBhjuo9JZYRYA&s" width="200">
+<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdna%2FAvbFt%2FbtrKuvaYfXx%2FAAAAAAAAAAAAAAAAAAAAAMJQhu3ovWBnvAuFbd91achrtnX5M3muSSavtGLoKFW0%2Fimg.png%3Fcredential%3DyqXZFxpELC7KVnFOS48ylbz2pIh7yKj8%26expires%3D1753973999%26allow_ip%3D%26allow_referer%3D%26signature%3DUYFcuxa9KxKWkkVp3KZvECY7dbQ%253D" width="200">
 </a>
 
-# Stacks Used
-
-<div>
+# 사용 언어 및 툴과 기술
 
 | Category             | 기술                                                                                                                                                                                                          |
 |----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -56,13 +54,76 @@
 
 <br>
 
-# Tasks & Responsibilities
+# 역할분담
 
-|     |                                                                                                                          |                                                                                                                     |
-|-----|--------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
-| 김주희 | <img src="https://avatars.githubusercontent.com/u/127887466?v=4" alt="김주희" width="100">                                  | <ul><li>전체 프로젝트 계획 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>동행/채팅리스트, 유저 로그인/회원가입 개발</li><li>직관기록, 커뮤니티 UI 개발  </li></ul> |
-| 손영민 | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/Screenshot_38.png?raw=true" alt="손영민" width="100"> | <ul><li>동행, 채팅리스트 UI구현</li><li>승리예측, 나의승부예측, 오늘의경기 페이지 개발</li><li>커뮤니티 관련 페이지 및 기능 개발</li></ul>                     |
-| 서회정 | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/image.png?raw=true" alt="서회정" width="100">         | <ul><li>볼까예 디자인가이드 제작</li><li>팀순위, 상대전적, 우천취소, 직관기록 개발</li><li>홈, 예측, 상대전적, 로그인 UI제작</li></ul>                      |
+[//]: # (|     |                                                                                                                          |                                                                                                                     |)
+
+[//]: # (|-----|--------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|)
+
+[//]: # (| 김주희 | <img src="https://avatars.githubusercontent.com/u/127887466?v=4" alt="김주희" width="100">                                  | <ul><li>전체 프로젝트 계획 및 관리</li><li>팀 리딩 및 커뮤니케이션</li><li>동행/채팅리스트, 유저 로그인/회원가입 개발</li><li>직관기록, 커뮤니티 UI 개발  </li></ul> |)
+
+[//]: # (| 손영민 | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/Screenshot_38.png?raw=true" alt="손영민" width="100"> | <ul><li>동행, 채팅리스트 UI구현</li><li>승리예측, 나의승부예측, 오늘의경기 페이지 개발</li><li>커뮤니티 관련 페이지 및 기능 개발</li></ul>                     |)
+
+[//]: # (| 서회정 | <img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/image.png?raw=true" alt="서회정" width="100">         | <ul><li>볼까예 디자인가이드 제작</li><li>팀순위, 상대전적, 우천취소, 직관기록 개발</li><li>홈, 예측, 상대전적, 로그인 UI제작</li></ul>                      |)
+
+---
+
+### 김주희
+
+<img src="https://avatars.githubusercontent.com/u/127887466?v=4" alt="김주희" width="100">
+
+- 전체 프로젝트 총괄
+- 팀 리딩 및 커뮤니케이션
+- 직관기록 CRUD 페이지 UI 구현
+- 커뮤니티 게시판 CRUD 페이지 UI 구현
+- OAuth 로그인/회원가입 개발
+- 유저 추가 정보 등록 및 수정 API 연동 및 상태관리
+- 동행 CRUD API 연동 및 상태관리
+- 채팅방 목록, 상세, 삭제 API 연동 및 상태관리
+- 채팅 API 연동 및 상태관리
+- FCM 알림 기능 개발
+- Sentry.io 로그 관리
+
+---
+
+### 손영민
+
+<img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/Screenshot_38.png?raw=true" alt="손영민" width="100">
+
+- 동행 CRUD 페이지 UI 구현
+- 채팅리스트 페이지 UI 구현
+- 승리예측 API 연동 및 상태관리
+- 나의승부예측 API 연동 및 상태관리
+- 오늘의경기 API 연동 및 상태관리
+- 커뮤니티 CRUD API 연동 및 상태관리
+
+---
+
+### 서회정
+
+<img src="https://github.com/human-mjj/recruit-wwy/blob/master/README/image.png?raw=true" alt="서회정" width="100">
+
+- UXUI 디자인 및 레이아웃 구성
+- 승리예측 페이지 UI 구현
+- 오늘의경기 페이지 UI 구현
+- 우천취소예측 페이지 UI 구현
+- 상대전적확인 페이지 UI 구현
+- 나의승리예측 페이지 UI 구현
+- 팀순위 페이지 UI 구현
+- 홈 페이지 UI 구현
+- 로그인 UI 구현
+- 직관기록 CRUD API 연동 및 상태관리
+
+---
 
 <br>
 
+# 프로젝트 자료
+
+## 시연영상
+
+- 🎬 [시연 영상 다운로드](./assets/doc/ballkkaye_video.mp4)
+
+## 발표자료
+
+- 📄 [발표자료 보기](./assets/doc/presentation.pdf)
