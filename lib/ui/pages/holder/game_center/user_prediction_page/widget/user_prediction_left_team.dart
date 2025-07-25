@@ -51,12 +51,12 @@ class UserPredictionLeftTeam extends StatelessWidget {
                           child: Image.network(
                             teamLogo,
                             fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Image.asset(
-                                'assets/images/lotte_emblem_sample.png',
-                                fit: BoxFit.cover,
-                              );
-                            },
+                            // errorBuilder: (context, error, stackTrace) {
+                            //   return Image.asset(
+                            //     'assets/images/lotte_emblem_sample.png',
+                            //     fit: BoxFit.cover,
+                            //   );
+                            // },
                           ),
                         ),
                       ),

@@ -37,14 +37,14 @@ class Game {
             : Team(
                 teamId: data['homeTeamId'],
                 fullName: data['homeTeamName'],
-                teamLogo: data['homeTeamLogoUrl'],
+                teamLogo: data['homeTeamLogoUrl'] ?? data['logoUrl'],
               ),
         awayTeam = data['awayTeam'] != null
             ? Team.fromMap(data['awayTeam'])
             : Team(
                 teamId: data['awayTeamId'] ?? data['teamId'],
                 fullName: data['awayTeamName'],
-                teamLogo: data['awayTeamLogoUrl'],
+                teamLogo: data['awayTeamLogoUrl'] ?? data['logoUrl'],
               ),
         gameDate = data['gameDate'],
         gameTime = data['gameTime'],

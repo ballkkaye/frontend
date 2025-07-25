@@ -6,7 +6,6 @@ import 'package:ballkkaye_frontend/ui/pages/auth/login_page/login_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/list_page/board_list_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/board/write_page/board_write_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/chat_room/list_page/chat_room_list_page.dart';
-import 'package:ballkkaye_frontend/ui/pages/holder/game_center/matchup_page/matchup_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/prediction_page/prediction_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/rainout_prediction_page/rainout_prediction_page.dart';
 import 'package:ballkkaye_frontend/ui/pages/holder/game_center/ranking_page/ranking_page.dart';
@@ -28,15 +27,30 @@ import 'package:ballkkaye_frontend/ui/pages/mypage/user/update_page/user_update_
 import 'package:ballkkaye_frontend/ui/pages/splash/splash_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   await Firebase.initializeApp();
-  runApp(const ProviderScope(child: MyApp()));
+  await SentryFlutter.init(
+    (options) {
+      options.dsn = dotenv.env['SENTRY_DSN'];
+      options.sendDefaultPii = true;
+    },
+    appRunner: () => runApp(
+      ProviderScope(
+        child: SentryWidget(
+          child: MyApp(),
+        ),
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -63,7 +77,7 @@ class MyApp extends StatelessWidget {
         "/home": (context) => const HomePage(),
         "/main-holder": (context) => MainHolder(),
         "/visit-record/list": (context) => const VisitRecordListPage(),
-        "/visit-record/detail": (context) => const VisitRecordDetailPage(visitRecordId: 10),
+        //"/visit-record/detail": (context) => const VisitRecordDetailPage(visitRecordId: 10),
         "/visit-record/detail": (context) {
           final visitRecordId = ModalRoute.of(context)!.settings.arguments as int;
           return VisitRecordDetailPage(visitRecordId: visitRecordId);
@@ -71,7 +85,8 @@ class MyApp extends StatelessWidget {
         "/visit-record/select": (context) => VisitRecordSelectPage(),
         //"/visit-record/write": (context) => const VisitRecordWritePage(),
         "/visit-record/write": (context) {
-          final VisitRecord selectedGame = ModalRoute.of(context)!.settings.arguments as VisitRecord;
+          final VisitRecord selectedGame =
+              ModalRoute.of(context)!.settings.arguments as VisitRecord;
           return VisitRecordWritePage(selectedGame: selectedGame);
         },
         "/visit-record/update": (context) => const VisitRecordUpdatePage(),

@@ -31,8 +31,8 @@ class TodayGameCard extends StatelessWidget {
                   stadium: shortenStadiumName(game.stadiumName ?? ''),
                   gameTime: _parseTime(game.gameTime),
                   broadcastInfo: game.broadcastChannel ?? '',
-                  leftPitcher: game.homePitcherName ?? '',
-                  rightPitcher: game.awayPitcherName ?? ''),
+                  leftPitcher: game.awayPitcherName ?? '',
+                  rightPitcher: game.homePitcherName ?? ''),
               TodayGameTicketBtn(ticketUrl: game.ticketLink ?? ''),
             ],
           ),
@@ -43,8 +43,7 @@ class TodayGameCard extends StatelessWidget {
   }
 
   TimeOfDay _parseTime(String? timeStr) {
-    if (timeStr == null || !timeStr.contains(':'))
-      return const TimeOfDay(hour: 0, minute: 0);
+    if (timeStr == null || !timeStr.contains(':')) return const TimeOfDay(hour: 0, minute: 0);
     final parts = timeStr.split(':');
     return TimeOfDay(hour: int.parse(parts[0]), minute: int.parse(parts[1]));
   }

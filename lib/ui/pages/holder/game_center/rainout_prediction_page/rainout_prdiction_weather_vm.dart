@@ -15,8 +15,7 @@ class RainoutPredictionWeatherVM
 
   @override
   RainoutPredictionWeatherModel? build(int? stadiumId) {
-    loadWeather(
-        stadiumId ?? 2); // 드롭다운 첫번째 아이템이 잠실이니 잠실 기준으로 진입. // TODO : 현재 잠실 데이터가 없어서 고척으로 설정 -> 추후 수정
+    loadWeather(stadiumId ?? 1); // 드롭다운 첫번째 아이템이 잠실이니 잠실 기준으로 진입
 
     return null;
   }

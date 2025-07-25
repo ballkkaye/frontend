@@ -11,11 +11,11 @@ class JoinTeamPage extends StatelessWidget {
     return Scaffold(
       appBar: _appbar(),
       body: JoinTeamBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, "/main-holder");
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.pushNamed(context, "/main-holder");
+      //   },
+      // ),
     );
   }
 

@@ -11,11 +11,11 @@ class JoinNicknamePage extends StatelessWidget {
     return Scaffold(
       appBar: _appbar(),
       body: JoinNicknameBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, "/join/team");
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.pushNamed(context, "/join/team");
+      //   },
+      // ),
     );
   }
 

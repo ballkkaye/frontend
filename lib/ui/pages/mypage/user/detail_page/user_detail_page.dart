@@ -12,9 +12,9 @@ class UserDetailPage extends StatelessWidget {
     return Scaffold(
       appBar: _appbar(),
       body: UserDetailBody(),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        Navigator.pushNamed(context, '/user/update');
-      }),
+      // floatingActionButton: FloatingActionButton(onPressed: () {
+      //   Navigator.pushNamed(context, '/user/update');
+      // }),
     );
   }
 

@@ -10,7 +10,7 @@ import 'package:logger/logger.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 /// 1. 창고 관리자
-final  homeProvider = AutoDisposeNotifierProvider<HomeVM, HomeModel?>(() {
+final homeProvider = AutoDisposeNotifierProvider<HomeVM, HomeModel?>(() {
   return HomeVM();
 });
 
@@ -35,7 +35,7 @@ class HomeVM extends AutoDisposeNotifier<HomeModel?> {
     Map<String, dynamic> data = await HomeRepository().getHome();
     if (data["status"] != 200) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
-        SnackBar(content: Text("오늘의 경기 조회 실패 : ${data["msg"]}")),
+        SnackBar(content: Text("홈 조회 실패 : ${data["msg"]}")),
       );
       return;
     }

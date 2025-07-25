@@ -15,6 +15,8 @@ class ChatRoomDetailVM extends AutoDisposeFamilyNotifier<ChatRoomDetailModel?, i
 
   @override
   ChatRoomDetailModel? build(int chatRoomId) {
+    state = ChatRoomDetailModel([]);
+
     init(chatRoomId);
 
     ref.onDispose(() {
@@ -77,16 +79,9 @@ class ChatRoomDetailModel {
   ChatRoomDetailModel(this.groupedChatList);
 
   factory ChatRoomDetailModel.fromMap(List<dynamic> rawList) {
-    if (rawList.isEmpty) {
-      return ChatRoomDetailModel([]); // 빈 채팅방 처리
-    }
-
-    // 메시지 날짜 기준으로 묶기
     Map<String, List<ChatRoom>> grouped = {};
 
     for (final map in rawList) {
-      if (map['createdAt'] == null) continue;
-
       final date = DateTime.parse(map['createdAt']).toLocal();
       final dateKey =
           "${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
@@ -98,13 +93,16 @@ class ChatRoomDetailModel {
     final sortedKeys = grouped.keys.toList()..sort();
 
     for (final key in sortedKeys) {
-      grouped[key]!.sort((a, b) => a.chat!.createdAt.compareTo(b.chat!.createdAt));
+      grouped[key]!.sort((a, b) {
+        if (a.chat == null || b.chat == null) return 0;
+        return a.chat!.createdAt.compareTo(b.chat!.createdAt);
+      });
     }
 
     List<dynamic> finalList = [];
     for (final date in sortedKeys) {
-      finalList.add(date);
-      finalList.addAll(grouped[date]!);
+      finalList.add(date); // 날짜 헤더
+      finalList.addAll(grouped[date]!); // 해당 날짜의 채팅들
     }
 
     return ChatRoomDetailModel(finalList);

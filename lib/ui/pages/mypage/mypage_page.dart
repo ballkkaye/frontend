@@ -12,11 +12,11 @@ class MypagePage extends StatelessWidget {
     return Scaffold(
       appBar: _appbar(),
       body: MypageBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/user/detail');
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.pushNamed(context, '/user/detail');
+      //   },
+      // ),
     );
   }
 

@@ -11,11 +11,11 @@ class VisitRecordSelectPage extends StatelessWidget {
     return Scaffold(
       appBar: _appbar(),
       body: VisitRecordSelectBody(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, "/visit-record/write");
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.pushNamed(context, "/visit-record/write");
+      //   },
+      // ),
     );
   }
 

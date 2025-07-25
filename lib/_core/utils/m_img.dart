@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:ballkkaye_frontend/_core/utils/m_exception.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:logger/logger.dart';
 import 'package:mime/mime.dart';
 import 'package:uuid/uuid.dart';
 
@@ -41,22 +43,26 @@ class MImg {
       if (outer['statusCode'] == 200 && inner['url'] != null) {
         return inner['url'];
       } else {
-        print('Presigned URL not found or invalid structure');
-        return null;
+        print('Presigned URL을 찾을 수 없거나 형식이 잘못되었습니다.');
+        throw MException(
+          message: "Presigned URL을 찾을 수 없거나 형식이 잘못되었습니다.",
+        );
       }
     } catch (e) {
-      print('Failed to parse presigned URL: $e');
-      return null;
+      throw MException(
+        message: "Presigned URL을 파싱하는 중 오류가 발생했습니다.",
+        cause: e,
+      );
     }
   }
 
   /// S3 업로드
   static Future<String?> uploadToS3(
-    File imageFile,
-    String presignedUrl,
-    String contentType,
-    String objectKey,
-  ) async {
+      File imageFile,
+      String presignedUrl,
+      String contentType,
+      String objectKey,
+      ) async {
     try {
       final bytes = await imageFile.readAsBytes();
 
@@ -69,12 +75,16 @@ class MImg {
       if (res.statusCode == 200) {
         return "${Env.bucketUrl}/$objectKey";
       } else {
-        print("Upload failed: ${res.body}");
-        return null;
+        throw MException(
+          message: "이미지 업로드에 실패했습니다.",
+          cause: res.body,
+        );
       }
     } catch (e) {
-      print("Upload error: $e");
-      return null;
+      throw MException(
+        message: "이미지를 업로드하는 중 오류가 발생했습니다.",
+        cause: e,
+      );
     }
   }
 
@@ -89,12 +99,18 @@ class MImg {
 
       final Map<String, dynamic> responseData = json.decode(response.body);
       if (responseData['statusCode'] == 200) {
-        print('✅ Object deleted successfully: ${response.body}');
+        Logger().d('이미지가 성공적으로 삭제되었습니다: ${response.body}');
       } else {
-        print('❌ Failed to delete object: ${response.body}');
+        throw MException(
+          message: "이미지를 삭제하는 데 실패했습니다.",
+          cause: response.body,
+        );
       }
     } catch (e) {
-      print('⚠️ Exception occurred while deleting object: $e');
+      throw MException(
+        message: "이미지를 삭제하는 중 예외가 발생했습니다.",
+        cause: e,
+      );
     }
   }
 

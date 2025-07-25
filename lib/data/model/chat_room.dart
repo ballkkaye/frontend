@@ -21,7 +21,9 @@ class ChatRoom {
   );
 
   ChatRoom.fromMap(Map<String, dynamic> data)
-      : chat = (data['chat'] != null) ? Chat.fromMap(data['chat']) : null,
+      : chat = (data['chat'] != null && data['chat'] is Map<String, dynamic>)
+            ? Chat.fromMap(data['chat'])
+            : null,
         chatRoomId = data['chatRoomId'],
         chatRoomTitle = data['chatRoomTitle'],
         relativeTime = data['relativeTime'],

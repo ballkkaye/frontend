@@ -16,8 +16,8 @@ class UserDetailStatusCard extends StatelessWidget {
           color: Colors.white,
           borderRadius: BorderRadius.circular(8),
           boxShadow: MColor.kShadow.normal),
-      child: Center(
-          child: MText.label1_5('내 예측 결과 혹은 뱃지/점수 시스템 영역', color: MColor.kLabel.alternative)),
+      child:
+          Center(child: MText.label1_5('나의 승리 예측 기반 뱃지 발급 준비 중', color: MColor.kLabel.alternative)),
     );
   }
 }

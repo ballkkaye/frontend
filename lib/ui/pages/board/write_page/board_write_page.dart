@@ -10,11 +10,11 @@ class BoardWritePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appbar(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, "/board/detail");
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.pushNamed(context, "/board/detail");
+      //   },
+      // ),
       body: BoardWriteBody(),
     );
   }
